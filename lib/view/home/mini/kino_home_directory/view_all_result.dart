@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_result_api.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/kino_colors.dart';
+import 'package:globalbet/view/home/mini/kino_home_directory/keno_colors.dart';
 import 'package:provider/provider.dart';
 
 

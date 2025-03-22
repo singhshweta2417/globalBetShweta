@@ -49,7 +49,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<UserAuthProvider>(context);
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
         centerTitle: true,
         title:  textWidget(
@@ -85,7 +85,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                 Container(
                   width: double.infinity,
                   height: 90,
-                  decoration: const BoxDecoration(gradient: AppColors.loginSecondryGrad),
+                  decoration: const BoxDecoration(gradient: AppColors.loginSecondaryGrad),
 
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -402,7 +402,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                           );
                         }},
                       hideBorder: true,
-                      gradient: AppColors.loginSecondryGrad
+                      gradient: AppColors.loginSecondaryGrad
 
                   ),
                 ),
@@ -440,7 +440,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
   }
   otpurl(context,String phonenumber) async {
     final response = await http.get(
-      Uri.parse('${ApiUrl.sendotp}mode=live&digit=4&mobile=$phonenumber'),
+      Uri.parse('${ApiUrl.sendOtp}mode=live&digit=4&mobile=$phonenumber'),
     );
     var data = jsonDecode(response.body);
     if(data["status"]=="200"){
@@ -467,7 +467,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
       );
     } else {
       // Proceed with OTP verification
-      final response = await http.get(Uri.parse('${ApiUrl.verifyotp}$phone&otp=$myControllers'));
+      final response = await http.get(Uri.parse('${ApiUrl.verifyOtp}$phone&otp=$myControllers'));
 
       if (kDebugMode) {
         print("OTP Verification Process");
@@ -509,7 +509,7 @@ Future<String?> showCountryPicker(BuildContext context) async {
         height: 400,
 
         decoration: BoxDecoration(
-            color: AppColors.scaffolddark,
+            color: AppColors.scaffoldDark,
           borderRadius: BorderRadius.circular(10)
         ),
         child: ListView.builder(

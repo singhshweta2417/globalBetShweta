@@ -2,7 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/view/home/lottery/trx/model/trx_win_amount_model.dart';
 import 'package:globalbet/view/home/lottery/trx/repo/trx_win_amount_repo.dart';
 import 'package:globalbet/view/home/lottery/trx/widgets/trx_loss_pop_up.dart';
@@ -28,7 +29,7 @@ class TrxWinAmountViewModel with ChangeNotifier {
 
   Future<void> trxWinAmountApi(context, String gameId, dynamic period) async {
     setLoadingGameWin(true);
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     _trxWinAmountRepo.trxWinAmountApi(userId, gameId, period).then((value) {
@@ -48,7 +49,7 @@ class TrxWinAmountViewModel with ChangeNotifier {
               );
             },
           );
-          Provider.of<ProfileProvider>(context, listen: false).fetchProfileData();
+          Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
 
         } else {
           showDialog(
@@ -64,7 +65,7 @@ class TrxWinAmountViewModel with ChangeNotifier {
             },
           );
         }
-        Provider.of<ProfileProvider>(context, listen: false).fetchProfileData();
+        Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
 
       } else {
         if (kDebugMode) {

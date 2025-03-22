@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/view/home/lottery/wingo/model/win_amount_model.dart';
 import 'package:globalbet/view/home/lottery/wingo/repo/win_go_pop_up_repo.dart';
 import 'package:globalbet/view/home/lottery/wingo/widgets/loss_pop_up.dart';
@@ -24,7 +24,7 @@ class WinGoPopUpViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   Future<void> winAmountApi(context, String gameId, dynamic period) async {
     setLoadingGameWin(true);

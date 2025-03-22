@@ -26,7 +26,7 @@ class _SettingState extends State<Setting> {
         child: Container(
           margin: EdgeInsets.symmetric(
               horizontal: width * 0.2, vertical: height * 0.12),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(Assets.imagesBlackHisBox), fit: BoxFit.fill),
           ),
@@ -68,7 +68,7 @@ class _SettingState extends State<Setting> {
                     icon: Icons.person_add_alt, onTap: () {
                   showDialog(
                       context: context,
-                      builder: (context) => AddAccountScreen());
+                      builder: (context) => const AddAccountScreen());
                 }),
                 _buildOption(context,
                     title: "View Account",

@@ -13,13 +13,13 @@ import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/account/vip_history.dart';
 import 'package:globalbet/view/home/mini/Aviator/progressbar.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 
 class VipScreenNew extends StatefulWidget {
   const VipScreenNew({super.key});
@@ -42,42 +42,40 @@ class _VipScreenNewState extends State<VipScreenNew> {
     _pageController.dispose();
   }
 
-
-
   List<VipRule> ruleData = [
     VipRule(
       title: 'Upgrade standard',
       discription:
-      "The IP member's experience points (valid bet amount) that meet the requirements of the corresponding rank will be promoted to the corresponding VIP level, the member's VIP data statistics period starts from 00:00:00 days VIP system launched.VIP level calculation is refreshed every 10 minutes! The corresponding experience level is calculated according to valid odds 1:1 !",
+          "The IP member's experience points (valid bet amount) that meet the requirements of the corresponding rank will be promoted to the corresponding VIP level, the member's VIP data statistics period starts from 00:00:00 days VIP system launched.VIP level calculation is refreshed every 10 minutes! The corresponding experience level is calculated according to valid odds 1:1 !",
     ),
     VipRule(
         title: 'Upgrade order',
         discription:
-        "The VIP level that meets the corresponding requirements can be promoted by one level every day, but the VIP level cannot be promoted by leapfrogging."),
+            "The VIP level that meets the corresponding requirements can be promoted by one level every day, but the VIP level cannot be promoted by leapfrogging."),
     VipRule(
         title: 'Level maintenance',
         discription:
-        'VIP members need to complete the maintenance requirements of the corresponding level within 30 days after the "VIP level change"; if the promotion is completed during this period, the maintenance requirements will be calculated according to the current level.'),
+            'VIP members need to complete the maintenance requirements of the corresponding level within 30 days after the "VIP level change"; if the promotion is completed during this period, the maintenance requirements will be calculated according to the current level.'),
     VipRule(
         title: 'Downgrade standard',
         discription:
-        "If a VIP member fails to complete the corresponding level maintenance requirements within 30 days, the system will automatically deduct the experience points corresponding to the level. If the experience points are insufficient, the level will be downgraded, and the corresponding discounts will be adjusted to the downgraded level accordingly."),
+            "If a VIP member fails to complete the corresponding level maintenance requirements within 30 days, the system will automatically deduct the experience points corresponding to the level. If the experience points are insufficient, the level will be downgraded, and the corresponding discounts will be adjusted to the downgraded level accordingly."),
     VipRule(
         title: 'Upgrade Bonus',
         discription:
-        "The upgrade benefits can be claimed on the VIP page after the member reaches the VIP membership level, and each VIP member can only get the upgrade reward of each level once."),
+            "The upgrade benefits can be claimed on the VIP page after the member reaches the VIP membership level, and each VIP member can only get the upgrade reward of each level once."),
     VipRule(
         title: 'Monthly reward',
         discription:
-        "VIP members can earn the highest level of VIP rewards once a month.Can only be received once a month. Prizes cannot be accumulated. And any unclaimed rewards will be refreshed on the next settlement day. When receiving the highest level of monthly rewards this month Monthly Rewards earned in this month will be deducted e.g. when VIP1 earns 500 and upgrades to VIP2 to receive monthly rewards 500 will be deducted."),
+            "VIP members can earn the highest level of VIP rewards once a month.Can only be received once a month. Prizes cannot be accumulated. And any unclaimed rewards will be refreshed on the next settlement day. When receiving the highest level of monthly rewards this month Monthly Rewards earned in this month will be deducted e.g. when VIP1 earns 500 and upgrades to VIP2 to receive monthly rewards 500 will be deducted."),
     VipRule(
         title: 'Real-time rebate',
         discription:
-        "The higher the VIP level, the higher the return rate, all the games are calculated in real time and can be self-rewarded!"),
+            "The higher the VIP level, the higher the return rate, all the games are calculated in real time and can be self-rewarded!"),
     VipRule(
         title: 'Safe',
         discription:
-        "VIP members who have reached the corresponding level will get additional benefits on safe deposit based on the member's VIP level."),
+            "VIP members who have reached the corresponding level will get additional benefits on safe deposit based on the member's VIP level."),
   ];
 
   List<VipLevel> vipLevel = [
@@ -217,7 +215,6 @@ class _VipScreenNewState extends State<VipScreenNew> {
 
   final PageController _pageController = PageController();
 
-
   bool _isLoading = false;
 
   void _onPageChanged(int index) async {
@@ -235,12 +232,12 @@ class _VipScreenNewState extends State<VipScreenNew> {
 
   @override
   Widget build(BuildContext context) {
-    final userData = context.read<ProfileProvider>();
+    final userData = Provider.of<ProfileViewModel>(context);
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           title: textWidget(text: 'VIP', fontSize: 25, color: Colors.white),
-          leading: const AppBackBtn (),
+          leading: const AppBackBtn(),
           centerTitle: true,
           gradient: AppColors.primaryGradient),
       body: ListView(
@@ -262,7 +259,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                         CircleAvatar(
                           radius: 50,
                           backgroundImage:
-                          NetworkImage(userData.userImage.toString()),
+                              NetworkImage(userData.userImage.toString()),
                         ),
                         const SizedBox(width: 15),
                         Column(
@@ -276,7 +273,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                             ),
                             const SizedBox(height: 10),
                             textWidget(
-                                text: userData.userName == null
+                                text: userData.userName == ''
                                     ? "MEMBERNGKC"
                                     : userData.userName.toString(),
                                 fontSize: 18,
@@ -295,10 +292,18 @@ class _VipScreenNewState extends State<VipScreenNew> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    topContainer(myExp==null?'00':myExp.toString(), 'Exp', 'My Experience',
-                        AppColors.gradientFirstColor, FontWeight.w500),
-                    topContainer(PayoutTime==null?'00':PayoutTime.toString(), 'days', 'Payout time',
-                        AppColors.primaryTextColor, FontWeight.w900),
+                    topContainer(
+                        myExp == null ? '00' : myExp.toString(),
+                        'Exp',
+                        'My Experience',
+                        AppColors.gradientFirstColor,
+                        FontWeight.w500),
+                    topContainer(
+                        PayoutTime == null ? '00' : PayoutTime.toString(),
+                        'days',
+                        'Payout time',
+                        AppColors.primaryTextColor,
+                        FontWeight.w900),
                   ],
                 ),
               ),
@@ -313,7 +318,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                 borderRadius: BorderRadius.circular(5)),
             child: textWidget(
                 text:
-                'VIP level rewards are settled at 2:00 am on the 1st of every month',
+                    'VIP level rewards are settled at 2:00 am on the 1st of every month',
                 color: Colors.grey,
                 fontSize: 11,
                 fontWeight: FontWeight.w500),
@@ -321,7 +326,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
           //card
           SizedBox(
             height: height * 1.65,
-            width: width*0.3,
+            width: width * 0.3,
             child: PageView.builder(
               controller: _pageController,
               scrollDirection: Axis.horizontal,
@@ -336,11 +341,10 @@ class _VipScreenNewState extends State<VipScreenNew> {
                       data.percentage != null) {
                     double betAmount = double.parse(data.betAmount.toString());
                     double rangeAmount =
-                    double.parse(data.rangeAmount.toString());
-                    double percentageValue =
-                    double.parse(data.percentage);
+                        double.parse(data.rangeAmount.toString());
+                    double percentageValue = double.parse(data.percentage);
                     valueToUse =
-                    (betAmount < rangeAmount) ? percentageValue : 100.0;
+                        (betAmount < rangeAmount) ? percentageValue : 100.0;
                     if (kDebugMode) {
                       print('valueToUse before normalization: $valueToUse');
                       print('cddddddddddddddh');
@@ -361,191 +365,206 @@ class _VipScreenNewState extends State<VipScreenNew> {
                 double percentage = getValidatedPercentage(data);
                 return Column(
                   children: [
-                    _isLoading==true?
-                    Container(
-                      color: Colors.black.withOpacity(0.5),
-                      child: const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    ):Container(
-                      padding: const EdgeInsets.all(8),
-                      margin: const EdgeInsets.all(5),
-                      height: height * 0.23,
-                      width: width * 0.9,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: vipLevel[index].bottomColor,
-                        image: DecorationImage(
-                          image: AssetImage(vipLevel[index].bgImage.toString()),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: height * 0.1,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    _isLoading == true
+                        ? Container(
+                            color: Colors.black.withOpacity(0.5),
+                            child: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          )
+                        : Container(
+                            padding: const EdgeInsets.all(8),
+                            margin: const EdgeInsets.all(5),
+                            height: height * 0.23,
+                            width: width * 0.9,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: vipLevel[index].bottomColor,
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    vipLevel[index].bgImage.toString()),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            child: Column(
                               children: [
                                 SizedBox(
                                   height: height * 0.1,
-                                  width: width * 0.52,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Image(
-                                            image: AssetImage(vipLevel[index]
-                                                .topImg
-                                                .toString()),
-                                            height: 30,
-                                          ),
-                                          textWidget(
-                                            text: data.name.toString(),
-                                            color: const Color(0xFFFFFFFF),
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                          Image(
-                                            image: AssetImage(vipLevel[index]
-                                                .achievedImg
-                                                .toString()),
-                                            height: 18,
-                                          ),
-                                          textWidget(
-                                            text: data.status == "1"
-                                                ? 'Achieved'
-                                                : 'UnAchieved',
-                                            color: const Color(0xFFFFFFFF),
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ],
-                                      ),
-                                      Container(
-                                        alignment: Alignment.center,
-                                        height: height * 0.03,
-                                        width: width * 0.32,
-                                        decoration: BoxDecoration(
-                                          border:
-                                          Border.all(color: Colors.white),
-                                          borderRadius:
-                                          BorderRadius.circular(5),
+                                      SizedBox(
+                                        height: height * 0.1,
+                                        width: width * 0.52,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Image(
+                                                  image: AssetImage(
+                                                      vipLevel[index]
+                                                          .topImg
+                                                          .toString()),
+                                                  height: 30,
+                                                ),
+                                                textWidget(
+                                                  text: data.name.toString(),
+                                                  color:
+                                                      const Color(0xFFFFFFFF),
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                Image(
+                                                  image: AssetImage(
+                                                      vipLevel[index]
+                                                          .achievedImg
+                                                          .toString()),
+                                                  height: 18,
+                                                ),
+                                                textWidget(
+                                                  text: data.status == "1"
+                                                      ? 'Achieved'
+                                                      : 'UnAchieved',
+                                                  color:
+                                                      const Color(0xFFFFFFFF),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ],
+                                            ),
+                                            Container(
+                                              alignment: Alignment.center,
+                                              height: height * 0.03,
+                                              width: width * 0.32,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.white),
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              ),
+                                              child: textWidget(
+                                                text:
+                                                    ' Dear ${data.name.toString()} customer',
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            data.status == 0
+                                                ? textWidget(
+                                                    text: 'Level maintenance',
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 12,
+                                                  )
+                                                : Container(),
+                                          ],
                                         ),
-                                        child: textWidget(
-                                          text:
-                                          ' Dear ${data.name.toString()} customer',
-                                          color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.1,
+                                        width: width * 0.22,
+                                        child: Image(
+                                          image: AssetImage(vipLevel[index]
+                                              .levelImage
+                                              .toString()),
                                         ),
                                       ),
-                                      data.status == 0
-                                          ? textWidget(
-                                        text: 'Level maintenance',
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 12,
-                                      )
-                                          : Container(),
                                     ],
                                   ),
                                 ),
-                                SizedBox(
-                                  height: height * 0.1,
-                                  width: width * 0.22,
-                                  child: Image(
-                                    image: AssetImage(
-                                        vipLevel[index].levelImage.toString()),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          data.status == '0'
-                              ? SizedBox(
-                            height: height * 0.1,
-                            child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.center,
-                                      height: 20,
-                                      // width: width * 0.3,
-                                      decoration: BoxDecoration(
-                                        color:
-                                        Colors.black.withOpacity(0.5),
-                                        borderRadius:
-                                        BorderRadius.circular(5),
-                                      ),
-                                      child: textWidget(
-                                        text:
-                                        '  ${data.betAmount != null && data.rangeAmount != null && int.parse(data.betAmount.toString()) < int.parse(data.rangeAmount!) ? data.betAmount : data.rangeAmount}/${int.parse(data.rangeAmount!)}  ',
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    textWidget(
-                                      text: '$valueToUse% Completed',
-                                      color: Colors.white,
-                                    ),
-                                  ],
-                                ),
                                 const SizedBox(
-                                  height: 10,
+                                  height: 5,
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    if (kDebugMode) {
-                                      print(double.parse(betCardList[index]
-                                          .percentage
-                                          .toString()) /
-                                          100);
-                                      print('shwetasss');
-                                    }
-
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    child: LinearPercentIndicator(
-                                      animation: true,
-                                      animationDuration: 1000,
-                                      lineHeight: 9.0,
-                                      percent: percentage,
-                                      progressColor: Colors.yellow[400],
-                                      backgroundColor:
-                                      vipLevel[index].backGroundColor,
-                                    ),
-                                  ),
-                                ),
-                                textWidget(
-                                  text:
-                                  '   Incomplete will be deducted by the system',
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                                data.status == '0'
+                                    ? SizedBox(
+                                        height: height * 0.1,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                  alignment: Alignment.center,
+                                                  height: 20,
+                                                  // width: width * 0.3,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  child: textWidget(
+                                                    text:
+                                                        '  ${data.betAmount != null && data.rangeAmount != null && int.parse(data.betAmount.toString()) < int.parse(data.rangeAmount!) ? data.betAmount : data.rangeAmount}/${int.parse(data.rangeAmount!)}  ',
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                textWidget(
+                                                  text:
+                                                      '$valueToUse% Completed',
+                                                  color: Colors.white,
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                if (kDebugMode) {
+                                                  print(double.parse(
+                                                          betCardList[index]
+                                                              .percentage
+                                                              .toString()) /
+                                                      100);
+                                                  print('shwetasss');
+                                                }
+                                              },
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                child: LinearPercentIndicator(
+                                                  animation: true,
+                                                  animationDuration: 1000,
+                                                  lineHeight: 9.0,
+                                                  percent: percentage,
+                                                  progressColor:
+                                                      Colors.yellow[400],
+                                                  backgroundColor:
+                                                      vipLevel[index]
+                                                          .backGroundColor,
+                                                ),
+                                              ),
+                                            ),
+                                            textWidget(
+                                              text:
+                                                  '   Incomplete will be deducted by the system',
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : textWidget(
+                                        text:
+                                            'Received ${data.name} level bonus',
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                               ],
                             ),
-                          )
-                              : textWidget(
-                            text: 'Received ${data.name} level bonus',
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700,
                           ),
-                        ],
-                      ),
-                    ),
                     if (_isLoading)
                       Container(
                         color: Colors.black.withOpacity(0.5),
@@ -553,142 +572,141 @@ class _VipScreenNewState extends State<VipScreenNew> {
                           child: SizedBox(),
                         ),
                       ),
-                    _isLoading== true?
-                        const SizedBox():
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: AppColors.primaryUnselectedGradient,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(14, 14, 0, 5),
+                    _isLoading == true
+                        ? const SizedBox()
+                        : Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: AppColors.primaryUnselectedGradient,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               child: Column(
                                 children: [
-                                  Row(
-                                    children: [
-                                      const Image(
-                                        image:
-                                        AssetImage(Assets.iconsVipdiamond),
-                                        height: 25,
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(14, 14, 0, 5),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Image(
+                                              image: AssetImage(
+                                                  Assets.iconsVipdiamond),
+                                              height: 25,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            textWidget(
+                                                text:
+                                                    '${betCardList[index].name} Benefits level',
+                                                fontWeight: FontWeight.w900,
+                                                fontSize: 20,
+                                                color: Colors.white),
+                                          ],
+                                        ),
+                                        const Divider(
+                                          indent: 30,
+                                          thickness: 1,
+                                          endIndent: 20,
+                                          color: AppColors.constColor,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  ListTile(
+                                      leading: SizedBox(
+                                        height: height * 0.08,
+                                        width: width * 0.17,
+                                        child: const Image(
+                                          image:
+                                              AssetImage(Assets.iconsVipgift),
+                                        ),
                                       ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      textWidget(
+                                      title: textWidget(
+                                          text: 'Level up rewards',
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                      subtitle: textWidget(
                                           text:
-                                          '${betCardList[index].name} Benefits level',
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20,color: Colors.white
-
+                                              'Each account can only receive 1 time\n',
+                                          color: Colors.white),
+                                      trailing: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            vipBenefit(
+                                              betCardList[index]
+                                                  .levelUpRewards
+                                                  .toString(),
+                                              Assets.iconsDepoWallet,
+                                            ),
+                                            vipBenefit(
+                                              '0',
+                                              Assets.iconsViplove,
+                                            )
+                                          ])),
+                                  ListTile(
+                                      leading: SizedBox(
+                                        height: height * 0.08,
+                                        width: width * 0.17,
+                                        child: const Image(
+                                          image: AssetImage(
+                                              Assets.iconsVipstarcoin),
+                                        ),
                                       ),
-                                    ],
-                                  ),
-                                  const Divider(
-                                    indent: 30,
-                                    thickness: 1,
-                                    endIndent: 20,
-                                    color: AppColors.constColor,
-                                  ),
+                                      title: textWidget(
+                                          text: 'Monthly rewards',
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                      subtitle: textWidget(
+                                          text:
+                                              'Each account can only receive 1 time per month',
+                                          color: Colors.white),
+                                      trailing: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            vipBenefit(
+                                              betCardList[index]
+                                                  .monthlyRewards
+                                                  .toString(),
+                                              Assets.iconsDepoWallet,
+                                            ),
+                                            vipBenefit(
+                                              '0',
+                                              Assets.iconsViplove,
+                                            )
+                                          ])),
+                                  ListTile(
+                                      leading: SizedBox(
+                                        height: height * 0.08,
+                                        width: width * 0.17,
+                                        child: const Image(
+                                          image:
+                                              AssetImage(Assets.iconsVipcoins),
+                                        ),
+                                      ),
+                                      title: textWidget(
+                                          text: 'Rebate rate',
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                      subtitle: textWidget(
+                                          text: 'Increase income of rebate',
+                                          color: Colors.white),
+                                      trailing: vipBenefit(
+                                          betCardList[index]
+                                              .rebateRate
+                                              .toString(),
+                                          Assets.iconsVipweal))
                                 ],
                               ),
                             ),
-                            ListTile(
-                                leading: SizedBox(
-                                  height: height * 0.08,
-                                  width: width * 0.17,
-                                  child: const Image(
-                                    image: AssetImage(Assets.iconsVipgift),
-                                  ),
-                                ),
-                                title: textWidget(
-                                    text: 'Level up rewards',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18,color: Colors.white
-
-                                ),
-                                subtitle: textWidget(
-                                    text:
-                                    'Each account can only receive 1 time\n',
-                                    color: Colors.white
-                                ),
-                                trailing: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      vipBenefit(
-                                        betCardList[index]
-                                            .levelUpRewards
-                                            .toString(),
-                                        Assets.iconsDepoWallet,
-                                      ),
-                                      vipBenefit(
-                                        '0',
-                                        Assets.iconsViplove,
-                                      )
-                                    ])),
-                            ListTile(
-                                leading: SizedBox(
-                                  height: height * 0.08,
-                                  width: width * 0.17,
-                                  child: const Image(
-                                    image: AssetImage(Assets.iconsVipstarcoin),
-                                  ),
-                                ),
-                                title: textWidget(
-                                    text: 'Monthly rewards',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18,color: Colors.white
-
-                                ),
-                                subtitle: textWidget(
-                                    text:
-                                    'Each account can only receive 1 time per month',
-                                    color: Colors.white
-                                ),
-                                trailing: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      vipBenefit(
-                                        betCardList[index]
-                                            .monthlyRewards
-                                            .toString(),
-                                        Assets.iconsDepoWallet,
-                                      ),
-                                      vipBenefit(
-                                        '0',
-                                        Assets.iconsViplove,
-                                      )
-                                    ])),
-                            ListTile(
-                                leading: SizedBox(
-                                  height: height * 0.08,
-                                  width: width * 0.17,
-                                  child: const Image(
-                                    image: AssetImage(Assets.iconsVipcoins),
-                                  ),
-                                ),
-                                title: textWidget(
-                                    text: 'Rebate rate',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18
-                                    ,color: Colors.white
-                                ),
-                                subtitle: textWidget(
-                                    text: 'Increase income of rebate',
-                                    color: Colors.white
-                                ),
-                                trailing: vipBenefit(
-                                    betCardList[index].rebateRate.toString(),
-                                    Assets.iconsVipweal))
-                          ],
-                        ),
-                      ),
-                    ),
+                          ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -714,9 +732,8 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                       textWidget(
                                           text: 'My benefits',
                                           fontWeight: FontWeight.w900,
-                                          fontSize: 20,color: Colors.white
-
-                                      ),
+                                          fontSize: 20,
+                                          color: Colors.white),
                                     ],
                                   ),
                                   const Divider(
@@ -736,7 +753,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                 children: [
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       myBenefits(
                                           Assets.iconsVipwelfare1,
@@ -748,23 +765,37 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                           '0',
                                           'Level up rewards',
                                           'Each account can only receive 1 time\n',
-                                          'Received',betCardList[index].levelUpStatus.toString(),
-                                          betCardList[index].levelUpStatus==0?
-                                              (){
-                                          }: (){
-                                            showDialog(context: context, builder: (context)=>popUp(
-                                                Assets.iconsVipwelfare1,
-                                                'Level up rewards',
-                                                    (){
-                                                      addMoney(betCardList[index].id.toString(),betCardList[index].levelUpRewards.toString(),'0',context,);
-                                                }
-                                            ));
-                                          },
-                                          betCardList[index].levelUpStatus==0?
-                                          AppColors.primaryappbargrey:
-                                          AppColors.loginSecondryGrad,
-                                          'Received'
-                                      ),
+                                          'Received',
+                                          betCardList[index]
+                                              .levelUpStatus
+                                              .toString(),
+                                          betCardList[index].levelUpStatus == 0
+                                              ? () {}
+                                              : () {
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) =>
+                                                          popUp(
+                                                              Assets
+                                                                  .iconsVipwelfare1,
+                                                              'Level up rewards',
+                                                              () {
+                                                            addMoney(
+                                                              betCardList[index]
+                                                                  .id
+                                                                  .toString(),
+                                                              betCardList[index]
+                                                                  .levelUpRewards
+                                                                  .toString(),
+                                                              '0',
+                                                              context,
+                                                            );
+                                                          }));
+                                                },
+                                          betCardList[index].levelUpStatus == 0
+                                              ? AppColors.primaryappbargrey
+                                              : AppColors.loginSecondaryGrad,
+                                          'Received'),
                                       myBenefits(
                                           Assets.iconsVipwelfare2,
                                           betCardList[index]
@@ -776,30 +807,47 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                           'Monthly rewards',
                                           'Each account can only receive 1 time per month'
                                               'Received',
-                                          '',betCardList[index].monthlyRewardsStatus.toString(),
-                                          betCardList[index].monthlyRewardsStatus==0?
-                                              (){
-
-                                          }: (){
-                                            showDialog(context: context, builder: (context)=>popUp(
-                                                Assets.iconsVipwelfare2,
-                                                'Monthly rewards',
-                                                    (){
-                                                      addMoney(betCardList[index].id.toString(),'0',betCardList[index].monthlyRewards.toString(),context);
-                                                }
-                                            ));
-                                          },
-                                          betCardList[index].monthlyRewardsStatus==0?
-                                          AppColors.primaryappbargrey:
-                                          AppColors.loginSecondryGrad,
-                                          'Received'
-                                      ),
-
+                                          '',
+                                          betCardList[index]
+                                              .monthlyRewardsStatus
+                                              .toString(),
+                                          betCardList[index]
+                                                      .monthlyRewardsStatus ==
+                                                  0
+                                              ? () {}
+                                              : () {
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) =>
+                                                          popUp(
+                                                              Assets
+                                                                  .iconsVipwelfare2,
+                                                              'Monthly rewards',
+                                                              () {
+                                                            addMoney(
+                                                                betCardList[
+                                                                        index]
+                                                                    .id
+                                                                    .toString(),
+                                                                '0',
+                                                                betCardList[
+                                                                        index]
+                                                                    .monthlyRewards
+                                                                    .toString(),
+                                                                context);
+                                                          }));
+                                                },
+                                          betCardList[index]
+                                                      .monthlyRewardsStatus ==
+                                                  0
+                                              ? AppColors.primaryappbargrey
+                                              : AppColors.loginSecondaryGrad,
+                                          'Received'),
                                     ],
                                   ),
                                   Padding(
                                     padding:
-                                    const EdgeInsets.only(left: 5, top: 5),
+                                        const EdgeInsets.only(left: 5, top: 5),
                                     child: Row(
                                       children: [
                                         myBenefits(
@@ -812,12 +860,17 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                             '',
                                             'Rebate rate',
                                             'Increase income of rebate',
-                                            'Received',betCardList[index].rebateRateStatus.toString(),
-                                            betCardList[index].rebateRateStatus==0?
-                                                (){}: (){},
+                                            'Received',
+                                            betCardList[index]
+                                                .rebateRateStatus
+                                                .toString(),
+                                            betCardList[index]
+                                                        .rebateRateStatus ==
+                                                    0
+                                                ? () {}
+                                                : () {},
                                             AppColors.ssbutton,
-                                            'Check the Details'
-                                        ),
+                                            'Check the Details'),
                                       ],
                                     ),
                                   )
@@ -858,210 +911,228 @@ class _VipScreenNewState extends State<VipScreenNew> {
                 ),
                 selectedIndex == 21
                     ? Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.FirstColor),
-                  child:    responseStatusCode==400?const notFoundData():
-                  vipHistory.isEmpty?const Center(child: CircularProgressIndicator()) :
-                  Column(
-                    children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: vipHistory.length,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) {
-                          return Center(
-                            child: InkWell(
-                              onTap: () {},
-                              child: SizedBox(
-                                width: width,
-                                child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      8, 15, 8, 0),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.firstColors),
+                        child: responseStatusCode == 400
+                            ? const notFoundData()
+                            : vipHistory.isEmpty
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : Column(
                                     children: [
-                                      const Text(
-                                        'Experience Bonus',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 17,
-                                            color: Colors.blue),
+                                      ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: vipHistory.length,
+                                        physics: const BouncingScrollPhysics(),
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Center(
+                                            child: InkWell(
+                                              onTap: () {},
+                                              child: SizedBox(
+                                                width: width,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          8, 15, 8, 0),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      const Text(
+                                                        'Experience Bonus',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            fontSize: 17,
+                                                            color: Colors.blue),
+                                                      ),
+                                                      SizedBox(
+                                                        height: height * 0.02,
+                                                      ),
+                                                      const Text(
+                                                        'Betting EXP',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            fontSize: 12,
+                                                            color: AppColors
+                                                                .dividerColor),
+                                                      ),
+                                                      SizedBox(
+                                                        height: height * 0.02,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            vipHistory[index]
+                                                                .createdAt
+                                                                .toString(),
+                                                            style: const TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                fontSize: 12,
+                                                                color: AppColors
+                                                                    .dividerColor),
+                                                          ),
+                                                          const Spacer(),
+                                                          Text(
+                                                            "${vipHistory[index].exp} EXP",
+                                                            style: const TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                fontSize: 12,
+                                                                color: Colors
+                                                                    .green),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const Divider(
+                                                        color: AppColors
+                                                            .secondaryTextColor,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
                                       ),
-                                      SizedBox(
-                                        height: height * 0.02,
-                                      ),
-                                      const Text(
-                                        'Betting EXP',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 12,
-                                            color:
-                                            AppColors.dividerColor),
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.02,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            vipHistory[index].createdAt.toString(),
-                                            style: const TextStyle(
-                                                fontWeight:
-                                                FontWeight.w700,
-                                                fontSize: 12,
-                                                color: AppColors
-                                                    .dividerColor),
-                                          ),
-                                          const Spacer(),
-                                          Text(
-                                            "${vipHistory[index].exp} EXP",
-                                            style: const TextStyle(
-                                                fontWeight:
-                                                FontWeight.w700,
-                                                fontSize: 12,
-                                                color: Colors.green),
-                                          ),
-                                        ],
-                                      ),
-                                      const Divider(
-                                        color:
-                                        AppColors.secondaryTextColor,
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 15, 20, 10),
+                                        child: AppBtn(
+                                          title: 'View All',
+                                          fontSize: 20,
+                                          titleColor:
+                                              AppColors.gradientFirstColor,
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const AllVipHistory()));
+                                          },
+                                          gradient: AppColors.secondaryGradient,
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding:
-                        const EdgeInsets.fromLTRB(20, 15, 20, 10),
-                        child: AppBtn(
-                          title: 'View All',
-                          fontSize: 20,
-                          titleColor: AppColors.gradientFirstColor,
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const AllVipHistory()));
-                          },
-                          gradient: AppColors.secondaryGradient,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
+                      )
                     : Container(
-                  decoration: BoxDecoration(
-                      color: AppColors.FirstColor,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: height * 0.02,
-                      ),
-                      Center(
-                          child: textWidget(
-                              text: 'VIP privileges',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.gradientFirstColor)),
-                      SizedBox(
-                        height: height * 0.01,
-                      ),
-                      Center(
-                          child: textWidget(
-                              text: 'VIP rule description',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
-                              color: AppColors.btnColor)),
-                      SizedBox(
-                        height: height * 0.02,
-                      ),
-                      ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: ruleData.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Stack(
-                                clipBehavior: Clip.none,
-                                children: [
-                                  Padding(
-                                    padding:
-                                    const EdgeInsets.only(left: 1.2),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(16),
-                                      decoration: BoxDecoration(
-                                          color: AppColors.FirstColor,
-                                          border: Border.all(
-                                              color: AppColors
-                                                  .secondaryContainerTextColor,
-                                              width: 0.5),
-                                          //  gradient: AppColors.primaryUnselectedGradient,
-                                          borderRadius:
-                                          BorderRadius.circular(10)),
-                                      child: Padding(
-                                        padding:
-                                        const EdgeInsets.fromLTRB(
-                                            8, 30, 8, 20),
-                                        child: textWidget(
-                                            text: ruleData[index]
-                                                .discription
-                                                .toString(),
-                                            fontSize: 15,
-                                            color: AppColors
-                                                .primaryTextColor,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: -20,
-                                    child: Padding(
-                                      padding:
-                                      const EdgeInsets.only(left: 1),
-                                      child: Container(
-                                        height: height * 0.09,
-                                        width: width * 0.884,
-                                        decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(Assets
-                                                    .iconsViprulehead),
-                                                fit: BoxFit.fill)),
-                                        child: Center(
-                                          child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(
-                                                bottom: 15.0),
-                                            child: Text(
-                                              ruleData[index]
-                                                  .title
-                                                  .toString(),
-                                              style: const TextStyle(
-                                                  fontWeight:
-                                                  FontWeight.w900,
-                                                  fontSize: 14,
+                        decoration: BoxDecoration(
+                            color: AppColors.firstColors,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            Center(
+                                child: textWidget(
+                                    text: 'VIP privileges',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.gradientFirstColor)),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Center(
+                                child: textWidget(
+                                    text: 'VIP rule description',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15,
+                                    color: AppColors.btnColor)),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: ruleData.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Stack(
+                                      clipBehavior: Clip.none,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 1.2),
+                                          child: Container(
+                                            padding: const EdgeInsets.all(16),
+                                            decoration: BoxDecoration(
+                                                color: AppColors.firstColors,
+                                                border: Border.all(
+                                                    color: AppColors
+                                                        .secondaryContainerTextColor,
+                                                    width: 0.5),
+                                                //  gradient: AppColors.primaryUnselectedGradient,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      8, 30, 8, 20),
+                                              child: textWidget(
+                                                  text: ruleData[index]
+                                                      .discription
+                                                      .toString(),
+                                                  fontSize: 15,
                                                   color: AppColors
-                                                      .primaryTextColor),
+                                                      .primaryTextColor,
+                                                  fontWeight: FontWeight.w500),
                                             ),
                                           ),
                                         ),
-                                      ),
+                                        Positioned(
+                                          top: -20,
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 1),
+                                            child: Container(
+                                              height: height * 0.09,
+                                              width: width * 0.884,
+                                              decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(Assets
+                                                          .iconsViprulehead),
+                                                      fit: BoxFit.fill)),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 15.0),
+                                                  child: Text(
+                                                    ruleData[index]
+                                                        .title
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w900,
+                                                        fontSize: 14,
+                                                        color: AppColors
+                                                            .primaryTextColor),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          })
-                    ],
-                  ),
-                ),
+                                  );
+                                })
+                          ],
+                        ),
+                      ),
               ],
             ),
           ),
@@ -1071,23 +1142,23 @@ class _VipScreenNewState extends State<VipScreenNew> {
   }
 
   myBenefits(
-      String image,
-      String wallet,
-      String trailingIcon,
-      String heart,
-      String heartText,
-      String title,
-      String subTitle,
-      String received,
-      String status,
-      VoidCallback? onTap,
-      Gradient color,
-      String onTapText,
-      ) {
+    String image,
+    String wallet,
+    String trailingIcon,
+    String heart,
+    String heartText,
+    String title,
+    String subTitle,
+    String received,
+    String status,
+    VoidCallback? onTap,
+    Gradient color,
+    String onTapText,
+  ) {
     return Center(
       child: SizedBox(
-        height: height*0.38,
-        width: width*0.45,
+        height: height * 0.38,
+        width: width * 0.45,
         child: Column(
           children: [
             Container(
@@ -1096,7 +1167,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(10),
                     topLeft: Radius.circular(10)),
-                color: AppColors.FirstColor,
+                color: AppColors.firstColors,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -1104,11 +1175,11 @@ class _VipScreenNewState extends State<VipScreenNew> {
                 children: [
                   Container(
                     height: height * 0.2,
-                    decoration:  const BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(10),
                           topLeft: Radius.circular(10)),
-                      gradient: AppColors.loginSecondryGrad,
+                      gradient: AppColors.loginSecondaryGrad,
                     ),
                     child: Column(
                       children: [
@@ -1139,9 +1210,9 @@ class _VipScreenNewState extends State<VipScreenNew> {
                               heart == ''
                                   ? Container()
                                   : Image.asset(
-                                heart,
-                                height: 14,
-                              ),
+                                      heart,
+                                      height: 14,
+                                    ),
                               textWidget(
                                 text: heartText,
                                 fontSize: 13,
@@ -1184,13 +1255,12 @@ class _VipScreenNewState extends State<VipScreenNew> {
             AppBtn(
               title: onTapText,
               fontSize: 15,
-              onTap:onTap,
-              hideBorder:status=='0'? false:true,
-              border: Border.all(color: Colors.white,width: 5),
-              gradient:color,
+              onTap: onTap,
+              hideBorder: status == '0' ? false : true,
+              border: Border.all(color: Colors.white, width: 5),
+              gradient: color,
               height: 40,
               width: width,
-
             )
           ],
         ),
@@ -1223,8 +1293,8 @@ class _VipScreenNewState extends State<VipScreenNew> {
     );
   }
 
-
-  addMoney( String levelId, String levelUPRewards,String monthlyRewards, context) async {
+  addMoney(String levelId, String levelUPRewards, String monthlyRewards,
+      context) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
 
@@ -1234,10 +1304,10 @@ class _VipScreenNewState extends State<VipScreenNew> {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        "userid":token,
-        "level_id":levelId,
-        "level_up_rewards":levelUPRewards,
-        "monthly_rewards":monthlyRewards
+        "userid": token,
+        "level_id": levelId,
+        "level_up_rewards": levelUPRewards,
+        "monthly_rewards": monthlyRewards
       }),
     );
     var data = jsonDecode(response.body);
@@ -1245,7 +1315,8 @@ class _VipScreenNewState extends State<VipScreenNew> {
       Navigator.pop(context);
       Utils.flushBarErrorMessage(data['message'], context, Colors.black);
       vipBetCardsData();
-      return Utils.flushBarSuccessMessage(data['message'], context, Colors.black);
+      return Utils.flushBarSuccessMessage(
+          data['message'], context, Colors.black);
     } else if (data["status"] == "400") {
       Utils.flushBarErrorMessage(data['message'], context, Colors.black);
     } else {
@@ -1253,8 +1324,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
     }
   }
 
-
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   int? responseStatusCode;
   List<VipHistoryModel> vipHistory = [];
@@ -1264,7 +1334,6 @@ class _VipScreenNewState extends State<VipScreenNew> {
     String token = user.id.toString();
 
     final response = await http.get(
-
       Uri.parse('${ApiUrl.vipHistory}$token&limit=4'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -1278,9 +1347,8 @@ class _VipScreenNewState extends State<VipScreenNew> {
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       setState(() {
-        vipHistory = responseData
-            .map((item) => VipHistoryModel.fromJson(item))
-            .toList();
+        vipHistory =
+            responseData.map((item) => VipHistoryModel.fromJson(item)).toList();
       });
     } else if (response.statusCode == 400) {
     } else {
@@ -1290,6 +1358,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
       throw Exception('Failed to load transaction history');
     }
   }
+
   var myExp;
   var PayoutTime;
   List<VipBetCardModel> betCardList = [];
@@ -1301,9 +1370,9 @@ class _VipScreenNewState extends State<VipScreenNew> {
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonResponse = jsonDecode(response.body)['data'];
-        final  json = jsonDecode(response.body);
-        myExp=json['my_exprience'];
-        PayoutTime=json['days_count'];
+        final json = jsonDecode(response.body);
+        myExp = json['my_exprience'];
+        PayoutTime = json['days_count'];
         setState(() {
           betCardList = jsonResponse
               .map((item) => VipBetCardModel.fromJson(item))
@@ -1311,7 +1380,6 @@ class _VipScreenNewState extends State<VipScreenNew> {
           myExp;
           PayoutTime;
         });
-
       } else {
         throw Exception('Failed to load data from the API');
       }
@@ -1326,7 +1394,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
       height: height * 0.08,
       width: width * 0.45,
       decoration: BoxDecoration(
-          color: AppColors.FirstColor,
+          color: AppColors.firstColors,
           borderRadius: BorderRadiusDirectional.circular(5)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1372,7 +1440,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               gradient: index == selectedIndex
-                  ? AppColors.loginSecondryGrad
+                  ? AppColors.loginSecondaryGrad
                   : AppColors.primaryUnselectedGradient),
           child: Center(
             child: Text(
@@ -1390,7 +1458,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
     );
   }
 
-  popUp(String image,String title,VoidCallback onTap) {
+  popUp(String image, String title, VoidCallback onTap) {
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -1405,13 +1473,13 @@ class _VipScreenNewState extends State<VipScreenNew> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              height: height*0.18,
-              width: width*0.5,
+              height: height * 0.18,
+              width: width * 0.5,
               decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(image),fit: BoxFit.fill)
-              ),
+                  image: DecorationImage(
+                      image: AssetImage(image), fit: BoxFit.fill)),
             ),
-            textWidget(text: title,fontSize: 15,fontWeight: FontWeight.w700),
+            textWidget(text: title, fontSize: 15, fontWeight: FontWeight.w700),
             AppBtn(
               onTap: onTap,
               gradient: AppColors.buttonGradient,
@@ -1422,7 +1490,6 @@ class _VipScreenNewState extends State<VipScreenNew> {
       ),
     );
   }
-
 }
 
 class VipRule {

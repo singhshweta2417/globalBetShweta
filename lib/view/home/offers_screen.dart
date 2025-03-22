@@ -6,7 +6,7 @@ import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/view/wallet/deposit_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class _OffersScreenState extends State<OffersScreen> {
             Container(
               height: height * 0.59,
               decoration: BoxDecoration(
-                  gradient: AppColors.loginSecondryGrad,
+                  gradient: AppColors.loginSecondaryGrad,
                   borderRadius: BorderRadius.circular(15)),
               width: width,
               child: Column(
@@ -90,7 +90,7 @@ class _OffersScreenState extends State<OffersScreen> {
                               padding: const EdgeInsets.all(8),
 
                               decoration: BoxDecoration(
-                                  color: AppColors.FirstColor,
+                                  color: AppColors.firstColors,
                                   borderRadius: BorderRadius.circular(10)),
                               child: Column(
                                 children: [
@@ -242,7 +242,7 @@ class _OffersScreenState extends State<OffersScreen> {
                               width: width * 0.25,
                               height: height * 0.04,
                                 hideBorder: true,
-                                gradient: AppColors.loginSecondryGrad
+                                gradient: AppColors.loginSecondaryGrad
                             ),
                           )
                         ],
@@ -270,7 +270,7 @@ class _OffersScreenState extends State<OffersScreen> {
     );
   }
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
 
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
 import 'package:globalbet/view/home/mini/mines/controller/mine_controller.dart';
@@ -40,7 +40,7 @@ class _MinesState extends State<Mines> {
   @override
   Widget build(BuildContext context) {
     final mineBetViewModel = Provider.of<MineBetViewModel>(context);
-    final profileViewModel = Provider.of<ProfileProvider>(context);
+    final profileViewModel = Provider.of<ProfileViewModel>(context);
     final mineCashOutViewModel = Provider.of<MineCashOutViewModel>(context);
     final mineDropDownViewModel = Provider.of<MineDropDownViewModel>(context);
     return Consumer<MineController>(builder: (context, mic, child) {
@@ -230,7 +230,7 @@ class _MinesState extends State<Mines> {
               mic.cashOut == false
                   ? InkWell(
                       onTap: () {
-                        if(profileViewModel.totalWallet <int.parse(mic.amountCon.text)){
+                        if(profileViewModel.balance <int.parse(mic.amountCon.text)){
                           Utils.flushBarErrorMessage("Insufficient Balance", context,Colors.red);
                         }else{
                           mic.setCashOut(true);
@@ -348,7 +348,7 @@ class _MinesState extends State<Mines> {
                       Row(
                         children: [
                           Text(
-                            profileViewModel.totalWallet
+                            profileViewModel.balance
                                     .toStringAsFixed(2) +
                                 ' RS',
                             style: const TextStyle(
@@ -513,7 +513,7 @@ class _MinesState extends State<Mines> {
                         final col = index % mic.columns;
                         return GestureDetector(
                           onTap: () {
-                            if(profileViewModel.totalWallet <int.parse(mic.amountCon.text)){
+                            if(profileViewModel.balance <int.parse(mic.amountCon.text)){
                               Utils.flushBarErrorMessage("Insufficient Balance", context,Colors.red);
                             }else{
                               if (!mic.gameLost) {

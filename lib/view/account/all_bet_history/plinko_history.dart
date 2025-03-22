@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -10,7 +11,6 @@ import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 
 class PlinkobetHistoryPage extends StatefulWidget {
   final String gameid;
@@ -169,7 +169,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                                       BorderRadius
                                           .circular(10),
                                       color: AppColors
-                                          .FirstColor),
+                                          .firstColors),
                                   child: Padding(
                                     padding:
                                     const EdgeInsets
@@ -280,7 +280,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                 height: height * 0.06,
                 width: width * 0.10,
                 decoration: BoxDecoration(
-                  gradient: AppColors.loginSecondryGrad,
+                  gradient: AppColors.loginSecondaryGrad,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Icon(
@@ -312,7 +312,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                 height: height * 0.06,
                 width: width * 0.10,
                 decoration: BoxDecoration(
-                  gradient: AppColors.loginSecondryGrad,
+                  gradient: AppColors.loginSecondaryGrad,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Icon(Icons.navigate_next,
@@ -336,7 +336,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.FirstColor),
+              color: AppColors.firstColors),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -375,7 +375,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.FirstColor),
+              color: AppColors.firstColors),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -416,7 +416,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
   }
 
   int? responseStatuscode;
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   int offsetResult = 0;
   List<PlinkoBetHistory> fetchPlinkoBetTwo = [];

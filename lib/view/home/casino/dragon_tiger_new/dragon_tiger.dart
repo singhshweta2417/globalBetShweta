@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, use_build_context_synchronously
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -15,8 +15,6 @@ import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/audio.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/Image_tost.dart';
 import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/dragonTost.dart';
@@ -47,7 +45,6 @@ class _DragonTigerState extends State<DragonTiger> {
 
   bool _isActionExecuted = false;
   bool _apiActionExecuted = false;
-  bool _isResultView = false;
   bool _startBet = false;
   bool _stopBet = false;
   bool _isFrontTwo = false;
@@ -70,6 +67,7 @@ class _DragonTigerState extends State<DragonTiger> {
     super.initState();
     fetchData();
   }
+
   List<ChipModel> chipList = [
     ChipModel(value: 1, image: Assets.chips10),
     ChipModel(value: 5, image: Assets.chips50),
@@ -112,17 +110,17 @@ class _DragonTigerState extends State<DragonTiger> {
   late Offset _endOffset;
   late List<GlobalKey> _globalKey = [];
 
-
   @override
   Widget build(BuildContext context) {
-    final userData = context.read<ProfileProvider>();
+    final userData = Provider.of<ProfileViewModel>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/dragontiger/dr_ti_bg.gif"), fit: BoxFit.fill)),
+                image: AssetImage("assets/dragontiger/dr_ti_bg.gif"),
+                fit: BoxFit.fill)),
         child: Column(
           children: [
             Row(
@@ -132,8 +130,11 @@ class _DragonTigerState extends State<DragonTiger> {
                       Navigator.pop(context);
                     },
                     child: const Padding(
-                      padding:  EdgeInsets.all(5.0),
-                      child: Icon(Icons.arrow_back,color: Colors.orange,),
+                      padding: EdgeInsets.all(5.0),
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: Colors.orange,
+                      ),
                     )),
                 const Spacer(),
 
@@ -184,96 +185,108 @@ class _DragonTigerState extends State<DragonTiger> {
                 // )
                 _isFrontone
                     ? AnimatedGradientBorder(
-                    borderSize: winResult=='1'?3:winResult=='3'?3:0,
-                    gradientColors: const [
-                      Color(0xfffaee72),
-                      Colors.transparent,
-                      Color(0xfffaee72),
-                    ],
-                    borderRadius: const BorderRadius.all(Radius.circular(1),),
-                    child: cardImage1==null?
-                    Container(
-                      height: height*0.1,
-                      width: width*0.12,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(image:AssetImage(AppAssets.imageFireCard,
-                          ),
-                              fit: BoxFit.fill
-                          )
-                      ),
-                    ):
+                        borderSize: winResult == '1'
+                            ? 3
+                            : winResult == '3'
+                                ? 3
+                                : 0,
+                        gradientColors: const [
+                          Color(0xfffaee72),
+                          Colors.transparent,
+                          Color(0xfffaee72),
+                        ],
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(1),
+                        ),
+                        child: cardImage1 == null
+                            ? Container(
+                                height: height * 0.1,
+                                width: width * 0.12,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                          AppAssets.imageFireCard,
+                                        ),
+                                        fit: BoxFit.fill)),
+                              )
+                            : Container(
+                                height: height * 0.1,
+                                width: width * 0.12,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            "assets/cards/$cardImage1.png"),
+                                        fit: BoxFit.fill)),
+                              ))
+                    : FadeInLeftBig(
+                        child: Container(
+                        height: height * 0.1,
+                        width: width * 0.12,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  AppAssets.imageFireCard,
+                                ),
+                                fit: BoxFit.fill)),
+                      )),
 
-                    Container(
-                      height: height*0.1,
-                      width: width*0.12,
-                      decoration:  BoxDecoration(
-                          image: DecorationImage(image:AssetImage("assets/cards/$cardImage1.png"
-                          ), fit: BoxFit.fill
-                          )
-                      ),
-                    )
-                ):
-                      FadeInLeftBig(
-                    child: Container(
-                      height: height*0.1,
-                      width: width*0.12,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(image:AssetImage(AppAssets.imageFireCard,
-                          ),
-                              fit: BoxFit.fill
-                          )
-                      ),
-                    )),
-
-                SizedBox(width: width*0.11,),
+                SizedBox(
+                  width: width * 0.11,
+                ),
 
                 _isFrontTwo
                     ? AnimatedGradientBorder(
-                  borderSize: winResult=='2'?3:winResult=='3'?3:0,
-                  gradientColors: const [
-                    Color(0xfffaee72),
-                    Colors.transparent,
-                    Color(0xfffaee72),
-                  ],
-                  borderRadius: const BorderRadius.all(Radius.circular(1),),
-                  child: cardImage1==null?
-                  Container(
-                    height: height*0.1,
-                    width: width*0.12,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(image:AssetImage(AppAssets.imageFireCard,
+                        borderSize: winResult == '2'
+                            ? 3
+                            : winResult == '3'
+                                ? 3
+                                : 0,
+                        gradientColors: const [
+                          Color(0xfffaee72),
+                          Colors.transparent,
+                          Color(0xfffaee72),
+                        ],
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(1),
                         ),
-                            fit: BoxFit.fill
-                        )
-                    ),
-                  ):
-                  Container(
-                    height: height*0.1,
-                    width: width*0.12,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(image:AssetImage("assets/cards/$cardImage2.png",
-                        ),
-                            fit: BoxFit.fill
-                        )
-                    ),
-                  ),
-                )
+                        child: cardImage1 == null
+                            ? Container(
+                                height: height * 0.1,
+                                width: width * 0.12,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                          AppAssets.imageFireCard,
+                                        ),
+                                        fit: BoxFit.fill)),
+                              )
+                            : Container(
+                                height: height * 0.1,
+                                width: width * 0.12,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                          "assets/cards/$cardImage2.png",
+                                        ),
+                                        fit: BoxFit.fill)),
+                              ),
+                      )
                     : FadeInRightBig(
-                    child: Container(
-                      height: height*0.1,
-                      width: width*0.12,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(image:AssetImage(AppAssets.imageFireCard,
-                          ),
-                              fit: BoxFit.fill
-                          )
-                      ),
-                    )),
+                        child: Container(
+                        height: height * 0.1,
+                        width: width * 0.12,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  AppAssets.imageFireCard,
+                                ),
+                                fit: BoxFit.fill)),
+                      )),
               ],
             ),
 
             Padding(
-              padding:  EdgeInsets.only(top: height*0.05),
+              padding: EdgeInsets.only(top: height * 0.05),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -282,16 +295,17 @@ class _DragonTigerState extends State<DragonTiger> {
                       _updateTimerValue(val, context, ResultGameHistory);
                     },
                   ),
-                  SizedBox(height: height*0.012,),
                   SizedBox(
-                    height: height*0.04,
+                    height: height * 0.012,
+                  ),
+                  SizedBox(
+                    height: height * 0.04,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: items.length + 1,
                       itemBuilder: (context, index) {
-                        if (index == items.length)
-                        {
+                        if (index == items.length) {
                           return InkWell(
                             onTap: () {
                               if (kDebugMode) {
@@ -301,10 +315,11 @@ class _DragonTigerState extends State<DragonTiger> {
                             child: Center(
                               child: Container(
                                 width: width * 0.061,
-                                height: height*0.03,
+                                height: height * 0.03,
                                 decoration: BoxDecoration(
-                                    image:  const DecorationImage(
-                                        image: AssetImage(Assets.dragontigerIcArrowZigzag),
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                            Assets.dragontigerIcArrowZigzag),
                                         fit: BoxFit.fill),
                                     borderRadius: BorderRadius.circular(3)),
                               ),
@@ -320,8 +335,8 @@ class _DragonTigerState extends State<DragonTiger> {
                             items[index].number == 1
                                 ? Assets.dragontigerIcDtD
                                 : items[index].number == 2
-                                ? Assets.dragontigerIcDtT:
-                            Assets.dragontigerIcDtTie,
+                                    ? Assets.dragontigerIcDtT
+                                    : Assets.dragontigerIcDtTie,
                           ),
                         );
                       },
@@ -331,20 +346,18 @@ class _DragonTigerState extends State<DragonTiger> {
               ),
             ),
 
-             // DrTiResultWidget(gameId:widget.gameId),
-
+            // DrTiResultWidget(gameId:widget.gameId),
 
             Stack(
               children: [
                 GridView.builder(
                   shrinkWrap: true,
-                  padding: EdgeInsets.only(top: height*0.05),
+                  padding: EdgeInsets.only(top: height * 0.05),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: width * 0.7,
                       mainAxisSpacing: 15.0,
-                      childAspectRatio: 0.65
-                  ),
+                      childAspectRatio: 0.65),
                   itemCount: peopleList.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Column(
@@ -356,15 +369,15 @@ class _DragonTigerState extends State<DragonTiger> {
                           child: CircleAvatar(
                             radius: 19,
                             backgroundColor: Colors.white,
-                            backgroundImage: AssetImage(peopleList[index].image),
-
+                            backgroundImage:
+                                AssetImage(peopleList[index].image),
                           ),
                         ),
                         Container(
-                          height: height*0.025,
-                          width: width*0.20,
-                          margin:  const EdgeInsets.only(bottom: 5),
-                          padding:  const EdgeInsets.only(right: 5, left: 5),
+                          height: height * 0.025,
+                          width: width * 0.20,
+                          margin: const EdgeInsets.only(bottom: 5),
+                          padding: const EdgeInsets.only(right: 5, left: 5),
                           decoration: BoxDecoration(
                               color: Colors.black87.withOpacity(0.5),
                               borderRadius: BorderRadius.circular(30)),
@@ -381,24 +394,25 @@ class _DragonTigerState extends State<DragonTiger> {
                   },
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(top: height*0.07),
+                  padding: EdgeInsets.only(top: height * 0.07),
                   child: Column(
                     children: [
                       Builder(builder: (context) {
                         return GestureDetector(
                           onTap: () {
                             //80 tie
-                            if (userData.totalWallet >= coinVal) {
+                            if (userData.balance >= coinVal) {
                               if (setTimeValue > 10) {
-                                bettingApi('3',coinVal.toString());
+                                bettingApi('3', coinVal.toString());
                                 setState(() {
                                   tieUserSum += coinVal;
                                   firstCome = true;
                                 });
                                 var overlayEntry = OverlayEntry(builder: (_) {
-                                  RenderBox? box = context.findRenderObject()
-                                  as RenderBox?;
-                                  var offset = box!.localToGlobal(const Offset(170, 50));
+                                  RenderBox? box =
+                                      context.findRenderObject() as RenderBox?;
+                                  var offset =
+                                      box!.localToGlobal(const Offset(170, 50));
                                   return EasyCartAnimation(
                                     startPosition: _endOffset,
                                     endPosition: offset,
@@ -411,17 +425,15 @@ class _DragonTigerState extends State<DragonTiger> {
                                   );
                                 });
                                 Overlay.of(context).insert(overlayEntry);
-                                Future.delayed(const Duration(seconds: 2),
-                                        () {
-                                      overlayEntry.remove();
-                                    });
+                                Future.delayed(const Duration(seconds: 2), () {
+                                  overlayEntry.remove();
+                                });
                               }
                             } else {
                               ///add money page
                             }
                           },
                           child: Stack(
-
                             clipBehavior: Clip.none,
                             children: [
                               Container(
@@ -437,8 +449,8 @@ class _DragonTigerState extends State<DragonTiger> {
                                     fontSize: 18,
                                   )),
                               Positioned(
-                                  left: -width*0.40,
-                                  top: height*0.02,
+                                  left: -width * 0.40,
+                                  top: height * 0.02,
                                   child: Stack(
                                     children: coins3,
                                   )),
@@ -446,7 +458,7 @@ class _DragonTigerState extends State<DragonTiger> {
                           ),
                         );
                       }),
-                      SizedBox(height: height*0.01),
+                      SizedBox(height: height * 0.01),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -454,19 +466,19 @@ class _DragonTigerState extends State<DragonTiger> {
                             return GestureDetector(
                               onTap: () {
                                 // 60 dragon
-                                if (userData.totalWallet >= coinVal) {
+                                if (userData.balance >= coinVal) {
                                   if (setTimeValue > 10) {
-                                    bettingApi('1',coinVal.toString());
+                                    bettingApi('1', coinVal.toString());
                                     setState(() {
                                       dragonUserSum += coinVal;
                                       firstCome = true;
                                     });
                                     var overlayEntry =
-                                    OverlayEntry(builder: (_) {
+                                        OverlayEntry(builder: (_) {
                                       RenderBox? box = context
                                           .findRenderObject() as RenderBox?;
-                                      var offset = box!.localToGlobal(
-                                          const Offset(70, 120));
+                                      var offset = box!
+                                          .localToGlobal(const Offset(70, 120));
                                       return EasyCartAnimation(
                                         startPosition: _endOffset,
                                         endPosition: offset,
@@ -481,12 +493,12 @@ class _DragonTigerState extends State<DragonTiger> {
                                     // Show Overlay
                                     Overlay.of(context).insert(overlayEntry);
                                     Future.delayed(const Duration(seconds: 2),
-                                            () {
-                                          overlayEntry.remove();
-                                        });
+                                        () {
+                                      overlayEntry.remove();
+                                    });
                                   }
                                 } else {
-                                 ///redirexct to add money
+                                  ///redirexct to add money
                                 }
                               },
                               child: Stack(
@@ -498,18 +510,17 @@ class _DragonTigerState extends State<DragonTiger> {
                                       color: Colors.transparent,
                                       alignment: Alignment.bottomCenter,
                                       child:
-                                      // (drTiResultViewModel.drTiResult == '60') &&
-                                        StrokeText(
+                                          // (drTiResultViewModel.drTiResult == '60') &&
+                                          StrokeText(
                                         text: dragonUserSum.toString(),
-                                        strokeColor:
-                                        AppColors.btnTextColor,
+                                        strokeColor: AppColors.btnTextColor,
                                         textColor: AppColors.goldColor,
                                         strokeWidth: 2,
                                         fontSize: 18,
                                       )),
                                   Positioned(
-                                      left: -width*0.37,
-                                      top: height*0.01,
+                                      left: -width * 0.37,
+                                      top: height * 0.01,
                                       child: Stack(
                                         children: coins1,
                                       )),
@@ -522,19 +533,19 @@ class _DragonTigerState extends State<DragonTiger> {
                             return GestureDetector(
                               onTap: () {
                                 //70 tiger
-                                if (userData.totalWallet >= coinVal) {
+                                if (userData.balance >= coinVal) {
                                   if (setTimeValue > 10) {
-                                     bettingApi('2',coinVal.toString());
+                                    bettingApi('2', coinVal.toString());
                                     setState(() {
                                       tigerUserSum += coinVal;
                                       firstCome = true;
                                     });
                                     var overlayEntry =
-                                    OverlayEntry(builder: (_) {
+                                        OverlayEntry(builder: (_) {
                                       RenderBox? box = context
                                           .findRenderObject() as RenderBox?;
-                                      var offset = box!.localToGlobal(
-                                          const Offset(70, 120));
+                                      var offset = box!
+                                          .localToGlobal(const Offset(70, 120));
                                       return EasyCartAnimation(
                                         startPosition: _endOffset,
                                         endPosition: offset,
@@ -550,20 +561,23 @@ class _DragonTigerState extends State<DragonTiger> {
                                     Overlay.of(context).insert(overlayEntry);
                                     // wait for the animation to end
                                     Future.delayed(const Duration(seconds: 2),
-                                            () {
-                                          overlayEntry.remove();
-                                        });
+                                        () {
+                                      overlayEntry.remove();
+                                    });
                                   }
                                 } else {
-                            Utils.flushBarErrorMessage('insufficient fund', context, Colors.white);
+                                  Utils.flushBarErrorMessage(
+                                      'insufficient fund',
+                                      context,
+                                      Colors.white);
                                 }
                               },
                               child: Stack(
                                 clipBehavior: Clip.none,
                                 children: [
                                   Positioned(
-                                      left: -width*0.37,
-                                      top: height*0.01,
+                                      left: -width * 0.37,
+                                      top: height * 0.01,
                                       child: Stack(
                                         children: coins2,
                                       )),
@@ -573,11 +587,10 @@ class _DragonTigerState extends State<DragonTiger> {
                                       color: Colors.transparent,
                                       alignment: Alignment.bottomCenter,
                                       child:
-                                      // (drTiResultViewModel.drTiResult == '70') &&
-                                         StrokeText(
+                                          // (drTiResultViewModel.drTiResult == '70') &&
+                                          StrokeText(
                                         text: tigerUserSum.toString(),
-                                        strokeColor:
-                                        AppColors.btnTextColor,
+                                        strokeColor: AppColors.btnTextColor,
                                         textColor: AppColors.goldColor,
                                         strokeWidth: 2,
                                         fontSize: 18,
@@ -596,74 +609,89 @@ class _DragonTigerState extends State<DragonTiger> {
 
             const Spacer(),
             SizedBox(
-              height: height*0.18,
+              height: height * 0.18,
               // color: Colors.red.withAlpha(40),
               child: Column(
                 children: [
-                Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          textWidget(
-                              text: 'Period',
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey),
-                           SizedBox(width: width*0.02),
-                          Container(
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(2),
-                                border: Border.all(
-                                    width: 0.5, color: Colors.grey.shade600)),
-                            child: textWidget(
-                                // text: drTiResultViewModel.drTiPeriod,
-                                text: gamesNo.toString(),
-                                fontWeight: FontWeight.w900,
-                                color: Colors.white),
-                          )
-                        ],
-                      ),
                   Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          InkWell(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>DragonTigerHistory(gameid:widget.gameId)));
-                                context.read<ProfileProvider>().fetchProfileData();
-                              },
-                              child: Image.asset(Assets.iconsBetHistory, height: height*0.04,)),
-                          SizedBox(width: width*0.10,),
-                          SizedBox(
-                              width: width * 0.20,
-                              height: height*0.035,
-                              // color: Colors.teal,
-                              child: Center(
-                                child: textWidget(
-                                    text: '₹${userData.totalWallet==null?"":userData.totalWallet.toStringAsFixed(2)}',
-                                    color: AppColors.goldColor,
-                                    fontWeight: FontWeight.w600),
-                              )),
-                          SizedBox(width: width*0.04,),
-                          Image.asset(Assets.dragontigerIcOnlineUser, height: height*0.05,),
-                          Padding(
-                            padding:  EdgeInsets.only(bottom: height*0.01,left: 10),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      textWidget(
+                          text: 'Period',
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey),
+                      SizedBox(width: width * 0.02),
+                      Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(2),
+                            border: Border.all(
+                                width: 0.5, color: Colors.grey.shade600)),
+                        child: textWidget(
+                            // text: drTiResultViewModel.drTiPeriod,
+                            text: gamesNo.toString(),
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white),
+                      )
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DragonTigerHistory(
+                                        gameid: widget.gameId)));
+                            userData.profileApi(context);
+                          },
+                          child: Image.asset(
+                            Assets.iconsBetHistory,
+                            height: height * 0.04,
+                          )),
+                      SizedBox(
+                        width: width * 0.10,
+                      ),
+                      SizedBox(
+                          width: width * 0.20,
+                          height: height * 0.035,
+                          // color: Colors.teal,
+                          child: Center(
                             child: textWidget(
-                                text: randomPeople.toString(),
+                                text:
+                                    '₹${userData.balance == null ? "" : userData.balance.toStringAsFixed(2)}',
                                 color: AppColors.goldColor,
                                 fontWeight: FontWeight.w600),
-                          )
-
-                        ],
+                          )),
+                      SizedBox(
+                        width: width * 0.04,
                       ),
+                      Image.asset(
+                        Assets.dragontigerIcOnlineUser,
+                        height: height * 0.05,
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(bottom: height * 0.01, left: 10),
+                        child: textWidget(
+                            text: randomPeople.toString(),
+                            color: AppColors.goldColor,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  ),
                   SizedBox(
-                    height: height*0.07,
+                    height: height * 0.07,
                     // color: Colors.pink,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: height*0.065,
+                          height: height * 0.065,
                           // color: Colors.yellowAccent,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
@@ -671,7 +699,8 @@ class _DragonTigerState extends State<DragonTiger> {
                             itemCount: chipList.length,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding: const EdgeInsets.only(right: 8.0,top: 10),
+                                padding:
+                                    const EdgeInsets.only(right: 8.0, top: 10),
                                 child: UpDownBorder(
                                   borderWidth: index == selectedIndex ? 5 : 0,
                                   borerColor: Colors.lightGreenAccent.shade400,
@@ -693,43 +722,28 @@ class _DragonTigerState extends State<DragonTiger> {
                             },
                           ),
                         ),
-
                       ],
                     ),
                   )
                 ],
               ),
             )
-
-
-
           ],
         ),
       ),
     );
   }
 
-
-  bool _showFrontSide = false;
-
-
   void _updateTimerValue(int value, context, drTiResultViewModel) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        // Audio.audioPlayers.dispose();
-        // Audio.DragonbgSound();
-
         setTimeValue = value;
         if (value == 6 && !_apiActionExecuted) {
-
-
-
           _apiActionExecuted = true;
-          _isResultView = false;
         }
         if (value == 1 && !_startBet) {
-          _isFrontone= false;
-          _isFrontTwo= false;
+          _isFrontone = false;
+          _isFrontTwo = false;
 
           generateRandomCoin();
 
@@ -755,11 +769,11 @@ class _DragonTigerState extends State<DragonTiger> {
             width: width,
             height: height * 0.1,
           );
-         //  if (dragonUserSum == 0 && tigerUserSum == 0 && tieUserSum == 0) {
-         //    // All counts are 0
-         //  } else {
-         //    bettingApi();
-         // }
+          //  if (dragonUserSum == 0 && tigerUserSum == 0 && tieUserSum == 0) {
+          //    // All counts are 0
+          //  } else {
+          //    bettingApi();
+          // }
 
           _stopBet = true;
           _startBet = false;
@@ -771,11 +785,10 @@ class _DragonTigerState extends State<DragonTiger> {
           _showFrontWidgets();
           lastresultview();
           _isActionExecuted = true;
-        }else if (value >= 5 && _isActionExecuted) {
+        } else if (value >= 5 && _isActionExecuted) {
           _showBackWidget();
           fetchData();
 
-          _isResultView = true;
           _isActionExecuted = false;
           _apiActionExecuted = false;
         }
@@ -784,15 +797,11 @@ class _DragonTigerState extends State<DragonTiger> {
   }
 
   void _showFrontWidgets() {
-    setState(() {
-      _showFrontSide = true;
-    });
+    setState(() {});
   }
 
   void _showBackWidget() {
-    setState(() {
-      _showFrontSide = false;
-    });
+    setState(() {});
   }
 
   List<Widget> coins1 = [];
@@ -835,8 +844,6 @@ class _DragonTigerState extends State<DragonTiger> {
     }
   }
 
-
-
   var winResult;
   var cardImage1;
   var cardImage2;
@@ -853,22 +860,23 @@ class _DragonTigerState extends State<DragonTiger> {
           winResult = responseData["number"];
 
           final List<dynamic> cardImage = json.decode(responseData["json"]);
-          cardImage1= cardImage[0];
-          cardImage2=  cardImage[1];
+          cardImage1 = cardImage[0];
+          cardImage2 = cardImage[1];
         });
-        context.read<ProfileProvider>().fetchProfileData();
-        winResult==1?
-        ImageToast.show(
-            imagePath: AppAssets.gif_dragon_animated,
-            height: 300,
-            context: context):
-        winResult==2?
-        ImageToast.show(
-            imagePath: AppAssets.gif_tiger_animated,
-            height: 300,
-            context: context):
-        TextToast.show(
-            context: context, message: 'Game Tie');
+
+        Provider.of<ProfileViewModel>(context, listen: false)
+            .profileApi(context);
+        winResult == 1
+            ? ImageToast.show(
+                imagePath: AppAssets.gif_dragon_animated,
+                height: 300,
+                context: context)
+            : winResult == 2
+                ? ImageToast.show(
+                    imagePath: AppAssets.gif_tiger_animated,
+                    height: 300,
+                    context: context)
+                : TextToast.show(context: context, message: 'Game Tie');
 
         if (kDebugMode) {
           print('Successfully fetched contact data');
@@ -876,16 +884,16 @@ class _DragonTigerState extends State<DragonTiger> {
           print('gjjjjjjjjjjj');
         }
 
-        _isFrontone= true;
-        _isFrontTwo= true;
+        _isFrontone = true;
+        _isFrontTwo = true;
       } else {
-        throw Exception("Failed to load data. Status code: ${response.statusCode}");
+        throw Exception(
+            "Failed to load data. Status code: ${response.statusCode}");
       }
     } catch (e) {
       throw Exception("Failed to load data. $e");
     }
   }
-
 
   ////dt api
   List<ResultGameHistory> items = [];
@@ -896,7 +904,8 @@ class _DragonTigerState extends State<DragonTiger> {
       print(gameIds);
       print('gameIds');
     }
-    final response = await http.get(Uri.parse("${ApiUrl.resultList}$gameIds&limit=10"));
+    final response =
+        await http.get(Uri.parse("${ApiUrl.resultList}$gameIds&limit=10"));
     if (kDebugMode) {
       print("${ApiUrl.resultList}$gameIds&limit=10");
       print('yyyyyyyyyy');
@@ -906,7 +915,9 @@ class _DragonTigerState extends State<DragonTiger> {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       final responseData1 = json.decode(response.body)["data"][0];
       setState(() {
-        items = responseData.map((item) => ResultGameHistory.fromJson(item)).toList();
+        items = responseData
+            .map((item) => ResultGameHistory.fromJson(item))
+            .toList();
         gamesNo = int.parse(responseData1["games_no"].toString()) + 1;
       });
       // items.clear();
@@ -928,10 +939,12 @@ class _DragonTigerState extends State<DragonTiger> {
     super.dispose();
   }
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
-
-  Future<void> bettingApi(String number, String amount,) async {
+  Future<void> bettingApi(
+    String number,
+    String amount,
+  ) async {
     try {
       if (kDebugMode) {
         print("bet lgi");
@@ -961,7 +974,8 @@ class _DragonTigerState extends State<DragonTiger> {
       }
 
       if (data["status"] == 200) {
-        context.read<ProfileProvider>().fetchProfileData();
+        Provider.of<ProfileViewModel>(context, listen: false)
+            .profileApi(context);
         ImageToast.show(
           imagePath: AppAssets.bettingplaceds,
           height: 100,
@@ -970,8 +984,8 @@ class _DragonTigerState extends State<DragonTiger> {
       } else {
         Utils.flushBarErrorMessage(
             data['msg'].toString(), context, Colors.black);
-        dragonUserSum = 0 ;
-        tigerUserSum = 0 ;
+        dragonUserSum = 0;
+        tigerUserSum = 0;
         tieUserSum = 0;
       }
     } catch (e) {
@@ -981,8 +995,6 @@ class _DragonTigerState extends State<DragonTiger> {
       Utils.flushBarErrorMessage(e.toString(), context, Colors.black);
     }
   }
-
-
 }
 
 class ChipModel {

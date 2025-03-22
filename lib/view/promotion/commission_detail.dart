@@ -9,7 +9,7 @@ import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/filter_date-formate.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,7 +32,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Commission detail',
@@ -237,7 +237,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
             width: width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: AppColors.FirstColor,
+              color: AppColors.firstColors,
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -271,7 +271,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
   }
 
   int? responseStatuscode;
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   List<CommissionDetailModel> commissionDetailsData = [];
 
@@ -280,10 +280,10 @@ class _CommissionDetailsState extends State<CommissionDetails> {
     String token = user.id.toString();
     final response = await http.get(
       Uri.parse(
-          '${ApiUrl.CommissionDetailApi}$token&subtypeid=23&date=$_selectedDate'),
+          '${ApiUrl.commissionDetailApi}$token&subtypeid=23&date=$_selectedDate'),
     );
     if (kDebugMode) {
-      print(ApiUrl.CommissionDetailApi + token);
+      print(ApiUrl.commissionDetailApi + token);
       print('CommissionDetailApi');
     }
 

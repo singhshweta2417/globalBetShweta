@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:globalbet/res/provider/profile_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/model/result_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/repo/result_repo.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
@@ -53,14 +54,14 @@ class ResultViewModel with ChangeNotifier {
           setResultData(value);
 
           // Ensure result data is updated before calling getAmountApi
-          Future.delayed(Duration(milliseconds: 500), () {
+          Future.delayed(const Duration(milliseconds: 500), () {
             final getAmountProvider = Provider.of<GetAmountViewModel>(context, listen: false);
             getAmountProvider.getAmountApi(context, newGameNo.toString());
           });
 
           // Update profile only when the game number changes
-          final profileController = Provider.of<ProfileProvider>(context, listen: false);
-          profileController.fetchProfileData();
+          final profileController = Provider.of<ProfileViewModel>(context, listen: false);
+          profileController.profileApi(context);
         }
       } else {
         if (kDebugMode) {

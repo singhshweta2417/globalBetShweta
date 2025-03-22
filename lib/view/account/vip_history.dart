@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:globalbet/model/vip_bet_card/vip_his_model.dart';
 import 'package:globalbet/plinko/utils/Plinko_Pop_up.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart'as http;
 import 'package:globalbet/main.dart';
 import 'package:globalbet/model/user_model.dart';
@@ -10,7 +11,6 @@ import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 
 
 
@@ -31,7 +31,7 @@ class _AllVipHistoryState extends State<AllVipHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           title: textWidget(text: 'VIP History', fontSize: 25, color: Colors.white),
           leading: const AppBackBtn(),
@@ -121,7 +121,7 @@ class _AllVipHistoryState extends State<AllVipHistory> {
   }
   int? responseStatusCode;
   List<VipHistoryModel> vipHistory = [];
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   Future<void> vipHistoryList() async {
     UserModel user = await userProvider.getUser();

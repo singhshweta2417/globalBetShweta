@@ -48,11 +48,11 @@ class _TitliHistoryPageState extends State<TitliHistoryPage> {
                  margin: EdgeInsets.only(left: width*0.025,top: height*0.055),
                  height: height*0.13,
                  width: width*0.22,
-                 decoration: BoxDecoration(
+                 decoration: const BoxDecoration(
                   image: DecorationImage(image: AssetImage(Assets.titliBlackBtn),fit: BoxFit.fill)
                  ),
                  alignment: Alignment.center,
-                 child: TextConst(
+                 child: const TextConst(
                    title: "GAME HISTORY",
                    color: AppColors.white,
                    fontWeight: FontWeight.bold,
@@ -79,11 +79,11 @@ class _TitliHistoryPageState extends State<TitliHistoryPage> {
                        height: height*0.1,
                        alignment: Alignment.center,
                        width: width*0.14,
-                       decoration: BoxDecoration(
+                       decoration: const BoxDecoration(
                          image: DecorationImage(image: AssetImage(Assets.titliGreen),
                          fit: BoxFit.fill),
                        ),
-                       child: TextConst(
+                       child: const TextConst(
                          title: "Refresh",
                          fontWeight: FontWeight.bold,
                          fontSize: 18,
@@ -101,11 +101,11 @@ class _TitliHistoryPageState extends State<TitliHistoryPage> {
                        height: height*0.1,
                        alignment: Alignment.center,
                        width: width*0.12,
-                       decoration: BoxDecoration(
+                       decoration: const BoxDecoration(
                          image: DecorationImage(image: AssetImage(Assets.titliGreen),
                              fit: BoxFit.fill),
                        ),
-                       child: TextConst(
+                       child: const TextConst(
                          title: "Cancel",
                          fontWeight: FontWeight.bold,
                          fontSize: 18,
@@ -260,7 +260,7 @@ class _TitliHistoryPageState extends State<TitliHistoryPage> {
               ],
             ),
           ):
-            Center(child: TextConst(
+            const Center(child: TextConst(
               title: "No data Available",
               color: AppColors.white,
             ),);

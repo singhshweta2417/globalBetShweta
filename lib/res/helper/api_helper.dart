@@ -10,12 +10,12 @@ import 'package:globalbet/model/termsconditionModel.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/model/user_profile_model.dart';
 import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 
 class BaseApiHelper {
   /// get profile
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   Future<UserProfile> fetchProfileData() async {
     // Get user ID
@@ -23,7 +23,7 @@ class BaseApiHelper {
     String token = user.id.toString();
 
     try {
-      final response = await http.get(Uri.parse(ApiUrl.profile + token))
+      final response = await http.get(Uri.parse(ApiUrl.profileUrl + token))
           .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
@@ -88,7 +88,7 @@ class BaseApiHelper {
 
   Future<TcModel?> fetchdataTC() async {
     try {
-      final response = await http.get(Uri.parse(ApiUrl.termscon)).timeout(const Duration(seconds: 10));
+      final response = await http.get(Uri.parse(ApiUrl.termsCon)).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         final jsonMap = json.decode(response.body)['data'][0];
@@ -106,7 +106,7 @@ class BaseApiHelper {
 
   Future<TcModel?> fetchdataPP() async {
     try {
-      final response = await http.get(Uri.parse(ApiUrl.privacypolicy)).timeout(const Duration(seconds: 10));
+      final response = await http.get(Uri.parse(ApiUrl.privacyPolicy)).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         final jsonMap = json.decode(response.body)['data'];
@@ -143,7 +143,7 @@ class BaseApiHelper {
 
   Future<BeginnerModel?> fetchBeginnerData() async {
     try {
-      final response = await http.get(Uri.parse(ApiUrl.beginnerapi)).timeout(const Duration(seconds: 10));
+      final response = await http.get(Uri.parse(ApiUrl.beginnerApi)).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         final jsonMap = json.decode(response.body)['data'][0];

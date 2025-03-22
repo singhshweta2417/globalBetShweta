@@ -36,7 +36,7 @@ class _ContactUsState extends State<ContactUs> {
     final contactusData = Provider.of<ContactUsProvider>(context).ContactusData;
 
     return SafeArea(child: Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           leading: const AppBackBtn(),
           title: textWidget(

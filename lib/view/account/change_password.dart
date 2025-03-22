@@ -1,4 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names, use_build_context_synchronously
 
 import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
@@ -10,7 +9,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_field.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +47,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-        backgroundColor: AppColors.scaffolddark,
+        backgroundColor: AppColors.scaffoldDark,
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -199,7 +198,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         onTap: () {
                           Changepass(oldPassCon.text,newPassCon.text,confirmPassCon.text);
                         },
-                        gradient: AppColors.loginSecondryGrad,
+                        gradient: AppColors.loginSecondaryGrad,
                       ),
                     ),
 
@@ -213,7 +212,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       )
     );
   }
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   Changepass(String oldpass, String newpass,String confirmpass) async {
     if (kDebugMode) {

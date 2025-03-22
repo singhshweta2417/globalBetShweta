@@ -12,8 +12,8 @@ import 'package:globalbet/res/components/rich_text.dart';
 import 'package:globalbet/res/components/text_field.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/routes/routes_name.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/wallet/account_view.dart';
@@ -41,7 +41,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     addAccountView();
     invitationRuleApi();
     depositTypeSelect();
-    payUsing==3;
+    payUsing == 3;
     super.initState();
   }
 
@@ -64,14 +64,13 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
   bool loading = false;
 
-
   @override
   Widget build(BuildContext context) {
-    final userData = context.watch<ProfileProvider>();
+    final userData = Provider.of<ProfileViewModel>(context);
     double withdrawAmount = double.tryParse(withdrawCon.text) ?? 0;
 
     return Scaffold(
-        backgroundColor: AppColors.scaffolddark,
+        backgroundColor: AppColors.scaffoldDark,
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -152,7 +151,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                               const Icon(Icons.currency_rupee,
                                   color: AppColors.primaryTextColor),
                               textWidget(
-                                text: userData.totalWallet.toStringAsFixed(2),
+                                text: userData.balance.toStringAsFixed(2),
                                 fontWeight: FontWeight.w900,
                                 fontSize: 25,
                                 color: AppColors.primaryTextColor,
@@ -160,8 +159,11 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                               const SizedBox(width: 15),
                               InkWell(
                                   onTap: () {
-                                    context.read<ProfileProvider>().fetchProfileData();
-                                    Utils.flushBarSuccessMessage('Wallet refresh ✔', context, Colors.white);
+                                    userData.profileApi(context);
+                                    Utils.flushBarSuccessMessage(
+                                        'Wallet refresh ✔',
+                                        context,
+                                        Colors.white);
                                   },
                                   child: Image.asset(
                                     Assets.iconsTotalBal,
@@ -194,7 +196,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   ),
                   itemCount: depositType.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final currentId = int.parse(depositType[index].type.toString());
+                    final currentId =
+                        int.parse(depositType[index].type.toString());
 
                     return InkWell(
                       onTap: () {
@@ -213,7 +216,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                         child: Container(
                           decoration: BoxDecoration(
                             gradient: payUsing == currentId
-                                ? AppColors.loginSecondryGrad
+                                ? AppColors.loginSecondaryGrad
                                 : AppColors.primaryUnselectedGradient,
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -243,287 +246,293 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   },
                 ),
                 const SizedBox(height: 10),
-                 payUsing == 1||payUsing == 2
-                        ? Column(
-                            children: [
-                              responseStatuscode == 400
-                                  ?  Container()
-                                  : items.isEmpty
-                                      ? Container()
-                                      : ListView.builder(
-                                          itemCount: items.length,
-                                          shrinkWrap: true,
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            final currentId = int.parse(
-                                                items[index].id.toString());
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      2, 2, 2, 5),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    image: const DecorationImage(
-                                                        image: AssetImage(
-                                                          Assets.imagesBankcard,
-                                                        ),
-                                                        fit: BoxFit.fill),
-                                                    color: AppColors
-                                                        .percentageColor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                                child: ListTile(
-                                                    leading: GestureDetector(
-                                                      onTap: () {
-                                                        setState(() {
-                                                          selectedIndex =
-                                                              currentId;
-                                                          withdrawacid =
-                                                              items[index]
-                                                                  .id
-                                                                  .toString();
-                                                          if (kDebugMode) {
-                                                            print(
-                                                                selectedIndex);
-                                                            print(currentId);
-                                                            print("zxcfvgbhn");
-                                                          }
-                                                        });
-                                                      },
-                                                      child: Container(
-                                                        height: 30,
-                                                        width: 30,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        decoration:
-                                                            selectedIndex ==
-                                                                    currentId
-                                                                ? BoxDecoration(
-                                                                    image: const DecorationImage(
-                                                                        image: AssetImage(
-                                                                            Assets.iconsCorrect)),
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .transparent),
-                                                                    borderRadius:
-                                                                        BorderRadiusDirectional.circular(
-                                                                            50),
-                                                                  )
-                                                                : BoxDecoration(
-                                                                    border: Border.all(
-                                                                        color: AppColors
-                                                                            .gradientFirstColor),
-                                                                    borderRadius:
-                                                                        BorderRadiusDirectional.circular(
-                                                                            50),
-                                                                  ),
-                                                      ),
+                payUsing == 1 || payUsing == 2
+                    ? Column(
+                        children: [
+                          responseStatuscode == 400
+                              ? Container()
+                              : items.isEmpty
+                                  ? Container()
+                                  : ListView.builder(
+                                      itemCount: items.length,
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        final currentId = int.parse(
+                                            items[index].id.toString());
+                                        return Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              2, 2, 2, 5),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                image: const DecorationImage(
+                                                    image: AssetImage(
+                                                      Assets.imagesBankcard,
                                                     ),
-                                                    title: textWidget(
-                                                        text: items[index]
-                                                            .name
-                                                            .toString(),
-                                                        fontSize: width * 0.04,
-                                                        color: Colors.white),
-                                                    subtitle: textWidget(
-                                                        text: items[index]
-                                                            .accountNumber
-                                                            .toString(),
-                                                        fontSize: width * 0.034,
-                                                        color: Colors.white),
-                                                    trailing: IconButton(
-                                                      icon: const Icon(
-                                                        Icons
-                                                            .arrow_forward_ios_outlined,
-                                                        color: Colors.white,
-                                                      ),
-                                                      onPressed: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (context) =>
-                                                                    AccountView(
-                                                                        data: items[
-                                                                            index])));
-                                                      },
-                                                    )),
-                                              ),
-                                            );
-                                          }),
-                              items.isEmpty?
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, RoutesName.addBankAccount);
-                                },
-                                child: Card(
-                                  elevation: 4,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Container(
-                                    width: width,
-                                    padding: const EdgeInsets.fromLTRB(
-                                        15, 15, 15, 15),
-                                    decoration: BoxDecoration(
-                                        gradient:
-                                            AppColors.primaryUnselectedGradient,
+                                                    fit: BoxFit.fill),
+                                                color:
+                                                    AppColors.percentageColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: ListTile(
+                                                leading: GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      selectedIndex = currentId;
+                                                      withdrawacid =
+                                                          items[index]
+                                                              .id
+                                                              .toString();
+                                                      if (kDebugMode) {
+                                                        print(selectedIndex);
+                                                        print(currentId);
+                                                        print("zxcfvgbhn");
+                                                      }
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    height: 30,
+                                                    width: 30,
+                                                    alignment: Alignment.center,
+                                                    decoration: selectedIndex ==
+                                                            currentId
+                                                        ? BoxDecoration(
+                                                            image: const DecorationImage(
+                                                                image: AssetImage(
+                                                                    Assets
+                                                                        .iconsCorrect)),
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .transparent),
+                                                            borderRadius:
+                                                                BorderRadiusDirectional
+                                                                    .circular(
+                                                                        50),
+                                                          )
+                                                        : BoxDecoration(
+                                                            border: Border.all(
+                                                                color: AppColors
+                                                                    .gradientFirstColor),
+                                                            borderRadius:
+                                                                BorderRadiusDirectional
+                                                                    .circular(
+                                                                        50),
+                                                          ),
+                                                  ),
+                                                ),
+                                                title: textWidget(
+                                                    text: items[index]
+                                                        .name
+                                                        .toString(),
+                                                    fontSize: width * 0.04,
+                                                    color: Colors.white),
+                                                subtitle: textWidget(
+                                                    text: items[index]
+                                                        .accountNumber
+                                                        .toString(),
+                                                    fontSize: width * 0.034,
+                                                    color: Colors.white),
+                                                trailing: IconButton(
+                                                  icon: const Icon(
+                                                    Icons
+                                                        .arrow_forward_ios_outlined,
+                                                    color: Colors.white,
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                AccountView(
+                                                                    data: items[
+                                                                        index])));
+                                                  },
+                                                )),
+                                          ),
+                                        );
+                                      }),
+                          items.isEmpty
+                              ? GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, RoutesName.addBankAccount);
+                                  },
+                                  child: Card(
+                                    elevation: 4,
+                                    shape: RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadiusDirectional.circular(
-                                                10)),
-                                    child: Column(
+                                            BorderRadius.circular(10)),
+                                    child: Container(
+                                      width: width,
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 15, 15, 15),
+                                      decoration: BoxDecoration(
+                                          gradient: AppColors
+                                              .primaryUnselectedGradient,
+                                          borderRadius:
+                                              BorderRadiusDirectional.circular(
+                                                  10)),
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(width: 15),
+                                          Image.asset(
+                                            Assets.iconsAddBank,
+                                            height: 60,
+                                          ),
+                                          const SizedBox(width: 15),
+                                          textWidget(
+                                              text: 'Add a bank account number',
+                                              color: AppColors.primaryTextColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w900),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                          const SizedBox(height: 20),
+                          Container(
+                            width: width,
+                            padding: const EdgeInsets.only(
+                                top: 15, left: 15, right: 15),
+                            decoration: BoxDecoration(
+                                gradient: AppColors.primaryUnselectedGradient,
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(15)),
+                            child: Column(
+                              children: [
+                                const SizedBox(width: 15),
+                                textWidget(
+                                    text:
+                                        'Need to add beneficiary information to be able to withdraw money',
+                                    color: AppColors.primaryTextColor,
+                                    fontWeight: FontWeight.w900),
+                                const SizedBox(height: 10),
+                                CustomTextField(
+                                  hintText: 'Please enter the amount',
+                                  fieldRadius: BorderRadius.circular(30),
+                                  textColor: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  controller: withdrawCon,
+                                  keyboardType: TextInputType.number,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      payUsing == 3;
+                                    });
+                                  },
+                                  prefixIcon: SizedBox(
+                                    width: 70,
+                                    child: Row(
                                       children: [
-                                        const SizedBox(width: 15),
-                                        Image.asset(
-                                          Assets.iconsAddBank,
-                                          height: 60,
+                                        const SizedBox(width: 10),
+                                        const Icon(
+                                          Icons.currency_rupee,
+                                          color: AppColors.gradientFirstColor,
+                                          size: 25,
                                         ),
-                                        const SizedBox(width: 15),
-                                        textWidget(
-                                            text: 'Add a bank account number',
-                                            color: AppColors.primaryTextColor,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w900),
+                                        const SizedBox(width: 10),
+                                        Container(
+                                            height: 30,
+                                            color: Colors.white,
+                                            width: 2)
                                       ],
                                     ),
                                   ),
                                 ),
-                              ):Container(),
-                              const SizedBox(height: 20),
-                              Container(
-                                width: width,
-                                padding: const EdgeInsets.only(
-                                    top: 15, left: 15, right: 15),
-                                decoration: BoxDecoration(
-                                    gradient:
-                                        AppColors.primaryUnselectedGradient,
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(15)),
-                                child: Column(
+                                const SizedBox(height: 10),
+                                Row(
                                   children: [
-                                    const SizedBox(width: 15),
                                     textWidget(
-                                        text: 'Need to add beneficiary information to be able to withdraw money',
-                                        color: AppColors.primaryTextColor,
-                                        fontWeight: FontWeight.w900),
-                                    const SizedBox(height: 10),
-                                    CustomTextField(
-                                      hintText: 'Please enter the amount',
-                                      fieldRadius: BorderRadius.circular(30),
-                                      textColor: Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                      controller: withdrawCon,
-                                      keyboardType: TextInputType.number,
-                                      onChanged: (value){
-                                        setState(() {
-                                          payUsing==3;
-                                        });
-                                      },
-                                      prefixIcon: SizedBox(
-                                        width: 70,
-                                        child: Row(
-                                          children: [
-                                            const SizedBox(width: 10),
-                                            const Icon(
-                                              Icons.currency_rupee,
-                                              color:
-                                                  AppColors.gradientFirstColor,
-                                              size: 25,
-                                            ),
-                                            const SizedBox(width: 10),
-                                            Container(
-                                                height: 30,
-                                                color: Colors.white,
-                                                width: 2)
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
+                                        text: 'Withdrawal balance    ',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w900,
+                                        color: AppColors.dividerColor),
                                     Row(
                                       children: [
+                                        const Icon(Icons.currency_rupee,
+                                            size: 16,
+                                            color:
+                                                AppColors.gradientFirstColor),
                                         textWidget(
-                                            text: 'Withdrawal balance    ',
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w900,
-                                            color: AppColors.dividerColor),
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.currency_rupee,
-                                                size: 16,
-                                                color: AppColors
-                                                    .gradientFirstColor),
-                                            textWidget(
-                                                text: userData.mainWallet
-                                                    .toStringAsFixed(2),
-                                                //==''?'0.0':(int.parse(withdrawCon.text)*0.96).toStringAsFixed(2),
-                                                fontSize: 16,
-                                                color: AppColors
-                                                    .gradientFirstColor),
-                                          ],
-                                        )
+                                            text: userData.mainWallet
+                                                .toStringAsFixed(2),
+                                            //==''?'0.0':(int.parse(withdrawCon.text)*0.96).toStringAsFixed(2),
+                                            fontSize: 16,
+                                            color:
+                                                AppColors.gradientFirstColor),
                                       ],
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        textWidget(
-                                            text: 'Withdrawal amount received',
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w900,
-                                            color: AppColors.dividerColor),
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.currency_rupee,
-                                                size: 20,
-                                                color: AppColors
-                                                    .gradientFirstColor),
-                                            textWidget(
-                                                text: withdrawCon.text == ''
-                                                    ? '0.0'
-                                                    : withdrawCon.text
-                                                        .toString(),
-                                                // (int.parse(withdrawCon.text)*0.96).toStringAsFixed(2),
-                                                fontSize: 18,
-                                                color: AppColors
-                                                    .gradientFirstColor),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    withdrawAmount >= double.parse(userData.minimumWithdraw.toString()) && withdrawAmount <= userData.mainWallet
-                                        ? AppBtn(
-                                      onTap: () {
-                                        withdrawalMoney(context,withdrawCon.text);
-                                        setState(() {
-                                          payUsing==3;
-                                        });
-
-                                      },
-                                      hideBorder: true,
-                                      title: 'Withdraw',
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 18,
-                                      gradient: AppColors.loginSecondryGrad,
-                                      child:isLoading
-                                          ? CircularProgressIndicator(
-                                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                        strokeWidth: 2,
-                                      )
-                                          : null,
                                     )
-                                        : AppBtn(
+                                  ],
+                                ),
+                                const SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    textWidget(
+                                        text: 'Withdrawal amount received',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w900,
+                                        color: AppColors.dividerColor),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.currency_rupee,
+                                            size: 20,
+                                            color:
+                                                AppColors.gradientFirstColor),
+                                        textWidget(
+                                            text: withdrawCon.text == ''
+                                                ? '0.0'
+                                                : withdrawCon.text.toString(),
+                                            // (int.parse(withdrawCon.text)*0.96).toStringAsFixed(2),
+                                            fontSize: 18,
+                                            color:
+                                                AppColors.gradientFirstColor),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                withdrawAmount >=
+                                            double.parse(userData
+                                                .minimumWithdraw
+                                                .toString()) &&
+                                        withdrawAmount <= userData.mainWallet
+                                    ? AppBtn(
                                         onTap: () {
-                                          if(withdrawCon.text.isEmpty){
-                                            Utils.flushBarErrorMessage("Please enter amount", context, Colors.white);
-                                          }
-                                          else{
-                                            withdrawalMoney(context,withdrawCon.text);
+                                          withdrawalMoney(
+                                              context, withdrawCon.text);
+                                          setState(() {
+                                            payUsing == 3;
+                                          });
+                                        },
+                                        hideBorder: true,
+                                        title: 'Withdraw',
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 18,
+                                        gradient: AppColors.loginSecondaryGrad,
+                                        child: isLoading
+                                            ? const CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(Colors.white),
+                                                strokeWidth: 2,
+                                              )
+                                            : null,
+                                      )
+                                    : AppBtn(
+                                        onTap: () {
+                                          if (withdrawCon.text.isEmpty) {
+                                            Utils.flushBarErrorMessage(
+                                                "Please enter amount",
+                                                context,
+                                                Colors.white);
+                                          } else {
+                                            withdrawalMoney(
+                                                context, withdrawCon.text);
                                           }
                                         },
                                         hideBorder: true,
@@ -531,156 +540,153 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                         fontWeight: FontWeight.w900,
                                         fontSize: 18,
                                         gradient: AppColors.primaryappbargrey,
-                                      child: isLoading
-                                          ? CircularProgressIndicator(
-                                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                        strokeWidth: 2,
-                                      )
-                                          : null,
-                                    ),
-
-                                    const SizedBox(height: 40),
-                                    Container(
-                                      width: width * 0.85,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color:
-                                                  AppColors.gradientFirstColor,
-                                              width: 1),
-                                          borderRadius:
-                                              BorderRadiusDirectional.circular(
-                                                  15)),
-                                      child: Column(
-                                        children: [
-                                          instruction(
-                                              'Need to bet ',
-                                              '₹${userData.recharge.toStringAsFixed(2)}',
-                                              ' to be able to withdraw',
-                                              Colors.white,
-                                              AppColors.gradientFirstColor,
-                                              Colors.white),
-                                          ListView.builder(
-                                              shrinkWrap: true,
-                                              itemCount:
-                                                  invitationRuleList.length,
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              itemBuilder: (context, index) {
-                                                return instruction1(
-                                                    invitationRuleList[index]);
-                                              }),
-                                        ],
+                                        child: isLoading
+                                            ? const CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(Colors.white),
+                                                strokeWidth: 2,
+                                              )
+                                            : null,
                                       ),
+                                const SizedBox(height: 40),
+                                Container(
+                                  width: width * 0.85,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: AppColors.gradientFirstColor,
+                                          width: 1),
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(15)),
+                                  child: Column(
+                                    children: [
+                                      instruction(
+                                          'Need to bet ',
+                                          '₹${userData.recharge.toStringAsFixed(2)}',
+                                          ' to be able to withdraw',
+                                          Colors.white,
+                                          AppColors.gradientFirstColor,
+                                          Colors.white),
+                                      ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: invitationRuleList.length,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          itemBuilder: (context, index) {
+                                            return instruction1(
+                                                invitationRuleList[index]);
+                                          }),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          Container(
+                            width: width,
+                            padding: const EdgeInsets.only(
+                                top: 15, left: 15, right: 15),
+                            decoration: BoxDecoration(
+                                gradient: AppColors.primaryUnselectedGradient,
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(15)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      Assets.imagesUsdtIcon,
+                                      height: height * 0.05,
                                     ),
-                                    const SizedBox(height: 20),
+                                    const SizedBox(width: 15),
+                                    textWidget(
+                                        text: 'USDT amount',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w900,
+                                        color: AppColors.whiteColor),
                                   ],
                                 ),
-                              ),
-                              const SizedBox(height: 20),
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              Container(
-                                width: width,
-                                padding: const EdgeInsets.only(
-                                    top: 15, left: 15, right: 15),
-                                decoration: BoxDecoration(
-                                    gradient: AppColors.primaryUnselectedGradient,
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(15)),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
+                                const SizedBox(height: 10),
+                                CustomTextField(
+                                  fillColor: AppColors.scaffoldDark,
+                                  hintText: 'Please enter usdt amount',
+                                  fieldRadius: BorderRadius.circular(30),
+                                  textColor: Colors.white,
+                                  keyboardType: TextInputType.number,
+                                  fontWeight: FontWeight.w600,
+                                  controller: usdtCon,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      double amount =
+                                          double.tryParse(value) ?? 0;
+                                      resultt =
+                                          (amount / 92).toStringAsFixed(2);
+                                    });
+                                  },
+                                  prefixIcon: SizedBox(
+                                    width: 70,
+                                    child: Row(
                                       children: [
+                                        const SizedBox(width: 10),
                                         Image.asset(
                                           Assets.imagesUsdtIcon,
-                                          height: height * 0.05,
+                                          height: height * 0.03,
                                         ),
-                                        const SizedBox(width: 15),
-                                        textWidget(
-                                            text: 'USDT amount',
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w900,
-                                            color: AppColors.whiteColor),
+                                        const SizedBox(width: 10),
+                                        Container(
+                                            height: 30,
+                                            color: Colors.white,
+                                            width: 2)
                                       ],
                                     ),
-                                    const SizedBox(height: 10),
-                                    CustomTextField(
-                                      fillColor: AppColors.scaffolddark,
-                                      hintText: 'Please enter usdt amount',
-                                      fieldRadius: BorderRadius.circular(30),
-                                      textColor: Colors.white,
-                                      keyboardType: TextInputType.number,
-                                      fontWeight: FontWeight.w600,
-                                      controller: usdtCon,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          double amount =
-                                              double.tryParse(value) ?? 0;
-                                          resultt =
-                                              (amount / 92).toStringAsFixed(2);
-                                        });
-                                      },
-                                      prefixIcon: SizedBox(
-                                        width: 70,
-                                        child: Row(
-                                          children: [
-                                            const SizedBox(width: 10),
-                                            Image.asset(
-                                              Assets.imagesUsdtIcon,
-                                              height: height * 0.03,
-                                            ),
-                                            const SizedBox(width: 10),
-                                            Container(
-                                                height: 30,
-                                                color: Colors.white,
-                                                width: 2)
-                                          ],
-                                        ),
-                                      ),
-                                      suffixIcon: IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            usdtCon.clear();
-                                            selectedusdt = '';
-                                            resultt = "";
-                                          });
-                                        },
-                                        icon: const Icon(Icons.cancel_outlined,
-                                            color: AppColors.iconColor),
-                                      ),
-                                    ),
-                                    SizedBox(height: height * 0.01),
-                                    Text(
-                                      'Total amount received in USDT: ${resultt.isNotEmpty ? resultt : "0 "}',
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w900,
-                                          color: AppColors.whiteColor),
-                                    ),
-                                    SizedBox(height: height * 0.01),
-                                    SizedBox(height: height * 0.02),
-                                    const SizedBox(height: 10),
-                                    AppBtn(
-                                      onTap: () {
-                                        withdrawalUsdtMoney(context,
-                                          usdtCon.text,walletaddress.text
-                                        );
-                                      },
-                                      hideBorder: true,
-                                      title: 'W i t h d r a w',
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 18,
-                                      gradient: AppColors.primaryappbargrey,
-                                    ),
-                                    const SizedBox(height: 40),
-                                  ],
+                                  ),
+                                  suffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        usdtCon.clear();
+                                        selectedusdt = '';
+                                        resultt = "";
+                                      });
+                                    },
+                                    icon: const Icon(Icons.cancel_outlined,
+                                        color: AppColors.dividerColor),
+                                  ),
                                 ),
-                              ),
-                            ],
+                                SizedBox(height: height * 0.01),
+                                Text(
+                                  'Total amount received in USDT: ${resultt.isNotEmpty ? resultt : "0 "}',
+                                  style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w900,
+                                      color: AppColors.whiteColor),
+                                ),
+                                SizedBox(height: height * 0.01),
+                                SizedBox(height: height * 0.02),
+                                const SizedBox(height: 10),
+                                AppBtn(
+                                  onTap: () {
+                                    withdrawalUsdtMoney(context, usdtCon.text,
+                                        walletaddress.text);
+                                  },
+                                  hideBorder: true,
+                                  title: 'W i t h d r a w',
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 18,
+                                  gradient: AppColors.primaryappbargrey,
+                                ),
+                                const SizedBox(height: 40),
+                              ],
+                            ),
                           ),
+                        ],
+                      ),
               ],
             ),
           ),
@@ -689,13 +695,14 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
   ///withdraw api
   String withdrawacid = '';
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   bool isLoading = false; // Track loading state
 
   Future<void> withdrawalMoney(BuildContext context, String money) async {
     if (withdrawacid.isEmpty) {
-      Utils.flushBarErrorMessage("Please select a bank account", context, Colors.red);
+      Utils.flushBarErrorMessage(
+          "Please select a bank account", context, Colors.red);
       return;
     }
 
@@ -724,11 +731,15 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
       if (data["status"] == 200) {
         Navigator.pop(context);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => WalletScreenNew()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const WalletScreenNew()));
         Utils.flushBarSuccessMessage(data['message'], context, Colors.black);
-      } else if (data["status"] == "400" && data["message"] == "minimum Withdraw 200 And Maximum Withdraw 25000") {
+      } else if (data["status"] == "400" &&
+          data["message"] ==
+              "minimum Withdraw 200 And Maximum Withdraw 25000") {
         Utils.flushBarErrorMessage(data['message'], context, Colors.black);
-      } else if (data["status"] == 500 && data["message"] == "upi_id is required") {
+      } else if (data["status"] == 500 &&
+          data["message"] == "upi_id is required") {
         Utils.flushBarErrorMessage(data['message'], context, Colors.black);
         Future.delayed(const Duration(seconds: 2), () {
           Navigator.push(
@@ -749,8 +760,6 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
       });
     }
   }
-
-
 
   // Future<void> withdrawalMoney(BuildContext context, String money) async {
   //   if (withdrawacid.isEmpty) {
@@ -804,12 +813,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   //   }
   // }
 
-
-
-
   String usdtWalletAddress = '';
   Future<void> withdrawalUsdtMoney(
-       context, String money, String usdtMoney,) async {
+    context,
+    String money,
+    String usdtMoney,
+  ) async {
     try {
       UserModel user = await userProvider.getUser();
       String token = user.id.toString();
@@ -835,24 +844,28 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         var data = jsonDecode(response.body);
 
         // Check if the response contains "success" and "message"
-        if (data is Map && data.containsKey("success") && data.containsKey("message")) {
+        if (data is Map &&
+            data.containsKey("success") &&
+            data.containsKey("message")) {
           if (data["success"] == true) {
             Navigator.pop(context);
-            Utils.flushBarSuccessMessage(data['message'], context, Colors.black);
+            Utils.flushBarSuccessMessage(
+                data['message'], context, Colors.black);
           } else {
             Utils.flushBarErrorMessage(data['message'], context, Colors.red);
           }
         } else {
-          Utils.flushBarErrorMessage("Invalid response format", context, Colors.red);
+          Utils.flushBarErrorMessage(
+              "Invalid response format", context, Colors.red);
         }
       } else {
-        Utils.flushBarErrorMessage("Server error: ${response.statusCode}", context, Colors.red);
+        Utils.flushBarErrorMessage(
+            "Server error: ${response.statusCode}", context, Colors.red);
       }
     } catch (e) {
       Utils.flushBarErrorMessage("An error occurred: $e", context, Colors.red);
     }
   }
-
 
   ///view account
   List<AddacountViewModel> items = [];
@@ -891,7 +904,6 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     }
   }
 
-
   ///select deposit type
   int minimumamount = 100;
 
@@ -899,7 +911,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
   Future<void> depositTypeSelect() async {
     final response = await http.get(
-      Uri.parse(ApiUrl.getwayList),
+      Uri.parse(ApiUrl.getWayList),
     );
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];

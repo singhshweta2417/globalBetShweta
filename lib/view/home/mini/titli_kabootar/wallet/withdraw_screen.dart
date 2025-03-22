@@ -56,7 +56,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
       child: Container(
         height: height,
         margin: EdgeInsets.symmetric(horizontal: width*0.2, vertical: height*0.14),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(image: AssetImage(Assets.imagesBlackHisBox),
               fit: BoxFit.fill
           ),
@@ -75,7 +75,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                     margin: EdgeInsets.only(top: height*0.04, right: 5),
                     height: height*0.05,
                     width: width*0.054,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(image: AssetImage(Assets.titliCancel))
                     ),
                   ),
@@ -84,7 +84,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
             ),
             Padding(
               padding:  EdgeInsets.only(left: width*0.15, top: height*0.001, right: width*0.15),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   TextConst(
@@ -102,7 +102,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
             ),
             Padding(
               padding:  EdgeInsets.only(left: width*0.1, top: height*0.01),
-              child: TextConst(
+              child: const TextConst(
                 title: "Amount",
                 fontWeight: FontWeight.bold,
                 color: AppColors.white,
@@ -116,12 +116,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   title: "Enter Amount",
                   keyboardType: TextInputType.number,
                   controller: amount,
-                  icon: Icon(Icons.currency_rupee, size: 13,)
+                  icon: const Icon(Icons.currency_rupee, size: 13,)
               ),
             ),
             Padding(
               padding:  EdgeInsets.only(left: width*0.1),
-              child: TextConst(
+              child: const TextConst(
                 title: "Select Account",
                 fontWeight: FontWeight.bold,
                 color: AppColors.white,
@@ -142,8 +142,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
             ),
             child: DropdownButton<String>(
               value: _selectedAccount,
-              hint: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+              hint: const Padding(
+                padding: EdgeInsets.only(left: 8.0),
                 child: TextConst(
                   title: "Select Account",
                   color: Colors.grey,
@@ -153,7 +153,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               dropdownColor: Colors.black,
               icon: Padding(
                 padding: EdgeInsets.only(left: width * 0.2),
-                child: Icon(Icons.arrow_drop_down, color: Colors.grey),
+                child: const Icon(Icons.arrow_drop_down, color: Colors.grey),
               ),
               underline: Container(),
               items: depositViewModel.accountViewModel?.data?.map<DropdownMenuItem<String>>((value) {
@@ -209,7 +209,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 onTap: () {
                   showDialog(
                       context: context,
-                      builder: (context) =>  AddAccountScreen());
+                      builder: (context) =>  const AddAccountScreen());
                 },
               )
             ),

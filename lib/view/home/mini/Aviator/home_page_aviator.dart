@@ -1,4 +1,3 @@
-// ignore_for_file: curly_braces_in_flow_control_structures, depend_on_referenced_packages, use_build_context_synchronously, non_constant_identifier_names
 import 'dart:async';
 import 'dart:convert';
 
@@ -7,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/marquee/marquee.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'dart:math' as math;
 import 'package:http/http.dart' as http;
 import 'package:globalbet/generated/assets.dart';
@@ -16,8 +17,6 @@ import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/app_constant.dart';
 import 'package:globalbet/res/components/audio.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/Aviator/aviator_constant/aviator_assets.dart';
 import 'package:globalbet/view/home/mini/Aviator/aviator_model/result_history_model.dart';
@@ -54,7 +53,6 @@ class _GameAviatorState extends State<GameAviator>
       vsync: this, duration: const Duration(milliseconds: 100))
     ..repeat();
 
-
   @override
   void initState() {
     super.initState();
@@ -82,7 +80,6 @@ class _GameAviatorState extends State<GameAviator>
 
   late AnimationController _controllerFlew;
   late Animation<Offset> _animationFlew;
-  // String betData1={"period":"1000000","bet":"10"};
   Map<String, dynamic> betData1 = {"period": "", "bet": ''};
   Map<String, dynamic> betData2 = {"period": "", "bet": ''};
 
@@ -101,7 +98,6 @@ class _GameAviatorState extends State<GameAviator>
     ));
     Audio.aviatorplanmusic();
     _controllerFlew.forward();
-
   }
 
   animationControl() async {
@@ -127,12 +123,13 @@ class _GameAviatorState extends State<GameAviator>
 
   @override
   Widget build(BuildContext context) {
+    final userData = Provider.of<ProfileViewModel>(context);
     List dummyBets = dummyBet.reversed.toList();
     return WillPopScope(
       onWillPop: _onWillPop,
       child: firstCome == false
           ? Scaffold(
-              backgroundColor: AppColors.scaffolddark,
+              backgroundColor: AppColors.scaffoldDark,
               body: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -214,13 +211,9 @@ class _GameAviatorState extends State<GameAviator>
                         width: width * 0.04,
                       ),
                       Text(
-                          context
-                              .read<ProfileProvider>()
-                              .totalWallet==null?'':
-                        context
-                            .read<ProfileProvider>()
-                            .totalWallet
-                            .toStringAsFixed(2),
+                        userData.balance == null
+                            ? ''
+                            : userData.balance.toStringAsFixed(2),
                         style: const TextStyle(
                             color: Colors.green,
                             fontWeight: FontWeight.w900,
@@ -295,8 +288,8 @@ class _GameAviatorState extends State<GameAviator>
                                       //   color: Colors.grey.withOpacity(0.8),
                                       // ),
                                       Padding(
-                                        padding: const EdgeInsets.only(
-                                            bottom: 5.0),
+                                        padding:
+                                            const EdgeInsets.only(bottom: 5.0),
                                         child: Icon(
                                           isExpanded
                                               ? Icons.arrow_drop_up_rounded
@@ -884,8 +877,8 @@ class _GameAviatorState extends State<GameAviator>
     setState(() {
       autoPlay1 = !autoPlay1;
     });
-
   }
+
   void autoPlayButton2() {
     setState(() {
       autoPlay2 = !autoPlay2;
@@ -941,12 +934,13 @@ class _GameAviatorState extends State<GameAviator>
   }
 
   void deductAmount() {
+    final userData = Provider.of<ProfileViewModel>(context, listen: false);
     int amountToDeduct = selectedAmount * value;
-    if (context.read<ProfileProvider>().totalWallet >= amountToDeduct) {
+    if (userData.balance >= amountToDeduct) {
       setState(() {
         amount.text = (selectedAmount * value).toString();
       });
-      context.read<ProfileProvider>().totalWallet;
+      userData.balance;
     } else {
       Utils.flushBarErrorMessage('Insufficient funds', context, Colors.white);
     }
@@ -977,12 +971,13 @@ class _GameAviatorState extends State<GameAviator>
   }
 
   void deductAmount1() {
+    final userData = Provider.of<ProfileViewModel>(context, listen: false);
     int amountToDeduct = selectedAmount1 * value1;
-    if (context.read<ProfileProvider>().totalWallet >= amountToDeduct) {
+    if (userData.balance >= amountToDeduct) {
       setState(() {
         amountTwo.text = (selectedAmount1 * value1).toString();
       });
-      context.read<ProfileProvider>().totalWallet;
+      userData.balance;
     } else {
       Utils.flushBarErrorMessage('Insufficient funds', context, Colors.white);
     }
@@ -1000,9 +995,9 @@ class _GameAviatorState extends State<GameAviator>
   void _smallToggleSwitch(bool smallValue) {
     setState(() {
       _isToggled = smallValue;
-      if(_isToggled==false){
+      if (_isToggled == false) {
         autoCas = false;
-        autoPlay1=true;
+        autoPlay1 = true;
       }
     });
   }
@@ -1010,11 +1005,10 @@ class _GameAviatorState extends State<GameAviator>
   void _smallToggleSwitchTwo(bool smallValueTwo) {
     setState(() {
       _isToggledTwo = smallValueTwo;
-      if(_isToggledTwo==false){
+      if (_isToggledTwo == false) {
         autoCasTwo = false;
-        autoPlay2=true;
+        autoPlay2 = true;
       }
-
     });
   }
 
@@ -1055,38 +1049,34 @@ class _GameAviatorState extends State<GameAviator>
           cashOutTwo = true;
           betPlacedTwo = false;
         });
-        cashOut(betData2['bet'].toString(),autoValueTwo.text, '2');
+        cashOut(betData2['bet'].toString(), autoValueTwo.text, '2');
       }
     }
   }
 
   void connectToServer() {
+    final userData = Provider.of<ProfileViewModel>(context, listen: false);
     _socket = IO.io(
       // ApiUrl.aviatorWebSocket,
-        context.read<ProfileProvider>().aviatorLink.toString(),
+      userData.aviatorLink.toString(),
       IO.OptionBuilder().setTransports(['websocket']).build(),
     );
     _socket.on('connect', (_) {
-      if (kDebugMode) {
-      }
+      if (kDebugMode) {}
     });
     _socket.onConnectError((data) {
-      if (kDebugMode) {
-      }
+      if (kDebugMode) {}
     });
-    _socket.on(context.read<ProfileProvider>().aviatorEventName.toString(), (data) {
+    _socket.on(userData.aviatorEvent.toString(), (data) {
       if (_isMounted) {
         setState(() {
           receiveData = jsonDecode(data);
         });
       }
-      if (_isMounted &&receiveData['status'] == 1) {
-
-
+      if (_isMounted && receiveData['status'] == 1) {
         if (_isMounted && autoValue.text != "1.01" && autoCas == true) {
           autocashoutfun(receiveData['timer'].toString());
           autocashoutfunTwo(receiveData['timer'].toString());
-
         }
         if (_isMounted && autoValue.text != "1.01" && autoCasTwo == true) {
           autocashoutfunTwo(receiveData['timer'].toString());
@@ -1099,7 +1089,6 @@ class _GameAviatorState extends State<GameAviator>
           });
           demoBetRemove();
         }
-
       }
       if (receiveData['status'] == 1 && receiveData['timer'] == '1.00') {
         _controller.reset();
@@ -1117,25 +1106,17 @@ class _GameAviatorState extends State<GameAviator>
             betPlacedTwo = true;
           });
           demoBet();
-          if(betTime==99){
+          if (betTime == 99) {
             resultHistory();
-            if(autoPlay2==false) {
-              addBet(
-                  amountTwo.text,
-                  '2',
-                  receiveData['period'].toString(),
+            if (autoPlay2 == false) {
+              addBet(amountTwo.text, '2', receiveData['period'].toString(),
                   receiveData['status'].toString());
             }
-            if(autoPlay1==false) {
-              addBet(
-                  amount.text,
-                  '1',
-                  receiveData['period'].toString(),
+            if (autoPlay1 == false) {
+              addBet(amount.text, '1', receiveData['period'].toString(),
                   receiveData['status'].toString());
             }
           }
-
-
         }
         // changeColor="0";
       }
@@ -1153,7 +1134,8 @@ class _GameAviatorState extends State<GameAviator>
             cashOutTwo = false;
           });
         }
-        if (betData1['period'].toString() == receiveData['period'].toString() && receiveData['betTime']==30) {
+        if (betData1['period'].toString() == receiveData['period'].toString() &&
+            receiveData['betTime'] == 30) {
           if (_isMounted) {
             setState(() {
               betData1 = {
@@ -1164,7 +1146,8 @@ class _GameAviatorState extends State<GameAviator>
           }
         }
 
-        if (betData2['period'].toString() == receiveData['period'].toString() && receiveData['betTime']==30) {
+        if (betData2['period'].toString() == receiveData['period'].toString() &&
+            receiveData['betTime'] == 30) {
           if (_isMounted) {
             setState(() {
               betData2 = {
@@ -1350,7 +1333,6 @@ class _GameAviatorState extends State<GameAviator>
                   padding: const EdgeInsets.only(left: 8, right: 8),
                   decoration: const BoxDecoration(
                     color: Color(0xff080808),
-
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                   ),
                   child: Center(
@@ -1361,24 +1343,6 @@ class _GameAviatorState extends State<GameAviator>
                   ),
                 ),
               );
-              //   Padding(
-              //   padding: const EdgeInsets.all(5.0),
-              //   child: Container(
-              //     height: height*0.2,
-              //     padding: EdgeInsets.only(left: 8,right: 8),
-              //     alignment: Alignment.center,
-              //     decoration: BoxDecoration(
-              //       color: Colors.grey.withOpacity(0.1),
-              //       border: Border.all(color: Colors.grey.withOpacity(0.2)),
-              //       borderRadius: const BorderRadius.all(Radius.circular(10)),
-              //     ),
-              //     child: Text(
-              //       '${number[index].price} x',
-              //       style: TextStyle(
-              //           fontSize: 14, color: RandomColor().getColor()),
-              //     ),
-              //   ),
-              // );
             },
           ),
         ),
@@ -1387,9 +1351,9 @@ class _GameAviatorState extends State<GameAviator>
   }
 
   Widget betButton() {
+    final userData = Provider.of<ProfileViewModel>(context);
     return Container(
       width: width,
-      // height: height * 0.6,
       decoration: BoxDecoration(
           border: Border.all(
               color: changeColor == '0'
@@ -1535,7 +1499,6 @@ class _GameAviatorState extends State<GameAviator>
                 SizedBox(
                   width: widths * 0.03,
                 ),
-
                 if (betData1['period'].toString() == '' ||
                     int.parse(betData1['period'].toString()) <
                         int.parse(receiveData['period'].toString()))
@@ -1552,10 +1515,7 @@ class _GameAviatorState extends State<GameAviator>
                         } else if (amount.text == '0') {
                           Utils.flushBarErrorMessage(
                               'Select Amount First..!', context, Colors.white);
-                        } else if (context
-                                .read<ProfileProvider>()
-                                .totalWallet ==
-                            0) {
+                        } else if (userData.balance == 0) {
                           Utils.flushBarErrorMessage(
                               'Please recharge first', context, Colors.white);
                         } else {
@@ -1686,7 +1646,6 @@ class _GameAviatorState extends State<GameAviator>
                           ],
                         ),
                       ))
-
               ],
             ),
             !_isToggled
@@ -1695,8 +1654,6 @@ class _GameAviatorState extends State<GameAviator>
                     padding: const EdgeInsets.only(left: 3, right: 2),
                     child: Column(
                       children: [
-
-
                         const Divider(
                           color: Color(0xff141516),
                           height: 10,
@@ -1704,40 +1661,40 @@ class _GameAviatorState extends State<GameAviator>
                         ),
                         Row(
                           children: [
-
                             InkWell(
                               onTap: autoPlayButton1,
-                              child:
-                              autoPlay1==true?Container(
-                                padding: const EdgeInsets.fromLTRB(10, 2, 8, 2),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xff1d7aca),
-                                    // border: Border.all(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: const Text(
-                                  "AUTO PLAY  ",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14),
-                                ),
-                              ):
-                              Container(
-                                padding: const EdgeInsets.fromLTRB(10, 2, 8, 2),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: AppColors.btnColor,
-                                    // border: Border.all(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: const Text(
-                                  "Stop Auto",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14),
-                                ),
-                              ),
-
+                              child: autoPlay1 == true
+                                  ? Container(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 2, 8, 2),
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: const Color(0xff1d7aca),
+                                          // border: Border.all(color: Colors.white),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: const Text(
+                                        "AUTO PLAY  ",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 14),
+                                      ),
+                                    )
+                                  : Container(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 2, 8, 2),
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: AppColors.btnColor,
+                                          // border: Border.all(color: Colors.white),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: const Text(
+                                        "Stop Auto",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 14),
+                                      ),
+                                    ),
                             ),
-
-
 
                             const Text(
                               "      Auto Cash Out ",
@@ -1881,6 +1838,7 @@ class _GameAviatorState extends State<GameAviator>
   }
 
   Widget betButtonTwo() {
+    final userData = Provider.of<ProfileViewModel>(context);
     return Container(
       width: width,
       // height: height * 0.6,
@@ -2045,10 +2003,7 @@ class _GameAviatorState extends State<GameAviator>
                         } else if (amountTwo.text == '0') {
                           Utils.flushBarErrorMessage(
                               'Select Amount First..!', context, Colors.white);
-                        } else if (context
-                                .read<ProfileProvider>()
-                                .totalWallet ==
-                            0) {
+                        } else if (userData.balance == 0) {
                           Utils.flushBarErrorMessage(
                               'Please recharge first', context, Colors.white);
                         } else {
@@ -2196,34 +2151,37 @@ class _GameAviatorState extends State<GameAviator>
                           children: [
                             InkWell(
                               onTap: autoPlayButton2,
-                              child:
-                              autoPlay2==true?Container(
-                                padding: const EdgeInsets.fromLTRB(10, 2, 8, 2),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xff1d7aca),
-                                    // border: Border.all(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: const Text(
-                                  "AUTO PLAY  ",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14),
-                                ),
-                              ):
-                              Container(
-                                padding: const EdgeInsets.fromLTRB(10, 2, 8, 2),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: AppColors.btnColor,
-                                    // border: Border.all(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: const Text(
-                                  "Stop Auto",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14),
-                                ),
-                              ),
-
+                              child: autoPlay2 == true
+                                  ? Container(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 2, 8, 2),
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: const Color(0xff1d7aca),
+                                          // border: Border.all(color: Colors.white),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: const Text(
+                                        "AUTO PLAY  ",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 14),
+                                      ),
+                                    )
+                                  : Container(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 2, 8, 2),
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: AppColors.btnColor,
+                                          // border: Border.all(color: Colors.white),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: const Text(
+                                        "Stop Auto",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 14),
+                                      ),
+                                    ),
                             ),
 
                             const Text(
@@ -2389,8 +2347,8 @@ class _GameAviatorState extends State<GameAviator>
   List<Demo> dummyBet = [];
 
   Future cashOut(String amount, String times, String betNo) async {
-
-    if((betNo == '1' && betFind1 == true) || (betNo == '2' && betFind2 == true))  {
+    if ((betNo == '1' && betFind1 == true) ||
+        (betNo == '2' && betFind2 == true)) {
       UserModel user = await userProvider.getUser();
       String userid = user.id.toString();
       var gameNo = receiveData['period'].toString();
@@ -2421,11 +2379,12 @@ class _GameAviatorState extends State<GameAviator>
       String encodedData = base64.encode(utf8.encode(jsonData));
 
       final response =
-      await http.get(Uri.parse('${ApiUrl.aviatorBetCashOut}$encodedData'));
+          await http.get(Uri.parse('${ApiUrl.aviatorBetCashOut}$encodedData'));
       final data = jsonDecode(response.body);
 
       if (data["status"] == 200) {
-        context.read<ProfileProvider>().fetchProfileData();
+        Provider.of<ProfileViewModel>(context, listen: false)
+            .profileApi(context);
         setState(() {
           autoBetCashOut = true;
         });
@@ -2439,7 +2398,7 @@ class _GameAviatorState extends State<GameAviator>
   Future cancelBet(String betNo) async {
     if (betNo == '1') {
       setState(() {
-        betFind1=false;
+        betFind1 = false;
         betData1 = {
           "period": '',
           "bet": '',
@@ -2447,7 +2406,7 @@ class _GameAviatorState extends State<GameAviator>
       });
     } else {
       setState(() {
-        betFind2=false;
+        betFind2 = false;
         betData2 = {
           "period": '',
           "bet": '',
@@ -2461,7 +2420,7 @@ class _GameAviatorState extends State<GameAviator>
         '${ApiUrl.aviatorBetCancel}$userid&gamesno=$gameNo&number=$betNo'));
     final data = jsonDecode(response.body);
     if (data["status"] == 200) {
-      context.read<ProfileProvider>().fetchProfileData();
+      Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
       Utils.flushBarSuccessMessage(data['message'], context, Colors.black);
     } else {
       Utils.flushBarErrorMessage(data['message'], context, Colors.black);
@@ -2475,7 +2434,7 @@ class _GameAviatorState extends State<GameAviator>
     if (status != '1') {
       if (betNo == '1') {
         setState(() {
-          betFind1=true;
+          betFind1 = true;
 
           betData1 = {
             "period": period,
@@ -2484,8 +2443,8 @@ class _GameAviatorState extends State<GameAviator>
         });
       } else {
         setState(() {
-          betFind2=true;
-        betData2 = {
+          betFind2 = true;
+          betData2 = {
             "period": period,
             "bet": amount,
           };
@@ -2497,7 +2456,7 @@ class _GameAviatorState extends State<GameAviator>
       });
       if (betNo == '1') {
         setState(() {
-          betFind1=true;
+          betFind1 = true;
           betData1 = {
             "period": perios,
             "bet": amount,
@@ -2505,7 +2464,7 @@ class _GameAviatorState extends State<GameAviator>
         });
       } else {
         setState(() {
-          betFind2=true;
+          betFind2 = true;
 
           betData2 = {
             "period": perios,
@@ -2519,7 +2478,7 @@ class _GameAviatorState extends State<GameAviator>
         '${ApiUrl.aviatorBet}$userid&number=$betNo&amount=$amount&game_id=5&game_sr_num=$perios'));
     final resData = jsonDecode(response.body);
     if (resData["status"] == 200) {
-      context.read<ProfileProvider>().fetchProfileData();
+      Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
       Utils.flushBarSuccessMessage(resData['message'], context, Colors.black);
     } else {
       Utils.flushBarErrorMessage(resData['message'], context, Colors.black);
@@ -2529,7 +2488,6 @@ class _GameAviatorState extends State<GameAviator>
   demoBet() async {
     int memId = rnd.nextInt(2000);
     int amount = rnd.nextInt(9);
-    // await Future.delayed(const Duration(milliseconds: 500));
     if (betTime % 2 != 0 && amount != 0) {
       dummyBet.add(Demo(
           name: 'MemberId$memId',
@@ -2542,7 +2500,6 @@ class _GameAviatorState extends State<GameAviator>
   }
 
   demoBetRemove() async {
-
     int memId = rnd.nextInt(2000);
     int amount = rnd.nextInt(9);
     if (timer.toStringAsFixed(2).split('.').last.split('').last == '5' ||
@@ -2575,17 +2532,17 @@ class _GameAviatorState extends State<GameAviator>
 
   List<ResultHistoryModel> number = [];
   Future<void> resultHistory() async {
-    context.read<ProfileProvider>().fetchProfileData();
+    Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
     const url = ApiUrl.aviatorResult;
-    //'https://admin.aviatorays.in/api/aviator/last_five_result';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
 
       setState(() {
-        number = responseData.map((data) => ResultHistoryModel.fromJson(data)).toList();
+        number = responseData
+            .map((data) => ResultHistoryModel.fromJson(data))
+            .toList();
       });
-
     } else if (response.statusCode == 400) {
       // Handle 400 status code
     } else {
@@ -2596,9 +2553,8 @@ class _GameAviatorState extends State<GameAviator>
     }
   }
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 }
-
 
 class Demo {
   String name;

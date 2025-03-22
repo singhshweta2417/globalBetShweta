@@ -79,7 +79,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
       // },
     ];
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           title:Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -7,7 +7,7 @@ import 'package:globalbet/model/bettingHistory_Model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../../res/api_urls.dart';
@@ -355,7 +355,7 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
                     height: height * 0.06,
                     width: width * 0.10,
                     decoration: BoxDecoration(
-                      gradient: AppColors.loginSecondryGrad,
+                      gradient: AppColors.loginSecondaryGrad,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Icon(
@@ -389,7 +389,7 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
                     height: height * 0.06,
                     width: width * 0.10,
                     decoration: BoxDecoration(
-                      gradient: AppColors.loginSecondryGrad,
+                      gradient: AppColors.loginSecondaryGrad,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Icon(Icons.navigate_next, color: Colors.white),
@@ -500,7 +500,7 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
   Future<void> gameHistory() async {
     try {
       // Fetch userId
-      UserViewProvider userProvider = UserViewProvider();
+      UserViewModel userProvider = UserViewModel();
       UserModel user = await userProvider.getUser();
       String userId = user.id.toString();
       print(userId);

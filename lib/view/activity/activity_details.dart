@@ -17,7 +17,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: const GradientAppBar(
           title: Text(
             "Activity Details",

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -10,7 +9,7 @@ import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/clipboard.dart';
 import 'package:globalbet/res/components/image_picker.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,30 +19,27 @@ import 'package:http/http.dart' as http;
 class UploadScreenshots extends StatefulWidget {
   String amount;
   String cont;
-  UploadScreenshots({super.key, required this.amount,required this.cont});
+  UploadScreenshots({super.key, required this.amount, required this.cont});
 
   @override
   State<UploadScreenshots> createState() => _UploadScreenshotsState();
 }
 
 class _UploadScreenshotsState extends State<UploadScreenshots> {
-
   @override
   void initState() {
     getImage();
     super.initState();
   }
 
-  String imagePath="";
+  String imagePath = "";
   String usdtcode = "";
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
-      child:
-      Scaffold(
-        backgroundColor: AppColors.scaffolddark,
+      child: Scaffold(
+        backgroundColor: AppColors.scaffoldDark,
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -54,73 +50,91 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
                   child: Image.asset(Assets.iconsArrowBack)),
             ),
             title: textWidget(
-                text: 'Upload Screenshot', fontSize: 25, color: AppColors.primaryTextColor),
+                text: 'Upload Screenshot',
+                fontSize: 25,
+                color: AppColors.primaryTextColor),
             gradient: AppColors.secondaryappbar),
         body: ListView(
           shrinkWrap: true,
           children: [
-            SizedBox(height: height*0.02),
+            SizedBox(height: height * 0.02),
             Center(
-              child: Text("Total amount:${widget.amount}", style: const TextStyle(
-                  fontSize: 16, color: Colors.white
-              ),),
-            ),
-            SizedBox(height: height*0.02),
-            Center(
-              child: SizedBox(
-                height: height*0.50,
-                    width: width*0.80,
-                child:imagePath ==""?const SizedBox(): Image.network(imagePath),
+              child: Text(
+                "Total amount:${widget.amount}",
+                style: const TextStyle(fontSize: 16, color: Colors.white),
               ),
             ),
-
+            SizedBox(height: height * 0.02),
+            Center(
+              child: SizedBox(
+                height: height * 0.50,
+                width: width * 0.80,
+                child: imagePath == ""
+                    ? const SizedBox()
+                    : Image.network(imagePath),
+              ),
+            ),
             SizedBox(height: height * 0.04),
             Column(
               children: [
-                const Text("Copy code:", style: TextStyle(
-                    fontSize: 16, color: Colors.white
-                ),),
+                const Text(
+                  "Copy code:",
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                     Text(usdtcode=="null"?"":usdtcode.toString(), style: const TextStyle(
-                        fontSize: 12, color: Colors.white
-                    ),),
-                    IconButton(onPressed: (){
-                      copyToClipboard(usdtcode=="null"?"":usdtcode.toString(), context);
-                    }, icon: const Icon(Icons.copy,color: Colors.white,size: 15,))
+                    Text(
+                      usdtcode == "null" ? "" : usdtcode.toString(),
+                      style: const TextStyle(fontSize: 12, color: Colors.white),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          copyToClipboard(
+                              usdtcode == "null" ? "" : usdtcode.toString(),
+                              context);
+                        },
+                        icon: const Icon(
+                          Icons.copy,
+                          color: Colors.white,
+                          size: 15,
+                        ))
                   ],
                 ),
-
               ],
             ),
             Center(
               child: AppBtn(
-                width: width*0.44,
-                onTap: (){
+                width: width * 0.44,
+                onTap: () {
                   _settingModalBottomSheet(context);
                 },
                 title: "Upload Screenshot",
                 gradient: AppColors.containerGradient,
               ),
             ),
-            SizedBox(height: height*0.02,),
+            SizedBox(
+              height: height * 0.02,
+            ),
             SizedBox(
               height: 120,
               width: 200,
               child: myData != '0'
                   ? Image.memory(base64Decode(myData))
-                  : Image.network(ApiUrl.uploadimage),
+                  : Image.network(ApiUrl.uploadImage),
             ),
-            SizedBox(height: height*0.02,),
+            SizedBox(
+              height: height * 0.02,
+            ),
             AppBtn(
-              onTap: (){
-                usdtPay(widget.cont,widget.amount,context);
+              onTap: () {
+                usdtPay(widget.cont, widget.amount, context);
               },
               title: "Confirm",
             ),
-            SizedBox(height: height*0.03,)
-
+            SizedBox(
+              height: height * 0.03,
+            )
           ],
         ),
       ),
@@ -129,7 +143,8 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
 
   String myData = '0';
   void _updateImage(ImageSource imageSource) async {
-    String? imageData = await ChooseImage.chooseImageAndConvertToString(imageSource);
+    String? imageData =
+        await ChooseImage.chooseImageAndConvertToString(imageSource);
     if (imageData != null) {
       setState(() {
         myData = imageData;
@@ -138,7 +153,6 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
   }
 
   void _settingModalBottomSheet(context) {
-    
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -149,8 +163,8 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
           return SizedBox(
             height: height / 7,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                  width / 12, 0, width / 12, height / 60),
+              padding:
+                  EdgeInsets.fromLTRB(width / 12, 0, width / 12, height / 60),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -164,14 +178,14 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
                       height: height / 20,
                       width: width / 2.7,
                       decoration: BoxDecoration(
-                        // color: Colors.blue,
+                          // color: Colors.blue,
                           border: Border.all(color: Colors.red, width: 2),
                           borderRadius: BorderRadius.circular(10)),
                       child: const Center(
                           child: Text(
-                            "Camera",
-                            style: TextStyle(color: Colors.red),
-                          )),
+                        "Camera",
+                        style: TextStyle(color: Colors.red),
+                      )),
                     ),
                   ),
                   InkWell(
@@ -187,8 +201,8 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
                           borderRadius: BorderRadius.circular(10)),
                       child: const Center(
                           child: Text(
-                            "Gallery",
-                          )),
+                        "Gallery",
+                      )),
                     ),
                   ),
                 ],
@@ -198,8 +212,7 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
         });
   }
 
-
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   usdtPay(String usdtamount, String amountINR, context) async {
     if (kDebugMode) {
@@ -210,51 +223,44 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
     if (kDebugMode) {
       print(token);
     }
-    final response = await http.post(Uri.parse(ApiUrl.usdtdeposit),
+    final response = await http.post(Uri.parse(ApiUrl.usdtDeposit),
         // headers: {'Content-Type': 'application/json; charset=UTF-8'},
         body: jsonEncode({
           "userid": token,
           "actual_amount": usdtamount,
-          "amount":amountINR,
-          "screenshot":myData
-        })
-    );
+          "amount": amountINR,
+          "screenshot": myData
+        }));
     if (kDebugMode) {
-      print(ApiUrl.usdtdeposit);
+      print(ApiUrl.usdtDeposit);
       print("ApiUrl.usdtdeposit");
       print(usdtamount);
       print(amountINR);
-
     }
-    if(response.statusCode==200){
+    if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       if (kDebugMode) {
         print(data);
         print("👍👍👍👍");
       }
-      if(data["status"]==200){
+      if (data["status"] == 200) {
         Navigator.pop(context);
         Utils.flushBarSuccessMessage(data["message"], context, Colors.white);
-
-      }
-      else {
+      } else {
         Utils.flushBarErrorMessage(data["message"], context, Colors.white);
       }
-    }
-    else{
+    } else {
       throw Exception("error");
     }
-
   }
 
-  getImage()async{
-    var res= await  http.get(Uri.parse("https://globalbetr.live/admin/index.php/Mahajongapi/usdt_slider"));
+  getImage() async {
+    var res = await http.get(Uri.parse(
+        "https://globalbetr.live/admin/index.php/Mahajongapi/usdt_slider"));
     var data = jsonDecode(res.body)["data"][0];
     setState(() {
-      imagePath="https://admin.globalbetr.live/${data["image"]}";
-      usdtcode="${data["usdtcode"]}";
+      imagePath = "https://admin.globalbetr.live/${data["image"]}";
+      usdtcode = "${data["usdtcode"]}";
     });
   }
 }
-
-

@@ -1,9 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:globalbet/res/app_constant.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/account/all_bet_history/all_bet_history.dart';
-import 'package:globalbet/view/account/beginnerguide.dart';
+import 'package:globalbet/view/account/beginner_guide.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:globalbet/generated/assets.dart';
@@ -12,13 +13,12 @@ import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/clipboard.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
 import 'package:globalbet/utils/routes/routes_name.dart';
 import 'package:globalbet/view/account/aboutus.dart';
 import 'package:globalbet/view/account/logout.dart';
-import 'package:globalbet/view/account/service_center/custmor_service.dart';
+import 'package:globalbet/view/account/service_center/customer_service.dart';
 import 'package:globalbet/view/account/service_center/setting_page_new.dart';
-import 'package:globalbet/view/account/transction_history.dart';
+import 'package:globalbet/view/account/transaction_history.dart';
 import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
 import 'package:globalbet/view/home/notification.dart';
 import 'package:globalbet/view/wallet/deposit_history.dart';
@@ -46,7 +46,8 @@ class _AccountPageNewState extends State<AccountPageNew> {
   BaseApiHelper baseApiHelper = BaseApiHelper();
   @override
   Widget build(BuildContext context) {
-    final userData = context.read<ProfileProvider>();
+
+    final userData =Provider.of<ProfileViewModel>(context);
     List<ServiceModel> serviceList = [
       ServiceModel(
           image: Assets.iconsSetting,
@@ -117,7 +118,7 @@ class _AccountPageNewState extends State<AccountPageNew> {
     ];
 
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       body:
       ListView(
         children: [
@@ -138,7 +139,7 @@ class _AccountPageNewState extends State<AccountPageNew> {
                           children: [
                              CircleAvatar(
                               radius: 50,
-                              backgroundImage: NetworkImage(context.watch<ProfileProvider>().userImage.toString()),
+                              backgroundImage: NetworkImage(userData.userImage.toString()),
                             ),
                             const SizedBox(width: 10),
                             Column(
@@ -148,8 +149,7 @@ class _AccountPageNewState extends State<AccountPageNew> {
                                 Row(
                                   children: [
                                     textWidget(
-                                        text:
-                                        context.read<ProfileProvider>().userName.toString().toUpperCase(),
+                                        text: userData.userName.toString().toUpperCase(),
                                         fontSize: 18,
                                         fontWeight: FontWeight.w900,
                                         color: AppColors.primaryTextColor),
@@ -187,14 +187,14 @@ class _AccountPageNewState extends State<AccountPageNew> {
                                         const SizedBox(width: 8),
                                         textWidget(
                                             text:
-                                            userData.uId.toString(),
+                                            userData.userId.toString(),
                                             color: AppColors.primaryTextColor,
                                             fontSize: 16),
                                         const SizedBox(width: 8),
                                         InkWell(
                                             onTap: () {
                                               copyToClipboard(
-                                                  userData.uId.toString(), context);
+                                                  userData.userId.toString(), context);
                                             },
                                             child: Center(
                                               child: Image.asset(
@@ -249,8 +249,8 @@ class _AccountPageNewState extends State<AccountPageNew> {
                                     color: AppColors.primaryTextColor),
                                 textWidget(
                                     text:
-                                    userData.totalWallet==null?'0':
-                                    userData.totalWallet.toStringAsFixed(2),
+                                    userData.balance==null?'0':
+                                    userData.balance.toStringAsFixed(2),
                                     fontWeight: FontWeight.w900,
                                     fontSize: 25,
                                     color: AppColors.primaryTextColor),
@@ -259,7 +259,7 @@ class _AccountPageNewState extends State<AccountPageNew> {
                                 ),
                                 InkWell(
                                     onTap: () {
-                                      context.read<ProfileProvider>().fetchProfileData();
+                                      userData.profileApi(context);
                                       Utils.flushBarSuccessMessage('Wallet refresh ✔', context, Colors.white);
                                     },
                                     child: Image.asset(
@@ -543,8 +543,8 @@ class _AccountPageNewState extends State<AccountPageNew> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 50),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 50),
                       child: Text(
                         "Version : ${AppConstants.appVersion}",
                         style: TextStyle(

@@ -25,7 +25,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     final feedbackk = Provider.of<FeedbackProvider>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -115,7 +115,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   feedbackk.Feedbacksubmit(context, feed.text);
 
                 },
-                gradient: AppColors.loginSecondryGrad,
+                gradient: AppColors.loginSecondaryGrad,
               ),
             ),
 

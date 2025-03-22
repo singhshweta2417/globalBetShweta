@@ -24,7 +24,7 @@ class _LogoutState extends State<Logout> {
   Widget build(BuildContext context) {
 
     return Dialog(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
         height: 270,
@@ -85,7 +85,7 @@ class _LogoutState extends State<Logout> {
                     width: width*0.28,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      gradient: AppColors.loginSecondryGrad
+                      gradient: AppColors.loginSecondaryGrad
                     ),
                     child: Center(
                       child: textWidget(

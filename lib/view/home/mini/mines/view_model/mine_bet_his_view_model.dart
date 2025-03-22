@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/mines/model/mine_bet_his_model.dart';
 import 'package:globalbet/view/home/mini/mines/repo/mine_bet_his_repo.dart';
@@ -27,7 +27,7 @@ class MineBetHisViewModel with ChangeNotifier {
     setLoading(true);
     // UserViewModel userViewModal = UserViewModel();
     // String? userId = await userViewModal.getUser();
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     _mineBetHisRepo.mineBetHisApi(userId).then((value) {

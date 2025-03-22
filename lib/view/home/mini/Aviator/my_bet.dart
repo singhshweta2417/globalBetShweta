@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 import 'package:globalbet/view/home/mini/Aviator/aviator_model/my_bet_model.dart';
 
 
@@ -178,7 +178,7 @@ class _MyBetPageState extends State<MyBetPage> {
   }
 
   int? responseStatusCode;
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   Future<void> myBet() async {
     UserModel user = await userProvider.getUser();

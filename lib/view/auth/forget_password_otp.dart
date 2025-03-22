@@ -43,7 +43,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           centerTitle: true,
           title: textWidget(
@@ -99,7 +99,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   }
 
   otpSent(String mobile) async {
-    final response = await http.get(Uri.parse('${ApiUrl.sendotp}mode=live&digit=4&mobile=$mobile'));
+    final response = await http.get(Uri.parse('${ApiUrl.sendOtp}mode=live&digit=4&mobile=$mobile'));
     if (response.statusCode == 200) {
       setState(() {
         isOtpSend = true;
@@ -152,7 +152,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             hintText: 'Verification code',
             onChanged: (v) async {
               if(v.length==4){
-                final response = await http.get(Uri.parse('${ApiUrl.verifyotp}${phoneCon.text}&otp=${verifyCode.text}'));
+                final response = await http.get(Uri.parse('${ApiUrl.verifyOtp}${phoneCon.text}&otp=${verifyCode.text}'));
                 var data = jsonDecode(response.body);
                 if(data["status"]=="200"){
                   Utils.flushBarSuccessMessage(data["message"], context, Colors.white);

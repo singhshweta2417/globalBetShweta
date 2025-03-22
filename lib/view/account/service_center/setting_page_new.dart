@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -8,10 +9,9 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/clipboard.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
 import 'package:globalbet/view/account/change_password.dart';
 import 'package:globalbet/view/account/service_center/bind_mail_box.dart';
-import 'package:globalbet/view/account/service_center/change_avtar.dart';
+import 'package:globalbet/view/account/service_center/change_aviator.dart';
 import 'package:globalbet/view/account/service_center/change_user_name.dart';
 
 class SettingPageNew extends StatefulWidget {
@@ -63,9 +63,9 @@ class _SettingPageNewState extends State<SettingPageNew> {
 
       ),
     ];
-    context.read<ProfileProvider>();
+   final profileView= Provider.of<ProfileViewModel>(context);
     return Scaffold(
-        backgroundColor: AppColors.scaffolddark,
+        backgroundColor: AppColors.scaffoldDark,
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -143,8 +143,8 @@ class _SettingPageNewState extends State<SettingPageNew> {
                                               child: CircleAvatar(
                                                 radius: 48,
                                                 backgroundImage: NetworkImage(
-                                                    context.watch<ProfileProvider>().userImage
-                                                        .toString()),
+                                                    profileView.userImage.toString()
+                                              ),
                                               ),
                                             ),
                                           ),
@@ -180,7 +180,7 @@ class _SettingPageNewState extends State<SettingPageNew> {
                                               fontSize: 15),
                                           const Spacer(),
                                           textWidget(
-                                              text:  context.read<ProfileProvider>().userName.toString().toUpperCase(),
+                                              text: profileView.userName.toString(),
                                               color: AppColors.primaryTextColor,
                                               fontWeight: FontWeight.w800,
                                               fontSize: 15),
@@ -204,14 +204,14 @@ class _SettingPageNewState extends State<SettingPageNew> {
                                             fontSize: 15),
                                         const Spacer(),
                                         textWidget(
-                                            text: context.read<ProfileProvider>().uId.toString(),
+                                            text: profileView.userId.toString(),
                                             color: AppColors.primaryTextColor,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 15),
                                         IconButton(
                                           onPressed: () {
                                             copyToClipboard(
-                                                context.read<ProfileProvider>().uId.toString(),
+                                                profileView.userId.toString(),
                                                 context);
                                           },
                                           icon: Image.asset(

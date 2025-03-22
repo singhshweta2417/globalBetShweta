@@ -10,7 +10,8 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
 import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/view/account/service_center/custmor_service.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/view/account/service_center/customer_service.dart';
 import 'package:globalbet/view/home/notification.dart';
 import 'package:globalbet/view/home/widgets/category_elements.dart';
 import 'package:globalbet/view/home/widgets/category_widgets.dart';
@@ -45,10 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final userData = context.watch<ProfileProvider>();
+    final userData =  Provider.of<ProfileViewModel>(context);
 
     launchURL2() async {
-      var url = userData.apkLink.toString();
+      var url = userData.appLink.toString();
       if (await canLaunch(url)) {
         await launch(url);
       } else {
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           centerTitle: true,
           title: Padding(
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           launchURL2();
                         },
                         icon: const Icon(Icons.download_for_offline,
-                            color: AppColors.goldencolor),
+                            color: AppColors.goldenColor),
                       ),
                       InkWell(
                         onTap: () {
@@ -101,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: height * 0.03,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: AppColors.goldencolor),
+                              color: AppColors.goldenColor),
                           child: const Center(
                               child: Text(
                             "Deposit",
@@ -245,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
             barrierDismissible: false,
             context: context,
             builder: (context) => AlertDialog(
-                  backgroundColor: AppColors.scaffolddark,
+                  backgroundColor: AppColors.scaffoldDark,
                   content: SizedBox(
                     height: 155,
                     child: Column(
@@ -322,9 +323,9 @@ class _HomeScreenState extends State<HomeScreen> {
   dynamic versionlink;
 
   Future<void> versionCheck() async {
-    context.read<ProfileProvider>().fetchProfileData();
+    Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
     final response = await http.get(
-      Uri.parse(ApiUrl.versionlink),
+      Uri.parse(ApiUrl.versionLink),
     );
     if (response.statusCode == 200) {
       var responseData = jsonDecode(response.body);
@@ -345,15 +346,6 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     }
   }
-
-  // _launchURL() async {
-  //   var url = versionlink.toString();
-  //   if (await canLaunch(url)) {
-  //     await launch(url);
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
 
   _launchURL() async {
     var uri = Uri.parse(versionlink.toString());

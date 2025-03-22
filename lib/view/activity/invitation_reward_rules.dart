@@ -10,11 +10,11 @@ import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/components/theam_color.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
-import 'package:http/http.dart'as http;
+import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:http/http.dart' as http;
 
 import '../../res/api_urls.dart';
+
 class InvitationRewardRules extends StatefulWidget {
   const InvitationRewardRules({super.key});
 
@@ -23,17 +23,17 @@ class InvitationRewardRules extends StatefulWidget {
 }
 
 class _InvitationRewardRulesState extends State<InvitationRewardRules> {
-
   @override
   void initState() {
     invationbonusList();
     invitationRuleApi();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
         leading: const AppBackBtn(),
         title: Text(
@@ -59,7 +59,9 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
                   fontSize: 16,
                   color: AppColors.primaryTextColor),
             ),
-            SizedBox(height: height*0.01,),
+            SizedBox(
+              height: height * 0.01,
+            ),
             const Text(
               'After being claimed, the rewards will be directly distributed to the wallet balance within 10 minutes.',
               style: TextStyle(
@@ -70,70 +72,74 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-               decoration: BoxDecoration(
-                 gradient: AppColors.primaryUnselectedGradient,
-                 borderRadius: BorderRadius.circular(10)
-               ),
+                decoration: BoxDecoration(
+                    gradient: AppColors.primaryUnselectedGradient,
+                    borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
                     Container(
-                        decoration: const BoxDecoration(
-                            gradient: AppColors.buttonGradient,
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
-                        ),
-                      height:height*0.08,
-                       child: Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                         children: [
-                           buildContainer('Invite Account'),
-                           buildContainer('Deposit Amount'),
-                           buildContainer('Bonus'),
-                         ],
-                       ),
+                      decoration: const BoxDecoration(
+                          gradient: AppColors.buttonGradient,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10))),
+                      height: height * 0.08,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          buildContainer('Invite Account'),
+                          buildContainer('Deposit Amount'),
+                          buildContainer('Bonus'),
+                        ],
+                      ),
                     ),
                     ListView.builder(
                         shrinkWrap: true,
                         itemCount: invationbonus.length,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          final data= invationbonus[index];
+                          final data = invationbonus[index];
                           return Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Column(
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     buildContainer('${data.noOfUser} People'),
                                     buildContainer('₹${data.amount}'),
                                     buildContainer('₹${data.claimAmount}'),
                                   ],
                                 ),
-                                const Divider(color: AppColors.gradientFirstColor,thickness: 1,)
+                                const Divider(
+                                  color: AppColors.gradientFirstColor,
+                                  thickness: 1,
+                                )
                               ],
                             ),
                           );
                         }),
-
                   ],
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Stack(
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.secondaryContainerTextColor,width: 2),
-                      //  gradient: AppColors.primaryUnselectedGradient,
-                        borderRadius: BorderRadius.circular(10)
-                  ),
+                        border: Border.all(
+                            color: AppColors.secondaryContainerTextColor,
+                            width: 2),
+                        //  gradient: AppColors.primaryUnselectedGradient,
+                        borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
-                        SizedBox(  height: height*0.06,),
-
+                        SizedBox(
+                          height: height * 0.06,
+                        ),
                         ListView.builder(
                             shrinkWrap: true,
                             itemCount: invitationRuleList.length,
@@ -141,19 +147,19 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
-                                child:instruction(invitationRuleList[index]),
-
+                                child: instruction(invitationRuleList[index]),
                               );
                             }),
                       ],
                     ),
                   ),
                   Container(
-                    height: height*0.06,
+                    height: height * 0.06,
                     width: width,
                     decoration: const BoxDecoration(
-                        image: DecorationImage(image: AssetImage(Assets.iconsRulehead),fit: BoxFit.fill)
-                    ),
+                        image: DecorationImage(
+                            image: AssetImage(Assets.iconsRulehead),
+                            fit: BoxFit.fill)),
                     child: const Center(
                       child: Text(
                         'Rules',
@@ -173,8 +179,6 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
     );
   }
 
-
-
   instruction(String title) {
     return ListTile(
       leading: Transform.rotate(
@@ -186,38 +190,39 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
         ),
       ),
       title: textWidget(
-          text: title,
-          fontSize: 14,
-          color: AppColors.primaryTextColor
+          text: title, fontSize: 14, color: AppColors.primaryTextColor),
+    );
+  }
+
+  buildContainer(String text) {
+    return SizedBox(
+      width: width * 0.28,
+      //  color: Colors.black,
+      child: Center(
+        child: Text(
+          text,
+          style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 13,
+              color: AppColors.primaryTextColor),
+        ),
       ),
     );
   }
-   buildContainer(String text) {
-    return SizedBox(
-                           width: width*0.28,
-                         //  color: Colors.black,
-                           child: Center(
-                             child: Text(text,
-                               style: const TextStyle(
-                                   fontWeight: FontWeight.w600,
-                                   fontSize: 13,
-                                   color: AppColors.primaryTextColor),
-                             ),
-                           ),
-                         );
-  }
 
-  int?responseStatuscode;
-  UserViewProvider userProvider = UserViewProvider();
+  int? responseStatuscode;
+  UserViewModel userProvider = UserViewModel();
 
   List<InvitationBonusModel> invationbonus = [];
 
   Future<void> invationbonusList() async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
-    final response = await http.get(Uri.parse(ApiUrl.invitationBonusList+token),);
+    final response = await http.get(
+      Uri.parse(ApiUrl.invitationBonusList + token),
+    );
     if (kDebugMode) {
-      print(ApiUrl.invitationBonusList+token);
+      print(ApiUrl.invitationBonusList + token);
       print('invitationBonusList');
     }
 
@@ -225,20 +230,18 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
       responseStatuscode = response.statusCode;
     });
 
-    if (response.statusCode==200) {
+    if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       setState(() {
-
-        invationbonus = responseData.map((item) => InvitationBonusModel.fromJson(item)).toList();
+        invationbonus = responseData
+            .map((item) => InvitationBonusModel.fromJson(item))
+            .toList();
       });
-
-    }
-    else if(response.statusCode==400){
+    } else if (response.statusCode == 400) {
       if (kDebugMode) {
         print('Data not found');
       }
-    }
-    else {
+    } else {
       setState(() {
         invationbonus = [];
       });
@@ -246,12 +249,12 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
     }
   }
 
-
   List<String> invitationRuleList = [];
 
-
   Future<void> invitationRuleApi() async {
-    final response = await http.get(Uri.parse('${ApiUrl.allRules}1'),);
+    final response = await http.get(
+      Uri.parse('${ApiUrl.allRules}1'),
+    );
     if (kDebugMode) {
       print('${ApiUrl.allRules}1');
       print('allRules');
@@ -261,20 +264,18 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
       responseStatuscode = response.statusCode;
     });
 
-    if (response.statusCode==200) {
+    if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
 
       setState(() {
-        invitationRuleList = json.decode(responseData[0]['list']).cast<String>();
+        invitationRuleList =
+            json.decode(responseData[0]['list']).cast<String>();
       });
-
-    }
-    else if(response.statusCode==400){
+    } else if (response.statusCode == 400) {
       if (kDebugMode) {
         print('Data not found');
       }
-    }
-    else {
+    } else {
       setState(() {
         invitationRuleList = [];
       });

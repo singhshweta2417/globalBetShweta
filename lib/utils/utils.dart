@@ -94,7 +94,7 @@ class Utils {
                             style: ElevatedButton.styleFrom(
                                 side: const BorderSide(width: 1, color: Colors.white),
                                 elevation: 3,
-                                backgroundColor: AppColors.scaffolddark,
+                                backgroundColor: AppColors.scaffoldDark,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5)),
                                 padding: EdgeInsets.symmetric(

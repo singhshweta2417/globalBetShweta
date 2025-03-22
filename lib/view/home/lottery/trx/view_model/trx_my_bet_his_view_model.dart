@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/lottery/trx/controller/trx_controller.dart';
 import 'package:globalbet/view/home/lottery/trx/model/trx_my_bet_his_model.dart';
@@ -28,7 +28,7 @@ class TrxMyBetHisViewModel with ChangeNotifier {
   Future<void> trxMyBetHisApi(context, int offset) async {
     setLoading(true);
     final trc = Provider.of<TrxController>(context, listen: false);
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     Map data = {

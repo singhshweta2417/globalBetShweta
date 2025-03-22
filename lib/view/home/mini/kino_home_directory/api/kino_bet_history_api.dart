@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_url.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/model/kino_bet_history_model.dart';
 import 'package:http/http.dart' as http;
@@ -15,7 +15,7 @@ class KinoGameHistoryApi  with ChangeNotifier {
   Future<void> resultFetchGames() async {
 
     try {
-      UserViewProvider userProvider = UserViewProvider();
+      UserViewModel userProvider = UserViewModel();
       UserModel user = await userProvider.getUser();
       String userId = user.id.toString();
 

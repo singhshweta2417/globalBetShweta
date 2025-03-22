@@ -227,7 +227,7 @@ class _WinningInformationState extends State<WinningInformation> {
             height: height * 0.09,
             width: width,
             decoration: BoxDecoration(
-              color: AppColors.FirstColor,
+              color: AppColors.firstColors,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(

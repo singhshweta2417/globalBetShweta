@@ -53,7 +53,7 @@ class CustomTextField extends StatelessWidget {
         focusNode: focusNode,
         decoration: InputDecoration(
           border: InputBorder.none,
-          prefixIcon: icon != null ? icon : null, // Icon only if provided
+          prefixIcon: icon, // Icon only if provided
           hintText: title,
           counterText: "", // Hide the character counter
           hintStyle: const TextStyle(color: Colors.grey, fontSize: 10),

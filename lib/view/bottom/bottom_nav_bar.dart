@@ -85,7 +85,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         onWillPop: _onWillPop,
       child: Scaffold(
         extendBody: true,
-        backgroundColor: AppColors.scaffolddark,
+        backgroundColor: AppColors.scaffoldDark,
         body: _tabs[_lastSelected],
         bottomNavigationBar:
         FabBottomNavBar(

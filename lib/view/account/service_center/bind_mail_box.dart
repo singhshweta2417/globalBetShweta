@@ -6,7 +6,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_field.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/view/account/service_center/custmor_service.dart';
+import 'package:globalbet/view/account/service_center/customer_service.dart';
 
 class BindMailBoxScreen extends StatefulWidget {
   const BindMailBoxScreen({super.key});
@@ -24,7 +24,7 @@ class _BindMailBoxScreenState extends State<BindMailBoxScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
         centerTitle: true,
           title: textWidget(text:'Bind mailBox',fontSize: 25,color: Colors.white),
@@ -156,7 +156,7 @@ class _BindMailBoxScreenState extends State<BindMailBoxScreen> {
                   onTap: () {},
 
                   hideBorder: true,
-                  gradient: AppColors.loginSecondryGrad,
+                  gradient: AppColors.loginSecondaryGrad,
                 ),
               ),
             ],

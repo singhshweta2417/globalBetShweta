@@ -35,7 +35,7 @@ class _TermsConditionState extends State<TermsCondition> {
 
 
     return SafeArea(child: Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),

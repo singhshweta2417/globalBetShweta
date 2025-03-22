@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/model/deposit_history_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/model/history_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/model/withdraw_history_model.dart';
@@ -25,7 +25,7 @@ class HistoryViewModel with ChangeNotifier {
 
 
   Future<void> historyApi(context) async {
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
 
@@ -62,7 +62,7 @@ class HistoryViewModel with ChangeNotifier {
 
 
   Future<void> depositHistoryApi(context) async {
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     final data = {
@@ -98,7 +98,7 @@ class HistoryViewModel with ChangeNotifier {
 
 
   Future<void> withdrawHistoryApi(context) async {
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     final data = {

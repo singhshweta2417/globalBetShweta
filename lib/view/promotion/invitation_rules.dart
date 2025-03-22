@@ -35,7 +35,7 @@ class _InvitationRulesState extends State<InvitationRules> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Invitation rules',

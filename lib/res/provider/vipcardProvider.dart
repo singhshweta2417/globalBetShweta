@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/model/vip_bet_card/model.dart';
 import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -23,7 +23,7 @@ class VipCardProvider with ChangeNotifier {
     _loading = value;
     notifyListeners();
   }
-  UserViewProvider userViewProvider = UserViewProvider();
+  UserViewModel userViewProvider = UserViewModel();
 
   Future<List<VipBetCardModel>> vipBetCardsData(context) async {
 

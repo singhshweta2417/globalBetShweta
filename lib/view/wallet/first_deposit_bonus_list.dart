@@ -11,7 +11,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/components/theam_color.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/view/wallet/deposit_screen.dart';
 
@@ -70,7 +70,7 @@ class _FirstDepositBonusListState extends State<FirstDepositBonusList> {
                   padding: const EdgeInsets.all(8),
 
                   decoration: BoxDecoration(
-                      color: AppColors.FirstColor,
+                      color: AppColors.firstColors,
                       borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     children: [
@@ -220,7 +220,7 @@ class _FirstDepositBonusListState extends State<FirstDepositBonusList> {
       ),
     );
   }
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
   List<ExtraDepositModel> depositItems = [];
   int? responseStatuscode;
   Future<void> extraDeposit() async {

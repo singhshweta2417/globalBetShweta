@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_tts/flutter_tts.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/routes/routes_name.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/model/account_model.dart';
@@ -24,7 +24,7 @@ class DepositViewModel with ChangeNotifier {
   Future<void> userPayinApi(dynamic amount,  context) async {
     setLoading(true);
     try {
-      UserViewProvider userProvider = UserViewProvider();
+      UserViewModel userProvider = UserViewModel();
       UserModel user = await userProvider.getUser();
       String userId = user.id.toString();
 
@@ -69,7 +69,7 @@ class DepositViewModel with ChangeNotifier {
 
   Future<void> addAccountApi(dynamic name, dynamic accountNum , dynamic bankName, dynamic ifscCode, dynamic upiId,context) async {
     setAddLoading(true);
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     Map<String, dynamic> data =
@@ -121,7 +121,7 @@ class DepositViewModel with ChangeNotifier {
 
 
   Future<void> accountViewApi(context) async {
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     final data = {
@@ -149,7 +149,7 @@ class DepositViewModel with ChangeNotifier {
 
   Future<void> withdrawApi(dynamic accountId, dynamic amount,dynamic upiId, context) async {
     setAddLoading(true);
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
 

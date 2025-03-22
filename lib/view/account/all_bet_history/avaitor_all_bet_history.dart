@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart'as http;
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -8,7 +9,6 @@ import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 import 'package:globalbet/view/account/all_bet_history/avaitor_all_bet_history_model.dart';
 
 class AvaitorAllHistory extends StatefulWidget {
@@ -219,7 +219,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
                 height: height * 0.06,
                 width: width * 0.10,
                 decoration: BoxDecoration(
-                  gradient: AppColors.loginSecondryGrad,
+                  gradient: AppColors.loginSecondaryGrad,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Icon(
@@ -251,7 +251,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
                 height: height * 0.06,
                 width: width * 0.10,
                 decoration: BoxDecoration(
-                  gradient: AppColors.loginSecondryGrad,
+                  gradient: AppColors.loginSecondaryGrad,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Icon(Icons.navigate_next,
@@ -274,7 +274,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.FirstColor),
+              color: AppColors.firstColors),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -313,7 +313,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.FirstColor),
+              color: AppColors.firstColors),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -356,7 +356,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
   }
 
   int? responseStatuscode;
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   int offsetResult = 0;
   List<AvaitorHistoryModel> items = [];

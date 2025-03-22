@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/lottery/trx/res/trx_colors.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,7 @@ class TrxWallet extends StatefulWidget {
 class _TrxWalletState extends State<TrxWallet> {
   @override
   Widget build(BuildContext context) {
-    final userProfileViewModel = Provider.of<ProfileProvider>(context);
+    final userProfileViewModel = Provider.of<ProfileViewModel>(context);
 
     return Container(
       padding: const EdgeInsets.all(10),
@@ -58,7 +58,7 @@ class _TrxWalletState extends State<TrxWallet> {
               ),
               textWidget(
                 text:
-                    userProfileViewModel.totalWallet.toStringAsFixed(2),
+                    userProfileViewModel.balance.toStringAsFixed(2),
                 fontSize: 20,
                 color: TrxColors.whiteColor,
                 fontWeight: FontWeight.w600,
@@ -66,7 +66,7 @@ class _TrxWalletState extends State<TrxWallet> {
               const SizedBox(width: 10),
               InkWell(
                 onTap: () {
-                  userProfileViewModel.fetchProfileData();
+                  userProfileViewModel.profileApi(context);
                   Utils.flushBarSuccessMessage(
                     'Wallet refresh ✔',
                     context,Colors.green

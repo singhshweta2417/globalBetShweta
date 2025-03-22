@@ -1,8 +1,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/repo/bet_repo.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
@@ -22,7 +22,7 @@ class BetViewModel with ChangeNotifier {
 
   Future<void> titliBetApi(dynamic betList, context) async {
     setLoading(true);
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
 
@@ -47,8 +47,8 @@ class BetViewModel with ChangeNotifier {
         }
 
         // Update profile
-        final profileController = Provider.of<ProfileProvider>(context, listen: false);
-        profileController.fetchProfileData();
+        final profileController = Provider.of<ProfileViewModel>(context, listen: false);
+        profileController.profileApi(context);
 
         // Success message & TTS
         Utils.flushBarSuccessMessage(value['message'].toString(), context, AppColors.green);

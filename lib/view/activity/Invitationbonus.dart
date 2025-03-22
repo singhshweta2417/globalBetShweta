@@ -12,7 +12,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/theam_color.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/activity/invitation_bonus_history.dart';
 import 'package:globalbet/view/activity/invitation_reward_rules.dart';
@@ -239,7 +239,8 @@ class _InvitationBonusState extends State<InvitationBonus> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             const Text('Bonus ',
                                                 style: TextStyle(
@@ -336,7 +337,7 @@ class _InvitationBonusState extends State<InvitationBonus> {
                                     children: [
                                       Text(
                                           '${data.noOfInvitees < data.noOfUser ? data.noOfInvitees : data.noOfUser} / ${data.noOfUser}',
-                                           // 10 < 1 ? 10 : 1
+                                          // 10 < 1 ? 10 : 1
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w900,
                                               fontSize: 22,
@@ -354,8 +355,8 @@ class _InvitationBonusState extends State<InvitationBonus> {
                                       Text(
                                           '${data.referInvitees < data.noOfUser ? data.referInvitees : data.noOfUser} / ${data.noOfUser}',
 
-                        // 4 < 1 ? 4:1
-                        style: const TextStyle(
+                                          // 4 < 1 ? 4:1
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.w900,
                                               fontSize: 22,
                                               color: AppColors
@@ -374,7 +375,11 @@ class _InvitationBonusState extends State<InvitationBonus> {
                               ),
                               AppBtn(
                                 height: height * 0.065,
-                                title:  data.status=="0"?"Claimed":data.status=="1"?"Not Completed":"Claim Now",
+                                title: data.status == "0"
+                                    ? "Claimed"
+                                    : data.status == "1"
+                                        ? "Not Completed"
+                                        : "Claim Now",
                                 fontSize: 20,
                                 onTap: () {
                                   print(data.noOfInvitees);
@@ -383,15 +388,25 @@ class _InvitationBonusState extends State<InvitationBonus> {
                                   print('useertghnjm');
                                   print(data.status);
                                   print("stasrtdfghgbjn");
-                                  data.status=="0"?
-                                  Utils.flushBarErrorMessage("Already Claimed", context, AppColors.red):
-                                      data.status=="1"?
-                                      Utils.flushBarSuccessMessage("Not Completed", context, AppColors.blackColor):
-                                  bonusClaim(
-                                      context, data.claimAmount, data.bonusId);
+                                  data.status == "0"
+                                      ? Utils.flushBarErrorMessage(
+                                          "Already Claimed",
+                                          context,
+                                          AppColors.red)
+                                      : data.status == "1"
+                                          ? Utils.flushBarSuccessMessage(
+                                              "Not Completed",
+                                              context,
+                                              AppColors.blackColor)
+                                          : bonusClaim(context,
+                                              data.claimAmount, data.bonusId);
                                 },
                                 hideBorder: true,
-                                gradient: data.status=="0"?AppColors.redbutton:data.status=="1"?AppColors.buttonGradient:AppColors.ssbutton,
+                                gradient: data.status == "0"
+                                    ? AppColors.redbutton
+                                    : data.status == "1"
+                                        ? AppColors.buttonGradient
+                                        : AppColors.ssbutton,
                               ),
                             ],
                           ),
@@ -408,7 +423,7 @@ class _InvitationBonusState extends State<InvitationBonus> {
 
   BaseApiHelper baseApiHelper = BaseApiHelper();
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   bonusClaim(context, dynamic amount, dynamic inviteId) async {
     UserModel user = await userProvider.getUser();

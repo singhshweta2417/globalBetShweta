@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-// import 'package:flutter_tts/flutter_tts.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/api_url.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/sound.dart';
@@ -16,24 +16,24 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 class TitliController with ChangeNotifier {
   Future<void> playTTSMessage(String message) async {
     // Initialize FlutterTTS
-    // FlutterTts flutterTts = FlutterTts();
+    FlutterTts flutterTts = FlutterTts();
     //
     // Set TTS options
-    // await flutterTts.setLanguage("en-US");
-    // await flutterTts.setSpeechRate(0.5);
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setSpeechRate(0.5);
 
     // Speak the message
-    // var result = await flutterTts.speak(message);
+    var result = await flutterTts.speak(message);
 
-    // if (result == 1) {
-    //   if (kDebugMode) {
-    //     print("TTS playback started.");
-    //   }
-    // } else {
-    //   if (kDebugMode) {
-    //     print("Error playing TTS.");
-    //   }
-    // }
+    if (result == 1) {
+      if (kDebugMode) {
+        print("TTS playback started.");
+      }
+    } else {
+      if (kDebugMode) {
+        print("Error playing TTS.");
+      }
+    }
   }
 
   int _selectedIndex = 0;
@@ -80,13 +80,13 @@ class TitliController with ChangeNotifier {
       return print("play allowed");
     }
     final profileViewModel =
-        Provider.of<ProfileProvider>(context, listen: false);
+        Provider.of<ProfileViewModel>(context, listen: false);
 
     if (resetOne == false) {
       if (kDebugMode) {
-        print(profileViewModel.totalWallet);
+        print(profileViewModel.balance);
       }
-      if (amount > profileViewModel.totalWallet) {
+      if (amount > profileViewModel.balance) {
         Utils.flushBarErrorMessage(
             'INSUFFICIENT BALANCE ! , Add Amount To Play Game ',
             context,
@@ -109,7 +109,7 @@ class TitliController with ChangeNotifier {
       }
       betHistory.add({'index': index, 'number': id, 'amount': amount});
       totalBetAmount += amount;
-      profileViewModel.minimumWithdraw(amount);//deductBalance
+      profileViewModel.deductBalance(amount);
       notifyListeners();
     } else {
       resetOneByOne(context, index);
@@ -121,7 +121,7 @@ class TitliController with ChangeNotifier {
 
   void resetOneByOne(context, int tappedIndex) {
     final profileViewModel =
-        Provider.of<ProfileProvider>(context, listen: false);
+        Provider.of<ProfileViewModel>(context, listen: false);
 
     if (betHistory.isNotEmpty) {
       int betToRemoveIndex = -1;
@@ -148,7 +148,7 @@ class TitliController with ChangeNotifier {
         }
 
         totalBetAmount -= amount;
-        profileViewModel.maximumWithdraw(amount);//addBalance
+        profileViewModel.addBalance(amount);
 
         notifyListeners();
       }
@@ -194,8 +194,8 @@ class TitliController with ChangeNotifier {
   void clearAllBet(context) {
     if (!isPlayAllowed()) return;
     final profileViewModel =
-        Provider.of<ProfileProvider>(context, listen: false);
-    profileViewModel.maximumWithdraw(//addBalance
+        Provider.of<ProfileViewModel>(context, listen: false);
+    profileViewModel.addBalance(
         addTitliBets.fold(0, (sum, element) => sum + element["amount"]!));
     addTitliBets.clear();
     totalBetAmount = 0;
@@ -214,7 +214,7 @@ class TitliController with ChangeNotifier {
 
   void repeatBet(context) {
     final profileViewModel =
-        Provider.of<ProfileProvider>(context, listen: false);
+        Provider.of<ProfileViewModel>(context, listen: false);
     final betViewModel = Provider.of<BetViewModel>(context, listen: false);
 
     // Ensure that reBets is populated correctly before repeating
@@ -227,21 +227,21 @@ class TitliController with ChangeNotifier {
         reBets.fold(0, (sum, element) => sum + element["amount"]!);
 
     // Check if the user has enough balance
-    if (profileViewModel.totalWallet >= newAmount) {
+    if (profileViewModel.balance >= newAmount) {
       isBetAccepted(true); // Set the flag to indicate the bet is accepted
 
       // Add all bets to addTitliBets before calling the API
       addTitliBets.clear(); // Clear previous bets to avoid duplicate bets
       for (var bet in reBets) {
         addTitliBets.add({'number': bet['number']!, 'amount': bet['amount']!});
-        print("Adding to addTitliBets: ${bet}");
+        print("Adding to addTitliBets: $bet");
       }
 
       // Call the API once after all bets are added
       betViewModel.titliBetApi(addTitliBets, context);
 
       // Deduct the balance based on the new amount
-      profileViewModel.minimumWithdraw(newAmount);//deductBalance
+      profileViewModel.deductBalance(newAmount);//deductBalance
       notifyListeners(); // Notify listeners to update the UI
 
       print('Rebet placed successfully');
@@ -266,7 +266,7 @@ class TitliController with ChangeNotifier {
     if (!isPlayAllowed()) return; // Check if play is allowed
 
     final profileViewModel =
-        Provider.of<ProfileProvider>(context, listen: false);
+        Provider.of<ProfileViewModel>(context, listen: false);
 
     // Calculate total required balance to double the current bets
     int totalRequiredBalance = addTitliBets.fold(0, (sum, bet) {
@@ -274,7 +274,7 @@ class TitliController with ChangeNotifier {
     });
 
     // Check if the user has enough balance to place the doubled bets
-    if (totalRequiredBalance > profileViewModel.totalWallet) {
+    if (totalRequiredBalance > profileViewModel.balance) {
       Utils.flushBarErrorMessage(
           'INSUFFICIENT BALANCE', context, AppColors.red);
       playTTSMessage("INSUFFICIENT BALANCE");
@@ -296,7 +296,7 @@ class TitliController with ChangeNotifier {
     print("doubelup wala list "); // Replaces the bet with doubled amounts
 
     // Deduct the balance for the doubled bets
-    profileViewModel.maximumWithdraw(totalRequiredBalance);//deductBalance
+    profileViewModel.deductBalance(totalRequiredBalance);//deductBalance
 
     // Update the UI
     notifyListeners();
@@ -367,7 +367,7 @@ class TitliController with ChangeNotifier {
       // // result api
       if (receiveData['timerStatus'] == 2 && receiveData['timerBetTime'] == 5) {
         startSparkleAnimation(context);
-        Future.delayed(Duration(seconds: 10), () async {
+        Future.delayed(const Duration(seconds: 10), () async {
           final titliResultViewModel =
               Provider.of<ResultViewModel>(context, listen: false);
           await titliResultViewModel.resultApi(context);
@@ -431,7 +431,7 @@ class TitliController with ChangeNotifier {
     notifyListeners();
 
     int index = 0;
-    sparkleTimer = Timer.periodic(Duration(milliseconds: 150), (timer) {
+    sparkleTimer = Timer.periodic(const Duration(milliseconds: 150), (timer) {
       if (index >= cardList.length) {
         index = 0;
       }
@@ -457,7 +457,7 @@ class TitliController with ChangeNotifier {
 
       index++; // Move to the next ID in the list
     });
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       sparkleTimer?.cancel();
 
       // Stop sparkling animation
@@ -473,7 +473,7 @@ class TitliController with ChangeNotifier {
     isSparkling = false;
     notifyListeners();
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       resetGame();
     });
   }

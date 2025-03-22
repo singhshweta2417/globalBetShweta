@@ -5,7 +5,7 @@ class AppColors {
   static const secondaryTextColor = Color(0xFF759fde);
   static const secondaryContainerTextColor = Color(0xFF374992);
   static const gradientFirstColor = Color(0xFF43b5ec);
-  static const FirstColor = Color(0xFF2b3270);
+  static const firstColors = Color(0xFF2b3270);
   static const black12 = Color(0x1F000000);
   static const greyColor = Color(0xFFBDBDBD);
   static const orangeColor = Color(0xFFf15b20);
@@ -38,17 +38,16 @@ class AppColors {
   static const vipColor9 = Color(0xFF7a32f2);
   static const vipColor10 = Color(0xFFef7b27);
   static const dividerColor = Color(0xFFa6a6a6);
-  static const iconColor = Color(0xFFa6a6a6);
   static const primaryContColor = Color(0xFFFFFFFF);
   static const containerBgColor = Color(0xFF446ccc);
-  static const TextBlack = Colors.black;
+  static const textBlack = Colors.black;
   static const firstColor = Color(0xFF2b3270);
-  static const methodblue = Color(0xff598ff9);
-  static const goldencolor = Color(0xffedc100);
-  static const goldencolorthree = Color.fromARGB(255, 250, 229, 159);
-  static const darkcolor = Color(0xFF3f3f3f);
-  static const scaffolddark = Color(0xff22275b);
-  static const browntextprimary = Color(0xff8f5206);
+  static const methodBlue = Color(0xff598ff9);
+  static const goldenColor = Color(0xffedc100);
+  static const goldenColorThree = Color.fromARGB(255, 250, 229, 159);
+  static const darkColor = Color(0xFF3f3f3f);
+  static const scaffoldDark = Color(0xff22275b);
+  static const brownTextPrimary = Color(0xff8f5206);
   static const whiteColor = Color(0xFFFFFFFF);
   static const blackColor = Color(0xFF000000);
   static const primaryColor = Color(0xff731d1d);
@@ -62,14 +61,13 @@ class AppColors {
   static const btn2Color = Color(0xFF4f69a7);
 
 //andarbahar
-  static const textColor1 = Color(0xff9b797f); //
+  static const textColor1 = Color(0xff9b797f);
   static const textColor2 = Color(0xffa88847);
   static const textColor3 = Color(0xff430c10);
-  // static const firstColors = Color(0xFF2b3270);
   static const textColor4 = Color(0xff804a5d);
 
   static const LinearGradient primaryGradient = LinearGradient(
-    colors: [Color(0xff374a93), Color(0xff4673cf)],
+    colors: [Color(0x61000000), Color(0xFF3f3f3f)],
   );
   static const LinearGradient topContainerGrad = LinearGradient(
     begin: Alignment.topRight,
@@ -98,8 +96,17 @@ class AppColors {
     colors: [Color(0xff374992), Color(0xff374992)],
   );
 
-  static const LinearGradient loginSecondryGrad = LinearGradient(
-    colors: [Color(0xff2979f2), Color(0xff2aaaf3)],
+  static const LinearGradient loginSecondaryGrad = LinearGradient(
+      colors: [Color(0xFF000000), Color(0xFF3f3f3f)],
+    tileMode: TileMode.mirror,
+    begin: Alignment.centerRight,
+    end: Alignment.topCenter
+  );
+  static const LinearGradient unSelectedColor = LinearGradient(
+      colors: [Color(0xFF000000), Colors.grey],
+      tileMode: TileMode.mirror,
+      begin: Alignment.centerRight,
+      end: Alignment.topCenter
   );
 
   static const LinearGradient boxGradient = LinearGradient(

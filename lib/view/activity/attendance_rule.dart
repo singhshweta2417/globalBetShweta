@@ -11,10 +11,11 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/components/theam_color.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
-import 'package:http/http.dart'as http;
+import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:http/http.dart' as http;
 
 import '../../res/api_urls.dart';
+
 class AttendanceRule extends StatefulWidget {
   const AttendanceRule({super.key});
 
@@ -23,7 +24,6 @@ class AttendanceRule extends StatefulWidget {
 }
 
 class _AttendanceRuleState extends State<AttendanceRule> {
-
   @override
   void initState() {
     attendenceList();
@@ -31,10 +31,11 @@ class _AttendanceRuleState extends State<AttendanceRule> {
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
         leading: const AppBackBtn(),
         title: Text(
@@ -58,16 +59,16 @@ class _AttendanceRuleState extends State<AttendanceRule> {
               child: Container(
                 decoration: BoxDecoration(
                     gradient: AppColors.primaryUnselectedGradient,
-                    borderRadius: BorderRadius.circular(10)
-                ),
+                    borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
                     Container(
                       decoration: const BoxDecoration(
                           gradient: AppColors.buttonGradient,
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
-                      ),
-                      height:height*0.08,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10))),
+                      height: height * 0.08,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -82,20 +83,25 @@ class _AttendanceRuleState extends State<AttendanceRule> {
                         itemCount: attendenceItems.length,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          final data= attendenceItems[index];
+                          final data = attendenceItems[index];
                           return Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Column(
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     buildContainer('${data.id} '),
-                                    buildContainer('₹${data.accumulatedAmount}'),
+                                    buildContainer(
+                                        '₹${data.accumulatedAmount}'),
                                     buildContainer('₹${data.attendanceBonus}'),
                                   ],
                                 ),
-                                const Divider(color: AppColors.gradientFirstColor,thickness: 1,)
+                                const Divider(
+                                  color: AppColors.gradientFirstColor,
+                                  thickness: 1,
+                                )
                               ],
                             ),
                           );
@@ -104,21 +110,22 @@ class _AttendanceRuleState extends State<AttendanceRule> {
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Stack(
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.secondaryContainerTextColor,width: 2),
+                        border: Border.all(
+                            color: AppColors.secondaryContainerTextColor,
+                            width: 2),
                         //  gradient: AppColors.primaryUnselectedGradient,
-                        borderRadius: BorderRadius.circular(10)
-                    ),
+                        borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
-                        SizedBox(  height: height*0.06,),
-
+                        SizedBox(
+                          height: height * 0.06,
+                        ),
                         ListView.builder(
                             shrinkWrap: true,
                             itemCount: invitationRuleList.length,
@@ -130,11 +137,12 @@ class _AttendanceRuleState extends State<AttendanceRule> {
                     ),
                   ),
                   Container(
-                    height: height*0.06,
+                    height: height * 0.06,
                     width: width,
                     decoration: const BoxDecoration(
-                        image: DecorationImage(image: AssetImage(Assets.iconsRulehead),fit: BoxFit.fill)
-                    ),
+                        image: DecorationImage(
+                            image: AssetImage(Assets.iconsRulehead),
+                            fit: BoxFit.fill)),
                     child: const Center(
                       child: Text(
                         'Rules',
@@ -154,8 +162,6 @@ class _AttendanceRuleState extends State<AttendanceRule> {
     );
   }
 
-
-
   instruction(String title) {
     return ListTile(
       leading: Transform.rotate(
@@ -167,18 +173,17 @@ class _AttendanceRuleState extends State<AttendanceRule> {
         ),
       ),
       title: textWidget(
-          text: title,
-          fontSize: 14,
-          color: AppColors.primaryTextColor
-      ),
+          text: title, fontSize: 14, color: AppColors.primaryTextColor),
     );
   }
+
   buildContainer(String text) {
     return SizedBox(
-      width: width*0.28,
+      width: width * 0.28,
       //  color: Colors.black,
       child: Center(
-        child: Text(text,
+        child: Text(
+          text,
           style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 13,
@@ -188,8 +193,8 @@ class _AttendanceRuleState extends State<AttendanceRule> {
     );
   }
 
-  int?responseStatuscode;
-  UserViewProvider userProvider = UserViewProvider();
+  int? responseStatuscode;
+  UserViewModel userProvider = UserViewModel();
 
   List<AttendanceModel> attendenceItems = [];
 
@@ -197,10 +202,10 @@ class _AttendanceRuleState extends State<AttendanceRule> {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     final response = await http.get(
-      Uri.parse(ApiUrl.attendanceList+token),
+      Uri.parse(ApiUrl.attendanceList + token),
     );
     if (kDebugMode) {
-      print(ApiUrl.attendanceList+token);
+      print(ApiUrl.attendanceList + token);
       print('attendanceList');
     }
     setState(() {
@@ -212,9 +217,7 @@ class _AttendanceRuleState extends State<AttendanceRule> {
       setState(() {
         attendenceItems =
             responseData.map((item) => AttendanceModel.fromJson(item)).toList();
-
       });
-
     } else if (response.statusCode == 400) {
       if (kDebugMode) {
         print('Data not found');
@@ -227,31 +230,28 @@ class _AttendanceRuleState extends State<AttendanceRule> {
     }
   }
 
-
   List<String> invitationRuleList = [];
   Future<void> invitationRuleApi() async {
-
-    final response = await http.get(Uri.parse('${ApiUrl.allRules}4'),);
+    final response = await http.get(
+      Uri.parse('${ApiUrl.allRules}4'),
+    );
     if (kDebugMode) {
       print('${ApiUrl.allRules}4');
       print('allRules');
     }
 
-
-    if (response.statusCode==200) {
+    if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
 
       setState(() {
-        invitationRuleList = json.decode(responseData[0]['list']).cast<String>();
+        invitationRuleList =
+            json.decode(responseData[0]['list']).cast<String>();
       });
-
-    }
-    else if(response.statusCode==400){
+    } else if (response.statusCode == 400) {
       if (kDebugMode) {
         print('Data not found');
       }
-    }
-    else {
+    } else {
       setState(() {
         invitationRuleList = [];
       });

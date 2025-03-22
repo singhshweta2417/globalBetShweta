@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,7 +16,7 @@ class FeedbackProvider with ChangeNotifier {
     Navigator.pushNamed(context, RoutesName.bottomNavBar,arguments: 4);
   }
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   bool _regLoading = false;
   bool get regLoading =>_regLoading;

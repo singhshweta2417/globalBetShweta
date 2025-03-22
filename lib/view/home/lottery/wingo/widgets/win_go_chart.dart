@@ -14,7 +14,7 @@ class WinGoChart extends StatelessWidget {
   Widget build(BuildContext context) {
     final wingoResult = Provider.of<WinGoGameHisViewModel>(context);
     return Consumer<WinGoController>(builder: (context, wgc, child) {
-      if (wingoResult.winGoGameHisModelData != null ||
+      if (wingoResult.winGoGameHisModelData != null &&
           wingoResult.winGoGameHisModelData!.data!.isNotEmpty) {
         return Column(
         children: [

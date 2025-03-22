@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/main.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/wallet/deposit_screen.dart';
 import 'package:globalbet/view/wallet/withdraw_screen.dart';
@@ -21,12 +21,12 @@ class _WinGoWalletState extends State<WinGoWallet> {
   @override
   void initState() {
     super.initState();
-    context.read<ProfileProvider>().fetchProfileData();
+    Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProfileProvider>(
+    return Consumer<ProfileViewModel>(
       builder: (context, userData, child) {
         return Container(
           margin: const EdgeInsets.only(right: 1, left: 1),
@@ -65,7 +65,7 @@ class _WinGoWalletState extends State<WinGoWallet> {
                     const Icon(Icons.currency_rupee_outlined,
                         size: 20, color: Colors.white),
                     textWidget(
-                      text: userData.totalWallet==null?"":userData.totalWallet.toStringAsFixed(2),
+                      text: userData.balance==null?"":userData.balance.toStringAsFixed(2),
                       fontSize: 20,
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
@@ -73,7 +73,7 @@ class _WinGoWalletState extends State<WinGoWallet> {
                     const SizedBox(width: 10),
                     InkWell(
                       onTap: () {
-                        context.read<ProfileProvider>().fetchProfileData();
+                        userData.profileApi(context);
                         Utils.flushBarSuccessMessage('Wallet refresh ✔', context, Colors.white);
                       },
                       child: Image.asset(Assets.iconsTotalBal, height: 30),
@@ -97,14 +97,13 @@ class _WinGoWalletState extends State<WinGoWallet> {
                           builder: (context) => const WithdrawScreen(),
                         ),
                       ).then((value) {
-                        // Fetch wallet balance again after returning from Withdraw screen
-                        context.read<ProfileProvider>().fetchProfileData();
+                        userData.profileApi(context);
                       });
                     },
                     title: 'Withdraw',
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
-                    gradient: AppColors.loginSecondryGrad,
+                    gradient: AppColors.loginSecondaryGrad,
                     hideBorder: true,
                   ),
                   AppBtn(
@@ -119,8 +118,7 @@ class _WinGoWalletState extends State<WinGoWallet> {
                           builder: (context) => const DepositScreen(),
                         ),
                       ).then((value) {
-                        // Fetch wallet balance again after returning from Deposit screen
-                        context.read<ProfileProvider>().fetchProfileData();
+                        userData.profileApi(context);
                       });
                     },
                     gradient: AppColors.transparentgradient,

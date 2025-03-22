@@ -19,7 +19,7 @@ class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.scaffolddark,
+        backgroundColor: AppColors.scaffoldDark,
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -59,7 +59,7 @@ class _AccountViewState extends State<AccountView> {
                       height: height*0.06,
                       decoration:  const BoxDecoration(
                         borderRadius: BorderRadius.only(topRight: Radius.circular(10),topLeft: Radius.circular(10)),
-                        gradient: AppColors.loginSecondryGrad,
+                        gradient: AppColors.loginSecondaryGrad,
                       ),
                     ),
                     Padding(

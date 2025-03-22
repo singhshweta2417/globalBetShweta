@@ -1,4 +1,3 @@
-// ignore_for_file: deprecated_member_use
 import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -12,8 +11,8 @@ import 'package:globalbet/res/components/audio.dart';
 import 'package:globalbet/res/components/text_field.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/wallet/deposit_history.dart';
 import 'package:globalbet/view/wallet/depositweb.dart';
@@ -84,12 +83,12 @@ class _DepositScreenState extends State<DepositScreen> {
   @override
   Widget build(BuildContext context) {
     final double aspectRatio = width / height;
-    final userData = context.watch<ProfileProvider>();
+    final userData =   Provider.of<ProfileViewModel>(context);
 
     int? responseStatuscode;
 
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -165,7 +164,7 @@ class _DepositScreenState extends State<DepositScreen> {
                                 color: AppColors.primaryTextColor
                             ),
                             textWidget(
-                              text: userData.totalWallet.toStringAsFixed(2),
+                              text: userData.balance.toStringAsFixed(2),
                               fontWeight: FontWeight.w900,
                               fontSize: 25,
                               color: AppColors.primaryTextColor,
@@ -173,7 +172,7 @@ class _DepositScreenState extends State<DepositScreen> {
                             const SizedBox(width: 15),
                             InkWell(
                                 onTap: () {
-                                  context.read<ProfileProvider>().fetchProfileData();
+                                  userData.profileApi(context);
                                   Utils.flushBarSuccessMessage('Wallet refresh ✔', context, Colors.white);
 
                                 },
@@ -229,7 +228,7 @@ class _DepositScreenState extends State<DepositScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           gradient: selectedIndex == currentId
-                              ? AppColors.loginSecondryGrad
+                              ? AppColors.loginSecondaryGrad
                               : AppColors.primaryUnselectedGradient,
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -343,7 +342,7 @@ class _DepositScreenState extends State<DepositScreen> {
                     ),
                     const SizedBox(height: 10),
                     CustomTextField(
-                      fillColor: AppColors.scaffolddark,
+                      fillColor: AppColors.scaffoldDark,
                       hintText: 'Please add the amount',
                       fieldRadius: const BorderRadius.only(topLeft: Radius.circular(30),bottomLeft: Radius.circular(30)),
                       textColor: Colors.white,
@@ -378,7 +377,7 @@ class _DepositScreenState extends State<DepositScreen> {
                           });
                         },
                         icon: const Icon(Icons.cancel_outlined,
-                            color: AppColors.iconColor),
+                            color: AppColors.dividerColor),
                       ),
                     ),
                   ],
@@ -408,7 +407,7 @@ class _DepositScreenState extends State<DepositScreen> {
                     ),
                     const SizedBox(height: 10),
                     CustomTextField(
-                      fillColor: AppColors.scaffolddark,
+                      fillColor: AppColors.scaffoldDark,
                       hintText: 'Please add usdt amount',
                       fieldRadius: const BorderRadius.only(topLeft: Radius.circular(30),bottomLeft: Radius.circular(30)),
                       textColor: Colors.white,
@@ -441,7 +440,7 @@ class _DepositScreenState extends State<DepositScreen> {
                           });
                         },
                         icon: const Icon(Icons.cancel_outlined,
-                            color: AppColors.iconColor),
+                            color: AppColors.dividerColor),
                       ),
                     ),
                     SizedBox(height: height*0.01),
@@ -533,7 +532,7 @@ class _DepositScreenState extends State<DepositScreen> {
                     ),
                     const SizedBox(height: 10),
                     CustomTextField(
-                      fillColor: AppColors.scaffolddark,
+                      fillColor: AppColors.scaffoldDark,
                       hintText: 'Please add the amount',
                       fieldRadius: const BorderRadius.only(topLeft: Radius.circular(30),bottomLeft: Radius.circular(30)),
                       textColor: Colors.white,
@@ -568,7 +567,7 @@ class _DepositScreenState extends State<DepositScreen> {
                           });
                         },
                         icon: const Icon(Icons.cancel_outlined,
-                            color: AppColors.iconColor),
+                            color: AppColors.dividerColor),
                       ),
                     ),
                   ],
@@ -595,7 +594,7 @@ class _DepositScreenState extends State<DepositScreen> {
                 },
                 hideBorder: true,
                 title: selectedIndex == 0 ? 'USDT Pay Deposit' :selectedIndex == 1 ? 'Indian Pay Deposit':"C2 Payin",
-                gradient: AppColors.loginSecondryGrad,
+                gradient: AppColors.loginSecondaryGrad,
               ),
               if (loading)
                 Center(
@@ -717,10 +716,10 @@ class _DepositScreenState extends State<DepositScreen> {
   Future<void> getwaySelect() async {
     final response = await http.get(
       // Uri.parse(ApiUrl.getwayList+token),
-      Uri.parse(ApiUrl.getwayList),
+      Uri.parse(ApiUrl.getWayList),
     );
     if (kDebugMode) {
-      print(ApiUrl.getwayList);
+      print(ApiUrl.getWayList);
       print('getwayList+token');
     }
     if (response.statusCode == 200) {
@@ -742,7 +741,7 @@ class _DepositScreenState extends State<DepositScreen> {
     }
   }
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   String userstatus = "";
 
@@ -859,10 +858,10 @@ class _DepositScreenState extends State<DepositScreen> {
     String token = user.id.toString();
 
     final response = await http.get(
-      Uri.parse("${ApiUrl.depositCamlenio}$token&amount=$amount&type=$type"),
+      Uri.parse("${ApiUrl.depositCamLenio}$token&amount=$amount&type=$type"),
     );
     if (kDebugMode) {
-      print("${ApiUrl.depositCamlenio}$token&amount=$amount&type=$type");
+      print("${ApiUrl.depositCamLenio}$token&amount=$amount&type=$type");
       print('depositCamlenio');
     }
     final data = jsonDecode(response.body);

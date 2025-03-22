@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_result_api.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_url.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/kino_winpopup.dart';
+import 'package:globalbet/view/home/mini/kino_home_directory/keno_win_popup.dart';
 import 'package:http/http.dart' as http;
 
 class KiNoBoolProvider with ChangeNotifier {

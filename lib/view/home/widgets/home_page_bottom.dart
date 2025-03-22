@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:globalbet/generated/assets.dart';
@@ -7,9 +8,8 @@ import 'package:globalbet/main.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/app_constant.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
 import 'package:globalbet/view/account/aboutus.dart';
-import 'package:globalbet/view/account/service_center/custmor_service.dart';
+import 'package:globalbet/view/account/service_center/customer_service.dart';
 import 'package:globalbet/view/home/notification.dart';
 
 class HomePageBottom extends StatefulWidget {
@@ -25,10 +25,10 @@ class _HomePageBottomState extends State<HomePageBottom> {
 
   @override
   Widget build(BuildContext context) {
-    final userData = context.watch<ProfileProvider>();
+    final userData =  Provider.of<ProfileViewModel>(context);
 
     launchURL2() async {
-      var url = userData.apkLink.toString();
+      var url = userData.appLink.toString();
       if (await canLaunch(url)) {
         await launch(url);
       } else {

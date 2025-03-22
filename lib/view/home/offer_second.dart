@@ -1,18 +1,8 @@
-import 'dart:convert';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/extradepositmodel.dart';
-import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/offer/offer_view_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
-import 'package:globalbet/view/wallet/deposit_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:globalbet/view/wallet/first_deposit_bonus_list.dart';
 import 'package:provider/provider.dart';
 
 class OfferSecond extends StatefulWidget {
@@ -52,7 +42,7 @@ class _OfferSecondState extends State<OfferSecond> {
             Container(
               height: height * 0.5,
               decoration: BoxDecoration(
-                  gradient: AppColors.loginSecondryGrad,
+                  gradient: AppColors.loginSecondaryGrad,
                   borderRadius: BorderRadius.circular(15)),
               width: width,
               child: Column(
@@ -88,7 +78,7 @@ class _OfferSecondState extends State<OfferSecond> {
                               padding: const EdgeInsets.all(8),
 
                               decoration: BoxDecoration(
-                                  color: AppColors.FirstColor,
+                                  color: AppColors.firstColors,
                                   borderRadius: BorderRadius.circular(10)),
                               child: Column(
                                 children: [
@@ -114,7 +104,7 @@ class _OfferSecondState extends State<OfferSecond> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 15,
                                   ),
                                   textWidget(
@@ -126,7 +116,7 @@ class _OfferSecondState extends State<OfferSecond> {
                               ),
                             );
                           })
-                  :Center(child: CircularProgressIndicator(),)
+                  :const Center(child: CircularProgressIndicator(),)
                   )
 
                 ],

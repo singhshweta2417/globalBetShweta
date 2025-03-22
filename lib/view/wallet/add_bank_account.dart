@@ -69,7 +69,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
     final authProvider = Provider.of<AddacountProvider>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           leading: const AppBackBtn(),
           title: textWidget(
@@ -200,7 +200,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   }
                 },
                 child: isLoading
-                    ? SizedBox(
+                    ? const SizedBox(
                   width: 24,
                   height: 24,
                   child: CircularProgressIndicator(
@@ -208,7 +208,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                     strokeWidth: 2,
                   ),
                 )
-                    : Text(
+                    : const Text(
                   'S a v e',
                   style: TextStyle(
                     fontSize: 22,

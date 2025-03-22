@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/lottery/trx/controller/trx_controller.dart';
 import 'package:globalbet/view/home/lottery/trx/repo/trx_bet_repo.dart';
@@ -32,7 +32,7 @@ class TrxBetViewModel with ChangeNotifier {
       if (!trc.isPlayAllowed(trc.tenMinuteTime, trc.tenMinuteStatus, context)) return;
     }
     setLoading(true);
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     Map data = {
@@ -45,7 +45,7 @@ class TrxBetViewModel with ChangeNotifier {
       if (value['status'] == 200) {
         setLoading(false);
         Navigator.pop(context);
-        Provider.of<ProfileProvider>(context, listen: false).fetchProfileData();
+        Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
         Utils.flushBarSuccessMessage(
           value['message'].toString(), context,Colors.green);
       } else {

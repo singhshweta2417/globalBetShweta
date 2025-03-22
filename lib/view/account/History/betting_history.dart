@@ -13,7 +13,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/clipboard.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/view/account/History/aviator_bet_history.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -57,7 +57,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
         appBar: GradientAppBar(
           leading: const AppBackBtn(),
           title: textWidget(
@@ -112,16 +112,16 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                               image: AssetImage('${betIconList[index].image}'),
                               height: 25,
                               color: selectedCatIndex == index
-                                  ? AppColors.browntextprimary
-                                  : AppColors.goldencolorthree,
+                                  ? AppColors.brownTextPrimary
+                                  : AppColors.goldenColorThree,
                             ),
                             textWidget(
                               text: betIconList[index].title,
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                               color: selectedCatIndex == index
-                                  ? AppColors.browntextprimary
-                                  : AppColors.goldencolorthree,
+                                  ? AppColors.brownTextPrimary
+                                  : AppColors.goldenColorThree,
                             ),
                           ],
                         ),
@@ -230,7 +230,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                             text: 'Bet',
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
-                                            color: AppColors.browntextprimary),
+                                            color: AppColors.brownTextPrimary),
                                       ),
                                     ),
                                     textWidget(text:  items[index].status=="0"?"Pending":items[index].status=="1"?"Win":"Loss",
@@ -498,7 +498,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                             text: 'Bet',
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
-                                            color: AppColors.browntextprimary),
+                                            color: AppColors.brownTextPrimary),
                                       ),
                                     ),
                                     textWidget(text:  itemsTRX[index].status=="0"?"Pending":itemsTRX[index].status=="1"?"Win":"Loss",
@@ -679,7 +679,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
   }
 
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
   List<BettingHistoryModel> items = [];
   Future<void> BettingHistory() async {
     UserModel user = await userProvider.getUser();
@@ -720,14 +720,14 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
 
-    final response = await http.post(Uri.parse(ApiUrl.profile),
+    final response = await http.post(Uri.parse(ApiUrl.profileUrl),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({
         "userid":token
       }),
     );
     if (kDebugMode) {
-      print(ApiUrl.profile);
+      print(ApiUrl.profileUrl);
       print('betHistoryTRX');
     }
 

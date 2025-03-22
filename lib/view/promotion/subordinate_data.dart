@@ -14,8 +14,8 @@ import 'package:globalbet/res/components/clipboard.dart';
 import 'package:globalbet/res/components/text_field.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/api_urls.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/res/provider/user_view_provider.dart';
 
 class SubOrdinateDataScreen extends StatefulWidget {
   const SubOrdinateDataScreen( {super.key});
@@ -40,7 +40,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Subordinate Data', fontSize: 25, color: Colors.white),
@@ -58,7 +58,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                   child: Container(
                     width: width * 0.9,
                     decoration: BoxDecoration(
-                        gradient: AppColors.loginSecondryGrad,
+                        gradient: AppColors.loginSecondaryGrad,
                         borderRadius: BorderRadius.circular(10)),
                     child: Column(children: [
                       Row(
@@ -252,7 +252,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                           width: width * 0.2,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            gradient: AppColors.loginSecondryGrad,
+                            gradient: AppColors.loginSecondaryGrad,
                           ),
                           child: const Icon(
                             Icons.search,
@@ -409,9 +409,9 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
 
   List<TierModel> tieritem = [];
   Future<void> TierData() async {
-    final response = await http.get(Uri.parse(ApiUrl.TierApi),);
+    final response = await http.get(Uri.parse(ApiUrl.tierApi),);
     if (kDebugMode) {
-      print(ApiUrl.TierApi);
+      print(ApiUrl.tierApi);
       print('TierApi');
     }
 
@@ -441,7 +441,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
   }
 
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   int ? depositnumber;
   String ? depositAmount;
@@ -456,7 +456,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
 
-    final response = await http.get(Uri.parse("${ApiUrl.SubdataApi}$token&tier=${selectedTierIndex+1}"),);
+    final response = await http.get(Uri.parse("${ApiUrl.subDataApi}$token&tier=${selectedTierIndex+1}"),);
 
     setState(() {
       responseStatuscode = response.statusCode;
@@ -498,11 +498,11 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
       String token = user.id.toString();
 
       final response = await http.get(
-        Uri.parse("${ApiUrl.SubdataApi}$token&tier=${selectedTierIndex+1}&u_id=$search"),
+        Uri.parse("${ApiUrl.subDataApi}$token&tier=${selectedTierIndex+1}&u_id=$search"),
       );
 
       if (kDebugMode) {
-        print("${ApiUrl.SubdataApi}$token&tier=${selectedTierIndex+1}&u_id=$search");
+        print("${ApiUrl.subDataApi}$token&tier=${selectedTierIndex+1}&u_id=$search");
         print("HTTP GET request sent");
       }
 

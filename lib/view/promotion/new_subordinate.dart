@@ -12,7 +12,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart'as http;
 
 class NewSubordinate extends StatefulWidget {
@@ -33,7 +33,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           title: textWidget(
               text: 'New Subordinate', fontSize: 25, color: Colors.white),
@@ -215,7 +215,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
     );
   }
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
 
 

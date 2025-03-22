@@ -25,7 +25,8 @@ class _SplashState extends State<Splash> {
   harsh() async {
     final prefs = await SharedPreferences.getInstance();
     final userid = prefs.getString("token") ?? '0';
-
+print(userid);
+print('nknknknkn');
     Timer(
         const Duration(seconds: 3),
             () => userid != '0'

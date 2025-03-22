@@ -52,7 +52,7 @@ class _HowToPlayState extends State<HowToPlay> {
             Container(
               height:responseStatuscode == 400? height * 0.1:height * 0.4,
               width: width,
-              color: AppColors.scaffolddark,
+              color: AppColors.scaffoldDark,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
@@ -73,7 +73,7 @@ class _HowToPlayState extends State<HowToPlay> {
             Container(
               height: height * 0.085,
               decoration: const BoxDecoration(
-                color: AppColors.scaffolddark,
+                color: AppColors.scaffoldDark,
                 borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10),
                     bottomLeft: Radius.circular(10)),

@@ -12,8 +12,8 @@ class TrxApiUrl {
 
   //wingo socket url
   static const String trxSocketUrl = "https://aviatorudaan.com";
-  static const String trxEvent30 = "wins_trx1";
-  static const String trxEvent1 = "wins_trx3";
-  static const String trxEvent3 = "wins_trx5";
-  static const String trxEvent5 = "wins_trx10";
+  static const String trxEvent30 = "gameontrx10";
+  static const String trxEvent1 = "gameontrx1";
+  static const String trxEvent3 = "gameontrx3";
+  static const String trxEvent5 = "gameontrx5";
 }

@@ -53,7 +53,7 @@ class _WinGoState extends State<WinGo> {
       return PopScope(
         canPop: false,
         child: Scaffold(
-          backgroundColor: AppColors.scaffolddark,
+          backgroundColor: AppColors.scaffoldDark,
           appBar: GradientAppBar(
             centerTitle: true,
             leading: IconButton(

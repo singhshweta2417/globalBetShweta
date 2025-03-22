@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -11,7 +13,6 @@ import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_field.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
 import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:http/http.dart'as http;
 
@@ -30,7 +31,7 @@ class _NickNamePopUpState extends State<NickNamePopUp> {
 
   @override
   Widget build(BuildContext context) {
-
+final profileView = Provider.of<ProfileViewModel>(context);
     return Dialog(
       backgroundColor: Colors.transparent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -94,7 +95,7 @@ class _NickNamePopUpState extends State<NickNamePopUp> {
                             filled: true,
                             focusColor: Colors.white,
                             maxLines: 1,
-                            hintText: context.watch<ProfileProvider>().userName.toString(),
+                            hintText:profileView.userName.toString()
                           ),
                         ),
 
@@ -108,7 +109,7 @@ class _NickNamePopUpState extends State<NickNamePopUp> {
                           onTap: () {
                             avtarChangeApi(context,nameCon.text);
                           },
-                          gradient: AppColors.loginSecondryGrad,
+                          gradient: AppColors.loginSecondaryGrad,
                         ),
                         SizedBox(height: height*0.02,)
                       ],
@@ -129,12 +130,12 @@ class _NickNamePopUpState extends State<NickNamePopUp> {
   }
   BaseApiHelper baseApiHelper = BaseApiHelper();
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
   avtarChangeApi(context,String nickname) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     final response = await http.post(
-      Uri.parse(ApiUrl.UpdateAvtarApi),
+      Uri.parse(ApiUrl.updateAviatorApi),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -145,7 +146,7 @@ class _NickNamePopUpState extends State<NickNamePopUp> {
     );
     var data = jsonDecode(response.body);
     if (data["status"] == 200) {
-      context.read<ProfileProvider>().fetchProfileData();
+      Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
       Navigator.pop(context);
       return Utils.flushBarSuccessMessage(data['message'], context, Colors.black);
     } else if (data["status"] == 401) {

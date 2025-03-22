@@ -10,8 +10,8 @@ import 'package:globalbet/main.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
 import 'package:globalbet/view/home/casino/AndarBahar/andarBaharModel/last_fifteen.dart';
@@ -33,7 +33,6 @@ import '../../../../res/api_urls.dart';
 import '../dragon_tiger_new/widgets/Image_tost.dart';
 import '../dragon_tiger_new/widgets/fade_animation.dart';
 import '../dragon_tiger_new/widgets/glory_border.dart';
-
 
 class AndarBaharHome extends StatefulWidget {
   final String gameId;
@@ -64,6 +63,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
       print('Timer tick');
     });
   }
+
   Future<void> startCountdown() async {
     DateTime now = DateTime.now().toUtc();
     int initialSeconds = 30 - now.second;
@@ -74,12 +74,13 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
       updateUI(timer);
     });
   }
+
   void updateUI(Timer timer) {
+    final userData = Provider.of<ProfileViewModel>(context, listen: false);
     setState(() {
       if (countdownSeconds == 29) {
-        wallet = double.parse(
-            context.read<ProfileProvider>().totalWallet.toString());
-        context.read<ProfileProvider>().fetchProfileData();
+        wallet = double.parse(userData.balance.toString());
+        userData.profileApi(context);
         _handleFlipCards(countdownSeconds);
         fetchData();
         if (firstCome == false) {
@@ -130,7 +131,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
     });
   }
 
-  void waitingRoundToast(){
+  void waitingRoundToast() {
     setState(() {
       if (!firstCome) {
         showDialog(
@@ -150,7 +151,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                       onPressed: () {
                         Navigator.of(context).pop();
                         setState(() {
-                          firstCome = true; // Update the state if needed
+                          firstCome = true;
                         });
                       },
                       child: const Text('Close'),
@@ -162,9 +163,9 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
           },
         );
       }
-
     });
   }
+
   void countAndCoinClear() {
     setState(() {
       andarCoins.clear();
@@ -177,11 +178,13 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
       coins2.clear();
     });
   }
+
   void _handleFlipCards(int newCountdownSeconds) {
     pattiCon.flipcard();
 
     countdownSeconds = newCountdownSeconds;
   }
+
   bool hideButton = false;
   double wallet = 0;
   int randomCoin = 0;
@@ -200,11 +203,10 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
   void deductAmount(int amountToDeduct) {
     if (wallet >= amountToDeduct) {
       setState(() {
-        // wallet = (wallet! - amountToDeduct).toInt();
         wallet = (wallet - amountToDeduct).toDouble();
       });
     } else {
-      Utils.flushBarErrorMessage('Insufficient funds', context,Colors.red);
+      Utils.flushBarErrorMessage('Insufficient funds', context, Colors.red);
     }
   }
 
@@ -224,15 +226,14 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
 
   @override
   void didChangeDependencies() {
+    final userData = Provider.of<ProfileViewModel>(context, listen: false);
     super.didChangeDependencies();
-    wallet =
-        double.parse(context.read<ProfileProvider>().totalWallet.toString());
-    // wallet = context.read<ProfileViewModel>().totalWallet();
+    wallet = double.parse(userData.balance.toString());
   }
 
   @override
   Widget build(BuildContext context) {
-
+    final userData = Provider.of<ProfileViewModel>(context);
     return AddToCartAnimation(
       cartKey: selectedCart == 1 ? andar : bahar,
       height: 15,
@@ -248,45 +249,49 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
       child: Scaffold(
         backgroundColor: const Color(0xff780202),
         appBar: GradientAppBar(
-          leading: const AppBackBtn(),
-          centerTitle: true,
-          title: const Text(
-            'Andar Bahar',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w800,
-              fontSize: 15,
-            ),
-          ),
-          actions: [
-            InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> AndarBaharHistory(gameid: widget.gameId,)));
-
-              },
-              child: Column(
-                children: [
-                  Container(
-                    height: height * 0.03,
-                    width: height * 0.04,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(Assets.andarbaharBethistory),
-                          fit: BoxFit.fill,
-                        )),
-                  ),
-                  const Text(
-                    'History',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 12,
-                        color: Colors.white),
-                  ),
-                ],
+            leading: const AppBackBtn(),
+            centerTitle: true,
+            title: const Text(
+              'Andar Bahar',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w800,
+                fontSize: 15,
               ),
-            )
-          ], gradient: AppColors.primaryGradient
-        ),
+            ),
+            actions: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AndarBaharHistory(
+                                gameid: widget.gameId,
+                              )));
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      height: height * 0.03,
+                      width: height * 0.04,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage(Assets.andarbaharBethistory),
+                        fit: BoxFit.fill,
+                      )),
+                    ),
+                    const Text(
+                      'History',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 12,
+                          color: Colors.white),
+                    ),
+                  ],
+                ),
+              )
+            ],
+            gradient: AppColors.primaryGradient),
         body: Container(
           height: height,
           width: width,
@@ -306,7 +311,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image:
-                      AssetImage(AndarAssets.andarbaharIvAndarBaharTable),
+                          AssetImage(AndarAssets.andarbaharIvAndarBaharTable),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -338,10 +343,10 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                 children: [
                                   Padding(
                                     padding:
-                                    EdgeInsets.only(top: height * 0.05),
+                                        EdgeInsets.only(top: height * 0.05),
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Container(
                                           height: height * 0.05,
@@ -400,7 +405,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                   ),
                                   Padding(
                                     padding:
-                                    EdgeInsets.only(top: height * 0.11),
+                                        EdgeInsets.only(top: height * 0.11),
                                     child: Container(
                                       height: height * 0.3,
                                       width: 2,
@@ -411,10 +416,10 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                   ),
                                   Padding(
                                     padding:
-                                    EdgeInsets.only(top: height * 0.05),
+                                        EdgeInsets.only(top: height * 0.05),
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Container(
                                           height: height * 0.05,
@@ -426,7 +431,6 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                               fit: BoxFit.fill,
                                             ),
                                           ),
-                                          // color: Colors.red,
                                         ),
                                         InkWell(
                                           onTap: () {
@@ -484,25 +488,26 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                               Padding(
                                 padding: EdgeInsets.only(
                                     top: height * 0.04,
-                                    left: kIsWeb ? width * 0.435 : width * 0.42),
+                                    left:
+                                        kIsWeb ? width * 0.435 : width * 0.42),
                                 child: _isFrontTwo
                                     ? AnimatedGradientBorder(
-                                    borderSize: 3,
-                                    gradientColors: const [
-                                      Color(0xfffaee72),
-                                      Colors.transparent,
-                                      Color(0xfffaee72),
-                                    ],
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(5),
-                                    ),
-                                    child: Image.asset(
-                                        'assets/cards/$singleImage.png',
-                                        height: height * 0.05))
+                                        borderSize: 3,
+                                        gradientColors: const [
+                                          Color(0xfffaee72),
+                                          Colors.transparent,
+                                          Color(0xfffaee72),
+                                        ],
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                        child: Image.asset(
+                                            'assets/cards/$singleImage.png',
+                                            height: height * 0.05))
                                     : FadeInUpBig(
-                                    child: Image.asset(
-                                        AppAssets.imageFireCard,
-                                        height: height / 13)),
+                                        child: Image.asset(
+                                            AppAssets.imageFireCard,
+                                            height: height / 13)),
                               ),
                             ],
                           ),
@@ -543,17 +548,23 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                   ),
                                   child: Center(
                                       child: Text(
-                                        wallet.toString(),
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14,
-                                            color: Colors.white),
-                                      )),
+                                    wallet.toString(),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14,
+                                        color: Colors.white),
+                                  )),
                                 ),
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const BottomNavBar(initialIndex: 2,)));//paymentSelected: 0,
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const BottomNavBar(
+                                                initialIndex: 2,
+                                              )));
                                 },
                                 child: Container(
                                   margin: EdgeInsets.only(
@@ -579,7 +590,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                             child: GameHistoryPage(
                                                 gameId: widget.gameId),
                                             type:
-                                            PageTransitionType.topToBottom,
+                                                PageTransitionType.topToBottom,
                                             duration: const Duration(
                                                 milliseconds: 500)));
                                   },
@@ -596,81 +607,81 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: (context, int index) {
                                       final GlobalKey<CartIconKey> itemKey =
-                                      GlobalKey<CartIconKey>();
+                                          GlobalKey<CartIconKey>();
                                       return firstCome == false
                                           ? hidecoins(list[index])
                                           : hideButton == true
-                                          ? hidecoins(list[index])
-                                          : InkWell(
-                                        onTap: () async {
-                                          wallet == 0
-                                              ? Utils
-                                              .flushBarErrorMessage(
-                                              'Please Recharge',
-                                              context,Colors.red
-                                              )
-                                              : wallet < list[index]
-                                              ? Utils
-                                              .flushBarErrorMessage(
-                                              'Low Balance',
-                                              context,Colors.red
-                                             )
-                                              : Future.delayed(
-                                              const Duration(
-                                                  milliseconds:
-                                                  1500),
-                                                  () {
-                                                if (selectedCart ==
-                                                    1) {
-                                                  andarCoins.add(Positioned(
-                                                      left: randomNo(
-                                                          1,
-                                                          150),
-                                                      top: randomNo(
-                                                          1,
-                                                          50),
-                                                      child: CoindesignNew(
-                                                          list[
-                                                          index])));
-                                                } else if (selectedCart ==
-                                                    2) {
-                                                  baharCoins.add(Positioned(
-                                                      left: randomNo(
-                                                          1,
-                                                          150),
-                                                      top: randomNo(
-                                                          1,
-                                                          50),
-                                                      child: CoindesignNew(
-                                                          list[
-                                                          index])));
-                                                }
-                                                setState(() {
-                                                  if (selectedCart ==
-                                                      1) {
-                                                    andarCount =
-                                                        andarCount +
-                                                            list[index];
-                                                  } else {
-                                                    baharCount =
-                                                        baharCount +
-                                                            list[index];
-                                                  }
-                                                });
-                                              });
-                                          wallet < list[index]
-                                              ? ''
-                                              : listClick(itemKey);
+                                              ? hidecoins(list[index])
+                                              : InkWell(
+                                                  onTap: () async {
+                                                    wallet == 0
+                                                        ? Utils
+                                                            .flushBarErrorMessage(
+                                                                'Please Recharge',
+                                                                context,
+                                                                Colors.red)
+                                                        : wallet < list[index]
+                                                            ? Utils
+                                                                .flushBarErrorMessage(
+                                                                    'Low Balance',
+                                                                    context,
+                                                                    Colors.red)
+                                                            : Future.delayed(
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        1500),
+                                                                () {
+                                                                if (selectedCart ==
+                                                                    1) {
+                                                                  andarCoins.add(Positioned(
+                                                                      left: randomNo(
+                                                                          1,
+                                                                          150),
+                                                                      top: randomNo(
+                                                                          1,
+                                                                          50),
+                                                                      child: CoindesignNew(
+                                                                          list[
+                                                                              index])));
+                                                                } else if (selectedCart ==
+                                                                    2) {
+                                                                  baharCoins.add(Positioned(
+                                                                      left: randomNo(
+                                                                          1,
+                                                                          150),
+                                                                      top: randomNo(
+                                                                          1,
+                                                                          50),
+                                                                      child: CoindesignNew(
+                                                                          list[
+                                                                              index])));
+                                                                }
+                                                                setState(() {
+                                                                  if (selectedCart ==
+                                                                      1) {
+                                                                    andarCount =
+                                                                        andarCount +
+                                                                            list[index];
+                                                                  } else {
+                                                                    baharCount =
+                                                                        baharCount +
+                                                                            list[index];
+                                                                  }
+                                                                });
+                                                              });
+                                                    wallet < list[index]
+                                                        ? ''
+                                                        : listClick(itemKey);
 
-                                          deductAmount(
-                                            list[index],
-                                          );
-                                        },
-                                        child: Container(
-                                            key: itemKey,
-                                            child: CoindesignNew(
-                                                list[index])),
-                                      );
+                                                    deductAmount(
+                                                      list[index],
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                      key: itemKey,
+                                                      child: CoindesignNew(
+                                                          list[index])),
+                                                );
                                     },
                                   ),
                                 ),
@@ -683,10 +694,8 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                       AndarAssets.andarbaharIcons),
                                   child: CircleAvatar(
                                     radius: 12,
-                                    backgroundImage: NetworkImage(context
-                                        .watch<ProfileProvider>()
-                                        .userImage
-                                        .toString()),
+                                    backgroundImage: NetworkImage(
+                                        userData.userImage.toString()),
                                     backgroundColor: Colors.white,
                                   ),
                                 ),
@@ -699,10 +708,11 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                   ),
                 ),
               ),
+
               /// Top
               Padding(
                 padding:
-                EdgeInsets.only(left: width * 0.8, bottom: height * 0.21),
+                    EdgeInsets.only(left: width * 0.8, bottom: height * 0.21),
                 child: Center(
                   child: Container(
                     height: height * 0.1,
@@ -713,10 +723,10 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                     ),
                     child: Center(
                         child: Text(
-                          countdownSeconds.toString(),
-                          style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w900),
-                        )),
+                      countdownSeconds.toString(),
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w900),
+                    )),
                   ),
                 ),
               ),
@@ -740,7 +750,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                       Text(
                         gamesNo == null ? 'waiting...' : gamesNo.toString(),
                         style:
-                        const TextStyle(color: Colors.white, fontSize: 10),
+                            const TextStyle(color: Colors.white, fontSize: 10),
                       ),
                       const SizedBox(
                         height: 5,
@@ -755,7 +765,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                               CircleAvatar(
                                 radius: height / 80,
                                 backgroundImage:
-                                const AssetImage(AndarAssets.andarbaharA),
+                                    const AssetImage(AndarAssets.andarbaharA),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -763,7 +773,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                               CircleAvatar(
                                 radius: height / 80,
                                 backgroundImage:
-                                const AssetImage(AndarAssets.andarbaharB),
+                                    const AssetImage(AndarAssets.andarbaharB),
                               ),
                             ],
                           ),
@@ -797,7 +807,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
               ),
               Padding(
                 padding:
-                EdgeInsets.only(top: height * 0.75, left: width * 0.14),
+                    EdgeInsets.only(top: height * 0.75, left: width * 0.14),
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Column(
@@ -808,7 +818,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                         decoration: const BoxDecoration(
                           image: DecorationImage(
                             image:
-                            AssetImage(AndarAssets.andarbaharIcOnlineUser),
+                                AssetImage(AndarAssets.andarbaharIcOnlineUser),
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -854,10 +864,9 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                 alignment: Alignment.center,
                                 height: height * 0.05,
                                 width: width * 0.7,
-                                // color: Colors.blue,
                                 child: Stack(
                                   children:
-                                  List.generate(stringList.length, (index) {
+                                      List.generate(stringList.length, (index) {
                                     if (kDebugMode) {
                                       print((stringList.length - 1) == index);
                                       print('Andar');
@@ -874,12 +883,12 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                     );
                                     return AnimatedPositioned(
                                       duration:
-                                      const Duration(milliseconds: 500),
+                                          const Duration(milliseconds: 500),
                                       curve: Curves.easeInOut,
                                       left: left,
                                       child: AnimatedOpacity(
                                         duration:
-                                        const Duration(milliseconds: 500),
+                                            const Duration(milliseconds: 500),
                                         curve: Curves.easeInOut,
                                         opacity: 1.0,
                                         child: FadeTransition(
@@ -889,18 +898,18 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                               if (index.isEven)
                                                 AnimatedGradientBorder(
                                                     borderSize:
-                                                    (stringList.length -
-                                                        1) ==
-                                                        index
-                                                        ? 2
-                                                        : 0,
+                                                        (stringList.length -
+                                                                    1) ==
+                                                                index
+                                                            ? 2
+                                                            : 0,
                                                     gradientColors: const [
                                                       Color(0xfffaee72),
                                                       Colors.transparent,
                                                       Color(0xfffaee72),
                                                     ],
                                                     borderRadius:
-                                                    const BorderRadius.all(
+                                                        const BorderRadius.all(
                                                       Radius.circular(5),
                                                     ),
                                                     child: Image.asset(
@@ -941,10 +950,9 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                 alignment: Alignment.center,
                                 height: height * 0.05,
                                 width: width * 0.7,
-                                // color: Colors.blue,
                                 child: Stack(
                                   children:
-                                  List.generate(stringList.length, (index) {
+                                      List.generate(stringList.length, (index) {
                                     if (kDebugMode) {
                                       print((stringList.length - 1) == index);
                                       print('Bahar');
@@ -961,12 +969,12 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                     );
                                     return AnimatedPositioned(
                                       duration:
-                                      const Duration(milliseconds: 500),
+                                          const Duration(milliseconds: 500),
                                       curve: Curves.easeInOut,
                                       left: left,
                                       child: AnimatedOpacity(
                                         duration:
-                                        const Duration(milliseconds: 500),
+                                            const Duration(milliseconds: 500),
                                         curve: Curves.easeInOut,
                                         opacity: 1.0,
                                         child: FadeTransition(
@@ -976,18 +984,18 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                               if (index.isOdd)
                                                 AnimatedGradientBorder(
                                                     borderSize:
-                                                    (stringList.length -
-                                                        1) ==
-                                                        index
-                                                        ? 2
-                                                        : 0,
+                                                        (stringList.length -
+                                                                    1) ==
+                                                                index
+                                                            ? 2
+                                                            : 0,
                                                     gradientColors: const [
                                                       Color(0xfffaee72),
                                                       Colors.transparent,
                                                       Color(0xfffaee72),
                                                     ],
                                                     borderRadius:
-                                                    const BorderRadius.all(
+                                                        const BorderRadius.all(
                                                       Radius.circular(5),
                                                     ),
                                                     child: Image.asset(
@@ -1013,7 +1021,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                             height: height * 0.06,
                             width: width * 0.98,
                             decoration:
-                             const BoxDecoration(color: AppColors.black12),
+                                const BoxDecoration(color: AppColors.black12),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -1027,7 +1035,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                     itemBuilder: (context, int index) {
                                       return Padding(
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         child: CircleAvatar(
                                           radius: height / 55,
                                           backgroundImage: AssetImage(
@@ -1046,7 +1054,6 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                     height: height / 19),
                               ],
                             ),
-                            // color: Colors.red,
                           ),
                         ),
                       ],
@@ -1058,10 +1065,10 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                 padding: EdgeInsets.only(bottom: height * 0.20),
                 child: Center(
                     child: Image.asset(
-                      Assets.andarbaharGirlCharSeven,
-                      width: width * 0.25,
-                      height: height * 0.15,
-                    )),
+                  Assets.andarbaharGirlCharSeven,
+                  width: width * 0.25,
+                  height: height * 0.15,
+                )),
               )
             ],
           ),
@@ -1120,7 +1127,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
   Future<void> fetchData() async {
     var gameids = widget.gameId;
     final response =
-    await http.get(Uri.parse("${ApiUrl.resultList}$gameids&limit=8"));
+        await http.get(Uri.parse("${ApiUrl.resultList}$gameids&limit=8"));
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       setState(() {
@@ -1143,7 +1150,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
   Future<void> bettingApi(BuildContext context) async {
     try {
       // Fetch userId
-      UserViewProvider userProvider = UserViewProvider();
+      UserViewModel userProvider = UserViewModel();
       UserModel user = await userProvider.getUser();
       String userId = user.id.toString();
 
@@ -1179,7 +1186,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
       var data = jsonDecode(response.body);
       print(response);
       // Handle the response
-      if (response.statusCode == 200 ) {
+      if (response.statusCode == 200) {
         // Success response
         ImageToast.show(
           imagePath: AppAssets.bettingplaceds,
@@ -1189,14 +1196,15 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
         countAndCoinClear();
       } else {
         // Error response
-        String errorMessage = data['message'] ;
+        String errorMessage = data['message'];
         print(errorMessage);
         print("So cuttteeeeee");
-        Utils.flushBarErrorMessage(errorMessage, context,Colors.red);
+        Utils.flushBarErrorMessage(errorMessage, context, Colors.red);
       }
     } catch (e) {
       // Handle unexpected errors
-      Utils.flushBarErrorMessage('Failed to place bet: $e', context,Colors.red);
+      Utils.flushBarErrorMessage(
+          'Failed to place bet: $e', context, Colors.red);
       if (kDebugMode) {
         print('Error occurred: $e');
       }
@@ -1225,13 +1233,13 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
         });
         winResult == 1
             ? AndarBaharToast.show(
-            context: context,
-            message: 'Andar Win',
-            winCard: resultCard.toString())
+                context: context,
+                message: 'Andar Win',
+                winCard: resultCard.toString())
             : AndarBaharToast.show(
-            context: context,
-            message: 'Bahar Win',
-            winCard: resultCard.toString());
+                context: context,
+                message: 'Bahar Win',
+                winCard: resultCard.toString());
       } else {
         throw Exception(
             "Failed to load data. Status code: ${response.statusCode}");
@@ -1268,11 +1276,11 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
   /// game win popup
 
   gameWinPopup(context) async {
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     final response = await http.get(
-      Uri.parse('${ApiUrl.game_win}$userId&game_id=$gameid&games_no=$gamesNo'),
+      Uri.parse('${ApiUrl.gameWin}$userId&game_id=$gameid&games_no=$gamesNo'),
     );
     var data = jsonDecode(response.body);
     if (data["status"] == 200) {
@@ -1281,17 +1289,13 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
       var gsm = data["gamesno"].toString();
       win == '0'
           ? ImageToastWingo.showloss(
-          subtext: result, subtext1: gsm, subtext2: win, context: context)
+              subtext: result, subtext1: gsm, subtext2: win, context: context)
           : ImageToastWingo.showwin(
-        subtext: result,
-        subtext1: gsm,
-        subtext2: win,
-        context: context,
-      );
-    } else {
-      setState(() {
-        // loadingGreen = false;
-      });
+              subtext: result,
+              subtext1: gsm,
+              subtext2: win,
+              context: context,
+            );
     }
   }
 }
@@ -1319,23 +1323,23 @@ class _AnimatedCoinState extends State<_AnimatedCoin>
 
     _animation = widget.type == 1
         ? Tween<Offset>(
-      begin: const Offset(2, 150),
-      end: _randomOffset(50, 30),
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOutBack,
-      ),
-    )
+            begin: const Offset(2, 150),
+            end: _randomOffset(50, 30),
+          ).animate(
+            CurvedAnimation(
+              parent: _controller,
+              curve: Curves.easeOutBack,
+            ),
+          )
         : Tween<Offset>(
-      begin: const Offset(150, 250),
-      end: _randomOffset(50, 50),
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOutBack,
-      ),
-    );
+            begin: const Offset(150, 250),
+            end: _randomOffset(50, 50),
+          ).animate(
+            CurvedAnimation(
+              parent: _controller,
+              curve: Curves.easeOutBack,
+            ),
+          );
 
     _controller.forward();
   }

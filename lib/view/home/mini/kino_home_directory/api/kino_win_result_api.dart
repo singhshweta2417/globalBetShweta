@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_url.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/kino_winpopup.dart';
+import 'package:globalbet/view/home/mini/kino_home_directory/keno_win_popup.dart';
 import 'package:http/http.dart' as http;
 
 class KinoWinApi with ChangeNotifier {
@@ -20,7 +20,7 @@ class KinoWinApi with ChangeNotifier {
       {required BuildContext context, required String gameNo}) async {
     _setLoading(true);
     try {
-      UserViewProvider userProvider = UserViewProvider();
+      UserViewModel userProvider = UserViewModel();
       UserModel user = await userProvider.getUser();
       String userId = user.id.toString();
 

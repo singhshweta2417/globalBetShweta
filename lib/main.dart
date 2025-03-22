@@ -16,7 +16,8 @@ import 'package:globalbet/res/provider/plinko_bet_provider.dart';
 import 'package:globalbet/res/provider/privacypolicy_provider.dart';
 import 'package:globalbet/res/provider/profile_provider.dart';
 import 'package:globalbet/res/provider/slider_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/routes/routes.dart';
 import 'package:globalbet/utils/routes/routes_name.dart';
 import 'package:flutter/foundation.dart';
@@ -70,10 +71,11 @@ class MyApp extends StatelessWidget {
     WakelockPlus.enable();
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => UserViewModel()),
         ChangeNotifierProvider(create: (context) => UserAuthProvider()),
+        ChangeNotifierProvider(create: (context) => ProfileViewModel()),
         ChangeNotifierProvider(create: (context) => AviatorWallet()),
-        ChangeNotifierProvider(create: (context) => UserViewProvider()),
-        ChangeNotifierProvider(create: (context) => ProfileProvider()),
+        // ChangeNotifierProvider(create: (context) => ProfileProvider()),
         ChangeNotifierProvider(create: (context) => SliderProvider()),
         ChangeNotifierProvider(create: (context) => AboutusProvider()),
         ChangeNotifierProvider(create: (context) => AddacountProvider()),

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/model/get_amount_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/repo/get_amount_repo.dart';
 
@@ -18,7 +18,7 @@ class GetAmountViewModel with ChangeNotifier {
   Future<void> getAmountApi(context,String gameNo) async {
     // UserViewModel userViewModel = UserViewModel();
     // String? userId = await userViewModel.getUser();
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     final data = {

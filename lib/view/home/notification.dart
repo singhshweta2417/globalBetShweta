@@ -33,7 +33,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -116,9 +116,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   Future<void> notificationn() async {
 
-    final response = await http.get(Uri.parse(ApiUrl.notificationapi),);
+    final response = await http.get(Uri.parse(ApiUrl.notificationApi),);
     if (kDebugMode) {
-      print(ApiUrl.notificationapi);
+      print(ApiUrl.notificationApi);
       print('notificationapi');
     }
 

@@ -4,16 +4,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 import 'package:globalbet/view/home/mini/Aviator/widget/imagetoast.dart';
 
 
 class BetColorResultProviderTRX with ChangeNotifier {
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   bool _regLoading = false;
   bool get regLoading =>_regLoading;
@@ -25,7 +25,7 @@ class BetColorResultProviderTRX with ChangeNotifier {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     setRegLoading(true);
-    final response = await http.post(Uri.parse(ApiUrl.profile),
+    final response = await http.post(Uri.parse(ApiUrl.profileUrl),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({
         "userid":token,

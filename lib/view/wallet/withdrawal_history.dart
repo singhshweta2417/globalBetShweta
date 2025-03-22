@@ -11,9 +11,9 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/utils/filter_date-formate.dart';
@@ -53,7 +53,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           centerTitle: true,
           leading: const AppBackBtn(),
@@ -92,7 +92,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                         width: 80,
                         decoration: BoxDecoration(
                           gradient: selectedCatIndex == items[index].type
-                              ? AppColors.loginSecondryGrad
+                              ? AppColors.loginSecondaryGrad
                               : AppColors.primaryUnselectedGradient,
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.1),
@@ -259,7 +259,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                                       height: 30,
                                       width: width * 0.30,
                                       decoration: BoxDecoration(
-                                          color:AppColors.methodblue ,
+                                          color:AppColors.methodBlue ,
                                           //color: depositItems[index].status=="0"?Colors.orange: depositItems[index].status=="1"?AppColors.DepositButton:Colors.red,
                                           borderRadius: BorderRadius.circular(10)),
                                       child: textWidget(
@@ -502,7 +502,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
     }
   }
 
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   List<WithdrawModel> withdrawItems = [];
 
@@ -542,7 +542,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
 
   Future<void> getwaySelect() async {
     final response = await http.get(
-      Uri.parse(ApiUrl.getwayList),
+      Uri.parse(ApiUrl.getWayList),
     );
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];

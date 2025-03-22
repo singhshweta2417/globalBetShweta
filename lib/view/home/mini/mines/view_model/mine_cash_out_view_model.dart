@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/mines/controller/mine_controller.dart';
 import 'package:globalbet/view/home/mini/mines/repo/mine_cash_out_repo.dart';
@@ -19,12 +19,12 @@ class MineCashOutViewModel with ChangeNotifier {
   }
 
   Future<void> mineCashOutApi(dynamic winAmount,dynamic multiplier,int status,context) async {
-    final profileViewModel=Provider.of<ProfileProvider>(context,listen: false);
+    final profileViewModel=Provider.of<ProfileViewModel>(context,listen: false);
     final mic=Provider.of<MineController>(context,listen: false);
     setLoading(true);
     // UserViewModel userViewModal = UserViewModel();
     // String? userId = await userViewModal.getUser();
-    UserViewProvider userProvider = UserViewProvider();
+    UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     Map data = {
@@ -37,7 +37,7 @@ class MineCashOutViewModel with ChangeNotifier {
       if (value['status'] == 200) {
         setLoading(false);
         Utils.flushBarSuccessMessage(value['message'].toString(), context,Colors.green);
-        profileViewModel.fetchProfileData();
+        profileViewModel.profileApi(context);
         if(status==1){
           mic.refreshGame();
         }

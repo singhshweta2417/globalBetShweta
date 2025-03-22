@@ -12,8 +12,8 @@ import 'package:globalbet/res/components/text_field.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/provider/giftcode_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 
 import '../../res/api_urls.dart';
 import 'package:http/http.dart' as http;
@@ -40,7 +40,7 @@ class GiftsPageState extends State<GiftsPage> {
   Widget build(BuildContext context) {
     final giftProvider = Provider.of<GiftcardProvider>(context);
     return Scaffold(
-      backgroundColor: AppColors.scaffolddark,
+      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -229,7 +229,7 @@ class GiftsPageState extends State<GiftsPage> {
       ),
     );
   }
-  UserViewProvider userProvider = UserViewProvider();
+  UserViewModel userProvider = UserViewModel();
 
   List<GiftHistoryModel> giftHistory = [];
 

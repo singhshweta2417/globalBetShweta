@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
+import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/controller/controller.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
@@ -51,7 +51,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final tc = Provider.of<TitliController>(context);
-    final profile = Provider.of<ProfileProvider>(context);
+    final profile = Provider.of<ProfileViewModel>(context);
     final betViewModel = Provider.of<BetViewModel>(context);
 
     return WillPopScope(
@@ -87,7 +87,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                         children: [
                           TextConst(
                             textAlign: TextAlign.center,
-                            title: "BALANCE: ₹${profile.totalWallet}",
+                            title: "BALANCE: ₹${profile.balance}",
                             fontSize: 9,
                             fontWeight: FontWeight.bold,
                             color: AppColors.white,
@@ -98,10 +98,10 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                                     "Wallet Refresh Successfully",
                                     context,
                                     AppColors.white);
-                                final profile = Provider.of<ProfileProvider>(
+                                final profile = Provider.of<ProfileViewModel>(
                                     context,
                                     listen: false);
-                                profile.fetchProfileData();
+                                profile.profileApi(context);
                               },
                               child: const Icon(
                                 Icons.refresh,

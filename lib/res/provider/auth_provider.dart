@@ -2,16 +2,15 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/provider/user_view_provider.dart';
 import 'package:globalbet/utils/routes/routes_name.dart';
 import 'package:provider/provider.dart';
 import 'package:globalbet/utils/utils.dart';
 
 class UserAuthProvider with ChangeNotifier {
-  //setter and getter for loading
   bool _loading = false;
   bool get loading => _loading;
   setLoading(bool value) {
@@ -25,9 +24,7 @@ class UserAuthProvider with ChangeNotifier {
   userLogin(context, String phoneNumber, String password) async {
     setRegLoading(true);
     final response = await http.post(
-      // Uri.parse(ApiUrl.login),
       Uri.parse(ApiUrl.login),
-      // Uri.parse("https://root.globalbet.com/api/login"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -40,7 +37,7 @@ class UserAuthProvider with ChangeNotifier {
     if (data["status"] == '200') {
       Utils.flushBarErrorMessage(data['message'], context, Colors.black);
       setRegLoading(false);
-      final userPref = Provider.of<UserViewProvider>(context, listen: false);
+      final userPref = Provider.of<UserViewModel>(context, listen: false);
       userPref.saveUser(UserModel(id: data['id'].toString()));
       Navigator.pushReplacementNamed(context, RoutesName.bottomNavBar);
       return Utils.flushBarSuccessMessage(data['message'], context, Colors.black);
@@ -86,7 +83,7 @@ class UserAuthProvider with ChangeNotifier {
     var data = jsonDecode(response.body);
     if (data["status"] == 200) {
       setRegLoading(false);
-      final userPref = Provider.of<UserViewProvider>(context, listen: false);
+      final userPref = Provider.of<UserViewModel>(context, listen: false);
       userPref.saveUser(UserModel(id: data['id'].toString()));
       Navigator.pushReplacementNamed(context, RoutesName.bottomNavBar);
       Utils.flushBarSuccessMessage(data['message'], context, Colors.black);
