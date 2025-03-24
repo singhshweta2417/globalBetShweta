@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:globalbet/res/aap_colors.dart';
 
 class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final Widget title;
   final bool? centerTitle;
   final List<Widget>? actions;
-  final Gradient gradient;
+  final Gradient? gradient;
 
   const GradientAppBar({
     Key? key,
@@ -13,15 +14,13 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.centerTitle,
     this.actions,
-    required this.gradient,
+    this.gradient,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: gradient,
-      ),
+      decoration: const BoxDecoration(gradient: AppColors.loginSecondaryGrad),
       child: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,

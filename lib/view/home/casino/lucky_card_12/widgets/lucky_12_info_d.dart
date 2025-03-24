@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_history_view_model.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/widgets/lucky_12_btn.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +24,8 @@ class _Lucky12InfoDState extends State<Lucky12InfoD> {
   }
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -136,6 +137,7 @@ class _GameHistoryState extends State<GameHistory> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     final l12hvm = Provider.of<Lucky12HistoryViewModel>(context);
     return Column(
       children: [
@@ -201,6 +203,7 @@ class ReportDetails extends StatefulWidget {
 class _ReportDetailsState extends State<ReportDetails> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Column(
       children: [
         const SizedBox(height: 20),

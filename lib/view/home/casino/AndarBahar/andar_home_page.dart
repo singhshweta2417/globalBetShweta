@@ -733,8 +733,8 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
               Padding(
                 padding: EdgeInsets.only(top: height * 0.29),
                 child: Container(
-                  height: height / 10,
-                  width: width / 5,
+                  height: height * 0.1,
+                  width: width * 0.25,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(AppAssets.buttonsRuppePannel),

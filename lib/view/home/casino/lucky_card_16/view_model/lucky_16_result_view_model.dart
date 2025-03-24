@@ -36,10 +36,11 @@ class Lucky16ResultViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> lucky16ResultApi(context,int status) async {
-    final lucky16Controller = Provider.of<Lucky16Controller>(context, listen: false);
+  Future<void> lucky16ResultApi(context, int status) async {
+    final lucky16Controller =
+        Provider.of<Lucky16Controller>(context, listen: false);
     final profileViewModel =
-    Provider.of<ProfileViewModel>(context, listen: false);
+        Provider.of<ProfileViewModel>(context, listen: false);
     setLoading(true);
     UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
@@ -48,9 +49,9 @@ class Lucky16ResultViewModel with ChangeNotifier {
     // String? userId = await userViewModel.getUser();
     _lucky16ResultRepo.lucky16ResultApi(userId).then((value) {
       if (value.success == true) {
-        if(status==1){
+        if (status == 1) {
           setListData(value.result16!);
-        }else{
+        } else {
           lucky16Controller.firstStop(value.result16!.first.cardIndex!);
           lucky16Controller.secondStop(value.result16!.first.colorIndex!);
           Future.delayed(const Duration(seconds: 4), () {
@@ -64,7 +65,7 @@ class Lucky16ResultViewModel with ChangeNotifier {
       } else {
         setLoading(false);
         Utils.flushBarSuccessMessage(
-            value.message.toString(), context,Colors.green);
+            value.message.toString(), context, Colors.green);
         // Utils.show(value.message.toString(), context);
       }
     }).onError((error, stackTrace) {

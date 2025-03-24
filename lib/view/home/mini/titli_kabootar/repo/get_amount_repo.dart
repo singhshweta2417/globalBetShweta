@@ -10,7 +10,7 @@ class GetAmountRepo {
 
   Future<GetAmountModel> getAmountApi(dynamic data) async {
     try {
-      dynamic response = await _apiServices.getPostApiResponse(ApiUrl.getAmountApi,data);
+      dynamic response = await _apiServices.getPostApiResponse(TitliKabootarApiUrl.getAmountApi,data);
       return GetAmountModel.fromJson(response);
     } catch (e) {
       if (kDebugMode){

@@ -513,7 +513,7 @@ class Lucky16Controller with ChangeNotifier {
   Lucky16BetViewModel lucky16BetViewModel = Lucky16BetViewModel();
   void connectToServer(context) async {
     _socket = IO.io(
-      ApiUrl.timerLucky16Url,
+      Lucky16ApiUrl.timerLucky16Url,
       IO.OptionBuilder().setTransports(['websocket']).build(),
     );
     _socket.on('connect', (_) {
@@ -526,7 +526,7 @@ class Lucky16Controller with ChangeNotifier {
         print('Connection error: $errorData');
       }
     });
-    _socket.on(ApiUrl.timerEvent, (timerData) {
+    _socket.on(Lucky16ApiUrl.timerEvent, (timerData) {
       final receiveData = jsonDecode(timerData);
       setData(receiveData['timerBetTime'], receiveData['timerStatus']);
       // bet on

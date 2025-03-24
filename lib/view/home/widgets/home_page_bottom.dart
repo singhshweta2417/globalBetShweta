@@ -130,7 +130,7 @@ class _HomePageBottomState extends State<HomePageBottom> {
             child: textWidget(
                 text: 'Gambling can be addictive, please play rationally.',
                 fontSize: 11,
-                color: AppColors.gradientFirstColor,
+                color: AppColors.whiteColor,
                 fontWeight: FontWeight.w900),
           ),
           SizedBox(
@@ -139,7 +139,7 @@ class _HomePageBottomState extends State<HomePageBottom> {
                 text:
                 '${AppConstants.appName} only accepts customers above the age of 18.',
                 fontSize: 11,
-                color: AppColors.gradientFirstColor,
+                color: AppColors.whiteColor,
                 fontWeight: FontWeight.w900),
           ),
           const SizedBox(
@@ -158,16 +158,17 @@ class _HomePageBottomState extends State<HomePageBottom> {
                       leading: Image.asset(
                         proInfoList[index].image,
                         height: height * 0.055,
+                        color: AppColors.whiteColor,
                       ),
                       title: textWidget(
                         text: proInfoList[index].title,
                         fontSize: 18,
-                        color: AppColors.primaryTextColor,
+                        color: AppColors.whiteColor,
                       ),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 18,
-                        color: AppColors.secondaryTextColor,
+                        color: AppColors.whiteColor,
                       ),
                     ),
                     if (index !=
@@ -175,7 +176,7 @@ class _HomePageBottomState extends State<HomePageBottom> {
                             1) // Render divider for all except last item
                       const Divider(
                         thickness: 0.5,
-                        color: AppColors.gradientFirstColor,
+                        color: AppColors.whiteColor,
                         endIndent: 20,
                         indent: 20,
                       ),
@@ -198,7 +199,7 @@ class _HomePageBottomState extends State<HomePageBottom> {
         child: Container(
           height: 10,
           width: 10,
-          color: AppColors.gradientFirstColor,
+          color: AppColors.unSelectColor,
         ),
       ),
       title: textWidget(

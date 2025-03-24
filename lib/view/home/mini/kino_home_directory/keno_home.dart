@@ -27,10 +27,10 @@ class _KenoGameState extends State<KenoGame> {
 
   @override
   void initState() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    //   DeviceOrientation.portraitDown,
+    // ]);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final resultProvider = Provider.of<KinoResultApi>(context, listen: false);
       resultProvider.resultFetch();

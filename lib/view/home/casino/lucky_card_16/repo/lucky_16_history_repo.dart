@@ -12,7 +12,7 @@ class Lucky16HistoryRepository {
   Future<Lucky16HistoryModel> lucky16HistoryApi(dynamic data) async {
     try {
       dynamic response =
-      await _apiServices.getGetApiResponse(ApiUrl.lucky16history+ data);
+      await _apiServices.getGetApiResponse(Lucky16ApiUrl.lucky16history+ data);
       return Lucky16HistoryModel.fromJson(response);
     } catch (e) {
       if (kDebugMode) {

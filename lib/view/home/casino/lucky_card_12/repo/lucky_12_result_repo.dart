@@ -12,7 +12,7 @@ class Lucky12ResultRepository {
   Future<Lucky12ResultModel> lucky12ResultApi(dynamic data) async {
     try {
       dynamic response =
-      await _apiServices.getGetApiResponse(ApiUrl.lucky12Result+data);
+      await _apiServices.getGetApiResponse(Lucky12ApiUrl.lucky12Result+data);
       return Lucky12ResultModel.fromJson(response);
     } catch (e) {
       if (kDebugMode) {

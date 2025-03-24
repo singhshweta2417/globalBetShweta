@@ -9,7 +9,7 @@ class BetRepository {
   Future<dynamic> betApi(dynamic data) async {
     try {
       dynamic response =
-      await _apiServices.getPostApiResponse(ApiUrl.betApi, data);
+      await _apiServices.getPostApiResponse(TitliKabootarApiUrl.betApi, data);
       return response;
     } catch (e) {
       if (kDebugMode) {

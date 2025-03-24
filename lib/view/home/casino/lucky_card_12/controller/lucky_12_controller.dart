@@ -503,7 +503,7 @@ class Lucky12Controller with ChangeNotifier {
   Lucky12BetViewModel lucky12BetViewModel = Lucky12BetViewModel();
   void connectToServer(context) async {
     _socket = IO.io(
-      ApiUrl.timerLucky12Url,
+      Lucky12ApiUrl.timerLucky12Url,
       IO.OptionBuilder().setTransports(['websocket']).build(),
     );
     _socket.on('connect', (_) {
@@ -516,7 +516,7 @@ class Lucky12Controller with ChangeNotifier {
         print('Connection error: $errorData');
       }
     });
-    _socket.on(ApiUrl.timerEvent, (timerData) {
+    _socket.on(Lucky12ApiUrl.timerEvent, (timerData) {
       final receiveData = jsonDecode(timerData);
       setData(receiveData['timerBetTime'], receiveData['timerStatus']);
       // bet on

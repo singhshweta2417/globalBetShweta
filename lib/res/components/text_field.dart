@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/res/aap_colors.dart';
+
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final InputDecoration? decoration = const InputDecoration();
@@ -47,7 +48,7 @@ class CustomTextField extends StatelessWidget {
   final Color? textColor;
   final FontWeight? fontWeight;
   final FontWeight? hintWeight;
-  final TextInputAction? textinputaction;
+  final TextInputAction? textInputAction;
 
   const CustomTextField({
     super.key,
@@ -58,7 +59,7 @@ class CustomTextField extends StatelessWidget {
     this.textDirection,
     this.minLines,
     this.maxLength,
-    this.obscureText=false,
+    this.obscureText = false,
     this.keyboardType,
     this.icon,
     this.iconColor,
@@ -94,7 +95,7 @@ class CustomTextField extends StatelessWidget {
     this.textColor,
     this.fontWeight,
     this.hintWeight,
-    this.textinputaction,
+    this.textInputAction,
   });
 
   @override
@@ -111,7 +112,7 @@ class CustomTextField extends StatelessWidget {
           boxShadow: boxShadow,
         ),
         child: TextFormField(
-          textInputAction: textinputaction?? TextInputAction.done,
+          textInputAction: textInputAction ?? TextInputAction.done,
           validator: validator,
           onSaved: onSaved,
           autofocus: autofocus ?? false,
@@ -127,12 +128,11 @@ class CustomTextField extends StatelessWidget {
           obscureText: obscureText!,
           keyboardType: keyboardType,
           style: style ??
-           TextStyle(
-                    fontSize: fontSize ?? 16,
-                    fontWeight: fontWeight??FontWeight.normal,
-                    fontStyle: FontStyle.normal,
-                    color: textColor ?? Colors.white),
-
+              TextStyle(
+                  fontSize: fontSize ?? 16,
+                  fontWeight: fontWeight ?? FontWeight.normal,
+                  fontStyle: FontStyle.normal,
+                  color: textColor ?? Colors.white),
           decoration: InputDecoration(
             errorText: errorText,
             counterText: "",
@@ -141,38 +141,45 @@ class CustomTextField extends StatelessWidget {
             filled: filled ?? true,
             fillColor: fillColor ?? AppColors.filledColor,
             hintText: hintText,
-            hintStyle:
-             TextStyle(
-                  fontSize: hintSize ?? 16,
-                  fontWeight: hintWeight??FontWeight.normal,
-                  color: hintColor ?? Colors.grey),
-
+            hintStyle: TextStyle(
+                fontSize: hintSize ?? 16,
+                fontWeight: hintWeight ?? FontWeight.normal,
+                color: hintColor ?? Colors.white),
             contentPadding: contentPadding ??
                 const EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 0),
             border: OutlineInputBorder(
                 borderSide: borderSide == null
-                    ? const BorderSide(width: 0, color: AppColors.filledColor,)
+                    ? const BorderSide(
+                        width: 0,
+                        color: AppColors.unSelectColor,
+                      )
                     : borderSide!,
                 borderRadius: fieldRadius == null
                     ? const BorderRadius.all(Radius.circular(10))
                     : fieldRadius!),
             focusedBorder: OutlineInputBorder(
                 borderSide: borderSide == null
-                    ? BorderSide(width: 1, color: AppColors.gradientFirstColor.withOpacity(0.5))
+                    ? const BorderSide(width: 1, color: AppColors.unSelectColor)
                     : borderSide!,
                 borderRadius: fieldRadius == null
                     ? const BorderRadius.all(Radius.circular(10))
                     : fieldRadius!),
             disabledBorder: OutlineInputBorder(
                 borderSide: borderSide == null
-                    ? const BorderSide(width: 1, color:AppColors.filledColor,)
+                    ? const BorderSide(
+                        width: 1,
+                        color: AppColors.unSelectColor,
+                      )
                     : borderSide!,
                 borderRadius: fieldRadius == null
                     ? const BorderRadius.all(Radius.circular(10))
                     : fieldRadius!),
             enabledBorder: OutlineInputBorder(
                 borderSide: borderSide == null
-                    ? const BorderSide(width: 1, color: AppColors.filledColor,)
+                    ? const BorderSide(
+                        width: 1,
+                        color: AppColors.unSelectColor,
+                      )
                     : borderSide!,
                 borderRadius: fieldRadius == null
                     ? const BorderRadius.all(Radius.circular(10))
@@ -183,4 +190,3 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
-

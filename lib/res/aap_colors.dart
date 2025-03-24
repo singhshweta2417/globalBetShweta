@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const primaryTextColor = Color(0xFFFFFFFF);
+  static const unSelectColor = Color(0xFF9E9E9E);
   static const secondaryTextColor = Color(0xFF759fde);
   static const secondaryContainerTextColor = Color(0xFF374992);
   static const gradientFirstColor = Color(0xFF43b5ec);
@@ -48,6 +49,7 @@ class AppColors {
   static const darkColor = Color(0xFF3f3f3f);
   static const scaffoldDark = Color(0xff22275b);
   static const brownTextPrimary = Color(0xff8f5206);
+  ///
   static const whiteColor = Color(0xFFFFFFFF);
   static const blackColor = Color(0xFF000000);
   static const primaryColor = Color(0xff731d1d);
@@ -76,7 +78,8 @@ class AppColors {
       Color(0xff4675d2),
       Color(0xff374992),
     ],
-  );
+  );//0xFF9E9E9E
+
   static const LinearGradient appBarGradient = LinearGradient(
     colors: [
       Color(0xFF2c0f52),
@@ -95,15 +98,30 @@ class AppColors {
   static const LinearGradient primaryUnselectedGradient = LinearGradient(
     colors: [Color(0xff374992), Color(0xff374992)],
   );
-
+///
   static const LinearGradient loginSecondaryGrad = LinearGradient(
       colors: [Color(0xFF000000), Color(0xFF3f3f3f)],
     tileMode: TileMode.mirror,
     begin: Alignment.centerRight,
     end: Alignment.topCenter
   );
+  ///
+  static const LinearGradient bgGrad = LinearGradient(
+      colors: [Color(0xFF000000), Color(0xFF3f3f3f)],
+      tileMode: TileMode.repeated,
+      begin: Alignment.centerRight,
+      end: Alignment.topCenter
+  );
+
+  ///
+  static const LinearGradient contGrad = LinearGradient(
+      colors: [Color(0x8A000000), Color(0x1F000000),Color(0xFF000000)],
+      tileMode: TileMode.decal,
+      begin: Alignment.centerRight,
+      end: Alignment.topCenter
+  );
   static const LinearGradient unSelectedColor = LinearGradient(
-      colors: [Color(0xFF000000), Colors.grey],
+      colors: [Color(0xFF757575), Color(0xFF757575)],
       tileMode: TileMode.mirror,
       begin: Alignment.centerRight,
       end: Alignment.topCenter

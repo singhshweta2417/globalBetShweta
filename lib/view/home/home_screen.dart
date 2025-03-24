@@ -9,9 +9,9 @@ import 'package:globalbet/res/app_constant.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/view/account/service_center/customer_service.dart';
+import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
 import 'package:globalbet/view/home/notification.dart';
 import 'package:globalbet/view/home/widgets/category_elements.dart';
 import 'package:globalbet/view/home/widgets/category_widgets.dart';
@@ -63,7 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           centerTitle: true,
           title: Padding(
@@ -144,11 +143,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Image.asset(
                         Assets.iconsProNotification,
                         height: 30,
+                        color: AppColors.primaryContColor,
                       ),
                     ),
                   ),
           ],
-          gradient: AppColors.primaryUnselectedGradient),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 100.0),
@@ -168,41 +168,41 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: ScrollConfiguration(
-        behavior: const ScrollBehavior().copyWith(overscroll: false),
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Column(
-            children: [
-              const SliderWidget(),
-              Container(
-                height: height * 0.075,
-                margin: const EdgeInsets.only(right: 10, left: 10),
-                decoration: BoxDecoration(
-                    color: AppColors.filledColor,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      Assets.iconsMicphone,
-                      height: 30,
-                    ),
-                    SizedBox(width: width * 0.01),
-                    _rotate(),
-                  ],
-                ),
+      body: Container(
+        decoration: const BoxDecoration(gradient: AppColors.bgGrad),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            const SliderWidget(),
+            Container(
+              height: height * 0.075,
+              decoration: BoxDecoration(
+                  gradient: AppColors.unSelectedColor,
+                  borderRadius: BorderRadius.circular(20)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset(
+                    Assets.iconsMicphone,
+                    height: 30,
+                    color: AppColors.primaryContColor,
+                  ),
+                  SizedBox(width: width * 0.01),
+                  _rotate(),
+                ],
               ),
-              CategoryWidget(
-                onCategorySelected: (index) {
-                  setState(() {
-                    selectedCategoryIndex = index;
-                  });
-                },
-              ),
-              CategoryElement(selectedCategoryIndex: selectedCategoryIndex),
-              const WinningInformation(),
-            ],
-          ),
+            ),
+            Sizes.spaceHeight10,
+            CategoryWidget(
+              onCategorySelected: (index) {
+                setState(() {
+                  selectedCategoryIndex = index;
+                });
+              },
+            ),
+            CategoryElement(selectedCategoryIndex: selectedCategoryIndex),
+            const WinningInformation(),
+          ],
         ),
       ),
     );

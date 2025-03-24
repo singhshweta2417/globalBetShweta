@@ -4,8 +4,6 @@ import 'dart:ui' as ui;
 
 import 'package:globalbet/main.dart';
 
-
-
 class AndarBaharToast {
   static void show({
     required String message,
@@ -46,15 +44,15 @@ class AndarBaharToast {
             children: [
               // Add an image to the row
               Container(
-                height: height*0.15,
-                width: width*0.15,
+                height: height * 0.15,
+                width: width * 0.15,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/cards/$winCard.png'),
-                    )
-                ),
+                  image: AssetImage('assets/cards/$winCard.png'),
+                )),
               ),
-              const SizedBox(width: 10), // Add spacing between the image and text
+              const SizedBox(
+                  width: 10), // Add spacing between the image and text
               // Display each word in the message
               for (var data in messages)
                 Padding(

@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
+import 'package:globalbet/res/orientation.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/controller/controller.dart';
@@ -31,6 +32,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      OrientationLandscapeUtil.setLandscapeOrientation();
       final resTimer = Provider.of<TitliController>(context, listen: false);
       resTimer.connectToServer(context);
       final result = Provider.of<ResultViewModel>(context, listen: false);
@@ -43,19 +45,25 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
     });
   }
 
-  Future<bool> _onWillPop() async {
-    Navigator.of(context, rootNavigator: true).pop(context);
-    return true;
-  }
 
   @override
   Widget build(BuildContext context) {
     final tc = Provider.of<TitliController>(context);
     final profile = Provider.of<ProfileViewModel>(context);
     final betViewModel = Provider.of<BetViewModel>(context);
-
-    return WillPopScope(
-      onWillPop: _onWillPop,
+    final  height = MediaQuery.of(context).size.height;
+    final  width = MediaQuery.of(context).size.width;
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (_) {
+        showDialog(
+          context: context,
+          barrierColor: Colors.transparent,
+          builder: (BuildContext context) {
+            return ExitTitliGame();
+          },
+        );
+      },
       child: Scaffold(
         body: Container(
           height: height,
@@ -200,7 +208,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                               tc.selectedValue, index, context);
                         },
                         child: Stack(
-                          clipBehavior: Clip.none,
+                          // clipBehavior: Clip.none,
                           children: [
                             Column(
                               children: [
@@ -208,7 +216,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                                   margin:
                                       const EdgeInsets.symmetric(horizontal: 5),
                                   alignment: Alignment.center,
-                                  width: (width - 420) / 6,
+                                  width: (width*0.5) / 6,
                                   height: (height * 0.4) / 2.5,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
@@ -389,7 +397,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                                         (tc.timerStatus == 1 &&
                                             tc.timerBetTime <= 10 &&
                                             tc.timerBetTime >= 0)))
-                                  shadowContainer(),
+                                  shadowContainer(context),
                               ],
                             ),
                             spaceWidth25,
@@ -452,7 +460,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                                         (tc.timerStatus == 1 &&
                                             tc.timerBetTime <= 10 &&
                                             tc.timerBetTime >= 0)))
-                                  shadowContainer()
+                                  shadowContainer(context)
                               ],
                             ),
                             SizedBox(width: width * 0.02),
@@ -489,7 +497,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                                         (tc.timerStatus == 1 &&
                                             tc.timerBetTime <= 10 &&
                                             tc.timerBetTime >= 0)))
-                                  shadowContainer()
+                                  shadowContainer(context)
                               ],
                             ),
                             SizedBox(width: width * 0.02),
@@ -519,7 +527,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                                         (tc.timerStatus == 1 &&
                                             tc.timerBetTime <= 10 &&
                                             tc.timerBetTime >= 0)))
-                                  shadowContainer()
+                                  shadowContainer(context)
                               ],
                             ),
                           ],
@@ -562,7 +570,9 @@ BoxDecoration getBoxDecoration(int amount) {
   );
 }
 
-Widget shadowContainer() {
+Widget shadowContainer(context) {
+  final  height = MediaQuery.of(context).size.height;
+  final  width = MediaQuery.of(context).size.width;
   return Container(
     height: height * 0.06,
     width: width * 0.12,
@@ -574,22 +584,22 @@ Widget shadowContainer() {
 
 Future<void> playTTSMessage(String message) async {
   // Initialize FlutterTTS
-  // FlutterTts flutterTts = FlutterTts();
+  FlutterTts flutterTts = FlutterTts();
 
   // Set TTS options
-  // await flutterTts.setLanguage("en-US");
-  // await flutterTts.setSpeechRate(0.5);
+  await flutterTts.setLanguage("en-US");
+  await flutterTts.setSpeechRate(0.5);
 
   // Speak the message
-  // var result = await flutterTts.speak(message);
+  var result = await flutterTts.speak(message);
 
-  // if (result == 1) {
-  //   if (kDebugMode) {
-  //     print("TTS playback started.");
-  //   }
-  // } else {
-  //   if (kDebugMode) {
-  //     print("Error playing TTS.");
-  //   }
-  // }
+  if (result == 1) {
+    if (kDebugMode) {
+      print("TTS playback started.");
+    }
+  } else {
+    if (kDebugMode) {
+      print("Error playing TTS.");
+    }
+  }
 }

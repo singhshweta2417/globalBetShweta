@@ -41,18 +41,15 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      backgroundColor: AppColors.darkColor,
       appBar: GradientAppBar(
           centerTitle: true,
           title: textWidget(
               text: 'Global Bet',
               fontWeight: FontWeight.w600,
               fontSize: 28,
-              color: AppColors.primaryTextColor),
-
-          gradient:  AppColors.primaryGradient),
+              color: AppColors.primaryTextColor)),
       body: ScrollConfiguration(
         behavior: const ScrollBehavior().copyWith(overscroll: false),
         child: SingleChildScrollView(
@@ -61,8 +58,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             child: Column(
               children: [
                 Container(
-                  decoration:
-                  const BoxDecoration(gradient: AppColors.primaryGradient),
+                  decoration: const BoxDecoration(color: AppColors.darkColor),
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 18.0),
                     child: ListTile(
@@ -74,9 +70,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             fontSize: 22,
                             color: AppColors.primaryTextColor),
                       ),
-
                       subtitle: textWidget(
-                          text: 'Please retrieve/change your password through your mobile phone number or email',
+                          text:
+                              'Please retrieve/change your password through your mobile phone number or email',
                           fontWeight: FontWeight.w600,
                           fontSize: 12,
                           color: AppColors.primaryTextColor),
@@ -86,7 +82,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-
                 !isOtpVerified
                     ? sendOtp(forgetUpdateUser)
                     : createNewPassword(forgetUpdateUser),
@@ -99,7 +94,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   }
 
   otpSent(String mobile) async {
-    final response = await http.get(Uri.parse('${ApiUrl.sendOtp}mode=live&digit=4&mobile=$mobile'));
+    final response = await http
+        .get(Uri.parse('${ApiUrl.sendOtp}mode=live&digit=4&mobile=$mobile'));
     if (response.statusCode == 200) {
       setState(() {
         isOtpSend = true;
@@ -118,7 +114,11 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
           child: Row(
             children: [
-              Image.asset(Assets.iconsPhone,scale: 1.5),
+              Image.asset(
+                Assets.iconsPhone,
+                scale: 1.5,
+                color: AppColors.primaryContColor,
+              ),
               const SizedBox(width: 20),
               textWidget(
                   text: 'Phone Number',
@@ -138,57 +138,68 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             controller: phoneCon,
             maxLength: 10,
             hintText: 'Enter Mobile number',
+            fillColor: AppColors.unSelectColor,
           ),
         ),
-        if (isOtpSend) Padding(
-          padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-          child: CustomTextField(
-            controller: verifyCode,
-            prefixIcon: const Icon(
-              Icons.verified_user,
-              color: Colors.red,
+        if (isOtpSend)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+            child: CustomTextField(
+              fillColor: AppColors.unSelectColor,
+              controller: verifyCode,
+              prefixIcon: const Icon(
+                Icons.verified_user,
+                color: Colors.red,
+              ),
+              maxLines: 1,
+              hintText: 'Verification code',
+              onChanged: (v) async {
+                if (v.length == 4) {
+                  final response = await http.get(Uri.parse(
+                      '${ApiUrl.verifyOtp}${phoneCon.text}&otp=${verifyCode.text}'));
+                  var data = jsonDecode(response.body);
+                  if (data["status"] == "200") {
+                    Utils.flushBarSuccessMessage(
+                        data["message"], context, Colors.white);
+                  } else if (data["status"] == "400") {
+                    Utils.flushBarSuccessMessage(
+                        "Wrong Otp", context, Colors.red);
+                  } else {
+                    setState(() {
+                      isOtpVerified = true;
+                    });
+                    forgetUpdateUser(context, phoneCon.text,
+                        newPasswordCon.text, confirmPasswordCon.text);
+                  }
+                } else {
+                  if (kDebugMode) {
+                    print("not done");
+                  }
+                }
+              },
             ),
-            maxLines: 1,
-            hintText: 'Verification code',
-            onChanged: (v) async {
-              if(v.length==4){
-                final response = await http.get(Uri.parse('${ApiUrl.verifyOtp}${phoneCon.text}&otp=${verifyCode.text}'));
-                var data = jsonDecode(response.body);
-                if(data["status"]=="200"){
-                  Utils.flushBarSuccessMessage(data["message"], context, Colors.white);
-                } else if (data["status"]=="400") {
-                  Utils.flushBarSuccessMessage("Wrong Otp", context, Colors.red);
-                }
-                else {
-                  setState(() {
-                    isOtpVerified=true;
-                  });
-                  forgetUpdateUser( context,phoneCon.text, newPasswordCon.text,confirmPasswordCon.text);
-                }
-              }else{
-                if (kDebugMode) {
-                  print("not done");
-                }
-              }
-            },
-          ),
-        ) else const SizedBox(),
+          )
+        else
+          const SizedBox(),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
           child: AppBtn(
             onTap: () {
               if (phoneCon.text.isEmpty || phoneCon.text.length != 10) {
-                 Utils.flushBarErrorMessage("Enter phone number", context, Colors.white);
-              } else if (phoneCon.text.isNotEmpty && phoneCon.text.length == 10){
-                  otpSent(phoneCon.text);
+                Utils.flushBarErrorMessage(
+                    "Enter phone number", context, Colors.white);
+              } else if (phoneCon.text.isNotEmpty &&
+                  phoneCon.text.length == 10) {
+                otpSent(phoneCon.text);
               }
-              },
+            },
             title: "Send Otp",
           ),
         ),
-        const SizedBox(height: 5,),
+        const SizedBox(
+          height: 5,
+        ),
       ],
-
     );
   }
 
@@ -218,7 +229,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             controller: phoneCon,
             maxLines: 1,
             hintText: 'Phone number',
-
           ),
         ),
         Padding(
@@ -280,7 +290,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             controller: confirmPasswordCon,
             maxLines: 1,
             hintText: 'Confirm New Password',
-
             suffixIcon: IconButton(
                 onPressed: () {
                   setState(() {
@@ -298,15 +307,18 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               title: 'Reset',
               fontSize: 20,
               onTap: () async {
-
                 if (phoneCon.text.isEmpty || phoneCon.text.length != 10) {
-                  Utils.flushBarSuccessMessage("Enter phone number", context, Colors.red);
+                  Utils.flushBarSuccessMessage(
+                      "Enter phone number", context, Colors.red);
                 } else if (newPasswordCon.text.isEmpty) {
-                  Utils.flushBarSuccessMessage("Set your password", context, Colors.red);
+                  Utils.flushBarSuccessMessage(
+                      "Set your password", context, Colors.red);
                 } else if (confirmPasswordCon.text.isEmpty) {
-                  Utils.flushBarSuccessMessage("Confirm your password", context, Colors.red);
+                  Utils.flushBarSuccessMessage(
+                      "Confirm your password", context, Colors.red);
                 } else {
-                  forgetUpdateUser( context,phoneCon.text, newPasswordCon.text,confirmPasswordCon.text);
+                  forgetUpdateUser(context, phoneCon.text, newPasswordCon.text,
+                      confirmPasswordCon.text);
                   if (kDebugMode) {
                     print(phoneCon.text);
                     print(confirmPasswordCon.text);
@@ -321,30 +333,30 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     );
   }
 
-  forgetUpdateUser(context,String mobile, String password, String newPassword) async {
+  forgetUpdateUser(
+      context, String mobile, String password, String newPassword) async {
     if (kDebugMode) {
       print("guycyg");
     }
     final response = await http.post(Uri.parse(ApiUrl.forgetPasswordUrl),
-        headers: <String,String>{
+        headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, dynamic >{
-          "mobile":mobile,
-          "password":password,
-          "confirm_password":newPassword
-        })
-    );
+        body: jsonEncode(<String, dynamic>{
+          "mobile": mobile,
+          "password": password,
+          "confirm_password": newPassword
+        }));
     final data = jsonDecode(response.body);
     if (kDebugMode) {
       print(data);
       print("👍👍👍👍updatee");
     }
-    if(data["status"]==200){
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginScreen()));
+    if (data["status"] == 200) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()));
       Utils.flushBarSuccessMessage(data["message"], context, Colors.white);
-    }
-    else {
+    } else {
       Utils.flushBarErrorMessage(data["message"], context, Colors.white);
     }
   }

@@ -23,8 +23,6 @@ class Lucky12BetViewModel with ChangeNotifier {
     UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
-    // UserViewModel userViewModel = UserViewModel();
-    // String? userId = await userViewModel.getUser();
     Map data = {"user_id": userId, "bets": betList};
     _lucky12BetRepo.lucky12BetApi(data).then((value) {
       if (value['success'] == true) {

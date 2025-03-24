@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
+import 'package:globalbet/res/orientation.dart';
+import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/font_size.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/sound.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/text_const.dart';
@@ -11,6 +11,8 @@ class ExitTitliGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final  height = MediaQuery.of(context).size.height;
+    final  width = MediaQuery.of(context).size.width;
     return  Material(
       color: Colors.transparent,
       child: Container(
@@ -55,7 +57,9 @@ class ExitTitliGame extends StatelessWidget {
                 InkWell(
                   onTap: (){
                     Audio.audioPlayers.stop();
-                    // Navigator.pushNamed(context, RoutesName.dashboard);
+                    OrientationPortraitUtil.setPortraitOrientation();
+                    FeedbackProvider.navigateToHome(context);
+                    Audio.audioPlayers.stop();
                   },
                   child: const TextConst(
                     title: "Yes",

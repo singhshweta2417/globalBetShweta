@@ -6,7 +6,7 @@ import 'package:globalbet/main.dart';
 class AppConstant{
   static String appName="Titli";
   static double get luckyBtnFont =>width < 850? 12: height*0.025;
-  static double get luckyRoFont =>width < 850? 14: height*0.03;
+  static double get luckyRoFont =>width < 850? 12: height*0.03;
   static double get luckyKaFont =>width < 850? 8: height*0.02;
   static double get luckyCoinFont =>width < 850? 10: height*0.03;
   static double get luckyColHi =>width < 850? height * 0.1: height * 0.08;

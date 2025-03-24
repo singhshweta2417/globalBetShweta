@@ -20,136 +20,159 @@ class WinningInformation extends StatefulWidget {
 
 class _WinningInformationState extends State<WinningInformation> {
   late List<Map<String, dynamic>> dragonTigerList = [
-    {"user": "mdw**e764", "image": Assets.person1, "border": '₹ 200.00','centering':Assets.categoryWingocoin1},
-    {"user": "wde**fr44", "image": Assets.person2, "border": '₹ 243.12','centering':Assets.categoryWingocoin1},
-    {"user": "cfs*23ww", "image": Assets.person3, "border": '₹ 126.00','centering':Assets.categoryTrxcoin1},
-    {"user": "hde**fr465", "image": Assets.person4, "border": '₹ 400.00','centering':Assets.categoryTrxcoin1},
-    {"user": "wee**fr4", "image": Assets.person5, "border": '₹ 180.00','centering':Assets.categoryWingocoin1},
+    {
+      "user": "mdw**e764",
+      "image": Assets.person1,
+      "border": '₹ 200.00',
+      'centering': Assets.categoryWingocoin1
+    },
+    {
+      "user": "wde**fr44",
+      "image": Assets.person2,
+      "border": '₹ 243.12',
+      'centering': Assets.categoryWingocoin1
+    },
+    {
+      "user": "cfs*23ww",
+      "image": Assets.person3,
+      "border": '₹ 126.00',
+      'centering': Assets.categoryTrxcoin1
+    },
+    {
+      "user": "hde**fr465",
+      "image": Assets.person4,
+      "border": '₹ 400.00',
+      'centering': Assets.categoryTrxcoin1
+    },
+    {
+      "user": "wee**fr4",
+      "image": Assets.person5,
+      "border": '₹ 180.00',
+      'centering': Assets.categoryWingocoin1
+    },
   ];
   final List<Map<String, dynamic>> possibleFirstElements = [
     {
       "user": "mdw**e764",
       "image": Assets.person1,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryTrxcoin1
+      'centering': Assets.categoryTrxcoin1
     },
     {
       "user": "wde**fr44",
       "image": Assets.person2,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryWingocoin1
+      'centering': Assets.categoryWingocoin1
     },
     {
       "user": "cfs*23ww",
       "image": Assets.person3,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryWingocoin1
+      'centering': Assets.categoryWingocoin1
     },
     {
       "user": "hde**fr465",
       "image": Assets.person4,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFivedCoin
+      'centering': Assets.categoryFivedCoin
     },
     {
       "user": "wee**fr4",
       "image": Assets.person5,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFivedCoin
+      'centering': Assets.categoryFivedCoin
     },
     {
       "user": "aas**rr12",
       "image": Assets.personPerson6,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryWingocoin1
+      'centering': Assets.categoryWingocoin1
     },
     {
       "user": "bss**rr13",
       "image": Assets.personPerson7,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryWingocoin1
+      'centering': Assets.categoryWingocoin1
     },
     {
       "user": "css**rr14",
       "image": Assets.personPerson8,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryWingocoin1
+      'centering': Assets.categoryWingocoin1
     },
     {
       "user": "dss**rr15",
       "image": Assets.personPerson9,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryWingocoin1
+      'centering': Assets.categoryWingocoin1
     },
     {
       "user": "ess**rr16",
       "image": Assets.personPerson10,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryWingocoin1
+      'centering': Assets.categoryWingocoin1
     },
     {
       "user": "fss**rr17",
       "image": Assets.personPerson11,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFivedCoin
+      'centering': Assets.categoryFivedCoin
     },
     {
       "user": "gss**rr18",
       "image": Assets.personPerson12,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryWingocoin1
+      'centering': Assets.categoryWingocoin1
     },
     {
       "user": "hss**rr19",
       "image": Assets.personPerson13,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFlashIcon
+      'centering': Assets.categoryFlashIcon
     },
     {
       "user": "iss**rr20",
       "image": Assets.personPerson14,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFivedCoin
+      'centering': Assets.categoryFivedCoin
     },
     {
       "user": "jss**rr21",
       "image": Assets.personPerson15,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFlashIcon
+      'centering': Assets.categoryFlashIcon
     },
     {
       "user": "kss**rr22",
       "image": Assets.personPerson16,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFivedCoin
+      'centering': Assets.categoryFivedCoin
     },
     {
       "user": "lss**rr23",
       "image": Assets.personPerson17,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFlashIcon
+      'centering': Assets.categoryFlashIcon
     },
     {
       "user": "mss**rr24",
       "image": Assets.personPerson18,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFivedCoin
+      'centering': Assets.categoryFivedCoin
     },
     {
       "user": "nss**rr25",
       "image": Assets.personPerson19,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFlashIcon
+      'centering': Assets.categoryFlashIcon
     },
     {
       "user": "oss**rr26",
       "image": Assets.personPerson20,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering':Assets.categoryFlashIcon
+      'centering': Assets.categoryFlashIcon
     },
-
   ];
-
 
   Timer? _timer;
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
@@ -210,7 +233,7 @@ class _WinningInformationState extends State<WinningInformation> {
     // Animate the removal and insertion
     _listKey.currentState!.removeItem(
       0,
-          (context, animation) => _buildItem(dragonTigerList[0], animation),
+      (context, animation) => _buildItem(dragonTigerList[0], animation),
       duration: const Duration(milliseconds: 300),
     );
 
@@ -227,22 +250,20 @@ class _WinningInformationState extends State<WinningInformation> {
             height: height * 0.09,
             width: width,
             decoration: BoxDecoration(
-              color: AppColors.firstColors,
+              gradient: AppColors.loginSecondaryGrad,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-
-                  width: width*0.35,
+                  width: width * 0.35,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleAvatar(
                         radius: 20,
                         backgroundImage: AssetImage(item['image']),
-                        //child: Image.asset(item['image']),
                       ),
                       textWidget(
                           text: item['user'],
@@ -252,48 +273,38 @@ class _WinningInformationState extends State<WinningInformation> {
                     ],
                   ),
                 ),
-
                 Container(
                   height: height * 0.07,
-                  width: width*0.2,
+                  width: width * 0.2,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      image: const DecorationImage(image: AssetImage(Assets.iconsBoxBg,))
+                      gradient: AppColors.contGrad
                   ),
-                  child:  Image.asset(item['centering']),
+                  child: Image.asset(item['centering']),
                 ),
                 SizedBox(
-
-                  width: width*0.35,
+                  width: width * 0.35,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       textWidget(
-                          text: "Receive  "+item['border'],
+                          text: "Receive  " + item['border'],
                           fontSize: 14,
-                          color: AppColors.gradientFirstColor,
+                          color: AppColors.primaryContColor,
                           fontWeight: FontWeight.w900),
                       textWidget(
                           text: 'Winning amount',
                           fontSize: 13,
-                          color: AppColors.first2Color,
+                          color: AppColors.unSelectColor,
                           fontWeight: FontWeight.w700),
-
                     ],
                   ),
                 )
               ],
             ),
           ),
-        )
-
-      // ListTile(
-      //   leading: Image.asset(item['image']),
-      //   title: Text(item['user']),
-      //   trailing: Image.asset(item['border']),
-      // ),
-    );
+        ));
   }
 
   @override
@@ -309,7 +320,7 @@ class _WinningInformationState extends State<WinningInformation> {
                 width: width * 0.05,
                 child: const VerticalDivider(
                   thickness: 3,
-                  color: AppColors.gradientFirstColor,
+                  color: AppColors.primaryContColor,
                 )),
             const Text(
               " Winning Information",
@@ -321,13 +332,12 @@ class _WinningInformationState extends State<WinningInformation> {
           ],
         ),
         SizedBox(
-          height: height*0.52,
-
+          height: height * 0.52,
           child: AnimatedList(
             physics: const NeverScrollableScrollPhysics(),
             key: _listKey,
             initialItemCount:
-            dragonTigerList.length > 5 ? 5 : dragonTigerList.length,
+                dragonTigerList.length > 5 ? 5 : dragonTigerList.length,
             itemBuilder: (context, index, animation) {
               return _buildItem(dragonTigerList[index], animation);
             },
@@ -340,7 +350,7 @@ class _WinningInformationState extends State<WinningInformation> {
                 width: width * 0.05,
                 child: const VerticalDivider(
                   thickness: 3,
-                  color: AppColors.gradientFirstColor,
+                  color: AppColors.primaryContColor,
                 )),
             const Text(
               " Today's earnings chart",

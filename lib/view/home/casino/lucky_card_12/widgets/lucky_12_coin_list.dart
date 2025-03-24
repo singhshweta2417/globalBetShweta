@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/controller/lucky_12_controller.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/app_constant.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +10,8 @@ class Lucky12CoinList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Consumer<Lucky12Controller>(builder: (context, l12c, child) {
       return SizedBox(
           height: height * 0.12,

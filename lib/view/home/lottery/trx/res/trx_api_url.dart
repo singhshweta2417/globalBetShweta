@@ -2,7 +2,7 @@ import 'package:globalbet/res/api_urls.dart';
 
 class TrxApiUrl {
   // base url
-  static const String baseUrl = ApiUrl.baseUrl;
+  static const String baseUrl = ApiUrl.configModel;
   static const String trxBet = "${baseUrl}bets";
   static const String trxMyBetHis = "${baseUrl}bet_history";
   static const String trxGameHis = "${baseUrl}results?limit=10&game_id=";
@@ -12,8 +12,8 @@ class TrxApiUrl {
 
   //wingo socket url
   static const String trxSocketUrl = "https://aviatorudaan.com";
-  static const String trxEvent30 = "gameontrx10";
   static const String trxEvent1 = "gameontrx1";
   static const String trxEvent3 = "gameontrx3";
   static const String trxEvent5 = "gameontrx5";
+  static const String trxEvent10 = "gameontrx10";
 }

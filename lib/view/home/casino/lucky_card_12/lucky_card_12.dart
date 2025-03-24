@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
+import 'package:globalbet/res/orientation.dart';
+import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_result_view_model.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/widgets/luck_12_exit_pop_up.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/widgets/lucky_12_btn.dart';
@@ -27,6 +28,7 @@ class _LuckyCard12State extends State<LuckyCard12> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      OrientationLandscapeUtil.setLandscapeOrientation();
       final resTimer = Provider.of<Lucky12Controller>(context, listen: false);
       resTimer.connectToServer(context);
       final lucky12ResultViewModel =
@@ -37,6 +39,8 @@ class _LuckyCard12State extends State<LuckyCard12> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final lucky12ResultViewModel = Provider.of<Lucky12ResultViewModel>(context);
     return Consumer<Lucky12Controller>(builder: (context, l12c, child) {
       return PopScope(
@@ -49,6 +53,8 @@ class _LuckyCard12State extends State<LuckyCard12> {
               return Luck12ExitPopUp(
                 yes: () {
                   // exit pop up
+                  OrientationPortraitUtil.setPortraitOrientation();
+                  FeedbackProvider.navigateToHome(context);
                   l12c.disConnectToServer(context);
                   // Navigator.pushReplacementNamed(context, RoutesName.dashboard);
                 },
@@ -157,7 +163,7 @@ class _LuckyCard12State extends State<LuckyCard12> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                height: height * 0.08,
+                                height: height * 0.05,
                                 width: width * 0.15,
                                 margin:
                                     const EdgeInsets.only(right: 2, left: 2),
@@ -173,17 +179,17 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                       Text(
+                                      Text(
                                         'PLAY:',
                                         style: TextStyle(
-                                          fontSize: AppConstant.luckyRoFont,
+                                            fontSize: AppConstant.luckyRoFont,
                                             color: Colors.black,
                                             fontWeight: FontWeight.bold,
                                             fontFamily: 'roboto'),
                                       ),
                                       Text(
                                         l12c.totalBetAmount.toString(),
-                                        style:  TextStyle(
+                                        style: TextStyle(
                                             color: Colors.black,
                                             fontSize: AppConstant.luckyRoFont,
                                             fontWeight: FontWeight.bold,
@@ -194,7 +200,7 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                 ),
                               ),
                               Container(
-                                height: height * 0.08,
+                                height: height * 0.05,
                                 width: width * 0.15,
                                 margin:
                                     const EdgeInsets.only(right: 2, left: 2),
@@ -210,7 +216,7 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                       Text(
+                                      Text(
                                         'WIN:',
                                         style: TextStyle(
                                             fontSize: AppConstant.luckyRoFont,
@@ -221,7 +227,7 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                       Text(
                                         lucky12ResultViewModel.winAmount
                                             .toString(),
-                                        style:  TextStyle(
+                                        style: TextStyle(
                                             color: Colors.black,
                                             fontSize: AppConstant.luckyRoFont,
                                             fontFamily: 'roboto',
@@ -266,8 +272,8 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                               alignment: Alignment.center,
                                               height: height * 0.14,
                                               width: width * 0.06,
-                                              padding:  EdgeInsets.only(
-                                                  bottom:width*0.005),
+                                              padding: EdgeInsets.only(
+                                                  bottom: width * 0.005),
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
                                                   image: AssetImage(l12c
@@ -285,10 +291,8 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                                   ? Container(
                                                       alignment:
                                                           Alignment.center,
-                                                      height:
-                                                          height * 0.052,
-                                                      width:
-                                                          height * 0.052,
+                                                      height: height * 0.052,
+                                                      width: height * 0.052,
                                                       padding: const EdgeInsets
                                                           .fromLTRB(
                                                           1, 2.5, 1, 1),
@@ -331,8 +335,9 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                                       !l12c.showBettingTime
                                                           ? 'Play'
                                                           : '',
-                                                      style:  TextStyle(
-                                                          fontSize: AppConstant.luckyKaFont,
+                                                      style: TextStyle(
+                                                          fontSize: AppConstant
+                                                              .luckyKaFont,
                                                           fontFamily: 'dancing',
                                                           color: Colors.white),
                                                     ),
@@ -370,8 +375,8 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                             alignment: Alignment.bottomCenter,
                                             height: height * 0.10,
                                             width: width * 0.06,
-                                              padding: EdgeInsets.only(
-                                                  bottom: width*0.008),
+                                            padding: EdgeInsets.only(
+                                                bottom: width * 0.008),
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
                                                   image: AssetImage(l12c
@@ -382,33 +387,26 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                                         .isNotEmpty &&
                                                     l12c.addLucky12Bets
                                                         .where((value) =>
-                                                            value[
-                                                                'game_id'] ==
-                                                            l12c
-                                                                .cardList[
-                                                                    index]
+                                                            value['game_id'] ==
+                                                            l12c.cardList[index]
                                                                 .id)
                                                         .isNotEmpty
                                                 ? Container(
-                                                    alignment:
-                                                        Alignment.center,
-                                                    height: height *
-                                                        0.052,
-                                                    width: height *
-                                                        0.052,
-                                                    padding:
-                                                        const EdgeInsets
-                                                            .fromLTRB(
-                                                            1, 2.5, 1, 1),
-                                                    decoration: getBoxDecoration(l12c
-                                                        .addLucky12Bets
-                                                        .where((e) =>
-                                                            e['game_id'] ==
-                                                            l12c
-                                                                .cardList[
-                                                                    index]
-                                                                .id)
-                                                        .first["amount"]!),
+                                                    alignment: Alignment.center,
+                                                    height: height * 0.052,
+                                                    width: height * 0.052,
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(1, 2.5, 1, 1),
+                                                    decoration:
+                                                        getBoxDecoration(l12c
+                                                            .addLucky12Bets
+                                                            .where((e) =>
+                                                                e['game_id'] ==
+                                                                l12c
+                                                                    .cardList[
+                                                                        index]
+                                                                    .id)
+                                                            .first["amount"]!),
                                                     child: Text(
                                                       l12c.addLucky12Bets
                                                           .where((e) =>
@@ -435,21 +433,19 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                                                   3
                                                               ? 8
                                                               : 7,
-                                                          fontFamily:
-                                                              'dangrek',
+                                                          fontFamily: 'dangrek',
                                                           fontWeight:
-                                                              FontWeight
-                                                                  .w600),
+                                                              FontWeight.w600),
                                                     ),
                                                   )
                                                 : Text(
                                                     !l12c.showBettingTime
                                                         ? 'Play'
                                                         : '',
-                                                    style:  TextStyle(
-                                                        fontSize: AppConstant.luckyKaFont,
-                                                        fontFamily:
-                                                            'dancing'),
+                                                    style: TextStyle(
+                                                        fontSize: AppConstant
+                                                            .luckyKaFont,
+                                                        fontFamily: 'dancing'),
                                                   ),
                                           ),
                                         );
@@ -471,99 +467,89 @@ class _LuckyCard12State extends State<LuckyCard12> {
                                   ),
                                   Column(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: List.generate(
                                       l12c.rowBetList.length,
-                                          (index) {
+                                      (index) {
                                         return GestureDetector(
                                           onTap: () {
-                                            if (l12c.addLucky12Bets
-                                                .isEmpty &&
+                                            if (l12c.addLucky12Bets.isEmpty &&
                                                 l12c.resetOne == true) {
                                               l12c.setResetOne(false);
                                             }
-                                            l12c.addRowBet(
-                                                context, index);
+                                            l12c.addRowBet(context, index);
                                           },
                                           child: Container(
-                                            margin: EdgeInsets.only(top: width*0.015),
-                                            padding:
-                                            EdgeInsets.only(
-                                                top: width*0.008, left: width*0.03),
+                                            margin: EdgeInsets.only(
+                                                top: width * 0.015),
+                                            padding: EdgeInsets.only(
+                                                top: width * 0.008,
+                                                left: width * 0.03),
                                             alignment: Alignment.center,
-                                            height:  height * 0.1,
+                                            height: height * 0.1,
                                             width: width * 0.07,
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
-                                                image: AssetImage(l12c
-                                                    .rowBetList[index]),
+                                                image: AssetImage(
+                                                    l12c.rowBetList[index]),
                                                 fit: BoxFit.fill,
                                               ),
                                             ),
                                             child: l12c.tapedRowList
-                                                .isNotEmpty &&
-                                                l12c.tapedRowList
-                                                    .where((e) =>
-                                                e["index"] ==
-                                                    index)
-                                                    .isNotEmpty
-                                                ? Container(
-                                              alignment:
-                                              Alignment.center,
-                                              height: height *
-                                                  0.052,
-                                              width: height *
-                                                  0.052,
-                                              padding:
-                                              const EdgeInsets
-                                                  .fromLTRB(
-                                                  1, 2.5, 1, 1),
-                                              decoration:
-                                              getBoxDecoration(
-                                                l12c.tapedRowList
-                                                    .where((e) =>
-                                                e["index"] ==
-                                                    index)
-                                                    .first["amount"]!,
-                                              ),
-                                              child: Text(
-                                                l12c.tapedRowList
-                                                    .where((e) =>
-                                                e["index"] ==
-                                                    index)
-                                                    .first["amount"]
-                                                    .toString(),
-                                                style: TextStyle(
-                                                    fontSize: l12c
-                                                        .tapedRowList
+                                                        .isNotEmpty &&
+                                                    l12c.tapedRowList
                                                         .where((e) =>
-                                                    e["index"] ==
-                                                        index)
-                                                        .first[
-                                                    "amount"]
-                                                        .toString()
-                                                        .length <
-                                                        3
-                                                        ? 8
-                                                        : 7,
-                                                    fontFamily:
-                                                    'dangrek',
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .w600),
-                                              ),
-                                            )
+                                                            e["index"] == index)
+                                                        .isNotEmpty
+                                                ? Container(
+                                                    alignment: Alignment.center,
+                                                    height: height * 0.052,
+                                                    width: height * 0.052,
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(1, 2.5, 1, 1),
+                                                    decoration:
+                                                        getBoxDecoration(
+                                                      l12c.tapedRowList
+                                                          .where((e) =>
+                                                              e["index"] ==
+                                                              index)
+                                                          .first["amount"]!,
+                                                    ),
+                                                    child: Text(
+                                                      l12c.tapedRowList
+                                                          .where((e) =>
+                                                              e["index"] ==
+                                                              index)
+                                                          .first["amount"]
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          fontSize: l12c
+                                                                      .tapedRowList
+                                                                      .where((e) =>
+                                                                          e["index"] ==
+                                                                          index)
+                                                                      .first[
+                                                                          "amount"]
+                                                                      .toString()
+                                                                      .length <
+                                                                  3
+                                                              ? 8
+                                                              : 7,
+                                                          fontFamily: 'dangrek',
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                  )
                                                 : Text(
-                                              !l12c.showBettingTime
-                                                  ? 'Play'
-                                                  : '',
-                                              style:  TextStyle(
-                                                  fontSize: AppConstant.luckyKaFont,
-                                                  color:
-                                                  Colors.white,
-                                                  fontFamily:
-                                                  'dancing'),
-                                            ),
+                                                    !l12c.showBettingTime
+                                                        ? 'Play'
+                                                        : '',
+                                                    style: TextStyle(
+                                                        fontSize: AppConstant
+                                                            .luckyKaFont,
+                                                        color: Colors.white,
+                                                        fontFamily: 'dancing'),
+                                                  ),
                                           ),
                                         );
                                       },
@@ -592,8 +578,7 @@ class _LuckyCard12State extends State<LuckyCard12> {
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsets.only(right: height * 0.30),
+                            padding: EdgeInsets.only(right: height * 0.30),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -670,6 +655,8 @@ class _LuckyCard12State extends State<LuckyCard12> {
   }
 
   Widget shadowContainer() {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
       height: height * 0.06,
       width: width * 0.08,
@@ -703,9 +690,11 @@ class _LuckyCard12State extends State<LuckyCard12> {
   }
 
   Widget _buildImageContainer(String assetPath) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
-      height: height*0.1,
-      width: width*0.04,
+      height: height * 0.1,
+      width: width * 0.04,
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage(assetPath), fit: BoxFit.fill),
       ),

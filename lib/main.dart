@@ -14,7 +14,6 @@ import 'package:globalbet/res/provider/feedback_provider.dart';
 import 'package:globalbet/res/provider/giftcode_provider.dart';
 import 'package:globalbet/res/provider/plinko_bet_provider.dart';
 import 'package:globalbet/res/provider/privacypolicy_provider.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
 import 'package:globalbet/res/provider/slider_provider.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
@@ -22,6 +21,18 @@ import 'package:globalbet/utils/routes/routes.dart';
 import 'package:globalbet/utils/routes/routes_name.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/view/home/casino/lucky_card_12/controller/lucky_12_controller.dart';
+import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_bet_view_model.dart';
+import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_history_view_model.dart';
+import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_result_view_model.dart';
+import 'package:globalbet/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
+import 'package:globalbet/view/home/casino/lucky_card_16/view_model/lucky_16_bet_view_model.dart';
+import 'package:globalbet/view/home/casino/lucky_card_16/view_model/lucky_16_history_view_model.dart';
+import 'package:globalbet/view/home/casino/lucky_card_16/view_model/lucky_16_result_view_model.dart';
+import 'package:globalbet/view/home/casino/triple_chance/controller/triple_chance_controller.dart';
+import 'package:globalbet/view/home/casino/triple_chance/view_model/triple_chance_bet_view_model.dart';
+import 'package:globalbet/view/home/casino/triple_chance/view_model/triple_chance_history_view_model.dart';
+import 'package:globalbet/view/home/casino/triple_chance/view_model/triple_chance_result_view_model.dart';
 import 'package:globalbet/view/home/lottery/trx/controller/trx_controller.dart';
 import 'package:globalbet/view/home/lottery/trx/view_model/trx_bet_view_model.dart';
 import 'package:globalbet/view/home/lottery/trx/view_model/trx_game_his_view_model.dart';
@@ -44,9 +55,16 @@ import 'package:globalbet/view/home/mini/mines/view_model/mine_bet_his_view_mode
 import 'package:globalbet/view/home/mini/mines/view_model/mine_bet_view_model.dart';
 import 'package:globalbet/view/home/mini/mines/view_model/mine_cash_out_view_model.dart';
 import 'package:globalbet/view/home/mini/mines/view_model/mine_drop_down_view_model.dart';
+import 'package:globalbet/view/home/mini/titli_kabootar/controller/controller.dart';
+import 'package:globalbet/view/home/mini/titli_kabootar/view_model/bet_view_model.dart';
+import 'package:globalbet/view/home/mini/titli_kabootar/view_model/deposit_view_model.dart';
+import 'package:globalbet/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
+import 'package:globalbet/view/home/mini/titli_kabootar/view_model/history_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+
+import 'view/home/mini/titli_kabootar/view_model/result_view_model.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -112,6 +130,31 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => KinoBetApi()),
         ChangeNotifierProvider(create: (context) => KinoGameHistoryApi()),
         ChangeNotifierProvider(create: (context) => KinoResultApi()),
+        ChangeNotifierProvider(create: (context) => BetViewModel()),
+        ChangeNotifierProvider(create: (context) => GetAmountViewModel()),
+        ChangeNotifierProvider(create: (context) => HistoryViewModel()),
+        ChangeNotifierProvider(create: (context) => ResultViewModel()),
+        ChangeNotifierProvider(create: (context) => TitliController()),
+
+        ///lucky12
+        ChangeNotifierProvider(create: (context) => Lucky12BetViewModel()),
+        ChangeNotifierProvider(create: (context) => Lucky12HistoryViewModel()),
+        ChangeNotifierProvider(create: (context) => Lucky12ResultViewModel()),
+        ChangeNotifierProvider(create: (context) => Lucky12Controller()),
+
+        ///lucky16
+        ChangeNotifierProvider(create: (context) => Lucky16BetViewModel()),
+        ChangeNotifierProvider(create: (context) => Lucky16HistoryViewModel()),
+        ChangeNotifierProvider(create: (context) => Lucky16ResultViewModel()),
+        ChangeNotifierProvider(create: (context) => Lucky16Controller()),
+
+        ///tripleChance
+        ChangeNotifierProvider(create: (context) => TripleChanceBetViewModel()),
+        ChangeNotifierProvider(
+            create: (context) => TripleChanceHistoryViewModel()),
+        ChangeNotifierProvider(
+            create: (context) => TripleChanceResultViewModel()),
+        ChangeNotifierProvider(create: (context) => TripleChanceController()),
       ],
       child: Builder(
         builder: (context) {

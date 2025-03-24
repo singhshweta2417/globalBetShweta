@@ -9,7 +9,7 @@ class ResultRepository {
 
   Future<ResultModel> resultApi(dynamic data) async {
     try {
-      dynamic response = await _apiServices.getPostApiResponse(ApiUrl.resultApi,data);
+      dynamic response = await _apiServices.getPostApiResponse(TitliKabootarApiUrl.resultApi,data);
       print(response);
       return ResultModel.fromJson(response);
     } catch (e) {

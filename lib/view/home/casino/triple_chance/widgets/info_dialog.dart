@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 
 class InfoDialog extends StatefulWidget {
   final String? title;
@@ -31,6 +30,8 @@ class _InfoDialogState extends State<InfoDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -165,6 +166,7 @@ class _InfoDialogState extends State<InfoDialog> {
   }
 
   Widget payoutData() {
+    final width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -229,11 +231,11 @@ class _InfoDialogState extends State<InfoDialog> {
                                 fontFamily: 'roboto_lite')),
                       ]),
                       tableData('Play 10 Chips on a Single number',
-                          'Singles play/Inner wheel play', '90'),
+                          'Singles play/Inner wheel play', '90',context),
                       tableData('Play 10 Chips on a Single number',
-                          'Doubles play/Middle wheel play', '900'),
+                          'Doubles play/Middle wheel play', '900',context),
                       tableData('Play 10 Chips on a Single number',
-                          'Triples play/Outer wheel play', '9000'),
+                          'Triples play/Outer wheel play', '9000',context),
                     ],
                   ),
                 ),
@@ -298,9 +300,9 @@ class _InfoDialogState extends State<InfoDialog> {
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'roboto_lite')),
                       ]),
-                      tableData('Singles Play', '2', '10000'),
-                      tableData('Doubles Play', '2', '1000'),
-                      tableData('Triples Play', '2', '100'),
+                      tableData('Singles Play', '2', '10000',context),
+                      tableData('Doubles Play', '2', '1000',context),
+                      tableData('Triples Play', '2', '100',context),
                     ],
                   ),
                 ),
@@ -314,7 +316,8 @@ class _InfoDialogState extends State<InfoDialog> {
 
 }
 
-TableRow tableData(String value, String wheel, String payout) {
+TableRow tableData(String value, String wheel, String payout,context) {
+  final width = MediaQuery.of(context).size.width;
   return TableRow(children: [
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 3),
@@ -350,6 +353,8 @@ class TripleChanceRule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(10.0),

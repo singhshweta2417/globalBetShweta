@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/controller/controller.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/text_const.dart';
@@ -10,6 +9,8 @@ class CoinList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final  height = MediaQuery.of(context).size.height;
+    final  width = MediaQuery.of(context).size.width;
     return Consumer<TitliController>(
       builder: (context, tc , child) {
         return Container(

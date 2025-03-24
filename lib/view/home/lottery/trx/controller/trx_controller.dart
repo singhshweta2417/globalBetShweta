@@ -214,7 +214,7 @@ class TrxController with ChangeNotifier {
       }
     });
 
-    _socket.on(TrxApiUrl.trxEvent30, (response) {
+    _socket.on(TrxApiUrl.trxEvent1, (response) {
       final res = jsonDecode(response);
       set1MinutesData(res['timerBetTime'], res['timerStatus']);
       if (gameIndex == 0) {
@@ -233,7 +233,7 @@ class TrxController with ChangeNotifier {
       }
     });
 
-    _socket.on(TrxApiUrl.trxEvent1, (response) {
+    _socket.on(TrxApiUrl.trxEvent3, (response) {
       final res = jsonDecode(response);
       set3MinutesData(res['timerBetTime'], res['timerStatus']);
       if (gameIndex == 1) {
@@ -252,7 +252,7 @@ class TrxController with ChangeNotifier {
       }
     });
 
-    _socket.on(TrxApiUrl.trxEvent3, (response) {
+    _socket.on(TrxApiUrl.trxEvent5, (response) {
       final res = jsonDecode(response);
       set5MinutesData(res['timerBetTime'], res['timerStatus']);
       if (gameIndex == 2) {
@@ -271,7 +271,7 @@ class TrxController with ChangeNotifier {
       }
     });
 
-    _socket.on(TrxApiUrl.trxEvent5, (response) {
+    _socket.on(TrxApiUrl.trxEvent10, (response) {
       final res = jsonDecode(response);
       set10MinutesData(res['timerBetTime'], res['timerStatus']);
       if (gameIndex == 3) {

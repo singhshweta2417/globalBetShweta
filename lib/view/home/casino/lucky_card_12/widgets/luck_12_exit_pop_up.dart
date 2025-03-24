@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/app_constant.dart';
 
 
@@ -12,6 +11,8 @@ class Luck12ExitPopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return AlertDialog(
         backgroundColor: Colors.transparent,
         content: Container(
@@ -23,7 +24,7 @@ class Luck12ExitPopUp extends StatelessWidget {
               Container(
                 height: height * 0.2,
                 width: width * 0.3,
-                padding: const EdgeInsets.fromLTRB(10, 13, 10, 10),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                 color: Colors.black,
                 child:  Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

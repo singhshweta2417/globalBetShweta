@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
 import 'package:globalbet/view/home/casino/lucky_card_16/view_model/lucky_16_result_view_model.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +9,8 @@ class Lucky16Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final lucky16ResultViewModel = Provider.of<Lucky16ResultViewModel>(context);
     return Consumer<Lucky16Controller>(builder: (context, l16c, child) {
       return Container(
@@ -31,7 +32,7 @@ class Lucky16Result extends StatelessWidget {
               final card = l16c.getCardForIndex(number.cardIndex!);
               final color = l16c.getColorForIndex(number.colorIndex!);
               final jackpot = l16c.getJackpotForIndex(number.jackpot!);
-              return _buildResultItem(card, color, index,jackpot);
+              return _buildResultItem(card, color, index,jackpot,context);
             },
           ),
         ),
@@ -39,7 +40,9 @@ class Lucky16Result extends StatelessWidget {
     });
   }
 
-  Widget _buildResultItem(String card, String color, int index,String? jackpot) {
+  Widget _buildResultItem(String card, String color, int index,String? jackpot,context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
       height: height * 0.12,
       width: index == 0 ? width * 0.06 : width * 0.025,
@@ -50,12 +53,12 @@ class Lucky16Result extends StatelessWidget {
         ),
       ),
       child: index == 0
-          ? _buildHorizontalLayout(card, color,jackpot)
-          : _buildVerticalLayout(card, color,jackpot),
+          ? _buildHorizontalLayout(card, color,jackpot,context)
+          : _buildVerticalLayout(card, color,jackpot,context),
     );
   }
 
-  Widget _buildHorizontalLayout(String card, String color,String? jackpot) {
+  Widget _buildHorizontalLayout(String card, String color,String? jackpot,context) {
     return Stack(
       alignment: Alignment.center,
       clipBehavior: Clip.none,
@@ -63,8 +66,8 @@ class Lucky16Result extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildImageContainer(card),
-            _buildImageContainer(color),
+            _buildImageContainer(card,context),
+            _buildImageContainer(color,context),
           ],
         ),
         if(jackpot!=null)
@@ -75,7 +78,7 @@ class Lucky16Result extends StatelessWidget {
     );
   }
 
-  Widget _buildVerticalLayout(String card, String color,String? jackpot) {
+  Widget _buildVerticalLayout(String card, String color,String? jackpot,context) {
     return Stack(
       alignment: Alignment.center,
       clipBehavior: Clip.none,
@@ -83,8 +86,8 @@ class Lucky16Result extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildImageContainer(card),
-            _buildImageContainer(color),
+            _buildImageContainer(card,context),
+            _buildImageContainer(color,context),
           ],
         ),
         if(jackpot!=null)
@@ -105,7 +108,9 @@ class Lucky16Result extends StatelessWidget {
     );
   }
 
-  Widget _buildImageContainer(String assetPath) {
+  Widget _buildImageContainer(String assetPath,context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
       height: height*0.04,
       width: width*0.02,

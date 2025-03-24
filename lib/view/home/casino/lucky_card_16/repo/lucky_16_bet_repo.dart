@@ -11,7 +11,7 @@ class Lucky16BetRepository {
   Future<dynamic> lucky16BetApi(dynamic data) async {
     try {
       dynamic response =
-      await _apiServices.getPostApiResponse(ApiUrl.lucky16Bet, data);
+      await _apiServices.getPostApiResponse(Lucky16ApiUrl.lucky16Bet, data);
       return response;
     } catch (e) {
       if (kDebugMode) {

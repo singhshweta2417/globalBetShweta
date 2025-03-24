@@ -2,7 +2,7 @@ import 'package:globalbet/res/api_urls.dart';
 
 class WinGoApiUrl{
   // base url
-  static const String baseUrl = ApiUrl.baseUrl;
+  static const String baseUrl = ApiUrl.configModel;
   //wingo api url
   static const String wingoBet = "${baseUrl}bets_new";
   static const String winGoMyBetHis = "${baseUrl}bet_history";

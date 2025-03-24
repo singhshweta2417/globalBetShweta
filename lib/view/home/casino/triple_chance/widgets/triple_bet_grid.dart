@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/casino/triple_chance/controller/triple_chance_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +13,8 @@ class TripleBetGrid extends StatefulWidget {
 class _TripleBetGridState extends State<TripleBetGrid> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Consumer<TripleChanceController>(builder: (context, tcc, child) {
       return Container(
         height: height,

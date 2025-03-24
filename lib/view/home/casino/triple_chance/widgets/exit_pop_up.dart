@@ -1,20 +1,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 
 class ExitPopUp extends StatelessWidget {
   final String title;
   final VoidCallback yes;
-  final DecorationImage image;
+  final DecorationImage? image;
   const ExitPopUp({
     super.key,
     required this.title,
-    required this.yes, required this.image,
+    required this.yes, this.image,
   });
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return AlertDialog(
         backgroundColor: Colors.transparent,
         contentPadding: const EdgeInsets.all(0),

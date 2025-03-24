@@ -4,14 +4,13 @@ import 'package:globalbet/view/home/lottery/wingo/helper/network/network_api_ser
 
 import '../res/api_url.dart';
 
-
 class Lucky12BetRepository {
   final BaseApiServices _apiServices = NetworkApiServices();
 
   Future<dynamic> lucky12BetApi(dynamic data) async {
     try {
       dynamic response =
-      await _apiServices.getPostApiResponse(ApiUrl.lucky12Bet, data);
+          await _apiServices.getPostApiResponse(Lucky12ApiUrl.lucky12Bet, data);
       return response;
     } catch (e) {
       if (kDebugMode) {

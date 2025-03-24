@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/controller/history_controller.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
@@ -29,6 +28,8 @@ class _TitliHistoryPageState extends State<TitliHistoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    final  height = MediaQuery.of(context).size.height;
+    final  width = MediaQuery.of(context).size.width;
     return Consumer<HistoryViewModel>(
       builder: (context, hvm , child) {
         return Material(
@@ -124,6 +125,8 @@ class _TitliHistoryPageState extends State<TitliHistoryPage> {
   }
 
   Widget gameHistoryItem(){
+    final  height = MediaQuery.of(context).size.height;
+    final  width = MediaQuery.of(context).size.width;
     return Consumer<HistoryController>(
       builder: (context,hcv,child) {
         return Container(
@@ -155,6 +158,8 @@ class _TitliHistoryPageState extends State<TitliHistoryPage> {
     );
   }
   Widget gameHistoryData(){
+    final  height = MediaQuery.of(context).size.height;
+    final  width = MediaQuery.of(context).size.width;
     return Consumer<HistoryViewModel>(
         builder: (context,hvm,child) {
           return

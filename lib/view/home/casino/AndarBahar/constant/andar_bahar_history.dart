@@ -60,7 +60,7 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(Assets.imagesAppBg),
             fit: BoxFit.fill,

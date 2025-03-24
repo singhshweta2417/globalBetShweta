@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/services.dart';
 import 'package:globalbet/Plinko/my_game.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -187,7 +188,7 @@ class _CategoryElementState extends State<CategoryElement> {
                   children: [
                     const Icon(
                       Icons.local_fire_department,
-                      color: AppColors.gradientFirstColor,
+                      color: AppColors.primaryContColor,
                       size: 30,
                     ),
                     Text(

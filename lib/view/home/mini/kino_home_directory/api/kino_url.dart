@@ -1,6 +1,7 @@
+import 'package:globalbet/res/api_urls.dart';
 class KinoUrl{
 
-  static const String  baseUrl= 'https://magicwinner.motug.com';
+  static const String  baseUrl= ApiUrl.configModel;
   static const String  config= '$baseUrl/api/';
 
   static const String  kinoBetPlaced = '${config}keno-bet';

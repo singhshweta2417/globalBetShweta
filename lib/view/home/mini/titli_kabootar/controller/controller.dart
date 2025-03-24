@@ -324,7 +324,7 @@ class TitliController with ChangeNotifier {
     Provider.of<BetViewModel>(context, listen: false);
 
     _socket = IO.io(
-      ApiUrl.socketUrl,
+      TitliKabootarApiUrl.socketUrl,
       IO.OptionBuilder().setTransports(['websocket']).build(),
     );
     _socket.on('connect', (_) {
@@ -337,7 +337,7 @@ class TitliController with ChangeNotifier {
         print('Connection error: $errorData');
       }
     });
-    _socket.on(ApiUrl.eventName, (timerData) async {
+    _socket.on(TitliKabootarApiUrl.eventName, (timerData) async {
       final receiveData = jsonDecode(timerData);
       setData(receiveData['timerBetTime'], receiveData['timerStatus']);
       // bet on

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 
 class GreenBtnWidget extends StatelessWidget {
   const GreenBtnWidget({
@@ -13,6 +12,8 @@ class GreenBtnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: onTap,
       child: Container(

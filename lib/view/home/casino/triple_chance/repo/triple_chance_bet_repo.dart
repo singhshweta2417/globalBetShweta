@@ -10,7 +10,7 @@ class TripleChanceBetRepository {
   Future<dynamic> tripleChanceBetApi(dynamic data) async {
     try {
       dynamic response =
-      await _apiServices.getPostApiResponse(ApiUrl.tripleChanceBet, data);
+      await _apiServices.getPostApiResponse(TripleChanceApiUrl.tripleChanceBet, data);
       return response;
     } catch (e) {
       if (kDebugMode) {

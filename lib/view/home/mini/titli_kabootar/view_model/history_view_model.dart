@@ -61,27 +61,6 @@ class HistoryViewModel with ChangeNotifier {
   }
 
 
-  Future<void> depositHistoryApi(context) async {
-    UserViewModel userProvider = UserViewModel();
-    UserModel user = await userProvider.getUser();
-    String userId = user.id.toString();
-    final data = {
-      "user_id" : userId,
-    };
-
-    setLoading(true);
-    _historyRepo.depositHistoryApi(data).then((value) {
-      if (value.status == true) {
-        setDepositHistoryData(value);
-      }
-    }).onError((error, stackTrace) {
-      if (kDebugMode) {
-        print('error on depositHistoryApi : $error');
-      }
-    });
-  }
-
-
   bool _withdrawHisLoading = false;
   bool get withdrawHisLoading => _withdrawHisLoading;
   setWithdrawHisLoading(bool value) {
@@ -94,33 +73,6 @@ class HistoryViewModel with ChangeNotifier {
   setWithdrawHistoryData(WithdrawHistoryModel value) {
     _withdrawHisData = value;
     notifyListeners();
-  }
-
-
-  Future<void> withdrawHistoryApi(context) async {
-    UserViewModel userProvider = UserViewModel();
-    UserModel user = await userProvider.getUser();
-    String userId = user.id.toString();
-    final data = {
-      "user_id" : userId,
-      "type" : 1
-    };
-    if (kDebugMode) {
-      print("History Data");
-      print({
-        "user_id" : userId,
-      });
-    }
-    setLoading(true);
-    _historyRepo.withdrawHistoryApi(data).then((value) {
-      if (value.status == true) {
-        setWithdrawHistoryData(value);
-      }
-    }).onError((error, stackTrace) {
-      if (kDebugMode) {
-        print('error on depositHistoryApi : $error');
-      }
-    });
   }
 
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/text_const.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
@@ -18,6 +17,8 @@ class _TitliResultScreenState extends State<TitliResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final  height = MediaQuery.of(context).size.height;
+    final  width = MediaQuery.of(context).size.width;
     return Consumer<ResultViewModel>(
       builder: (context, rvm, child) {
         if (rvm.resultModel?.data == null || rvm.resultModel!.data!.isEmpty) {

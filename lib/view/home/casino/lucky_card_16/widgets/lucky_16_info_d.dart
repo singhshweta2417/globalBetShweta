@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/casino/lucky_card_16/view_model/lucky_16_history_view_model.dart';
 import 'package:globalbet/view/home/casino/lucky_card_16/widgets/lucky_16_btn.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +14,7 @@ class Lucky16InfoD extends StatefulWidget {
 }
 
 class _Lucky16InfoDState extends State<Lucky16InfoD> {
+
   bool selectedBtn = true;
   @override
   void initState() {
@@ -25,6 +25,8 @@ class _Lucky16InfoDState extends State<Lucky16InfoD> {
   }
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -136,6 +138,8 @@ class _GameHistoryState extends State<GameHistory> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final l16hvm = Provider.of<Lucky16HistoryViewModel>(context);
     return Column(
       children: [
@@ -201,6 +205,8 @@ class ReportDetails extends StatefulWidget {
 class _ReportDetailsState extends State<ReportDetails> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Column(
       children: [
         const SizedBox(height: 20),

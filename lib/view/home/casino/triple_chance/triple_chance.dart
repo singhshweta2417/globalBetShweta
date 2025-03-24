@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
+import 'package:globalbet/res/orientation.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
 import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/fade_animation.dart';
 import 'package:globalbet/view/home/casino/triple_chance/controller/triple_chance_controller.dart';
 import 'package:globalbet/view/home/casino/triple_chance/view_model/triple_chance_result_view_model.dart';
@@ -59,6 +60,7 @@ class _TripleChanceState extends State<TripleChance> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      OrientationLandscapeUtil.setLandscapeOrientation();
       final resTimer =
           Provider.of<TripleChanceController>(context, listen: false);
       resTimer.connectToServer(context);
@@ -70,6 +72,8 @@ class _TripleChanceState extends State<TripleChance> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final profileViewModel = Provider.of<ProfileViewModel>(context);
     final tcr = Provider.of<TripleChanceResultViewModel>(context);
     return Consumer<TripleChanceController>(builder: (context, tcc, child) {
@@ -85,7 +89,8 @@ class _TripleChanceState extends State<TripleChance> {
                 yes: () {
                   // Dashboard screen
                   tcc.disConnectToServer(context);
-                  // Navigator.pushReplacementNamed(context, RoutesName.dashboard);
+                  OrientationPortraitUtil.setPortraitOrientation();
+                  FeedbackProvider.navigateToHome(context);
                 },
                 image: const DecorationImage(
                     image: AssetImage(Assets.tripleChanceCloseBg),
@@ -462,6 +467,8 @@ class _TripleChanceState extends State<TripleChance> {
   }
 
   Widget shadowContainer() {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
       height: height * 0.09,
       width: width * 0.177,

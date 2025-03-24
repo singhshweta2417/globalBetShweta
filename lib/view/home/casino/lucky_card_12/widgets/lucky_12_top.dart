@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/controller/lucky_12_controller.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_result_view_model.dart';
@@ -13,6 +12,8 @@ class Lucky12Top extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final profileViewModel = Provider.of<ProfileViewModel>(context);
     final lucky12ResultViewModel = Provider.of<Lucky12ResultViewModel>(context);
     return Consumer<Lucky12Controller>(builder: (context, l12c, child) {

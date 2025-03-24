@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/res/app_constant.dart';
-
 
 class Luck16ExitPopUp extends StatelessWidget {
   final VoidCallback yes;
@@ -12,6 +10,8 @@ class Luck16ExitPopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return AlertDialog(
         backgroundColor: Colors.transparent,
         content: Container(

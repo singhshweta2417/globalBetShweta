@@ -26,17 +26,16 @@ class FabBottomNavBar extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => FabBottomNavBarState();
 }
+
 int selectedIndex = 0;
+
 class FabBottomNavBarState extends State<FabBottomNavBar> {
-
-
   _updateIndex(int index) {
     widget.onTabSelected!(index);
     setState(() {
       selectedIndex = index;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +47,13 @@ class FabBottomNavBarState extends State<FabBottomNavBar> {
       );
     });
     return BottomAppBar(
-
       shape: widget.notchedShape,
       color: widget.backgroundColor,
       child: Container(
         decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage(Assets.imagesBottomnavbar),fit: BoxFit.fill)
-        ),
+            image: DecorationImage(
+                image: AssetImage(Assets.imagesBottomnavbar),
+                fit: BoxFit.fill)),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -64,14 +63,12 @@ class FabBottomNavBarState extends State<FabBottomNavBar> {
     );
   }
 
-
   Widget _buildTabItem({
     FabBottomNavBarItem? item,
     int? index,
     ValueChanged<int>? onPressed,
   }) {
-    Color? color =
-        selectedIndex == index ? widget.selectedColor : widget.color;
+    Color? color = selectedIndex == index ? widget.selectedColor : widget.color;
     return Expanded(
       child: SizedBox(
         height: widget.height,
@@ -84,11 +81,12 @@ class FabBottomNavBarState extends State<FabBottomNavBar> {
               children: <Widget>[
                 if (item.imageData != null)
                   Image.asset(item.imageData!, height: 20)
-                else const SizedBox(),
+                else
+                  const SizedBox(),
                 Text(
                   item.text!,
                   style: TextStyle(
-                    fontSize: 13,
+                      fontSize: 13,
                       color: color,
                       fontWeight: selectedIndex == index
                           ? FontWeight.bold
@@ -104,7 +102,7 @@ class FabBottomNavBarState extends State<FabBottomNavBar> {
 }
 
 class FabBottomNavBarItem {
-  FabBottomNavBarItem( {this.imageData, this.text,this.ontap});
+  FabBottomNavBarItem({this.imageData, this.text, this.ontap});
 
   String? imageData;
   String? text;

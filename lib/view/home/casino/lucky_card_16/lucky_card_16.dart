@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
+import 'package:globalbet/res/orientation.dart';
+import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
 import 'package:globalbet/view/home/casino/lucky_card_16/view_model/lucky_16_result_view_model.dart';
 import 'package:globalbet/view/home/casino/lucky_card_16/widgets/luck_16_exit_pop_up.dart';
 import 'package:globalbet/view/home/casino/lucky_card_16/widgets/lucky_16_btn.dart';
@@ -27,6 +28,7 @@ class _LuckyCard16State extends State<LuckyCard16> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      OrientationLandscapeUtil.setLandscapeOrientation();
       final resTimer = Provider.of<Lucky16Controller>(context, listen: false);
       resTimer.connectToServer(context);
       final lucky16ResultViewModel =
@@ -37,6 +39,8 @@ class _LuckyCard16State extends State<LuckyCard16> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final lucky16ResultViewModel = Provider.of<Lucky16ResultViewModel>(context);
     return Consumer<Lucky16Controller>(builder: (context, l16c, child) {
       return PopScope(
@@ -49,8 +53,9 @@ class _LuckyCard16State extends State<LuckyCard16> {
               return Luck16ExitPopUp(
                 yes: () {
                   // exit pop up
+                  OrientationPortraitUtil.setPortraitOrientation();
+                  FeedbackProvider.navigateToHome(context);
                   l16c.disConnectToServer(context);
-                  // Navigator.pushReplacementNamed(context, RoutesName.dashboard);
                 },
               );
             },
@@ -68,7 +73,7 @@ class _LuckyCard16State extends State<LuckyCard16> {
                         fit: BoxFit.fill)),
                 child: Row(
                   children: [
-                    Container(
+                    SizedBox(
                       // padding: const EdgeInsets.only(bottom: 1),
                       width: width * 0.5,
                       height: height,
@@ -126,11 +131,11 @@ class _LuckyCard16State extends State<LuckyCard16> {
                               Container(
                                 height: width * 0.38,
                                 width: width * 0.32,
-                                decoration:  const BoxDecoration(
+                                decoration: const BoxDecoration(
                                     image: DecorationImage(
-                                      image: AssetImage(Assets.lucky12ShowRes),
-                                      fit: BoxFit.fill,
-                                    )),
+                                  image: AssetImage(Assets.lucky12ShowRes),
+                                  fit: BoxFit.fill,
+                                )),
                               ),
                             ],
                           ),
@@ -156,7 +161,7 @@ class _LuckyCard16State extends State<LuckyCard16> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                height: height * 0.08,
+                                height: height * 0.05,
                                 width: width * 0.15,
                                 margin:
                                     const EdgeInsets.only(right: 2, left: 2),
@@ -172,7 +177,7 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                       Text(
+                                      Text(
                                         'PLAY:',
                                         style: TextStyle(
                                             fontSize: AppConstant.luckyRoFont,
@@ -192,7 +197,7 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                 ),
                               ),
                               Container(
-                                height: height * 0.08,
+                                height: height * 0.05,
                                 width: width * 0.15,
                                 margin:
                                     const EdgeInsets.only(right: 2, left: 2),
@@ -208,7 +213,7 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                       Text(
+                                      Text(
                                         'WIN:',
                                         style: TextStyle(
                                             fontSize: AppConstant.luckyRoFont,
@@ -219,7 +224,7 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                       Text(
                                         lucky16ResultViewModel.winAmount
                                             .toString(),
-                                        style:  TextStyle(
+                                        style: TextStyle(
                                             fontSize: AppConstant.luckyRoFont,
                                             color: Colors.black,
                                             fontWeight: FontWeight.bold),
@@ -264,8 +269,8 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                               alignment: Alignment.center,
                                               height: height * 0.11,
                                               width: width * 0.06,
-                                              padding:  EdgeInsets.only(
-                                                  bottom:width*0.005),
+                                              padding: EdgeInsets.only(
+                                                  bottom: width * 0.005),
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
                                                   image: AssetImage(l16c
@@ -283,10 +288,8 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                                   ? Container(
                                                       alignment:
                                                           Alignment.center,
-                                                      height:
-                                                          height * 0.052,
-                                                      width:
-                                                          height * 0.052,
+                                                      height: height * 0.052,
+                                                      width: height * 0.052,
                                                       padding: const EdgeInsets
                                                           .fromLTRB(
                                                           1, 2.5, 1, 1),
@@ -329,8 +332,9 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                                       !l16c.showBettingTime
                                                           ? 'Play'
                                                           : '',
-                                                      style:  TextStyle(
-                                                          fontSize: AppConstant.luckyKaFont,
+                                                      style: TextStyle(
+                                                          fontSize: AppConstant
+                                                              .luckyKaFont,
                                                           fontFamily: 'dancing',
                                                           color: Colors.white),
                                                     ),
@@ -369,7 +373,7 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                             height: height * 0.10,
                                             width: width * 0.06,
                                             padding: EdgeInsets.only(
-                                                bottom: width*0.008),
+                                                bottom: width * 0.008),
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
                                                   image: AssetImage(l16c
@@ -380,33 +384,26 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                                         .isNotEmpty &&
                                                     l16c.addLucky16Bets
                                                         .where((value) =>
-                                                            value[
-                                                                'game_id'] ==
-                                                            l16c
-                                                                .cardList[
-                                                                    index]
+                                                            value['game_id'] ==
+                                                            l16c.cardList[index]
                                                                 .id)
                                                         .isNotEmpty
                                                 ? Container(
-                                                    alignment:
-                                                        Alignment.center,
-                                                    height: height *
-                                                        0.052,
-                                                    width: height *
-                                                        0.052,
-                                                    padding:
-                                                        const EdgeInsets
-                                                            .fromLTRB(
-                                                            1, 2.5, 1, 1),
-                                                    decoration: getBoxDecoration(l16c
-                                                        .addLucky16Bets
-                                                        .where((e) =>
-                                                            e['game_id'] ==
-                                                            l16c
-                                                                .cardList[
-                                                                    index]
-                                                                .id)
-                                                        .first["amount"]!),
+                                                    alignment: Alignment.center,
+                                                    height: height * 0.052,
+                                                    width: height * 0.052,
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(1, 2.5, 1, 1),
+                                                    decoration:
+                                                        getBoxDecoration(l16c
+                                                            .addLucky16Bets
+                                                            .where((e) =>
+                                                                e['game_id'] ==
+                                                                l16c
+                                                                    .cardList[
+                                                                        index]
+                                                                    .id)
+                                                            .first["amount"]!),
                                                     child: Text(
                                                       l16c.addLucky16Bets
                                                           .where((e) =>
@@ -433,21 +430,19 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                                                   3
                                                               ? 8
                                                               : 7,
-                                                          fontFamily:
-                                                              'dangrek',
+                                                          fontFamily: 'dangrek',
                                                           fontWeight:
-                                                              FontWeight
-                                                                  .w600),
+                                                              FontWeight.w600),
                                                     ),
                                                   )
                                                 : Text(
                                                     !l16c.showBettingTime
                                                         ? 'Play'
                                                         : '',
-                                                    style:  TextStyle(
-                                                        fontSize: AppConstant.luckyKaFont,
-                                                        fontFamily:
-                                                            'dancing'),
+                                                    style: TextStyle(
+                                                        fontSize: AppConstant
+                                                            .luckyKaFont,
+                                                        fontFamily: 'dancing'),
                                                   ),
                                           ),
                                         );
@@ -469,99 +464,89 @@ class _LuckyCard16State extends State<LuckyCard16> {
                                   ),
                                   Column(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: List.generate(
                                       l16c.rowBetList.length,
-                                          (index) {
+                                      (index) {
                                         return GestureDetector(
                                           onTap: () {
-                                            if (l16c.addLucky16Bets
-                                                .isEmpty &&
+                                            if (l16c.addLucky16Bets.isEmpty &&
                                                 l16c.resetOne == true) {
                                               l16c.setResetOne(false);
                                             }
-                                            l16c.addRowBet(
-                                                context, index);
+                                            l16c.addRowBet(context, index);
                                           },
                                           child: Container(
-                                            margin: EdgeInsets.only(top: width*0.008),
-                                            padding:
-                                            EdgeInsets.only(
-                                                top: width*0.008, left: width*0.03),
+                                            margin: EdgeInsets.only(
+                                                top: width * 0.008),
+                                            padding: EdgeInsets.only(
+                                                top: width * 0.008,
+                                                left: width * 0.03),
                                             alignment: Alignment.center,
                                             height: AppConstant.luckyColHi,
                                             width: width * 0.07,
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
-                                                image: AssetImage(l16c
-                                                    .rowBetList[index]),
+                                                image: AssetImage(
+                                                    l16c.rowBetList[index]),
                                                 fit: BoxFit.fill,
                                               ),
                                             ),
                                             child: l16c.tapedRowList
-                                                .isNotEmpty &&
-                                                l16c.tapedRowList
-                                                    .where((e) =>
-                                                e["index"] ==
-                                                    index)
-                                                    .isNotEmpty
-                                                ? Container(
-                                              alignment:
-                                              Alignment.center,
-                                              height: height *
-                                                  0.052,
-                                              width: height *
-                                                  0.052,
-                                              padding:
-                                              const EdgeInsets
-                                                  .fromLTRB(
-                                                  1, 2.5, 1, 1),
-                                              decoration:
-                                              getBoxDecoration(
-                                                l16c.tapedRowList
-                                                    .where((e) =>
-                                                e["index"] ==
-                                                    index)
-                                                    .first["amount"]!,
-                                              ),
-                                              child: Text(
-                                                l16c.tapedRowList
-                                                    .where((e) =>
-                                                e["index"] ==
-                                                    index)
-                                                    .first["amount"]
-                                                    .toString(),
-                                                style: TextStyle(
-                                                    fontSize: l16c
-                                                        .tapedRowList
+                                                        .isNotEmpty &&
+                                                    l16c.tapedRowList
                                                         .where((e) =>
-                                                    e["index"] ==
-                                                        index)
-                                                        .first[
-                                                    "amount"]
-                                                        .toString()
-                                                        .length <
-                                                        3
-                                                        ? 8
-                                                        : 7,
-                                                    fontFamily:
-                                                    'dangrek',
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .w600),
-                                              ),
-                                            )
+                                                            e["index"] == index)
+                                                        .isNotEmpty
+                                                ? Container(
+                                                    alignment: Alignment.center,
+                                                    height: height * 0.052,
+                                                    width: height * 0.052,
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(1, 2.5, 1, 1),
+                                                    decoration:
+                                                        getBoxDecoration(
+                                                      l16c.tapedRowList
+                                                          .where((e) =>
+                                                              e["index"] ==
+                                                              index)
+                                                          .first["amount"]!,
+                                                    ),
+                                                    child: Text(
+                                                      l16c.tapedRowList
+                                                          .where((e) =>
+                                                              e["index"] ==
+                                                              index)
+                                                          .first["amount"]
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          fontSize: l16c
+                                                                      .tapedRowList
+                                                                      .where((e) =>
+                                                                          e["index"] ==
+                                                                          index)
+                                                                      .first[
+                                                                          "amount"]
+                                                                      .toString()
+                                                                      .length <
+                                                                  3
+                                                              ? 8
+                                                              : 7,
+                                                          fontFamily: 'dangrek',
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                  )
                                                 : Text(
-                                              !l16c.showBettingTime
-                                                  ? 'Play'
-                                                  : '',
-                                              style:  TextStyle(
-                                                  fontSize:AppConstant.luckyKaFont,
-                                                  color:
-                                                  Colors.white,
-                                                  fontFamily:
-                                                  'dancing'),
-                                            ),
+                                                    !l16c.showBettingTime
+                                                        ? 'Play'
+                                                        : '',
+                                                    style: TextStyle(
+                                                        fontSize: AppConstant
+                                                            .luckyKaFont,
+                                                        color: Colors.white,
+                                                        fontFamily: 'dancing'),
+                                                  ),
                                           ),
                                         );
                                       },
@@ -590,8 +575,7 @@ class _LuckyCard16State extends State<LuckyCard16> {
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsets.only(right: height * 0.30),
+                            padding: EdgeInsets.only(right: height * 0.30),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -668,6 +652,8 @@ class _LuckyCard16State extends State<LuckyCard16> {
   }
 
   Widget shadowContainer() {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
       height: height * 0.06,
       width: width * 0.08,
@@ -695,16 +681,17 @@ class _LuckyCard16State extends State<LuckyCard16> {
             _buildImageContainer(color),
           ],
         ),
-        if(jackpot!=null)
-          _buildJackpotImage(jackpot),
+        if (jackpot != null) _buildJackpotImage(jackpot),
       ],
     );
   }
 
   Widget _buildImageContainer(String assetPath) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
-      height: height*0.1,
-      width: width*0.04,
+      height: height * 0.1,
+      width: width * 0.04,
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage(assetPath), fit: BoxFit.fill),
       ),

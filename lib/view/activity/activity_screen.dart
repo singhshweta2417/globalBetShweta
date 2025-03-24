@@ -24,8 +24,6 @@ class ActivityScreen extends StatefulWidget {
 }
 
 class _ActivityScreenState extends State<ActivityScreen> {
-
-
   @override
   void initState() {
     activitySliderList();
@@ -40,7 +38,8 @@ class _ActivityScreenState extends State<ActivityScreen> {
         'icon': Assets.iconsActivityIcon1,
         'gradient': AppColors.orangeColorGradient,
         'onTap': () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>const ActivityAward()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const ActivityAward()));
         },
       },
       {
@@ -48,7 +47,8 @@ class _ActivityScreenState extends State<ActivityScreen> {
         'icon': Assets.iconsActivityIcon2,
         'gradient': AppColors.blueGradient,
         'onTap': () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>const InvitationBonus()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const InvitationBonus()));
         },
       },
       {
@@ -60,73 +60,50 @@ class _ActivityScreenState extends State<ActivityScreen> {
           end: Alignment.bottomRight,
         ),
         'onTap': () {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>const BettingRebates()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const BettingRebates()));
         },
       },
-      // {
-      //   'text': 'New member\ngift package',
-      //   'icon': Assets.iconsActivityIcon4,
-      //   'gradient': const LinearGradient(
-      //     colors: [Colors.yellow, Colors.amber],
-      //     begin: Alignment.topLeft,
-      //     end: Alignment.bottomRight,
-      //   ),
-      //   'onTap': () {
-      //     // Define the behavior for tapping the 'New member gift package' item
-      //     // For example:
-      //     print('New member gift package tapped!');
-      //   },
-      // },
     ];
     return Scaffold(
       backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
-          title:Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              textWidget(
-                  text: 'Global Bet',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 28,
-                  color: AppColors.primaryTextColor),
-            ],
-          ),
-          centerTitle: true,
-          gradient: AppColors.primaryGradient),
-      body: SingleChildScrollView(
-        child: Column(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              decoration:
-                  const BoxDecoration(gradient: AppColors.primaryGradient),
-              child: ListTile(
-                title: textWidget(
-                    text: 'Activity',
-                    fontWeight: FontWeight.w900,
-                    fontSize: 20,
-                    color: AppColors.primaryTextColor),
-              ),
-            ),
-            Container(
-              decoration:
-                  const BoxDecoration(gradient: AppColors.primaryGradient),
-              child: ListTile(
-                subtitle: textWidget(
-                    text:
-                        'Please remember to follow the event page\nWe will launch user feedback activities from time to time',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                    color: AppColors.primaryTextColor),
-              ),
-            ),
+            textWidget(
+                text: 'Global Bet',
+                fontWeight: FontWeight.w600,
+                fontSize: 28,
+                color: AppColors.primaryTextColor),
+          ],
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        padding: EdgeInsets.fromLTRB(width*0.02, height*0.02, width*0.02, 0),
+        decoration: const BoxDecoration(gradient: AppColors.bgGrad),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            textWidget(
+                text: 'Activity',
+                fontWeight: FontWeight.w900,
+                fontSize: 20,
+                color: AppColors.primaryTextColor),
+            textWidget(
+                text:
+                    'Please remember to follow the event page\nWe will launch user feedback activities from time to time',
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+                color: AppColors.primaryTextColor),
             const SizedBox(height: 9),
             SizedBox(
-              height: height*0.15,
+              height: height * 0.15,
               child: GridView.builder(
+                padding: EdgeInsets.zero,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  crossAxisSpacing: 0.0,
-                  mainAxisSpacing: 1.0,
                 ),
                 shrinkWrap: true,
                 itemCount: items.length,
@@ -134,13 +111,11 @@ class _ActivityScreenState extends State<ActivityScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   return Center(
                     child: InkWell(
-
-                        onTap: () {
-                          // Call the onTap function associated with the item
-                          if (items[index]['onTap'] != null) {
-                            items[index]['onTap']();
-                          }
-
+                      onTap: () {
+                        // Call the onTap function associated with the item
+                        if (items[index]['onTap'] != null) {
+                          items[index]['onTap']();
+                        }
                       },
                       child: Column(
                         children: [
@@ -175,28 +150,25 @@ class _ActivityScreenState extends State<ActivityScreen> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  redeemWidget(() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const GiftsPage()));
-                  }, Assets.imagesGiftRedeem, 'Gifts',
-                      'Enter the redemption code to receive gift rewards'),
-                  redeemWidget(() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AttendenceBonus()));
-                  }, Assets.imagesSignInBanner, 'Attendance bonus',
-                      'The more consecutive days you sign in, the higher the reward will be.'),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                redeemWidget(() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const GiftsPage()));
+                }, Assets.imagesGiftRedeem, 'Gifts',
+                    'Enter the redemption code to receive gift rewards'),
+                redeemWidget(() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AttendenceBonus()));
+                }, Assets.imagesSignInBanner, 'Attendance bonus',
+                    'The more consecutive days you sign in, the higher the reward will be.'),
+              ],
             ),
             ListView.builder(
               shrinkWrap: true,
@@ -204,50 +176,45 @@ class _ActivityScreenState extends State<ActivityScreen> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ActivityDetails(bannerdata:sliderData[index])));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ActivityDetails(
+                                bannerdata: sliderData[index])));
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                    child: Card(
-                      color: AppColors.filledColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: SizedBox(
-                        height: 200,
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 150,
-                              width: width,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10)),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      sliderData[index].image.toString()),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: height*0.02),
+                    margin: EdgeInsets.fromLTRB(0,height*0.02,0,0),
+                    decoration: BoxDecoration(
+                        color: AppColors.unSelectColor,
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 150,
+                          width: width,
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10)),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  sliderData[index].image.toString()),
+                              fit: BoxFit.fill,
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: width,
-                              child: Text(
-                                sliderData[index].name.toString(),
-                                style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                        Text(
+                          '  ${sliderData[index].name.toString()}',
+                          style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -300,7 +267,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
         height: height * 0.3,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          gradient: AppColors.primaryUnselectedGradient,
+          gradient: AppColors.unSelectedColor,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
