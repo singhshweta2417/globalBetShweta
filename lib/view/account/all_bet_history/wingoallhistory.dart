@@ -4,7 +4,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:globalbet/generated/assets.dart';
 // import 'package:globalbet/main.dart';
-// import 'package:globalbet/model/bettingHistory_Model.dart';
+// import 'package:globalbet/model/betting_history_model.dart';
 // import 'package:globalbet/model/user_model.dart';
 // import 'package:globalbet/res/aap_colors.dart';
 // import 'package:globalbet/res/api_urls.dart';
@@ -39,7 +39,7 @@
 //
 //         Container(
 //           height: height*0.07,
-//           color: AppColors.filledColor,
+//           color: AppColors.darkColor,
 //           child: Padding(
 //             padding: const EdgeInsets.all(10.0),
 //             child: Row(
@@ -72,14 +72,14 @@
 //                 0) {
 //               colors = [
 //                 AppColors.orangeColor,
-//                 AppColors.primaryTextColor,
+//                 AppColors.whiteColor,
 //               ];
 //             } else if (items[index]
 //                 .number ==
 //                 5) {
 //               colors = [
 //                 const Color(0xFF40ad72),
-//                 AppColors.primaryTextColor,
+//                 AppColors.whiteColor,
 //               ];
 //             } else if (items[index]
 //                 .number ==
@@ -93,8 +93,8 @@
 //                 .number ==
 //                 20) {
 //               colors = [
-//                 AppColors.primaryTextColor,
-//                 AppColors.primaryTextColor,
+//                 AppColors.whiteColor,
+//                 AppColors.whiteColor,
 //               ];
 //             }
 //             else if (items[index]
@@ -202,9 +202,9 @@
 //                         BorderRadius.circular(
 //                             10),
 //                         border: Border.all(
-//                             color: items[index].status==0? AppColors.primaryTextColor:items[index].status==2?
+//                             color: items[index].status==0? AppColors.whiteColor:items[index].status==2?
 //                             AppColors
-//                                 .secondaryTextColor: Colors.green)),
+//                                 .whiteColor: Colors.green)),
 //                     child: Center(
 //                       child:  Text(
 //                         items[index].status==2?'Failed':items[index].status==0?'Pending':'Succeed',
@@ -216,7 +216,7 @@
 //                             items[index].status==0?Colors.white:
 //                             items[index].status==2?
 //                             AppColors
-//                                 .secondaryTextColor: Colors.green),
+//                                 .whiteColor: Colors.green),
 //                       ),
 //                     ),
 //                   ),
@@ -229,7 +229,7 @@
 //                         FontWeight.w700,
 //                         color: items[index].status==0?Colors.white:items[index].status==2?
 //                         AppColors
-//                             .secondaryTextColor: Colors.green),
+//                             .whiteColor: Colors.green),
 //                   ),
 //                 ],
 //               ),
@@ -396,7 +396,7 @@
 //               text: '$pageNumber/ $totalBets',
 //               fontSize: 13,
 //               fontWeight: FontWeight.w600,
-//               color: AppColors.primaryTextColor,
+//               color: AppColors.whiteColor,
 //               maxLines: 1,
 //             ),
 //             const SizedBox(width: 16),
@@ -581,13 +581,13 @@
 //             text: text,
 //             fontWeight: FontWeight.w900,
 //             fontSize: 12,
-//             color: AppColors.primaryTextColor,
+//             color: AppColors.whiteColor,
 //           ),
 //           const SizedBox(height: 5,),
 //           isSelected ?  Container(
 //             height: 3,
 //             width: 50,
-//             color: isSelected ? Colors.blue : AppColors.gradientFirstColor,
+//             color: isSelected ? Colors.blue : AppColors.whiteColor,
 //           ) :Container()
 //
 //         ],
@@ -753,7 +753,7 @@ class _WingoMyHisState extends State<WingoMyHis> {
                               ? Colors.green
                               : Colors.red,
                           fontSize: 12,
-                          gradient: AppColors.transparentgradient,
+                          gradient: AppColors.transparentGradient,
                           border: Border.all(
                             color: betHistoryData.status == 0
                                 ? Colors.orange
@@ -869,7 +869,7 @@ class _WingoMyHisState extends State<WingoMyHis> {
                   width: width * 0.10,
                   decoration: BoxDecoration(
                     gradient: pageValue ==1
-                        ? AppColors.boxGradient:AppColors.primaryGradient,
+                        ? AppColors.loginSecondaryGrad:AppColors.primaryGradient,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(
@@ -926,7 +926,7 @@ class _WingoMyHisState extends State<WingoMyHis> {
                             1) ~/
                             10) +
                             1
-                        ? AppColors.boxGradient:AppColors.primaryGradient,
+                        ? AppColors.loginSecondaryGrad:AppColors.primaryGradient,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child:  const Icon(Icons.navigate_next,

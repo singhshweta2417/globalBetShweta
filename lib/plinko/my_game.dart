@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'dart:convert';
 import 'dart:math';
 import 'package:flame/components.dart';
@@ -167,8 +165,8 @@ class _MyGameWidgetState extends State<MyGameWidget> {
     plinkoRedList();
     plinkoYellowList();
     plinkoGreenList();
-    fetchPlinkoBethistory();
-    fetchPlinkoBethistoryTwo();
+    fetchPlinkoBetHistory();
+    fetchPlinkoBetHistoryTwo();
   }
 
   var initValue = 0;
@@ -230,11 +228,6 @@ class _MyGameWidgetState extends State<MyGameWidget> {
         actions: [
           Row(
             children: [
-              // Text(  context.read<ProfileProvider>().mainWallet.toStringAsFixed(2)+'₹',
-              //   style: TextStyle(
-              //        fontSize: 12,
-              //     fontWeight: FontWeight.w800,
-              //   ),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -253,7 +246,8 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                   InkWell(
                       onTap: () {
                         setState(() {
-                          Provider.of<ProfileViewModel>(context).profileApi(context);
+                          Provider.of<ProfileViewModel>(context)
+                              .profileApi(context);
                           Utils.flushBarSuccessMessage(
                               'Wallet refresh ✔', context, Colors.white);
                         });
@@ -976,7 +970,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                 ],
               )
             : SizedBox(
-                height: height * 0.038,
+                height: height * 0.04,
                 width: width,
                 child: ListView.builder(
                     shrinkWrap: true,
@@ -1025,9 +1019,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                           ),
                           child: Center(
                             child: Text(
-                              fetchPlinkoBet[index]
-                                  .multipler
-                                  .toString(), //${number[index].price.toStringAsFixed(2)}
+                              fetchPlinkoBet[index].multipler.toString(),
                               style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.white,
@@ -1040,8 +1032,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
               ),
         onExpansionChanged: (value) {
           setState(() {
-            fetchPlinkoBethistoryTwo();
-
+            fetchPlinkoBetHistoryTwo();
             isExpanded = value;
           });
         },
@@ -1115,7 +1106,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
         widget.game.onTapDown();
       }
       setState(() {
-        //  context.read<ProfileProvider>().fetchProfileData();
+        Provider.of<ProfileViewModel>(context).profileApi(context);
 
         if (type == '1') {
           loaderOne = false;
@@ -1128,9 +1119,10 @@ class _MyGameWidgetState extends State<MyGameWidget> {
 
       Fluttertoast.showToast(msg: responseData['message']);
       await Future.delayed(const Duration(seconds: 15), () {
-        fetchPlinkoBethistory();
+        fetchPlinkoBetHistory();
         setState(() {
-          Provider.of<ProfileViewModel>(context).profileApi(context);        });
+          Provider.of<ProfileViewModel>(context).profileApi(context);
+        });
       });
     } else {
       //setRegLoading(false);
@@ -1251,7 +1243,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
   }
 
   List<PlinkoBetHistory> fetchPlinkoBet = [];
-  Future<void> fetchPlinkoBethistory() async {
+  Future<void> fetchPlinkoBetHistory() async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     final response = await http.get(
@@ -1265,7 +1257,6 @@ class _MyGameWidgetState extends State<MyGameWidget> {
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       setState(() {
-        Provider.of<ProfileViewModel>(context).profileApi(context);
         fetchPlinkoBet = responseData
             .map((item) => PlinkoBetHistory.fromJson(item))
             .toList();
@@ -1281,9 +1272,8 @@ class _MyGameWidgetState extends State<MyGameWidget> {
       throw Exception('Failed to load data');
     }
   }
-
   List<PlinkoBetHistory> fetchPlinkoBetTwo = [];
-  Future<void> fetchPlinkoBethistoryTwo() async {
+  Future<void> fetchPlinkoBetHistoryTwo() async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     final response = await http.get(

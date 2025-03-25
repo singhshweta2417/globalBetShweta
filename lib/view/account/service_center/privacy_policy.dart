@@ -3,7 +3,7 @@ import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/privacypolicy_provider.dart';
+import 'package:globalbet/res/provider/privacy_policy_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -35,7 +35,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
 
 
     return SafeArea(child: Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -53,9 +53,9 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             text: 'Privacy policy',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: dataprivacy!= null?SizedBox(
         height: height,
         width: width,
@@ -64,7 +64,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: HtmlWidget(dataprivacy.description.toString(),textStyle: const TextStyle(color: AppColors.primaryTextColor),),
+                  child: HtmlWidget(dataprivacy.description.toString(),textStyle: const TextStyle(color: AppColors.whiteColor),),
                 ),
 
               ],

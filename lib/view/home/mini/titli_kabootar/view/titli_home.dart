@@ -41,26 +41,25 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
           Provider.of<GetAmountViewModel>(context, listen: false);
       getAmountProvider.getAmountApi(
           context, "${result.resultModel!.data!.first.gamesNo + 1}".toString());
-      print("${result.resultModel!.data!.first.gamesNo + 1}".toString());
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
     final tc = Provider.of<TitliController>(context);
     final profile = Provider.of<ProfileViewModel>(context);
     final betViewModel = Provider.of<BetViewModel>(context);
-    final  height = MediaQuery.of(context).size.height;
-    final  width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return PopScope(
       canPop: false,
       onPopInvoked: (_) {
+        Audio.audioPlayers.stop();
         showDialog(
           context: context,
           barrierColor: Colors.transparent,
           builder: (BuildContext context) {
-            return ExitTitliGame();
+            return const ExitTitliGame();
           },
         );
       },
@@ -216,7 +215,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                                   margin:
                                       const EdgeInsets.symmetric(horizontal: 5),
                                   alignment: Alignment.center,
-                                  width: (width*0.5) / 6,
+                                  width: (width * 0.5) / 6,
                                   height: (height * 0.4) / 2.5,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
@@ -571,8 +570,8 @@ BoxDecoration getBoxDecoration(int amount) {
 }
 
 Widget shadowContainer(context) {
-  final  height = MediaQuery.of(context).size.height;
-  final  width = MediaQuery.of(context).size.width;
+  final height = MediaQuery.of(context).size.height;
+  final width = MediaQuery.of(context).size.width;
   return Container(
     height: height * 0.06,
     width: width * 0.12,

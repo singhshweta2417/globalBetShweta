@@ -80,7 +80,7 @@ class ShowMinePopUp extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       hideBorder: true,
-                      gradient: MineColor.buttonGradient),
+                      gradient: MineColor.primaryGradient),
                 ),
               )
             ],

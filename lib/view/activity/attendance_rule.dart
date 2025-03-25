@@ -4,13 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/attendence_model.dart';
+import 'package:globalbet/model/attendance_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/components/theam_color.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -35,20 +34,20 @@ class _AttendanceRuleState extends State<AttendanceRule> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
-      appBar: GradientAppBar(
-        leading: const AppBackBtn(),
+      appBar: const GradientAppBar(
+        leading: AppBackBtn(),
         title: Text(
           'Game Rules',
           style: TextStyle(
               fontWeight: FontWeight.w800,
               fontSize: 20,
-              color: myCustomTheme.appBarTheme.backgroundColor),
+              color: AppColors.whiteColor),
         ),
         centerTitle: true,
-        gradient: AppColors.primaryUnselectedGradient,
+        gradient: AppColors.unSelectedColor,
       ),
-      body: Padding(
+      body: Container(
+        decoration: const BoxDecoration(gradient: AppColors.bgGrad),
         padding: const EdgeInsets.all(10.0),
         child: ListView(
           shrinkWrap: true,
@@ -58,13 +57,13 @@ class _AttendanceRuleState extends State<AttendanceRule> {
               padding: const EdgeInsets.all(10.0),
               child: Container(
                 decoration: BoxDecoration(
-                    gradient: AppColors.primaryUnselectedGradient,
+                    gradient: AppColors.unSelectedColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
                     Container(
                       decoration: const BoxDecoration(
-                          gradient: AppColors.buttonGradient,
+                          gradient: AppColors.primaryGradient,
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10))),
@@ -99,7 +98,7 @@ class _AttendanceRuleState extends State<AttendanceRule> {
                                   ],
                                 ),
                                 const Divider(
-                                  color: AppColors.gradientFirstColor,
+                                  color: AppColors.whiteColor,
                                   thickness: 1,
                                 )
                               ],
@@ -117,9 +116,8 @@ class _AttendanceRuleState extends State<AttendanceRule> {
                   Container(
                     decoration: BoxDecoration(
                         border: Border.all(
-                            color: AppColors.secondaryContainerTextColor,
+                            color: AppColors.unSelectColor,
                             width: 2),
-                        //  gradient: AppColors.primaryUnselectedGradient,
                         borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
@@ -149,7 +147,7 @@ class _AttendanceRuleState extends State<AttendanceRule> {
                         style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 20,
-                            color: AppColors.primaryTextColor),
+                            color: AppColors.whiteColor),
                       ),
                     ),
                   ),
@@ -169,11 +167,10 @@ class _AttendanceRuleState extends State<AttendanceRule> {
         child: Container(
           height: 10,
           width: 10,
-          color: AppColors.gradientFirstColor,
+          color: AppColors.whiteColor,
         ),
       ),
-      title: textWidget(
-          text: title, fontSize: 14, color: AppColors.primaryTextColor),
+      title: textWidget(text: title, fontSize: 14, color: AppColors.whiteColor),
     );
   }
 
@@ -187,7 +184,7 @@ class _AttendanceRuleState extends State<AttendanceRule> {
           style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 13,
-              color: AppColors.primaryTextColor),
+              color: AppColors.whiteColor),
         ),
       ),
     );

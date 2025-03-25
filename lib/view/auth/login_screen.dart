@@ -26,7 +26,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
 
   bool selectedButton = true;
   bool hidePassword = true;
@@ -86,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: 'Global Bet',
                 fontWeight: FontWeight.w600,
                 fontSize: 28,
-                color: AppColors.primaryTextColor),
+                color: AppColors.whiteColor),
             ),
         body: _connectionStatus == ConnectivityResult.none
             ? Column(
@@ -119,13 +118,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: 'Log in',
                         fontWeight: FontWeight.w600,
                         fontSize: 22,
-                        color: AppColors.primaryTextColor),
+                        color: AppColors.whiteColor),
                     textWidget(
                         text:
                             'Please log in with your phone number or email\nIf you forget your password, please contact customer service',
                         fontWeight: FontWeight.w600,
                         fontSize: 10,
-                        color: AppColors.primaryTextColor),
+                        color: AppColors.whiteColor),
                     Sizes.spaceHeight10,
                     Row(
                       children: [
@@ -158,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     selectedButton
                                         ? Image.asset(Assets.iconsPhoneTabColor,
                                             scale: 1.5,
-                                            color: AppColors.primaryTextColor)
+                                            color: AppColors.whiteColor)
                                         : Image.asset(
                                             Assets.iconsPhoneTab,
                                             scale: 1.5,
@@ -169,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       fontWeight: FontWeight.w600,
                                       fontSize: 16,
                                       color: selectedButton
-                                          ? AppColors.primaryTextColor
+                                          ? AppColors.whiteColor
                                           : AppColors.unSelectColor,
                                     )
                                   ],
@@ -199,7 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 !selectedButton
                                     ? Image.asset(Assets.iconsEmailTabColor,
                                         scale: 1.5,
-                                        color: AppColors.primaryTextColor)
+                                        color: AppColors.whiteColor)
                                     : Image.asset(
                                         Assets.iconsEmailTab,
                                         scale: 1.5,
@@ -210,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                   color: !selectedButton
-                                      ? AppColors.primaryTextColor
+                                      ? AppColors.whiteColor
                                       : AppColors.unSelectColor,
                                 )
                               ],
@@ -227,13 +226,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ? Assets.iconsPhone
                                 : Assets.iconsEmailTab,
                             scale: 1.5,
-                            color: AppColors.primaryTextColor),
+                            color: AppColors.whiteColor),
                         const SizedBox(width: 20),
                         textWidget(
                             text: selectedButton ? 'Phone Number' : 'Mail',
                             fontWeight: FontWeight.w400,
                             fontSize: 18,
-                            color: AppColors.primaryTextColor)
+                            color: AppColors.whiteColor)
                       ],
                     ),
                     Sizes.spaceHeight5,
@@ -290,13 +289,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       children: [
                         Image.asset(Assets.iconsPassword,
-                            scale: 1.5, color: AppColors.primaryTextColor),
+                            scale: 1.5, color: AppColors.whiteColor),
                         const SizedBox(width: 20),
                         textWidget(
                             text: 'Password',
                             fontWeight: FontWeight.w400,
                             fontSize: 18,
-                            color: AppColors.primaryTextColor)
+                            color: AppColors.whiteColor)
                       ],
                     ),
                     Sizes.spaceHeight5,
@@ -335,15 +334,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               alignment: Alignment.center,
                               decoration: rememberPass
                                   ? BoxDecoration(
-                                      color: AppColors.gradientFirstColor,
+                                      color: AppColors.whiteColor,
                                       border: Border.all(
-                                          color: AppColors.primaryTextColor),
+                                          color: AppColors.whiteColor),
                                       borderRadius:
                                           BorderRadiusDirectional.circular(50),
                                     )
                                   : BoxDecoration(
                                       border: Border.all(
-                                          color: AppColors.primaryTextColor),
+                                          color: AppColors.whiteColor),
                                       borderRadius:
                                           BorderRadiusDirectional.circular(50),
                                     ),
@@ -358,7 +357,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         textWidget(
                             text: 'Remember password',
                             fontSize: 14,
-                            color: AppColors.primaryTextColor),
+                            color: AppColors.whiteColor),
                       ],
                     ),
                     Sizes.spaceHeight20,
@@ -406,12 +405,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Image.asset(Assets.iconsPassword,
                                   height: 50,
-                                  color: AppColors.primaryTextColor),
+                                  color: AppColors.whiteColor),
                               textWidget(
                                   text: 'Forgot password',
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
-                                  color: AppColors.primaryTextColor)
+                                  color: AppColors.whiteColor)
                             ],
                           ),
                         ),
@@ -427,12 +426,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Image.asset(Assets.iconsCustomer,
                                   height: 50,
-                                  color: AppColors.primaryTextColor),
+                                  color: AppColors.whiteColor),
                               textWidget(
                                   text: 'Customer Service',
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
-                                  color: AppColors.primaryTextColor)
+                                  color: AppColors.whiteColor)
                             ],
                           ),
                         ),

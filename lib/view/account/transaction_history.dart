@@ -5,8 +5,8 @@ import 'package:globalbet/view/account/all_bet_history/avaitor_all_bet_history.d
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/all_transction_model.dart';
-import 'package:globalbet/model/transction_type_model.dart';
+import 'package:globalbet/model/all_transaction_model.dart';
+import 'package:globalbet/model/transaction_type_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -41,17 +41,17 @@ class _TransctionHistoryState extends State<TransctionHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
         leading: const AppBackBtn(),
         title: textWidget(
           text: 'Transaction history',
           fontWeight: FontWeight.w900,
           fontSize: 20,
-          color: AppColors.primaryTextColor,
+          color: AppColors.whiteColor,
         ),
         centerTitle: true,
-        gradient: AppColors.primaryUnselectedGradient,
+        gradient: AppColors.unSelectedColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -80,7 +80,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                     width: width * 0.45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      gradient: AppColors.primaryUnselectedGradient,
+                      gradient: AppColors.unSelectedColor,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -109,7 +109,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                   height: height * 0.08,
                     width: width * 0.45,
                   decoration: BoxDecoration(
-                      color: AppColors.secondaryContainerTextColor,
+                      color: AppColors.contLightColor,
                       borderRadius: BorderRadius.circular(5)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +118,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                           text:   _selectedDate==null?'Select date':
                           '   ${_selectedDate!.year}-${_selectedDate!.month}-${_selectedDate!.day}',
                           fontSize: 18,
-                          color: AppColors.primaryTextColor),
+                          color: AppColors.whiteColor),
                       FilterDateFormat(
                         onDateSelected: (DateTime selectedDate) {
 
@@ -153,7 +153,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: AppColors.filledColor,
+                          color: AppColors.darkColor,
                         ),
                         child: Column(
                           children: [
@@ -165,7 +165,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                                   topLeft: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                 ),
-                                gradient: AppColors.topContainerGrad,
+                                gradient: AppColors.loginSecondaryGrad,
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -175,7 +175,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                                     text: transaction.type.toString(),
                                     fontWeight: FontWeight.w900,
                                     fontSize: 18,
-                                    color: AppColors.primaryTextColor,
+                                    color: AppColors.whiteColor,
                                   ),
                                 ),
                               ),
@@ -217,7 +217,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
           topRight: Radius.circular(10),
           topLeft: Radius.circular(10),
         ),
-        color: AppColors.filledColor,
+        color: AppColors.darkColor,
       ),
       height: MediaQuery.of(context).size.height * 0.6,
       child: Column(
@@ -251,7 +251,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                     text: 'Confirm',
                     fontWeight: FontWeight.w900,
                     fontSize: 16,
-                    color: AppColors.gradientFirstColor,
+                    color: AppColors.whiteColor,
                   ),
                 ),
               ],
@@ -284,7 +284,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                           fontSize: 16,
                           color: selectedId == index.toString()
                               ? Colors.blue
-                              : AppColors.primaryTextColor,
+                              : AppColors.whiteColor,
                         ),
                       ),
                       SizedBox(
@@ -312,7 +312,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
             width: width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: AppColors.firstColors,
+              color: AppColors.unSelectColor,
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),

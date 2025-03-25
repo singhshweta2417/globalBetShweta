@@ -13,5 +13,6 @@ class Sizes{
   static const spaceHeight15 = SizedBox(height: 15);
   static const spaceHeight20 = SizedBox(height: 20);
   static const spaceHeight25 = SizedBox(height: 25);
+  static const spaceHeight30 = SizedBox(height: 30);
 
 }

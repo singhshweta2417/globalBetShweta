@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/subordinateDataModel.dart';
+import 'package:globalbet/model/subordinate_data_model.dart';
 import 'package:globalbet/model/tier_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
@@ -40,13 +40,13 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Subordinate Data', fontSize: 25, color: Colors.white),
           leading: const AppBackBtn(),
           centerTitle: true,
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: Stack(
         children: [
           Padding(
@@ -105,7 +105,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                         height: height * 0.25,
                         width: width * 0.93,
                         decoration: BoxDecoration(
-                            color: AppColors.secondaryContainerTextColor,
+                            color: AppColors.contLightColor,
                             borderRadius: BorderRadius.circular(5)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -115,7 +115,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                                 textWidget(
                                     text: '  UID:${sundataitem[index].u_id}',
                                     fontSize: 18,
-                                    color: AppColors.primaryTextColor),
+                                    color: AppColors.whiteColor),
                                 IconButton(
                                     onPressed: () {
                                       copyToClipboard(sundataitem[index].u_id.toString(),context);
@@ -123,14 +123,14 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                                     icon: const Icon(
                                       Icons.copy,
                                       size: 20,
-                                      color: AppColors.primaryTextColor,
+                                      color: AppColors.whiteColor,
                                     )),
                               ],
                             ),
                             Container(
                               width: width * 0.9,
                               height: 0.5,
-                              color: AppColors.gradientFirstColor,
+                              color: AppColors.whiteColor,
                             ),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -141,11 +141,11 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                                   textWidget(
                                       text: 'Level',
                                       fontSize: 16,
-                                      color: AppColors.primaryTextColor),
+                                      color: AppColors.whiteColor),
                                   textWidget(
                                       text:selectedTierIndex==-1? '  All':'Tier ${selectedTierIndex+1}',
                                       fontSize: 16,
-                                      color: AppColors.primaryTextColor),
+                                      color: AppColors.whiteColor),
                                 ],
                               ),
                             ),
@@ -158,11 +158,11 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                                   textWidget(
                                       text: 'Deposit amount',
                                       fontSize: 16,
-                                      color: AppColors.primaryTextColor),
+                                      color: AppColors.whiteColor),
                                   textWidget(
                                       text: "₹${sundataitem[index].total_cash}",
                                       fontSize: 16,
-                                      color: AppColors.gradientFirstColor),
+                                      color: AppColors.whiteColor),
                                 ],
                               ),
                             ),
@@ -175,11 +175,11 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                                   textWidget(
                                       text: 'Bet amount',
                                       fontSize: 18,
-                                      color: AppColors.primaryTextColor),
+                                      color: AppColors.whiteColor),
                                   textWidget(
                                       text: "₹${sundataitem[index].bet_amount}",
                                       fontSize: 18,
-                                      color: AppColors.gradientFirstColor),
+                                      color: AppColors.whiteColor),
                                 ],
                               ),
                             ),
@@ -192,11 +192,11 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                                   textWidget(
                                       text: 'Commission',
                                       fontSize: 18,
-                                      color: AppColors.primaryTextColor),
+                                      color: AppColors.whiteColor),
                                   textWidget(
                                       text:sundataitem[index].commission.toString(),
                                       fontSize: 18,
-                                      color: AppColors.gradientFirstColor),
+                                      color: AppColors.whiteColor),
                                 ],
                               ),
                             ),
@@ -209,11 +209,11 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                                   textWidget(
                                       text: 'Date',
                                       fontSize: 18,
-                                      color: AppColors.primaryTextColor),
+                                      color: AppColors.whiteColor),
                                   textWidget(
                                       text:sundataitem[index].yesterday_date.toString(),
                                       fontSize: 18,
-                                      color: AppColors.gradientFirstColor),
+                                      color: AppColors.whiteColor),
                                 ],
                               ),
                             ),
@@ -271,7 +271,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                     height: height * 0.065,
 
                     decoration: BoxDecoration(
-                        color: AppColors.secondaryContainerTextColor,
+                        color: AppColors.contLightColor,
                         borderRadius: BorderRadius.circular(5)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,7 +281,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                           child: textWidget(
                               text:selectedTierIndex==-1? '  All':'Tier ${selectedTierIndex+1}',
                               fontSize: 18,
-                              color: AppColors.primaryTextColor),
+                              color: AppColors.whiteColor),
                         ),
                         IconButton(
                             onPressed: () {
@@ -290,7 +290,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                             },
                             icon: const Icon(
                                 Icons.keyboard_arrow_down_outlined,
-                                color: AppColors.primaryTextColor)),
+                                color: AppColors.whiteColor)),
                       ],
                     ),
                   ),
@@ -310,7 +310,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
 
   showSubordinateFilterBottomSheet(BuildContext context) {
     showModalBottomSheet(
-      backgroundColor:AppColors.secondaryContainerTextColor,
+      backgroundColor:AppColors.contLightColor,
       shape: const RoundedRectangleBorder(
           borderRadius:   BorderRadius.only(
               topRight: Radius.circular(10), topLeft: Radius.circular(10))
@@ -398,7 +398,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
             style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
-                color: AppColors.primaryTextColor),
+                color: AppColors.whiteColor),
           ),
         ],
       ),

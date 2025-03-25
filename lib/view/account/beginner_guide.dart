@@ -37,7 +37,7 @@ class _BeginnersGuideScreenState extends State<BeginnersGuideScreen> {
 
 
     return SafeArea(child: Scaffold(
-        backgroundColor: AppColors.scaffoldDark,
+        
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -55,9 +55,9 @@ class _BeginnersGuideScreenState extends State<BeginnersGuideScreen> {
             text: 'Beginners Guide',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: SizedBox(
         height: height,
         width: width,

@@ -33,7 +33,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -51,9 +51,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
             text: 'Notification',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,),
+            color: AppColors.whiteColor,),
 
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body:ListView(
         shrinkWrap: true,
         children: [
@@ -69,7 +69,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   elevation: 5,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(11)),
                   child: Container(
-                    decoration: BoxDecoration(gradient: AppColors.primaryUnselectedGradient, borderRadius: BorderRadiusDirectional.circular(10)),
+                    decoration: BoxDecoration(gradient: AppColors.unSelectedColor, borderRadius: BorderRadiusDirectional.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -85,7 +85,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               items[index].name.toString(),
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.primaryTextColor
+                                color: AppColors.whiteColor
                               ),
                               const Spacer(),
                               Image.asset(Assets.iconsDeleat,scale: 1.5,),

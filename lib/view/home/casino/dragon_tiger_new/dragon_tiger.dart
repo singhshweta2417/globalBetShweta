@@ -32,6 +32,7 @@ import 'package:http/http.dart' as http;
 
 class DragonTiger extends StatefulWidget {
   final String gameId;
+
   const DragonTiger({Key? key, required this.gameId}) : super(key: key);
 
   @override
@@ -48,7 +49,7 @@ class _DragonTigerState extends State<DragonTiger> {
   bool _startBet = false;
   bool _stopBet = false;
   bool _isFrontTwo = false;
-  bool _isFrontone = false;
+  bool _isFrontOne = false;
   int dragonUserSum = 0;
   int tigerUserSum = 0;
   int tieUserSum = 0;
@@ -137,53 +138,12 @@ class _DragonTigerState extends State<DragonTiger> {
                       ),
                     )),
                 const Spacer(),
-
-                // InkWell(
-                //     onTap: () {
-                //       // Navigator.pushNamed(
-                //       //     context, RoutesName.accountScreen);
-                //     },
-                //     child: Padding(
-                //       padding: const EdgeInsets.all(5.0),
-                //       child: Container(
-                //         height: height*0.05,
-                //         width: width*0.13,
-                //         decoration:  const BoxDecoration(
-                //
-                //           image: DecorationImage(
-                //             image: AssetImage(Assets.dragontigerAddIconNew),
-                //           ),
-                //         ),
-                //         child: const DualRingAnimation(
-                //           color: Color(0xffECC64E),
-                //           size: 40.0,
-                //           lineWidth: 1,
-                //         ),
-                //       ),
-                //     )),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // AnimatedSwitcher(
-                //   duration: const Duration(milliseconds: 600),
-                //   transitionBuilder: __transitionBuilder,
-                //   child:
-                //   _showFrontSide
-                //       ? _buildFrontOne(ResultGameHistory)
-                //       : FadeInRight(child: _buildBack()),
-                // ),
-                // const SizedBox(width: 15),
-                // AnimatedSwitcher(
-                //   duration: const Duration(milliseconds: 600),
-                //   transitionBuilder: __transitionBuilder,
-                //   child: FadeInLeft(child: _buildBack()),
-                //   // _showFrontSide
-                //   //     ? _buildFrontTwo(drTiResultViewModel)
-                //   //     : FadeInLeft(child: _buildBack()),
-                // )
-                _isFrontone
+                _isFrontOne
                     ? AnimatedGradientBorder(
                         borderSize: winResult == '1'
                             ? 3
@@ -229,11 +189,9 @@ class _DragonTigerState extends State<DragonTiger> {
                                 ),
                                 fit: BoxFit.fill)),
                       )),
-
                 SizedBox(
                   width: width * 0.11,
                 ),
-
                 _isFrontTwo
                     ? AnimatedGradientBorder(
                         borderSize: winResult == '2'
@@ -559,7 +517,6 @@ class _DragonTigerState extends State<DragonTiger> {
                                     });
                                     // Show Overlay
                                     Overlay.of(context).insert(overlayEntry);
-                                    // wait for the animation to end
                                     Future.delayed(const Duration(seconds: 2),
                                         () {
                                       overlayEntry.remove();
@@ -587,7 +544,6 @@ class _DragonTigerState extends State<DragonTiger> {
                                       color: Colors.transparent,
                                       alignment: Alignment.bottomCenter,
                                       child:
-                                          // (drTiResultViewModel.drTiResult == '70') &&
                                           StrokeText(
                                         text: tigerUserSum.toString(),
                                         strokeColor: AppColors.btnTextColor,
@@ -610,7 +566,6 @@ class _DragonTigerState extends State<DragonTiger> {
             const Spacer(),
             SizedBox(
               height: height * 0.18,
-              // color: Colors.red.withAlpha(40),
               child: Column(
                 children: [
                   Row(
@@ -629,7 +584,6 @@ class _DragonTigerState extends State<DragonTiger> {
                             border: Border.all(
                                 width: 0.5, color: Colors.grey.shade600)),
                         child: textWidget(
-                            // text: drTiResultViewModel.drTiPeriod,
                             text: gamesNo.toString(),
                             fontWeight: FontWeight.w900,
                             color: Colors.white),
@@ -659,7 +613,6 @@ class _DragonTigerState extends State<DragonTiger> {
                       SizedBox(
                           width: width * 0.20,
                           height: height * 0.035,
-                          // color: Colors.teal,
                           child: Center(
                             child: textWidget(
                                 text:
@@ -686,13 +639,11 @@ class _DragonTigerState extends State<DragonTiger> {
                   ),
                   SizedBox(
                     height: height * 0.07,
-                    // color: Colors.pink,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(
                           height: height * 0.065,
-                          // color: Colors.yellowAccent,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
@@ -742,7 +693,7 @@ class _DragonTigerState extends State<DragonTiger> {
           _apiActionExecuted = true;
         }
         if (value == 1 && !_startBet) {
-          _isFrontone = false;
+          _isFrontOne = false;
           _isFrontTwo = false;
 
           generateRandomCoin();
@@ -769,12 +720,6 @@ class _DragonTigerState extends State<DragonTiger> {
             width: width,
             height: height * 0.1,
           );
-          //  if (dragonUserSum == 0 && tigerUserSum == 0 && tieUserSum == 0) {
-          //    // All counts are 0
-          //  } else {
-          //    bettingApi();
-          // }
-
           _stopBet = true;
           _startBet = false;
         }
@@ -783,7 +728,7 @@ class _DragonTigerState extends State<DragonTiger> {
           coins1.clear();
           coins3.clear();
           _showFrontWidgets();
-          lastresultview();
+          lastResultView();
           _isActionExecuted = true;
         } else if (value >= 5 && _isActionExecuted) {
           _showBackWidget();
@@ -849,8 +794,9 @@ class _DragonTigerState extends State<DragonTiger> {
   var cardImage2;
   var gamesNo;
 
-  Future<void> lastresultview() async {
+  Future<void> lastResultView() async {
     var gameIds = widget.gameId;
+
     try {
       final url = Uri.parse('${ApiUrl.resultList}$gameIds&limit=1');
       final response = await http.get(url);
@@ -884,7 +830,7 @@ class _DragonTigerState extends State<DragonTiger> {
           print('gjjjjjjjjjjj');
         }
 
-        _isFrontone = true;
+        _isFrontOne = true;
         _isFrontTwo = true;
       } else {
         throw Exception(

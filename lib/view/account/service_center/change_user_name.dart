@@ -12,7 +12,6 @@ import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_field.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:http/http.dart'as http;
 
@@ -64,7 +63,7 @@ final profileView = Provider.of<ProfileViewModel>(context);
                     height: 250,
                     width: width*0.7,
                     decoration: BoxDecoration(
-                        color: AppColors.filledColor,
+                        color: AppColors.darkColor,
                         borderRadius: BorderRadius.circular(15)
                     ),
                     child: Column(
@@ -104,7 +103,7 @@ final profileView = Provider.of<ProfileViewModel>(context);
                           height: 50,
                           title: 'Submit',
                           fontSize: 20,
-                          titleColor: AppColors.primaryTextColor,
+                          titleColor: AppColors.whiteColor,
                           hideBorder: true,
                           onTap: () {
                             avtarChangeApi(context,nameCon.text);

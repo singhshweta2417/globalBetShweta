@@ -32,7 +32,7 @@ class _ConstantWalletState extends State<ConstantWallet> {
         return Container(
           margin: const EdgeInsets.only(right: 10, left: 10),
           decoration: BoxDecoration(
-            gradient: AppColors.primaryUnselectedGradient,
+            gradient: AppColors.unSelectedColor,
             borderRadius: BorderRadius.circular(15),
             image: const DecorationImage(
                 image: AssetImage(Assets.imagesWalletbg), fit: BoxFit.fill),
@@ -90,7 +90,7 @@ class _ConstantWalletState extends State<ConstantWallet> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   AppBtn(
-                    titleColor: AppColors.primaryTextColor,
+                    titleColor: AppColors.whiteColor,
                     width: width * 0.4,
                     height: 38,
                     borderRadius: 8,
@@ -112,7 +112,7 @@ class _ConstantWalletState extends State<ConstantWallet> {
                     hideBorder: true,
                   ),
                   AppBtn(
-                    titleColor: AppColors.primaryTextColor,
+                    titleColor: AppColors.whiteColor,
                     width: width * 0.4,
                     height: 38,
                     borderRadius: 8,
@@ -127,11 +127,11 @@ class _ConstantWalletState extends State<ConstantWallet> {
                         userData.profileApi(context);
                       });
                     },
-                    gradient: AppColors.transparentgradient,
+                    gradient: AppColors.transparentGradient,
                     title: 'Deposit',
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
-                    border: Border.all(color: AppColors.primaryTextColor),
+                    border: Border.all(color: AppColors.whiteColor),
                   ),
                 ],
               ),

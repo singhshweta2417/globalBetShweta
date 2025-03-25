@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/main.dart';
+import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/view/home/lottery/trx/res/trx_colors.dart';
 import 'package:globalbet/view/home/lottery/trx/res/trx_text_widget.dart';
 import 'package:globalbet/view/home/lottery/trx/view_model/trx_game_his_view_model.dart';
@@ -37,7 +38,7 @@ class _TrxGameHisState extends State<TrxGameHis> {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 15),
             decoration: const BoxDecoration(
-                gradient: TrxColors.appBarGradient,
+                gradient: TrxColors.loginSecondaryGrad,
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(10),
                     topLeft: Radius.circular(10))),
@@ -246,13 +247,16 @@ class _TrxGameHisState extends State<TrxGameHis> {
                                               color: Colors.white),
                                         )),
                             GradientTextview(
-                              int.parse(res.number.toString()) < 5 ? 'S' : 'B',
+                              (int.tryParse(res.number ?? '0') ?? 0) < 5 ? 'S' : 'B',
                               style: const TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w900),
-                              gradient: res.number! < 5
+                                fontSize: 14,
+                                fontWeight: FontWeight.w900,
+                              ),
+                              gradient: (int.tryParse(res.number ?? '0') ?? 0) < 5
                                   ? TrxColors.loginSecondaryGrid
-                                  : TrxColors.appButton,
+                                  : AppColors.unSelectedColor,
                             ),
+
                           ],
                         ),
                       ),
@@ -281,8 +285,8 @@ class _TrxGameHisState extends State<TrxGameHis> {
                   width: width * 0.10,
                   decoration: BoxDecoration(
                     gradient: pageValue == 1
-                        ? TrxColors.boxGradient
-                        : TrxColors.appBarGradient,
+                        ? TrxColors.loginSecondaryGrad
+                        : TrxColors.loginSecondaryGrad,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(
@@ -346,8 +350,8 @@ class _TrxGameHisState extends State<TrxGameHis> {
                                         1) ~/
                                     10) +
                                 1
-                        ? TrxColors.boxGradient
-                        : TrxColors.appBarGradient,
+                        ? TrxColors.loginSecondaryGrad
+                        : TrxColors.loginSecondaryGrad,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(Icons.navigate_next,

@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:globalbet/main.dart';
+import 'package:globalbet/model/user_model.dart';
+import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/view/home/casino/AndarBahar/andarBaharModel/bet_history_con.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../../res/aap_colors.dart';
@@ -339,8 +340,9 @@ class GameHistoryPageState extends State<GameHistoryPage> {
   List<BetHistoryCon> itemsData = [];
   Future<void> gameHistory() async {
     var gameIds = widget.gameId;
-    final prefs = await SharedPreferences.getInstance();
-    final userId = prefs.getInt("userId").toString();
+    UserViewModel userProvider = UserViewModel();
+    UserModel user = await userProvider.getUser();
+    String userId = user.id.toString();
 
     final response = await http
         .get(Uri.parse("${ApiUrl.gameHistory}$gameIds&userid=$userId"));

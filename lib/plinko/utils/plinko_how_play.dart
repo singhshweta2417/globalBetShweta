@@ -71,7 +71,7 @@
 //                   Container(
 //                     height:responseStatuscode == 400? height * 0.1:height * 0.4,
 //                     width: width,
-//                     color: AppColors.scaffolddark,
+//                     color: AppColors.darkColor,
 //                     child: Padding(
 //                       padding: const EdgeInsets.all(8.0),
 //                       child: SingleChildScrollView(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/model/aboutus_model.dart';
+import 'package:globalbet/model/about_us_model.dart';
 
 
 class AboutusProvider with ChangeNotifier {

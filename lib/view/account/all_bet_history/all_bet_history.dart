@@ -29,7 +29,7 @@ class _AllBetHistoryState extends State<AllBetHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -47,9 +47,9 @@ class _AllBetHistoryState extends State<AllBetHistory> {
             text: 'All Bet History',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -153,8 +153,8 @@ class _AllBetHistoryState extends State<AllBetHistory> {
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
             color: isSelected
-                ? AppColors.iconsColor
-                : AppColors.secondaryContainerTextColor,
+                ? AppColors.whiteColor
+                : AppColors.contLightColor,
             borderRadius: const BorderRadius.all(Radius.circular(5))),
         child: Row(
           children: [

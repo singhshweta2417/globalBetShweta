@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final userData =  Provider.of<ProfileViewModel>(context);
+    final userData = Provider.of<ProfileViewModel>(context);
 
     launchURL2() async {
       var url = userData.appLink.toString();
@@ -64,90 +64,90 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: GradientAppBar(
-          centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(left: 40),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                textWidget(
-                    text: 'Global Bet',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 28,
-                    color: AppColors.primaryTextColor),
-              ],
-            ),
+        centerTitle: true,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 40),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              textWidget(
+                  text: 'Global Bet',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 28,
+                  color: AppColors.whiteColor),
+            ],
           ),
-          actions: [
-            kIsWeb == true
-                ? Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          launchURL2();
-                        },
-                        icon: const Icon(Icons.download_for_offline,
-                            color: AppColors.goldenColor),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const DepositScreen()));
-                        },
-                        child: Container(
-                          width: width * 0.12,
-                          height: height * 0.03,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: AppColors.goldenColor),
-                          child: const Center(
-                              child: Text(
-                            "Deposit",
-                            style: TextStyle(
-                                color: Color(0xff374992),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w900),
-                          )),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const NotificationScreen()));
-                          },
-                          child: Image.asset(
-                            Assets.iconsProNotification,
-                            height: 30,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
+        ),
+        actions: [
+          kIsWeb == true
+              ? Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        launchURL2();
+                      },
+                      icon: const Icon(Icons.download_for_offline,
+                          color: AppColors.goldenColor),
+                    ),
+                    InkWell(
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const NotificationScreen()));
+                                builder: (context) => const DepositScreen()));
                       },
-                      child: Image.asset(
-                        Assets.iconsProNotification,
-                        height: 30,
-                        color: AppColors.primaryContColor,
+                      child: Container(
+                        width: width * 0.12,
+                        height: height * 0.03,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.goldenColor),
+                        child: const Center(
+                            child: Text(
+                          "Deposit",
+                          style: TextStyle(
+                              color: Color(0xff374992),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w900),
+                        )),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const NotificationScreen()));
+                        },
+                        child: Image.asset(
+                          Assets.iconsProNotification,
+                          height: 30,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const NotificationScreen()));
+                    },
+                    child: Image.asset(
+                      Assets.iconsProNotification,
+                      height: 30,
+                      color: AppColors.primaryContColor,
+                    ),
                   ),
-          ],
+                ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       floatingActionButton: Padding(
@@ -246,7 +246,6 @@ class _HomeScreenState extends State<HomeScreen> {
             barrierDismissible: false,
             context: context,
             builder: (context) => AlertDialog(
-                  backgroundColor: AppColors.scaffoldDark,
                   content: SizedBox(
                     height: 155,
                     child: Column(

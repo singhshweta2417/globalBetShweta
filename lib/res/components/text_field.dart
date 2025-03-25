@@ -139,7 +139,7 @@ class CustomTextField extends StatelessWidget {
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             filled: filled ?? true,
-            fillColor: fillColor ?? AppColors.filledColor,
+            fillColor: fillColor ?? AppColors.darkColor,
             hintText: hintText,
             hintStyle: TextStyle(
                 fontSize: hintSize ?? 16,

@@ -35,7 +35,7 @@ class _InvitationRulesState extends State<InvitationRules> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Invitation rules',
@@ -44,7 +44,7 @@ class _InvitationRulesState extends State<InvitationRules> {
               fontWeight: FontWeight.w700),
           leading: const AppBackBtn(),
           centerTitle: true,
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: ListView(
         children: [
           SizedBox(
@@ -55,7 +55,7 @@ class _InvitationRulesState extends State<InvitationRules> {
                   text: '【Privacy Agreement】 program',
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.gradientFirstColor)),
+                  color: AppColors.whiteColor)),
           SizedBox(
             height: height * 0.01,
           ),
@@ -83,166 +83,12 @@ class _InvitationRulesState extends State<InvitationRules> {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                      color: AppColors.gradientSecondColor,
+                                      color: AppColors.darkColor,
                                       border: Border.all(
                                           color:
-                                          AppColors.secondaryContainerTextColor,
+                                          AppColors.contLightColor,
                                           width: 2),
-                                      //  gradient: AppColors.primaryUnselectedGradient,
                                       borderRadius: BorderRadius.circular(10)),
-                                  // child: Column(
-                                  //   children: [
-                                  //     Padding(
-                                  //       padding: const EdgeInsets.fromLTRB(8,30,8,20),
-                                  //       child: textWidget(
-                                  //           text:itemsLevel1[index].l1.toString(),
-                                  //           fontSize: 15,
-                                  //           color: AppColors.primaryTextColor,
-                                  //           fontWeight: FontWeight.w500),
-                                  //     ),
-                                  //     Container(
-                                  //       height: height * 0.07,
-                                  //       width: width,
-                                  //       color: AppColors.secondaryContainerTextColor,
-                                  //       child: Row(
-                                  //         mainAxisAlignment:
-                                  //         MainAxisAlignment.spaceEvenly,
-                                  //         children: [
-                                  //           textWidget(
-                                  //               text: 'Rebate level',
-                                  //               fontWeight: FontWeight.w500,
-                                  //               fontSize: 12,
-                                  //               color: Colors.white),
-                                  //           textWidget(
-                                  //               text: 'Team Number',
-                                  //               fontWeight: FontWeight.w500,
-                                  //               fontSize: 12,
-                                  //               color: Colors.white),
-                                  //           textWidget(
-                                  //               text: 'Team Betting',
-                                  //               fontWeight: FontWeight.w500,
-                                  //               fontSize: 12,
-                                  //               color: Colors.white),
-                                  //           textWidget(
-                                  //               text: 'Team Deposit',
-                                  //               fontWeight: FontWeight.w500,
-                                  //               fontSize: 12,
-                                  //               color: Colors.white),
-                                  //         ],
-                                  //       ),
-                                  //     ),
-                                  //     ListView.builder(
-                                  //         physics: const NeverScrollableScrollPhysics(),
-                                  //         shrinkWrap: true,
-                                  //         itemCount: itemsLevel.length,
-                                  //         itemBuilder: (context, index) {
-                                  //           return Row(
-                                  //             mainAxisAlignment:
-                                  //             MainAxisAlignment.spaceEvenly,
-                                  //             children: [
-                                  //               Container(
-                                  //                 clipBehavior: Clip.none,
-                                  //                 padding: const EdgeInsets.all(05),
-                                  //                 height: height * 0.06,
-                                  //                 width: width * 0.237,
-                                  //                 decoration: const BoxDecoration(
-                                  //                   border: Border(
-                                  //                     bottom: BorderSide(
-                                  //                         width: 1.5,
-                                  //                         color: AppColors.secondaryContainerTextColor),
-                                  //                   ),
-                                  //                 ),
-                                  //                 child: Container(
-                                  //                   clipBehavior: Clip.none,
-                                  //                   decoration: const BoxDecoration(
-                                  //                       image: DecorationImage(
-                                  //                           image: AssetImage(Assets
-                                  //                               .iconsKingrules))),
-                                  //                   child: Padding(
-                                  //                     padding: const EdgeInsets.only(top: 8.0,left: 22),
-                                  //                     child: Center(
-                                  //                       child: textWidget(
-                                  //                           text: itemsLevel[index]
-                                  //                               .l1
-                                  //                               .toString(),
-                                  //                           fontSize: 12,
-                                  //                           fontWeight: FontWeight.w500,
-                                  //                           color: Colors.white),
-                                  //                     ),
-                                  //                   ),
-                                  //                 ),
-                                  //               ),
-                                  //               Container(
-                                  //                 alignment: Alignment.center,
-                                  //                 height: height * 0.06,
-                                  //                 width: width * 0.235,
-                                  //                 decoration: const BoxDecoration(
-                                  //                   border: Border(
-                                  //                     bottom: BorderSide(
-                                  //                         width: 1.5,
-                                  //                         color: AppColors.secondaryContainerTextColor),
-                                  //                     left: BorderSide(
-                                  //                         width: 1.5,
-                                  //                         color: AppColors.secondaryContainerTextColor),
-                                  //                   ),
-                                  //                 ),
-                                  //                 child: textWidget(
-                                  //                     text: itemsLevel[index]
-                                  //                         .l2
-                                  //                         .toString(),
-                                  //                     fontWeight: FontWeight.w500,
-                                  //                     color: AppColors.primaryTextColor,
-                                  //                     fontSize: 16),
-                                  //               ),
-                                  //               Container(
-                                  //                 alignment: Alignment.center,
-                                  //                 height: height * 0.06,
-                                  //                 width: width * 0.237,
-                                  //                 decoration: const BoxDecoration(
-                                  //                   border: Border(
-                                  //                     bottom: BorderSide(
-                                  //                         width: 1.5,
-                                  //                         color: AppColors.secondaryContainerTextColor),
-                                  //                     left: BorderSide(
-                                  //                         width: 1.5,
-                                  //                         color: AppColors.secondaryContainerTextColor),
-                                  //                   ),                                                      ),
-                                  //                 child: textWidget(
-                                  //                     text: itemsLevel[index]
-                                  //                         .l3
-                                  //                         .toString(),
-                                  //                     fontWeight: FontWeight.w500,
-                                  //                     color: AppColors.primaryTextColor,
-                                  //                     fontSize: 16),
-                                  //               ),
-                                  //               Container(
-                                  //                 alignment: Alignment.center,
-                                  //                 height: height * 0.06,
-                                  //                 width: width * 0.235,
-                                  //                 decoration: const BoxDecoration(
-                                  //                   border: Border(
-                                  //                     bottom: BorderSide(
-                                  //                         width: 1.5,
-                                  //                         color: AppColors.secondaryContainerTextColor),
-                                  //                     left: BorderSide(
-                                  //                         width: 1.5,
-                                  //                         color: AppColors.secondaryContainerTextColor),
-                                  //                   ),
-                                  //                 ),
-                                  //                 child: textWidget(
-                                  //                     text: itemsLevel[index]
-                                  //                         .l4
-                                  //                         .toString(),
-                                  //                     fontWeight: FontWeight.w500,
-                                  //                     color: AppColors.primaryTextColor,
-                                  //                     fontSize: 16),
-                                  //               ),
-                                  //             ],
-                                  //           );
-                                  //         }),
-                                  //
-                                  //   ],
-                                  // ),
                                 ),
 
                               ],
@@ -269,7 +115,7 @@ class _InvitationRulesState extends State<InvitationRules> {
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w900,
                                             fontSize: 18,
-                                            color: AppColors.primaryTextColor),
+                                            color: AppColors.whiteColor),
                                       ),
                                     ),
                                   ),
@@ -286,19 +132,19 @@ class _InvitationRulesState extends State<InvitationRules> {
                             Container(
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
-                                  color: AppColors.gradientSecondColor,
+                                  color: AppColors.darkColor,
                                   border: Border.all(
                                       color:
-                                          AppColors.secondaryContainerTextColor,
+                                          AppColors.contLightColor,
                                       width: 2),
-                                  //  gradient: AppColors.primaryUnselectedGradient,
+                                  //  gradient: AppColors.unSelectedColor,
                                   borderRadius: BorderRadius.circular(10)),
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(8,30,8,20),
                                 child: textWidget(
                                     text:itemsLevel1[index].l1.toString(),
                                     fontSize: 15,
-                                    color: AppColors.primaryTextColor,
+                                    color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w500),
                               ),
                             ),
@@ -323,7 +169,7 @@ class _InvitationRulesState extends State<InvitationRules> {
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w900,
                                             fontSize: 18,
-                                            color: AppColors.primaryTextColor),
+                                            color: AppColors.whiteColor),
                                       ),
                                     ),
                                   ),

@@ -20,7 +20,6 @@ class ExtraDepositPay extends StatefulWidget {
   ExtraDepositPayState createState() => ExtraDepositPayState();
 }
 class ExtraDepositPayState extends State<ExtraDepositPay> {
-  late WebViewController _controller;
   bool _isLoading = true;
 
   @override
@@ -36,7 +35,7 @@ class ExtraDepositPayState extends State<ExtraDepositPay> {
         appBar: GradientAppBar(
             leading: const AppBackBtn(),
             title: textWidget(
-                text: 'Pay', fontSize: 25, color: AppColors.primaryTextColor),
+                text: 'Pay', fontSize: 25, color: AppColors.whiteColor),
             gradient: AppColors.primaryGradient),
         body: Column(
           children: <Widget>[
@@ -55,7 +54,6 @@ class ExtraDepositPayState extends State<ExtraDepositPay> {
                 initialUrl: widget.url,
                 javascriptMode: JavascriptMode.unrestricted,
                 onWebViewCreated: (WebViewController webViewController) {
-                  _controller = webViewController;
                   webViewController.clearCache();
                   final cookieManager = CookieManager();
                   cookieManager.clearCookies();

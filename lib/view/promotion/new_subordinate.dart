@@ -33,13 +33,13 @@ class _NewSubordinateState extends State<NewSubordinate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           title: textWidget(
               text: 'New Subordinate', fontSize: 25, color: Colors.white),
           leading: const AppBackBtn(),
           centerTitle: true,
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: ListView(
         shrinkWrap: true,
 
@@ -47,7 +47,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
           Container(
             height: height * 0.07,
             decoration: const BoxDecoration(
-              gradient: AppColors.primaryUnselectedGradient,
+              gradient: AppColors.unSelectedColor,
             ),
             child: Padding(
               padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -73,7 +73,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
                 child: Container(
                   decoration:  const BoxDecoration(
                     borderRadius:BorderRadius.all(Radius.circular(10)) ,
-                    gradient: AppColors.primaryUnselectedGradient,
+                    gradient: AppColors.unSelectedColor,
                   ),
                   child: Column(
                   //  shrinkWrap: true,
@@ -95,13 +95,13 @@ class _NewSubordinateState extends State<NewSubordinate> {
                                       text: obscureCenterDigits( data.mobile.toString()),
                                       fontWeight: FontWeight.w600,
                                       fontSize: 15,
-                                      color: AppColors.primaryTextColor,
+                                      color: AppColors.whiteColor,
                                     ),
                                     textWidget(
                                       text: 'UID: ${data.userName}',
                                       fontWeight: FontWeight.w600,
                                       fontSize: 15,
-                                      color: AppColors.primaryTextColor,
+                                      color: AppColors.whiteColor,
                                     ),
                                   ],
                                 ),
@@ -113,7 +113,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
                                       text: 'Direct Subordinate',
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,
-                                      color: AppColors.primaryTextColor,
+                                      color: AppColors.whiteColor,
                                     ),
                                     textWidget(
                                       text: data.datetime.toString(),
@@ -125,7 +125,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
                                 ),
                                 const Divider(
                                   thickness: 1,
-                                  color: AppColors.secondaryTextColor,
+                                  color: AppColors.whiteColor,
                                 )
                               ],
                             ),
@@ -197,7 +197,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
                 text: text,
                 fontWeight: FontWeight.w900,
                 fontSize: 15,
-                color: AppColors.primaryTextColor,
+                color: AppColors.whiteColor,
               ),
             ),
           ),
@@ -207,7 +207,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
                   height: 3,
                   width: width * 0.3,
                   color:
-                      isSelected ? Colors.blue : AppColors.gradientFirstColor,
+                      isSelected ? Colors.blue : AppColors.whiteColor,
                 )
               : Container()
         ],

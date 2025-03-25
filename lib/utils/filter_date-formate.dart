@@ -32,7 +32,7 @@ class _FilterDateFormatState extends State<FilterDateFormat> {
 
   Future<void> _showMonthPicker(BuildContext context) async {
     DateTime? selectedDate = await showModalBottomSheet(
-      backgroundColor:AppColors.secondaryContainerTextColor,
+      backgroundColor:AppColors.contLightColor,
       shape: const RoundedRectangleBorder(
           borderRadius:   BorderRadius.only(
               topRight: Radius.circular(10), topLeft: Radius.circular(10))

@@ -66,7 +66,7 @@ class Routers {
                     text: 'No Route Found!',
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.secondaryTextColor),
+                    color: AppColors.whiteColor),
               ),
             );
     }

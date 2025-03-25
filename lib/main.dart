@@ -1,19 +1,19 @@
 import 'dart:io';
 
-import 'package:globalbet/model/colorPredictionResult_provider.dart';
+import 'package:globalbet/model/color_prediction_result_provider.dart';
 import 'package:globalbet/offer/offer_view_model.dart';
 import 'package:globalbet/res/app_constant.dart';
-import 'package:globalbet/res/provider/TermsConditionProvider.dart';
-import 'package:globalbet/res/provider/aboutus_provider.dart';
-import 'package:globalbet/res/provider/addacount_controller.dart';
+import 'package:globalbet/res/provider/terms_condition_provider.dart';
+import 'package:globalbet/res/provider/about_us_provider.dart';
+import 'package:globalbet/res/provider/add_acount_controller.dart';
 import 'package:globalbet/res/provider/auth_provider.dart';
-import 'package:globalbet/res/provider/betColorPrediction_provider.dart';
-import 'package:globalbet/res/provider/betcolorpredictionTRX.dart';
-import 'package:globalbet/res/provider/contactus_provider.dart';
+import 'package:globalbet/res/provider/bet_color_prediction_provider.dart';
+import 'package:globalbet/res/provider/bet_color_prediction_trx.dart';
+import 'package:globalbet/res/provider/contact_us_provider.dart';
 import 'package:globalbet/res/provider/feedback_provider.dart';
-import 'package:globalbet/res/provider/giftcode_provider.dart';
+import 'package:globalbet/res/provider/gift_code_provider.dart';
 import 'package:globalbet/res/provider/plinko_bet_provider.dart';
-import 'package:globalbet/res/provider/privacypolicy_provider.dart';
+import 'package:globalbet/res/provider/privacy_policy_provider.dart';
 import 'package:globalbet/res/provider/slider_provider.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
@@ -57,7 +57,6 @@ import 'package:globalbet/view/home/mini/mines/view_model/mine_cash_out_view_mod
 import 'package:globalbet/view/home/mini/mines/view_model/mine_drop_down_view_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/controller/controller.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view_model/bet_view_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/deposit_view_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view_model/history_view_model.dart';
 import 'package:provider/provider.dart';
@@ -97,7 +96,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SliderProvider()),
         ChangeNotifierProvider(create: (context) => AboutusProvider()),
         ChangeNotifierProvider(create: (context) => AddacountProvider()),
-        ChangeNotifierProvider(create: (context) => GiftcardProvider()),
+        ChangeNotifierProvider(create: (context) => GiftCardProvider()),
         ChangeNotifierProvider(create: (context) => ColorPredictionProvider()),
         ChangeNotifierProvider(create: (context) => BetColorResultProvider()),
         ChangeNotifierProvider(create: (context) => FeedbackProvider()),

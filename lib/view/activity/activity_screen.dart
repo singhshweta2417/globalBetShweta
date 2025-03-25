@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/Slider_model.dart';
+import 'package:globalbet/model/slider_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
@@ -36,7 +36,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
       {
         'text': 'Activity Award',
         'icon': Assets.iconsActivityIcon1,
-        'gradient': AppColors.orangeColorGradient,
+        'gradient': AppColors.unSelectedColor,
         'onTap': () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const ActivityAward()));
@@ -45,7 +45,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
       {
         'text': 'Invitation bonus',
         'icon': Assets.iconsActivityIcon2,
-        'gradient': AppColors.blueGradient,
+        'gradient': AppColors.unSelectedColor,
         'onTap': () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const InvitationBonus()));
@@ -54,11 +54,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
       {
         'text': 'Betting rebate',
         'icon': Assets.iconsActivityIcon3,
-        'gradient': const LinearGradient(
-          colors: [Colors.orange, Colors.red],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        'gradient': AppColors.unSelectedColor,
         'onTap': () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const BettingRebates()));
@@ -66,7 +62,6 @@ class _ActivityScreenState extends State<ActivityScreen> {
       },
     ];
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +70,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                 text: 'Global Bet',
                 fontWeight: FontWeight.w600,
                 fontSize: 28,
-                color: AppColors.primaryTextColor),
+                color: AppColors.whiteColor),
           ],
         ),
         centerTitle: true,
@@ -90,13 +85,13 @@ class _ActivityScreenState extends State<ActivityScreen> {
                 text: 'Activity',
                 fontWeight: FontWeight.w900,
                 fontSize: 20,
-                color: AppColors.primaryTextColor),
+                color: AppColors.whiteColor),
             textWidget(
                 text:
                     'Please remember to follow the event page\nWe will launch user feedback activities from time to time',
                 fontWeight: FontWeight.w600,
                 fontSize: 12,
-                color: AppColors.primaryTextColor),
+                color: AppColors.whiteColor),
             const SizedBox(height: 9),
             SizedBox(
               height: height * 0.15,
@@ -112,7 +107,6 @@ class _ActivityScreenState extends State<ActivityScreen> {
                   return Center(
                     child: InkWell(
                       onTap: () {
-                        // Call the onTap function associated with the item
                         if (items[index]['onTap'] != null) {
                           items[index]['onTap']();
                         }
@@ -128,7 +122,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                             child: Center(
                               child: Image.asset(
                                 items[index]['icon'],
-                                color: Colors.white,
+                                color:AppColors.whiteColor,
                                 scale: 1.8,
                               ),
                             ),
@@ -299,7 +293,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                     text: subTitle,
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
-                    color: AppColors.primaryTextColor),
+                    color: AppColors.whiteColor),
               ),
             ),
           ],

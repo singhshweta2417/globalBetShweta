@@ -48,7 +48,7 @@ class Utils {
         icon: const Icon(
           Icons.error_outline,
           size: 20,
-          color: AppColors.primaryTextColor,
+          color: AppColors.whiteColor,
         ),
       )..show(context),
     );
@@ -57,9 +57,9 @@ class Utils {
   static showExitConfirmation(BuildContext context) async {
     return await showModalBottomSheet(
           elevation: 5,
-          backgroundColor: AppColors.secondaryContainerTextColor,
+          backgroundColor: AppColors.contLightColor,
           shape: const RoundedRectangleBorder(
-              side: BorderSide(width: 2, color: AppColors.gradientFirstColor),
+              side: BorderSide(width: 2, color: AppColors.whiteColor),
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15), topRight: Radius.circular(15))),
           context: context,
@@ -94,7 +94,7 @@ class Utils {
                             style: ElevatedButton.styleFrom(
                                 side: const BorderSide(width: 1, color: Colors.white),
                                 elevation: 3,
-                                backgroundColor: AppColors.scaffoldDark,
+                                
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5)),
                                 padding: EdgeInsets.symmetric(

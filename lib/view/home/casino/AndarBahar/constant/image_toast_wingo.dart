@@ -23,12 +23,12 @@ class ImageToastWingo {
     if (subtext == '0') {
       colors = [
         AppColors.orangeColor,
-        AppColors.primaryTextColor,
+        AppColors.whiteColor,
       ];
     } else if (subtext == '5') {
       colors = [
         const Color(0xFF40ad72),
-        AppColors.primaryTextColor,
+        AppColors.whiteColor,
       ];
     } else {
       int number = int.parse(subtext.toString());
@@ -264,12 +264,12 @@ class ImageToastWingo {
     if (subtext == '0') {
       colors = [
         AppColors.orangeColor,
-        AppColors.primaryTextColor,
+        AppColors.whiteColor,
       ];
     } else if (subtext == '5') {
       colors = [
         const Color(0xFF40ad72),
-        AppColors.primaryTextColor,
+        AppColors.whiteColor,
       ];
     } else {
       int number = int.parse(subtext.toString());

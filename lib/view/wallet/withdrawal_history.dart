@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
 import 'package:globalbet/model/deposit_model_new.dart';
-import 'package:globalbet/model/transction_type_model.dart';
+import 'package:globalbet/model/transaction_type_model.dart';
 import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/model/withdrawhistory_model.dart';
+import 'package:globalbet/model/withdraw_history_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
@@ -53,7 +53,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           centerTitle: true,
           leading: const AppBackBtn(),
@@ -61,8 +61,8 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
             text: 'Withdraw History',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,),
-          gradient: AppColors.primaryUnselectedGradient),
+            color: AppColors.whiteColor,),
+          gradient: AppColors.unSelectedColor),
       body: ScrollConfiguration(
         behavior: const ScrollBehavior().copyWith(overscroll: false),
         child: ListView(
@@ -93,7 +93,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                         decoration: BoxDecoration(
                           gradient: selectedCatIndex == items[index].type
                               ? AppColors.loginSecondaryGrad
-                              : AppColors.primaryUnselectedGradient,
+                              : AppColors.unSelectedColor,
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.1),
 
@@ -111,8 +111,8 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                               color: selectedCatIndex == items[index].id
-                                  ? AppColors.primaryTextColor
-                                  : AppColors.iconsColor,
+                                  ? AppColors.whiteColor
+                                  : AppColors.whiteColor,
                             ),
                           ],
                         ),
@@ -145,7 +145,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                       width: width * 0.45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        gradient: AppColors.primaryUnselectedGradient,
+                        gradient: AppColors.unSelectedColor,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
@@ -174,7 +174,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                     height: height * 0.08,
                     width: width * 0.45,
                     decoration: BoxDecoration(
-                        color: AppColors.secondaryContainerTextColor,
+                        color: AppColors.contLightColor,
                         borderRadius: BorderRadius.circular(5)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,7 +183,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                             text:   _selectedDate==null?'Select date':
                             '   ${_selectedDate!.year}-${_selectedDate!.month}-${_selectedDate!.day}',
                             fontSize: 18,
-                            color: AppColors.primaryTextColor),
+                            color: AppColors.whiteColor),
                         FilterDateFormat(
                           onDateSelected: (DateTime selectedDate) {
 
@@ -206,7 +206,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                   //   width: width * 0.45,
                   //   decoration: BoxDecoration(
                   //     borderRadius: BorderRadius.circular(5),
-                  //     gradient: AppColors.primaryUnselectedGradient,
+                  //     gradient: AppColors.unSelectedColor,
                   //   ),
                   //   child: Padding(
                   //     padding: const EdgeInsets.all(12.0),
@@ -245,7 +245,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            gradient: AppColors.primaryUnselectedGradient,
+                            gradient: AppColors.unSelectedColor,
                           ),
                           child: Column(
                             children: [
@@ -266,19 +266,19 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                                           text: 'Withdraw'  ,
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
-                                          color: AppColors.primaryTextColor
+                                          color: AppColors.whiteColor
                                       ),
                                     ),
                                     textWidget(text: constText.status==1?"Processing":constText.status==2?"Complete":"Rejected",
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600,
-                                        color: constText.status==1?AppColors.gradientFirstColor:constText.status==2?Colors.green:AppColors.primaryTextColor
+                                        color: constText.status==1?AppColors.whiteColor:constText.status==2?Colors.green:AppColors.whiteColor
                                     )
 
                                   ],
                                 ),
                               ),
-                              const Divider(thickness: 1.5,indent: 10,endIndent: 10,color: AppColors.gradientFirstColor,),
+                              const Divider(thickness: 1.5,indent: 10,endIndent: 10,color: AppColors.whiteColor,),
                               const SizedBox(
                                 height: 4,
                               ),
@@ -292,12 +292,12 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                                         text: "Balance",
                                         fontSize: width * 0.04,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor),
+                                        color: AppColors.whiteColor),
                                     textWidget(
                                         text: "₹${constText.amount}",
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.gradientFirstColor),
+                                        color: AppColors.whiteColor),
                                   ],
                                 ),
                               ),
@@ -312,7 +312,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                                         text: "Type",
                                         fontSize: width * 0.04,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor),
+                                        color: AppColors.whiteColor),
                                     Image.network(constText.typeimage.toString(),height: height*0.05,),
                                   ],
                                 ),
@@ -327,11 +327,11 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                                         text: "Time",
                                         fontSize: width * 0.04,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor),
+                                        color: AppColors.whiteColor),
                                     textWidget(
                                         text: DateFormat("dd-MMM-yyyy, hh:mm a").format(DateTime.parse(constText.createdAt.toString())),                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
 
                                     ),
                                   ],
@@ -347,7 +347,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                                         text: "Order number",
                                         fontSize: width * 0.04,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor),
+                                        color: AppColors.whiteColor),
                                     Row(
                                       children: [
                                         textWidget(
@@ -355,7 +355,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                             color:
-                                            AppColors.primaryTextColor),
+                                            AppColors.whiteColor),
                                         SizedBox(
                                           width: width * 0.01,
                                         ),
@@ -385,7 +385,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
           topRight: Radius.circular(10),
           topLeft: Radius.circular(10),
         ),
-        color: AppColors.filledColor,
+        color: AppColors.darkColor,
       ),
       height: MediaQuery.of(context).size.height * 0.35,
       child: Column(
@@ -418,7 +418,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                     text: 'Confirm',
                     fontWeight: FontWeight.w900,
                     fontSize: 16,
-                    color: AppColors.gradientFirstColor,
+                    color: AppColors.whiteColor,
                   ),
                 ),
               ],
@@ -452,7 +452,7 @@ class _WithdrawHistoryState extends State<WithdrawHistory> with SingleTickerProv
                             fontSize: 16,
                             color: selectedId == index
                                 ? Colors.blue
-                                : AppColors.primaryTextColor,
+                                : AppColors.whiteColor,
                           ),
                         ),
                       ),

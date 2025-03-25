@@ -6,7 +6,7 @@ import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/bettingHistory_Model.dart';
+import 'package:globalbet/model/betting_history_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -38,7 +38,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
       children: [
         Container(
           height: height * 0.07,
-          color: AppColors.filledColor,
+          color: AppColors.darkColor,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
@@ -68,12 +68,12 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                       if (items[index].number == 0) {
                         colors = [
                           AppColors.orangeColor,
-                          AppColors.primaryTextColor,
+                          AppColors.whiteColor,
                         ];
                       } else if (items[index].number == 5) {
                         colors = [
                           const Color(0xFF40ad72),
-                          AppColors.primaryTextColor,
+                          AppColors.whiteColor,
                         ];
                       } else if (items[index].number == 10) {
                         colors = [
@@ -82,8 +82,8 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                         ];
                       } else if (items[index].number == 20) {
                         colors = [
-                          AppColors.primaryTextColor,
-                          AppColors.primaryTextColor,
+                          AppColors.whiteColor,
+                          AppColors.whiteColor,
                         ];
                       } else if (items[index].number == 30) {
                         colors = [
@@ -172,9 +172,9 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
                                       color: items[index].status == 0
-                                          ? AppColors.primaryTextColor
+                                          ? AppColors.whiteColor
                                           : items[index].status == 2
-                                              ? AppColors.secondaryTextColor
+                                              ? AppColors.whiteColor
                                               : Colors.green)),
                               child: Center(
                                 child: Text(
@@ -189,7 +189,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                                       color: items[index].status == 0
                                           ? Colors.white
                                           : items[index].status == 2
-                                              ? AppColors.secondaryTextColor
+                                              ? AppColors.whiteColor
                                               : Colors.green),
                                 ),
                               ),
@@ -206,7 +206,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                                   color: items[index].status == 0
                                       ? Colors.white
                                       : items[index].status == 2
-                                          ? AppColors.secondaryTextColor
+                                          ? AppColors.whiteColor
                                           : Colors.green),
                             ),
                           ],
@@ -237,7 +237,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                                   width: width,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: AppColors.firstColors),
+                                      color: AppColors.unSelectColor),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
@@ -393,7 +393,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
               text: '$pageNumber/ $totalBets',
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
               maxLines: 1,
             ),
             const SizedBox(width: 16),
@@ -479,7 +479,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.firstColors),
+              color: AppColors.unSelectColor),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -518,7 +518,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.firstColors),
+              color: AppColors.unSelectColor),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -582,7 +582,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
             text: text,
             fontWeight: FontWeight.w900,
             fontSize: 12,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
           const SizedBox(
             height: 5,
@@ -592,7 +592,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                   height: 3,
                   width: 50,
                   color:
-                      isSelected ? Colors.blue : AppColors.gradientFirstColor,
+                      isSelected ? Colors.blue : AppColors.whiteColor,
                 )
               : Container()
         ],

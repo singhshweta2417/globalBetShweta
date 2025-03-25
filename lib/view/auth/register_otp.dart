@@ -54,7 +54,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
               text: 'Global Bet',
               fontWeight: FontWeight.w600,
               fontSize: 28,
-              color: AppColors.primaryTextColor),
+              color: AppColors.whiteColor),
           gradient: AppColors.primaryGradient),
       body: Container(
           padding:
@@ -66,12 +66,12 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                   text: 'Register',
                   fontWeight: FontWeight.w600,
                   fontSize: 22,
-                  color: AppColors.primaryTextColor),
+                  color: AppColors.whiteColor),
               textWidget(
                   text: 'Please register by phone number or email',
                   fontWeight: FontWeight.w600,
                   fontSize: 13,
-                  color: AppColors.primaryTextColor),
+                  color: AppColors.whiteColor),
               Sizes.spaceHeight10,
               Column(
                 children: [
@@ -83,7 +83,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                       text: 'Register your phone',
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
-                      color: AppColors.primaryTextColor),
+                      color: AppColors.whiteColor),
                 ],
               ),
               const Divider(),
@@ -100,7 +100,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                       text: 'Enter Referral Code',
                       fontWeight: FontWeight.w400,
                       fontSize: 18,
-                      color: AppColors.primaryTextColor)
+                      color: AppColors.whiteColor)
                 ],
               ),
               Sizes.spaceHeight5,
@@ -123,7 +123,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                       text: 'Phone Number',
                       fontWeight: FontWeight.w400,
                       fontSize: 18,
-                      color: AppColors.primaryTextColor)
+                      color: AppColors.whiteColor)
                 ],
               ),
               Sizes.spaceHeight5,
@@ -258,7 +258,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                       text: 'Email',
                       fontWeight: FontWeight.w400,
                       fontSize: 18,
-                      color: AppColors.primaryTextColor)
+                      color: AppColors.whiteColor)
                 ],
               ),
               Sizes.spaceHeight5,
@@ -282,7 +282,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                       text: 'Set password',
                       fontWeight: FontWeight.w400,
                       fontSize: 18,
-                      color: AppColors.primaryTextColor)
+                      color: AppColors.whiteColor)
                 ],
               ),
               Sizes.spaceHeight5,
@@ -318,7 +318,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                         alignment: Alignment.center,
                         decoration: readAndAgreePolicy
                             ? BoxDecoration(
-                                color: AppColors.gradientFirstColor,
+                                color: AppColors.whiteColor,
                                 border: Border.all(
                                     color: AppColors.primaryContColor),
                                 borderRadius:
@@ -352,7 +352,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
                       ),
                       CustomTextSpan(
                         text: "【Privacy Agreement】",
-                        textColor: AppColors.gradientFirstColor,
+                        textColor: AppColors.whiteColor,
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         spanTap: () {},
@@ -481,7 +481,7 @@ Future<String?> showCountryPicker(BuildContext context) async {
       return Container(
         height: 400,
         decoration: BoxDecoration(
-            color: AppColors.scaffoldDark,
+            color: AppColors.darkColor,
             borderRadius: BorderRadius.circular(10)),
         child: ListView.builder(
           itemCount: countryList.length,

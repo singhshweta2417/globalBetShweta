@@ -6,7 +6,6 @@ import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/home/lottery/trx/res/trx_colors.dart';
 import 'package:provider/provider.dart';
 
-
 class TrxWallet extends StatefulWidget {
   const TrxWallet({super.key});
 
@@ -22,7 +21,7 @@ class _TrxWalletState extends State<TrxWallet> {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        gradient: TrxColors.appBarGradient,
+        gradient: TrxColors.loginSecondaryGrad,
         borderRadius: BorderRadius.circular(15),
         image: const DecorationImage(
             image: AssetImage(Assets.imagesWalletBg), fit: BoxFit.fill),
@@ -38,8 +37,8 @@ class _TrxWalletState extends State<TrxWallet> {
                 height: 30,
                 color: TrxColors.whiteColor,
               ),
-               textWidget(
-                 text: '  Wallet Balance',
+              textWidget(
+                text: '  Wallet Balance',
                 fontWeight: FontWeight.w500,
                 color: TrxColors.whiteColor,
                 fontSize: 18,
@@ -57,8 +56,7 @@ class _TrxWalletState extends State<TrxWallet> {
                 fontWeight: FontWeight.w600,
               ),
               textWidget(
-                text:
-                    userProfileViewModel.balance.toStringAsFixed(2),
+                text: userProfileViewModel.balance.toStringAsFixed(2),
                 fontSize: 20,
                 color: TrxColors.whiteColor,
                 fontWeight: FontWeight.w600,
@@ -68,9 +66,7 @@ class _TrxWalletState extends State<TrxWallet> {
                 onTap: () {
                   userProfileViewModel.profileApi(context);
                   Utils.flushBarSuccessMessage(
-                    'Wallet refresh ✔',
-                    context,Colors.green
-                  );
+                      'Wallet refresh ✔', context, Colors.green);
                 },
                 child: Image.asset(
                   Assets.iconsTotalBal,
@@ -84,5 +80,5 @@ class _TrxWalletState extends State<TrxWallet> {
         ],
       ),
     );
-    }
+  }
 }

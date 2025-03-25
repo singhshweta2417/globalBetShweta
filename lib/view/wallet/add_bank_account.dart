@@ -1,12 +1,12 @@
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/addaccount_view_model.dart';
+import 'package:globalbet/model/add_account_view_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_field.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/addacount_controller.dart';
+import 'package:globalbet/res/provider/add_acount_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:provider/provider.dart';
@@ -69,15 +69,15 @@ class _AddBankAccountState extends State<AddBankAccount> {
     final authProvider = Provider.of<AddacountProvider>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: const AppBackBtn(),
           title: textWidget(
               text: 'Add a bank account number',
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: AppColors.primaryTextColor),
-          gradient: AppColors.primaryUnselectedGradient),
+              color: AppColors.whiteColor),
+          gradient: AppColors.unSelectedColor),
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: SingleChildScrollView(
@@ -88,14 +88,14 @@ class _AddBankAccountState extends State<AddBankAccount> {
                 height: height*0.08,
                   padding: const EdgeInsets.only(left: 5, right: 5,top: 5,bottom: 5),
                   decoration: BoxDecoration(
-                      gradient: AppColors.primaryUnselectedGradient,
+                      gradient: AppColors.unSelectedColor,
                       borderRadius: BorderRadiusDirectional.circular(30)),
                   child: Row(
                     children: [
-                      Image.asset(Assets.iconsAttention,color: AppColors.primaryTextColor,),
+                      Image.asset(Assets.iconsAttention,color: AppColors.whiteColor,),
                       textWidget(
                           text: 'Need to add beneficiary information to be able to \nwithdraw money',
-                          color: AppColors.primaryTextColor,
+                          color: AppColors.whiteColor,
                           fontWeight: FontWeight.w900),
                     ],
                   )
@@ -106,20 +106,20 @@ class _AddBankAccountState extends State<AddBankAccount> {
               const SizedBox(height: 15),
               CustomTextField(
                 controller: nameCon,
-                cursorColor: AppColors.secondaryTextColor,
+                cursorColor: AppColors.whiteColor,
                 hintText: "Please enter the recipient's name",
-                style: const TextStyle(color: AppColors.primaryTextColor),
-                hintColor: AppColors.primaryTextColor
+                style: const TextStyle(color: AppColors.whiteColor),
+                hintColor: AppColors.whiteColor
               ),
               const SizedBox(height: 15),
               titleWidget(Assets.iconsBank,'Bank name'),
               const SizedBox(height: 15),
               CustomTextField(
                 controller: banknameCon,
-                cursorColor: AppColors.secondaryTextColor,
+                cursorColor: AppColors.whiteColor,
                 hintText: 'Please enter your bank name ',
-                style: const TextStyle(color: AppColors.primaryTextColor),
-                hintColor: AppColors.primaryTextColor
+                style: const TextStyle(color: AppColors.whiteColor),
+                hintColor: AppColors.whiteColor
               ),
 
               const SizedBox(height: 15),
@@ -127,20 +127,20 @@ class _AddBankAccountState extends State<AddBankAccount> {
               const SizedBox(height: 15),
               CustomTextField(
                 controller: accNumberCon,
-                cursorColor: AppColors.secondaryTextColor,
+                cursorColor: AppColors.whiteColor,
                 hintText: 'Please enter your bank account no.',
-                style: const TextStyle(color: AppColors.primaryTextColor),
-                hintColor: AppColors.primaryTextColor,
+                style: const TextStyle(color: AppColors.whiteColor),
+                hintColor: AppColors.whiteColor,
               ),
               const SizedBox(height: 15),
               titleWidget(Assets.iconsAccNumber,'Bank branch'),
               const SizedBox(height: 15),
               CustomTextField(
                 controller: branchnameCon,
-                cursorColor: AppColors.secondaryTextColor,
+                cursorColor: AppColors.whiteColor,
                 hintText: 'Please enter your branch name ',
-                style: const TextStyle(color: AppColors.primaryTextColor),
-                hintColor: AppColors.primaryTextColor
+                style: const TextStyle(color: AppColors.whiteColor),
+                hintColor: AppColors.whiteColor
               ),
 
               const SizedBox(height: 15),
@@ -148,20 +148,20 @@ class _AddBankAccountState extends State<AddBankAccount> {
               const SizedBox(height: 15),
               CustomTextField(
                 controller: ifscCon,
-                cursorColor: AppColors.secondaryTextColor,
+                cursorColor: AppColors.whiteColor,
                 hintText: 'Please enter IFSC code',
-                style: const TextStyle(color: AppColors.primaryTextColor),
-                hintColor: AppColors.primaryTextColor
+                style: const TextStyle(color: AppColors.whiteColor),
+                hintColor: AppColors.whiteColor
               ),
               const SizedBox(height: 15),
               titleWidget(Assets.iconsIfscCode,'UPI ID'),
               const SizedBox(height: 15),
               CustomTextField(
                   controller: upiCon,
-                  cursorColor: AppColors.secondaryTextColor,
+                  cursorColor: AppColors.whiteColor,
                   hintText: 'Please enter UPI ID ',
-                  style: const TextStyle(color: AppColors.primaryTextColor),
-                  hintColor: AppColors.primaryTextColor
+                  style: const TextStyle(color: AppColors.whiteColor),
+                  hintColor: AppColors.whiteColor
               ),
               const SizedBox(height: 15), // Add this state variable
 
@@ -217,7 +217,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   ),
                 ),
                 hideBorder: true,
-                gradient: isAllFilled ? AppColors.ssbutton : AppColors.primaryappbargrey,
+                gradient: isAllFilled ? AppColors.greenButtonGrad : AppColors.primaryAppbarGrey,
               ),
 
 
@@ -237,7 +237,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
             text:
             title,
             fontSize: 18,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
             fontWeight: FontWeight.w600),
       ],
     );

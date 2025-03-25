@@ -31,18 +31,18 @@ class TrxMyBetHisModel {
 }
 
 class Data {
-  int? id;
+  dynamic id;
   dynamic amount;
   dynamic commission;
   dynamic tradeAmount;
   dynamic winAmount;
-  int? number;
+  dynamic number;
   dynamic winNumber;
-  int? gamesNo;
-  int? gameId;
-  int? userid;
+  dynamic gamesNo;
+  dynamic gameId;
+  dynamic userid;
   String? orderId;
-  int? status;
+  dynamic status;
   String? createdAt;
   String? updatedAt;
   String? gameName;

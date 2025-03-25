@@ -18,7 +18,6 @@ class Usdtweb extends StatefulWidget {
       _UsdtwebState();
 }
 class _UsdtwebState extends State<Usdtweb> {
-  late WebViewController _controller;
   bool _isLoading = true;
 
   @override
@@ -34,7 +33,7 @@ class _UsdtwebState extends State<Usdtweb> {
         appBar: GradientAppBar(
             leading: const AppBackBtn(),
             title: textWidget(
-                text: 'Pay', fontSize: 25, color: AppColors.primaryTextColor),
+                text: 'Pay', fontSize: 25, color: AppColors.whiteColor),
             gradient: AppColors.primaryGradient),
         body: Column(
           children: <Widget>[
@@ -53,7 +52,6 @@ class _UsdtwebState extends State<Usdtweb> {
                 initialUrl: widget.url,
                 javascriptMode: JavascriptMode.unrestricted,
                 onWebViewCreated: (WebViewController webViewController) {
-                  _controller = webViewController;
                   webViewController.clearCache();
                   final cookieManager = CookieManager();
                   cookieManager.clearCookies();

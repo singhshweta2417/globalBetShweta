@@ -4,8 +4,8 @@ class CoinModel {
   final String? name;
   final String? first;
   final String? addon;
-  final String? INR;
-  final String? USDT;
+  final String? inr;
+  final String? usdt;
  
 
   CoinModel({
@@ -13,8 +13,8 @@ class CoinModel {
     required this.name,
     required this.first,
     required this.addon,
-    required this.INR,
-    required this.USDT,
+    required this.inr,
+    required this.usdt,
     
   });
   factory CoinModel.fromJson(Map<String, dynamic> json) {
@@ -23,8 +23,8 @@ class CoinModel {
      name: json['name'],
      first: json['first'],
      addon: json['addon'],
-     INR: json['INR'],
-     USDT: json['USDT'],
+     inr: json['INR'],
+     usdt: json['USDT'],
       
   );
   }

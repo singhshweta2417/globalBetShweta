@@ -203,7 +203,7 @@ class _HomePageBottomState extends State<HomePageBottom> {
         ),
       ),
       title: textWidget(
-          text: title, fontSize: 10, color: AppColors.primaryTextColor),
+          text: title, fontSize: 10, color: AppColors.whiteColor),
     );
   }
 }

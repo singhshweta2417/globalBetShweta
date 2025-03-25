@@ -31,7 +31,7 @@ class _WinGoWalletState extends State<WinGoWallet> {
         return Container(
           margin: const EdgeInsets.only(right: 1, left: 1),
           decoration: BoxDecoration(
-            gradient: AppColors.primaryUnselectedGradient,
+            gradient: AppColors.unSelectedColor,
             borderRadius: BorderRadius.circular(15),
             image: const DecorationImage(
                 image: AssetImage(Assets.imagesWalletbg), fit: BoxFit.fill),
@@ -86,7 +86,7 @@ class _WinGoWalletState extends State<WinGoWallet> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   AppBtn(
-                    titleColor: AppColors.primaryTextColor,
+                    titleColor: AppColors.whiteColor,
                     width: width * 0.4,
                     height: 38,
                     borderRadius: 8,
@@ -107,7 +107,7 @@ class _WinGoWalletState extends State<WinGoWallet> {
                     hideBorder: true,
                   ),
                   AppBtn(
-                    titleColor: AppColors.primaryTextColor,
+                    titleColor: AppColors.whiteColor,
                     width: width * 0.4,
                     height: 38,
                     borderRadius: 8,
@@ -121,11 +121,11 @@ class _WinGoWalletState extends State<WinGoWallet> {
                         userData.profileApi(context);
                       });
                     },
-                    gradient: AppColors.transparentgradient,
+                    gradient: AppColors.transparentGradient,
                     title: 'Deposit',
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
-                    border: Border.all(color: AppColors.primaryTextColor),
+                    border: Border.all(color: AppColors.whiteColor),
                   ),
                 ],
               ),

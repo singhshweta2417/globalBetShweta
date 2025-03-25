@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/model/attendence_model.dart';
+import 'package:globalbet/main.dart';
+import 'package:globalbet/model/attendance_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -14,102 +15,107 @@ import 'package:http/http.dart' as http;
 
 import '../account/all_bet_history/avaitor_all_bet_history.dart';
 
-class AttendenceHistory extends StatefulWidget {
-  const AttendenceHistory({super.key});
+class AttendanceHistory extends StatefulWidget {
+  const AttendanceHistory({super.key});
 
   @override
-  State<AttendenceHistory> createState() => _AttendenceHistoryState();
+  State<AttendanceHistory> createState() => _AttendanceHistoryState();
 }
 
-class _AttendenceHistoryState extends State<AttendenceHistory> {
+class _AttendanceHistoryState extends State<AttendanceHistory> {
   @override
   void initState() {
-    attendenceHistory();
+    attendanceHistory();
     // TODO: implement initState
     super.initState();
   }
 
-  int? responseStatuscode;
+  int? responseStatusCode;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           centerTitle: true,
           title: textWidget(
               text: 'Attendance history', fontSize: 25, color: Colors.white),
           leading: const AppBackBtn(),
-          gradient: AppColors.primaryUnselectedGradient),
-      body: ListView(
-        children: [
-          responseStatuscode == 400
-              ? const Notfounddata()
-              : attendenceItems.isEmpty
-                  ? const Center(child: CircularProgressIndicator())
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                          itemCount: attendenceItems.length,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                  gradient: AppColors.primaryUnselectedGradient,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Image.asset(
-                                      Assets.imagesCoingifts,
-                                      height: 55,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        textWidget(
-                                            text:
-                                                "₹${attendenceItems[index].attendanceBonus}",
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.white),
-                                        textWidget(
-                                            text:
-                                                "${attendenceItems[index].id} day",
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.white),
-                                      ],
-                                    ),
-                                    textWidget(
-                                        text: attendenceItems[index]
-                                            .createdAt
-                                            .toString(),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColors.secondaryTextColor),
-                                  ],
+          gradient: AppColors.unSelectedColor),
+      body: Container(
+        height: height,
+        decoration: BoxDecoration(
+          gradient: AppColors.bgGrad
+        ),
+        child: ListView(
+          children: [
+            responseStatusCode == 400
+                ? const Notfounddata()
+                : attendanceItems.isEmpty
+                    ? const Center(child: CircularProgressIndicator())
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView.builder(
+                            itemCount: attendanceItems.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                    gradient: AppColors.unSelectedColor,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Image.asset(
+                                        Assets.imagesCoingifts,
+                                        height: 55,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          textWidget(
+                                              text:
+                                                  "₹${attendanceItems[index].attendanceBonus}",
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white),
+                                          textWidget(
+                                              text:
+                                                  "${attendanceItems[index].id} day",
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white),
+                                        ],
+                                      ),
+                                      textWidget(
+                                          text: attendanceItems[index]
+                                              .createdAt
+                                              .toString(),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          color: AppColors.whiteColor),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          })),
-        ],
+                              );
+                            })),
+          ],
+        ),
       ),
     );
   }
 
   UserViewModel userProvider = UserViewModel();
 
-  List<AttendanceModel> attendenceItems = [];
+  List<AttendanceModel> attendanceItems = [];
 
-  Future<void> attendenceHistory() async {
+  Future<void> attendanceHistory() async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     final response = await http.get(
@@ -121,13 +127,13 @@ class _AttendenceHistoryState extends State<AttendenceHistory> {
     }
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       setState(() {
-        attendenceItems =
+        attendanceItems =
             responseData.map((item) => AttendanceModel.fromJson(item)).toList();
         // selectedIndex = items.isNotEmpty ? 0:-1; //
       });
@@ -137,7 +143,7 @@ class _AttendenceHistoryState extends State<AttendenceHistory> {
       }
     } else {
       setState(() {
-        attendenceItems = [];
+        attendanceItems = [];
       });
       throw Exception('Failed to load data');
     }

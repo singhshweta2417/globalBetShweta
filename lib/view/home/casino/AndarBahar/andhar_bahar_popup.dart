@@ -299,7 +299,7 @@
 //                                 '$pageNumber/${itemsDataHistory.length}',
 //                                 style: const TextStyle(fontSize: 13,
 //                                   fontWeight: FontWeight.w600,
-//                                   color: AppColor.primaryTextColor,),
+//                                   color: AppColor.whiteColor,),
 //                                 maxLines: 1,
 //                               ),
 //                               const SizedBox(width: 16),

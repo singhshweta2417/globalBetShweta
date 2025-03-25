@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
 import 'package:globalbet/model/deposit_model_new.dart';
-import 'package:globalbet/model/transction_type_model.dart';
+import 'package:globalbet/model/transaction_type_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -53,17 +53,17 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
         leading: const AppBackBtn(),
         title: textWidget(
           text: 'Deposit history',
           fontWeight: FontWeight.w900,
           fontSize: 20,
-          color: AppColors.primaryTextColor,
+          color: AppColors.whiteColor,
         ),
         centerTitle: true,
-        gradient: AppColors.primaryUnselectedGradient,
+        gradient: AppColors.unSelectedColor,
       ),
       body: ScrollConfiguration(
         behavior: const ScrollBehavior().copyWith(overscroll: false),
@@ -94,7 +94,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                         decoration: BoxDecoration(
                           gradient: selectedCatIndex == items[index].type
                               ? AppColors.loginSecondaryGrad
-                              : AppColors.primaryUnselectedGradient,
+                              : AppColors.unSelectedColor,
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.1),
 
@@ -112,8 +112,8 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                               color: selectedCatIndex == items[index].type
-                                  ? AppColors.primaryTextColor
-                                  : AppColors.iconsColor,
+                                  ? AppColors.whiteColor
+                                  : AppColors.whiteColor,
                             ),
                           ],
                         ),
@@ -146,7 +146,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                       width: width * 0.45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        gradient: AppColors.primaryUnselectedGradient,
+                        gradient: AppColors.unSelectedColor,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
@@ -176,7 +176,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                        height: height*0.08,
                          width: width * 0.45,
                       decoration: BoxDecoration(
-                          color: AppColors.secondaryContainerTextColor,
+                          color: AppColors.contLightColor,
                           borderRadius: BorderRadius.circular(5)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,7 +185,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                               text:   _selectedDate==null?'Select date':
                               '   ${_selectedDate!.year}-${_selectedDate!.month}-${_selectedDate!.day}',
                               fontSize: 18,
-                              color: AppColors.primaryTextColor),
+                              color: AppColors.whiteColor),
                           FilterDateFormat(
                             onDateSelected: (DateTime selectedDate) {
                               setState(() {
@@ -217,7 +217,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            gradient: AppColors.primaryUnselectedGradient,
+                            gradient: AppColors.unSelectedColor,
                           ),
                           child: Column(
                             children: [
@@ -232,25 +232,24 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                                       width: width * 0.30,
                                       decoration: BoxDecoration(
                                           color:AppColors.methodBlue ,
-                                          //color: depositItems[index].status=="0"?Colors.orange: depositItems[index].status=="1"?AppColors.DepositButton:Colors.red,
                                           borderRadius: BorderRadius.circular(10)),
                                       child: textWidget(
                                           text: 'Deposit'  ,
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
-                                          color: AppColors.primaryTextColor
+                                          color: AppColors.whiteColor
                                       ),
                                     ),
                                     textWidget(text: depositItems[index].status==1?"Processing":depositItems[index].status==2?"Complete":"Rejected",
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600,
-                                        color: depositItems[index].status==1?AppColors.gradientFirstColor:depositItems[index].status==2?Colors.green:AppColors.primaryTextColor
+                                        color: depositItems[index].status==1?AppColors.whiteColor:depositItems[index].status==2?Colors.green:AppColors.whiteColor
                                     )
 
                                   ],
                                 ),
                               ),
-                              const Divider(thickness: 1.5,indent: 10,endIndent: 10,color: AppColors.gradientFirstColor,),
+                              const Divider(thickness: 1.5,indent: 10,endIndent: 10,color: AppColors.whiteColor,),
                               const SizedBox(
                                 height: 4,
                               ),
@@ -264,12 +263,12 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                                         text: "Balance",
                                         fontSize: width * 0.04,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor),
+                                        color: AppColors.whiteColor),
                                     textWidget(
                                         text: "₹${depositItems[index].cash}",
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.gradientFirstColor),
+                                        color: AppColors.whiteColor),
                                   ],
                                 ),
                               ),
@@ -283,7 +282,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                                 //         text: "USDT Amount",
                                 //         fontSize: width * 0.04,
                                 //         fontWeight: FontWeight.w600,
-                                //         color: AppColors.primaryTextColor),
+                                //         color: AppColors.whiteColor),
                                 //     textWidget(
                                 //         text: "${depositItems[index].usdtAmount}",
                                 //         fontSize: 14,
@@ -302,12 +301,12 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                                         text: "Type",
                                         fontSize: width * 0.04,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor),
+                                        color: AppColors.whiteColor),
                                     textWidget(
                                         text: depositItems[index].status==0?"INR":"INR",
                                         fontSize: width * 0.04,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor),
+                                        color: AppColors.whiteColor),
 
                                   ],
                                 ),
@@ -322,11 +321,11 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                                         text: "Time",
                                         fontSize: width * 0.04,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor),
+                                        color: AppColors.whiteColor),
                                     textWidget(
                                         text: DateFormat("dd-MMM-yyyy, hh:mm a").format(DateTime.parse(depositItems[index].createdAt.toString())),                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
 
                                     ),
                                   ],
@@ -342,7 +341,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                                         text: "Order number",
                                         fontSize: width * 0.04,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor),
+                                        color: AppColors.whiteColor),
                                     Row(
                                       children: [
                                         textWidget(
@@ -350,7 +349,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                             color:
-                                            AppColors.primaryTextColor),
+                                            AppColors.whiteColor),
                                         SizedBox(
                                           width: width * 0.01,
                                         ),
@@ -420,7 +419,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
           topRight: Radius.circular(10),
           topLeft: Radius.circular(10),
         ),
-        color: AppColors.filledColor,
+        color: AppColors.darkColor,
       ),
       height: MediaQuery.of(context).size.height * 0.35,
       child: Column(
@@ -453,7 +452,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                     text: 'Confirm',
                     fontWeight: FontWeight.w900,
                     fontSize: 16,
-                    color: AppColors.gradientFirstColor,
+                    color: AppColors.whiteColor,
                   ),
                 ),
               ],
@@ -487,7 +486,7 @@ class _DepositHistoryState extends State<DepositHistory> with  SingleTickerProvi
                             fontSize: 16,
                             color: selectedId == index
                                 ? Colors.blue
-                                : AppColors.primaryTextColor,
+                                : AppColors.whiteColor,
                           ),
                         ),
                       ),

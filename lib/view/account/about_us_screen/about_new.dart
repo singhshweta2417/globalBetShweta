@@ -29,7 +29,7 @@ class _AboutNewPageState extends State<AboutNewPage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -47,9 +47,9 @@ class _AboutNewPageState extends State<AboutNewPage> {
             text: widget.name.toString(),
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
 
       body: SizedBox(
       height: height,
@@ -59,7 +59,7 @@ class _AboutNewPageState extends State<AboutNewPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: HtmlWidget(description.toString(),textStyle: const TextStyle(color: AppColors.primaryTextColor,fontSize: 10),),
+                child: HtmlWidget(description.toString(),textStyle: const TextStyle(color: AppColors.whiteColor,fontSize: 10),),
               ),
 
             ],

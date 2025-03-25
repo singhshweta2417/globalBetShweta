@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/model/transction_type_model.dart';
+import 'package:globalbet/model/transaction_type_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/text_widget.dart';
@@ -65,7 +65,7 @@ class TransctionTypeState extends State<TransctionType> {
           topRight: Radius.circular(10),
           topLeft: Radius.circular(10),
         ),
-        color: AppColors.filledColor,
+        color: AppColors.darkColor,
       ),
       height: MediaQuery.of(context).size.height * 0.6,
       child: Column(
@@ -92,7 +92,7 @@ class TransctionTypeState extends State<TransctionType> {
                   text: 'Confirm',
                   fontWeight: FontWeight.w900,
                   fontSize: 16,
-                  color: AppColors.gradientFirstColor,
+                  color: AppColors.whiteColor,
                 ),
               ],
             ),
@@ -120,7 +120,7 @@ class TransctionTypeState extends State<TransctionType> {
                                 fontSize: 16,
                                 color: widget.selectedId == index.toString()
                                     ? Colors.blue
-                                    : AppColors.primaryTextColor,
+                                    : AppColors.whiteColor,
                               ),
                             ),
                             SizedBox(

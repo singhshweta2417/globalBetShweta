@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:globalbet/model/vip_bet_card/vip_his_model.dart';
-import 'package:globalbet/res/provider/vipcardProvider.dart';
+import 'package:globalbet/res/provider/vip_card_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
@@ -234,7 +234,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
   Widget build(BuildContext context) {
     final userData = Provider.of<ProfileViewModel>(context);
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           title: textWidget(text: 'VIP', fontSize: 25, color: Colors.white),
           leading: const AppBackBtn(),
@@ -296,13 +296,13 @@ class _VipScreenNewState extends State<VipScreenNew> {
                         myExp == null ? '00' : myExp.toString(),
                         'Exp',
                         'My Experience',
-                        AppColors.gradientFirstColor,
+                        AppColors.whiteColor,
                         FontWeight.w500),
                     topContainer(
                         PayoutTime == null ? '00' : PayoutTime.toString(),
                         'days',
                         'Payout time',
-                        AppColors.primaryTextColor,
+                        AppColors.whiteColor,
                         FontWeight.w900),
                   ],
                 ),
@@ -314,7 +314,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
             margin: const EdgeInsets.all(13),
             height: height * 0.05,
             decoration: BoxDecoration(
-                border: Border.all(color: AppColors.primaryTextColor, width: 1),
+                border: Border.all(color: AppColors.whiteColor, width: 1),
                 borderRadius: BorderRadius.circular(5)),
             child: textWidget(
                 text:
@@ -578,7 +578,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               decoration: BoxDecoration(
-                                gradient: AppColors.primaryUnselectedGradient,
+                                gradient: AppColors.unSelectedColor,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Column(
@@ -711,7 +711,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          gradient: AppColors.primaryUnselectedGradient,
+                          gradient: AppColors.unSelectedColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Column(
@@ -793,7 +793,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                                           }));
                                                 },
                                           betCardList[index].levelUpStatus == 0
-                                              ? AppColors.primaryappbargrey
+                                              ? AppColors.primaryAppbarGrey
                                               : AppColors.loginSecondaryGrad,
                                           'Received'),
                                       myBenefits(
@@ -840,7 +840,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                           betCardList[index]
                                                       .monthlyRewardsStatus ==
                                                   0
-                                              ? AppColors.primaryappbargrey
+                                              ? AppColors.primaryAppbarGrey
                                               : AppColors.loginSecondaryGrad,
                                           'Received'),
                                     ],
@@ -869,7 +869,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                                     0
                                                 ? () {}
                                                 : () {},
-                                            AppColors.ssbutton,
+                                            AppColors.greenButtonGrad,
                                             'Check the Details'),
                                       ],
                                     ),
@@ -897,7 +897,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                   width: width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      gradient: AppColors.primaryUnselectedGradient),
+                      gradient: AppColors.unSelectedColor),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -913,7 +913,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                     ? Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: AppColors.firstColors),
+                            color: AppColors.unSelectColor),
                         child: responseStatusCode == 400
                             ? const notFoundData()
                             : vipHistory.isEmpty
@@ -995,7 +995,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                                       ),
                                                       const Divider(
                                                         color: AppColors
-                                                            .secondaryTextColor,
+                                                            .whiteColor,
                                                       ),
                                                     ],
                                                   ),
@@ -1012,7 +1012,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                           title: 'View All',
                                           fontSize: 20,
                                           titleColor:
-                                              AppColors.gradientFirstColor,
+                                              AppColors.whiteColor,
                                           onTap: () {
                                             Navigator.push(
                                                 context,
@@ -1028,7 +1028,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                       )
                     : Container(
                         decoration: BoxDecoration(
-                            color: AppColors.firstColors,
+                            color: AppColors.unSelectColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: [
@@ -1040,7 +1040,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                     text: 'VIP privileges',
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
-                                    color: AppColors.gradientFirstColor)),
+                                    color: AppColors.whiteColor)),
                             SizedBox(
                               height: height * 0.01,
                             ),
@@ -1069,12 +1069,12 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                           child: Container(
                                             padding: const EdgeInsets.all(16),
                                             decoration: BoxDecoration(
-                                                color: AppColors.firstColors,
+                                                color: AppColors.unSelectColor,
                                                 border: Border.all(
                                                     color: AppColors
-                                                        .secondaryContainerTextColor,
+                                                        .contLightColor,
                                                     width: 0.5),
-                                                //  gradient: AppColors.primaryUnselectedGradient,
+                                                //  gradient: AppColors.unSelectedColor,
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                             child: Padding(
@@ -1087,7 +1087,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                                       .toString(),
                                                   fontSize: 15,
                                                   color: AppColors
-                                                      .primaryTextColor,
+                                                      .whiteColor,
                                                   fontWeight: FontWeight.w500),
                                             ),
                                           ),
@@ -1119,7 +1119,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                                             FontWeight.w900,
                                                         fontSize: 14,
                                                         color: AppColors
-                                                            .primaryTextColor),
+                                                            .whiteColor),
                                                   ),
                                                 ),
                                               ),
@@ -1167,7 +1167,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(10),
                     topLeft: Radius.circular(10)),
-                color: AppColors.firstColors,
+                color: AppColors.unSelectColor,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -1191,7 +1191,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                         Container(
                           height: height * 0.03,
                           decoration: const BoxDecoration(
-                            gradient: AppColors.buttonGradient2,
+                            gradient: AppColors.loginSecondaryGrad,
                           ),
                           child: Row(
                             children: [
@@ -1203,7 +1203,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                 text: wallet,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.primaryTextColor,
+                                color: AppColors.whiteColor,
                                 maxLines: 1,
                               ),
                               const Spacer(),
@@ -1217,7 +1217,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                                 text: heartText,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.primaryTextColor,
+                                color: AppColors.whiteColor,
                                 maxLines: 1,
                               ),
                             ],
@@ -1232,7 +1232,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                       text: title,
                       fontSize: 16,
                       fontWeight: FontWeight.w900,
-                      color: AppColors.primaryTextColor,
+                      color: AppColors.whiteColor,
                       maxLines: 1,
                     ),
                   ),
@@ -1275,7 +1275,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
       width: width * 0.25,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: AppColors.gradientFirstColor)),
+          border: Border.all(color: AppColors.whiteColor)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Row(
@@ -1286,7 +1286,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
               height: 16,
             ),
             textWidget(
-                text: title, color: AppColors.gradientFirstColor, fontSize: 15)
+                text: title, color: AppColors.whiteColor, fontSize: 15)
           ],
         ),
       ),
@@ -1394,7 +1394,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
       height: height * 0.08,
       width: width * 0.45,
       decoration: BoxDecoration(
-          color: AppColors.firstColors,
+          color: AppColors.unSelectColor,
           borderRadius: BorderRadiusDirectional.circular(5)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1419,7 +1419,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
               text: subTitle,
               fontSize: 12,
               fontWeight: FontWeight.w900,
-              color: AppColors.primaryTextColor),
+              color: AppColors.whiteColor),
         ],
       ),
     );
@@ -1441,7 +1441,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
               borderRadius: BorderRadius.circular(10),
               gradient: index == selectedIndex
                   ? AppColors.loginSecondaryGrad
-                  : AppColors.primaryUnselectedGradient),
+                  : AppColors.unSelectedColor),
           child: Center(
             child: Text(
               title,
@@ -1449,8 +1449,8 @@ class _VipScreenNewState extends State<VipScreenNew> {
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
                   color: index == selectedIndex
-                      ? AppColors.primaryTextColor
-                      : AppColors.gradientFirstColor),
+                      ? AppColors.whiteColor
+                      : AppColors.whiteColor),
             ),
           ),
         ),
@@ -1467,7 +1467,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
         width: width * 0.25,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          gradient: AppColors.timeGradient,
+          gradient: AppColors.loginSecondaryGrad,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1482,7 +1482,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
             textWidget(text: title, fontSize: 15, fontWeight: FontWeight.w700),
             AppBtn(
               onTap: onTap,
-              gradient: AppColors.buttonGradient,
+              gradient: AppColors.primaryGradient,
               title: 'Received',
             )
           ],

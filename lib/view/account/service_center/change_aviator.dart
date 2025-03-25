@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/model/change_avtar_List_model.dart';
+import 'package:globalbet/model/change_avatar_list_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
@@ -33,7 +33,7 @@ class _ChangeAvtarState extends State<ChangeAvtar> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -51,9 +51,9 @@ class _ChangeAvtarState extends State<ChangeAvtar> {
             text: 'Change avatar',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child:changeAvtar.isEmpty?const Center(child: CircularProgressIndicator()):
@@ -94,7 +94,7 @@ class _ChangeAvtarState extends State<ChangeAvtar> {
                       isSelected ?
                       const Align(
                         alignment: Alignment.bottomRight,
-                          child: Icon(Icons.check_circle,color: AppColors.gradientFirstColor,)):Container()
+                          child: Icon(Icons.check_circle,color: AppColors.whiteColor,)):Container()
 
                     ],
                   ),

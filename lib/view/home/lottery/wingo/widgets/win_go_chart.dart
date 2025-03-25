@@ -83,7 +83,7 @@ class WinGoChart extends StatelessWidget {
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                gradient: res.number==index?AppColors.primaryGradient:AppColors.boxGradient
+                                gradient: res.number==index?AppColors.primaryGradient:AppColors.loginSecondaryGrad
                               ),
                               child: textWidget(
                                 text: index.toString(),
@@ -102,7 +102,7 @@ class WinGoChart extends StatelessWidget {
                         alignment: Alignment.center,
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            gradient: AppColors.buttonGradient),
+                            gradient: AppColors.primaryGradient),
                         child: textWidget(
                           text: res.number! > 4 &&
                               res.number! < 10

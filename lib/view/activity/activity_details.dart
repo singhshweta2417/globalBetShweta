@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/Slider_model.dart';
+import 'package:globalbet/model/slider_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
@@ -17,7 +17,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: const GradientAppBar(
           title: Text(
             "Activity Details",
@@ -50,7 +50,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
               fontWeight: FontWeight.bold
             ),),
           ),
-          widget.bannerdata.activity_image == null?const SizedBox()
+          widget.bannerdata.activityImage == null?const SizedBox()
           :Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -60,7 +60,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
                 borderRadius:  BorderRadius.circular(10),
                 image: DecorationImage(
                   image: NetworkImage(
-                      widget.bannerdata.activity_image.toString()),
+                      widget.bannerdata.activityImage.toString()),
                   fit: BoxFit.fill,
                 ),
               ),

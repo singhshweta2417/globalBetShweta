@@ -3,10 +3,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:globalbet/model/Slider_model.dart';
-import 'package:globalbet/model/aboutus_model.dart';
+import 'package:globalbet/model/slider_model.dart';
+import 'package:globalbet/model/about_us_model.dart';
 import 'package:globalbet/model/beginner_model.dart';
-import 'package:globalbet/model/termsconditionModel.dart';
+import 'package:globalbet/model/terms_condition_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/model/user_profile_model.dart';
 import 'package:globalbet/res/api_urls.dart';

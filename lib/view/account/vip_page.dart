@@ -230,7 +230,7 @@
 //   Widget build(BuildContext context) {
 //     final userData = context.read<ProfileProvider>();
 //     return Scaffold(
-//       backgroundColor: AppColors.scaffolddark,
+//       
 //       appBar: GradientAppBar(
 //           title: textWidget(text: 'VIP', fontSize: 25, color: Colors.white),
 //           leading: const AppBackBtn(),
@@ -273,7 +273,7 @@
 //                                 : userData.userName.toString(),
 //                                 fontSize: 18,
 //                                 fontWeight: FontWeight.w500,
-//                                 color: AppColors.primaryTextColor),
+//                                 color: AppColors.whiteColor),
 //                             SizedBox(
 //                               height: height * 0.01,
 //                             ),
@@ -288,9 +288,9 @@
 //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //                   children: [
 //                     topContainer('19185 ', 'Exp', 'My Experience',
-//                         AppColors.gradientFirstColor, FontWeight.w500),
+//                         AppColors.whiteColor, FontWeight.w500),
 //                     topContainer('24 ', 'days', 'Payout time',
-//                         AppColors.primaryTextColor, FontWeight.w900),
+//                         AppColors.whiteColor, FontWeight.w900),
 //                   ],
 //                 ),
 //               ),
@@ -301,7 +301,7 @@
 //             margin: const EdgeInsets.all(13),
 //             height: height * 0.05,
 //             decoration: BoxDecoration(
-//                 border: Border.all(color: AppColors.primaryTextColor, width: 1),
+//                 border: Border.all(color: AppColors.whiteColor, width: 1),
 //                 borderRadius: BorderRadius.circular(5)),
 //             child: textWidget(
 //                 text:
@@ -459,7 +459,7 @@
 //             padding: const EdgeInsets.all(8.0),
 //             child: Container(
 //               decoration: BoxDecoration(
-//                 gradient: AppColors.primaryUnselectedGradient,
+//                 gradient: AppColors.unSelectedColor,
 //                 borderRadius: BorderRadius.circular(10),
 //               ),
 //               child: Column(
@@ -542,7 +542,7 @@
 //             padding: const EdgeInsets.all(8.0),
 //             child: Container(
 //               decoration: BoxDecoration(
-//                 gradient: AppColors.primaryUnselectedGradient,
+//                 gradient: AppColors.unSelectedColor,
 //                 borderRadius: BorderRadius.circular(10),
 //               ),
 //               child: Column(
@@ -599,7 +599,7 @@
 //                                     borderRadius: BorderRadius.only(
 //                                         topRight: Radius.circular(10),
 //                                         topLeft: Radius.circular(10)),
-//                                     color: AppColors.gridColor,
+//                                     color: AppColors.greyColor,
 //                                   ),
 //                                   child: Column(
 //                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -629,7 +629,7 @@
 //                                               height: height * 0.03,
 //                                               decoration: const BoxDecoration(
 //                                                 gradient:
-//                                                     AppColors.buttonGradient2,
+//                                                     AppColors.loginSecondaryGrad,
 //                                               ),
 //                                               child: Row(
 //                                                 children: [
@@ -644,7 +644,7 @@
 //                                                     fontSize: 13,
 //                                                     fontWeight: FontWeight.w600,
 //                                                     color: AppColors
-//                                                         .primaryTextColor,
+//                                                         .whiteColor,
 //                                                     maxLines: 1,
 //                                                   ),
 //                                                   const Spacer(),
@@ -666,7 +666,7 @@
 //                                                           fontWeight:
 //                                                               FontWeight.w600,
 //                                                           color: AppColors
-//                                                               .primaryTextColor,
+//                                                               .whiteColor,
 //                                                           maxLines: 1,
 //                                                         ),
 //                                                 ],
@@ -683,7 +683,7 @@
 //                                               levelList[index].title.toString(),
 //                                           fontSize: 16,
 //                                           fontWeight: FontWeight.w900,
-//                                           color: AppColors.primaryTextColor,
+//                                           color: AppColors.whiteColor,
 //                                           maxLines: 1,
 //                                         ),
 //                                       ),
@@ -711,7 +711,7 @@
 //                                   fontSize: 20,
 //                                   onTap: () {},
 //                                   hideBorder: true,
-//                                   gradient: AppColors.buttonGradient,
+//                                   gradient: AppColors.primaryGradient,
 //                                   height: 40,
 //                                   width: width,
 //                                 )
@@ -735,7 +735,7 @@
 //                   width: width,
 //                   decoration: BoxDecoration(
 //                       borderRadius: BorderRadius.circular(10),
-//                       gradient: AppColors.primaryUnselectedGradient),
+//                       gradient: AppColors.unSelectedColor),
 //                   child: Row(
 //                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //                     children: [
@@ -818,7 +818,7 @@
 //                                             ),
 //                                             const Divider(
 //                                               color:
-//                                                   AppColors.secondaryTextColor,
+//                                                   AppColors.whiteColor,
 //                                             ),
 //                                           ],
 //                                         ),
@@ -834,7 +834,7 @@
 //                               child: AppBtn(
 //                                 title: 'View All',
 //                                 fontSize: 20,
-//                                 titleColor: AppColors.gradientFirstColor,
+//                                 titleColor: AppColors.whiteColor,
 //                                 onTap: () {},
 //                                 gradient: AppColors.secondaryGradient,
 //                               ),
@@ -856,7 +856,7 @@
 //                                     text: 'VIP privileges',
 //                                     fontSize: 20,
 //                                     fontWeight: FontWeight.w600,
-//                                     color: AppColors.gradientFirstColor)),
+//                                     color: AppColors.whiteColor)),
 //                             SizedBox(
 //                               height: height * 0.01,
 //                             ),
@@ -885,12 +885,12 @@
 //                                           child: Container(
 //                                             padding: const EdgeInsets.all(16),
 //                                             decoration: BoxDecoration(
-//                                                 color: AppColors.gridColor,
+//                                                 color: AppColors.greyColor,
 //                                                 border: Border.all(
 //                                                     color: AppColors
-//                                                         .secondaryContainerTextColor,
+//                                                         .contLightColor,
 //                                                     width: 0.5),
-//                                                 //  gradient: AppColors.primaryUnselectedGradient,
+//                                                 //  gradient: AppColors.unSelectedColor,
 //                                                 borderRadius:
 //                                                     BorderRadius.circular(10)),
 //                                             child: Padding(
@@ -901,7 +901,7 @@
 //                                                   text:ruleData[index].discription.toString(),
 //                                                   fontSize: 15,
 //                                                   color: AppColors
-//                                                       .primaryTextColor,
+//                                                       .whiteColor,
 //                                                   fontWeight: FontWeight.w500),
 //                                             ),
 //                                           ),
@@ -930,7 +930,7 @@
 //                                                             FontWeight.w900,
 //                                                         fontSize: 14,
 //                                                         color: AppColors
-//                                                             .primaryTextColor),
+//                                                             .whiteColor),
 //                                                   ),
 //                                                 ),
 //                                               ),
@@ -985,7 +985,7 @@
 //       width: width * 0.22,
 //       decoration: BoxDecoration(
 //           borderRadius: BorderRadius.circular(5),
-//           border: Border.all(color: AppColors.gradientFirstColor)),
+//           border: Border.all(color: AppColors.whiteColor)),
 //       child: Padding(
 //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
 //         child: Row(
@@ -996,7 +996,7 @@
 //               height: 16,
 //             ),
 //             textWidget(
-//                 text: title, color: AppColors.gradientFirstColor, fontSize: 15)
+//                 text: title, color: AppColors.whiteColor, fontSize: 15)
 //           ],
 //         ),
 //       ),
@@ -1034,7 +1034,7 @@
 //               text: subTitle,
 //               fontSize: 12,
 //               fontWeight: FontWeight.w900,
-//               color: AppColors.primaryTextColor),
+//               color: AppColors.whiteColor),
 //         ],
 //       ),
 //     );
@@ -1056,7 +1056,7 @@
 //               borderRadius: BorderRadius.circular(10),
 //               gradient: index == selectedIndex
 //                   ? AppColors.loginSecondryGrad
-//                   : AppColors.primaryUnselectedGradient),
+//                   : AppColors.unSelectedColor),
 //           child: Center(
 //             child: Text(
 //               title,
@@ -1064,8 +1064,8 @@
 //                   fontWeight: FontWeight.w500,
 //                   fontSize: 20,
 //                   color: index == selectedIndex
-//                       ? AppColors.primaryTextColor
-//                       : AppColors.gradientFirstColor),
+//                       ? AppColors.whiteColor
+//                       : AppColors.whiteColor),
 //             ),
 //           ),
 //         ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
 import 'package:provider/provider.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -31,9 +32,7 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
   @override
   Widget build(BuildContext context) {
     final userData = Provider.of<ProfileViewModel>(context);
-
     return Scaffold(
-        backgroundColor: AppColors.scaffoldDark,
         appBar: const GradientAppBar(
             title: Text(
               'Wallet',
@@ -44,154 +43,150 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
             ),
             centerTitle: true,
             gradient: AppColors.primaryGradient),
-        body: ListView(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: height * 0.25,
-                  width: width,
-                  decoration:
-                      const BoxDecoration(gradient: AppColors.primaryGradient),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        Assets.iconsProWallet,
-                        height: 70,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.currency_rupee,
-                              size: 30, color: AppColors.primaryTextColor),
-                          textWidget(
-                            text: userData.balance == 0
-                                ? ""
-                                : userData.balance.toStringAsFixed(2),
-                            fontWeight: FontWeight.w900,
-                            fontSize: 28,
-                            color: AppColors.primaryTextColor,
-                          ),
-                        ],
-                      ),
-                      textWidget(
-                          text: 'Total Balance',
-                          color: AppColors.primaryTextColor,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700),
-                    ],
+        body: Container(
+          height: height,
+          padding: EdgeInsets.fromLTRB(width*0.04, height*0.03, width*0.04, height*0.05),
+          decoration: const BoxDecoration(
+            gradient: AppColors.bgGrad
+          ),
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Image.asset(
+                Assets.iconsProWallet,
+                height: 70,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.currency_rupee,
+                      size: 30, color: AppColors.whiteColor),
+                  textWidget(
+                    text: userData.balance == 0
+                        ? ""
+                        : userData.balance.toStringAsFixed(2),
+                    fontWeight: FontWeight.w900,
+                    fontSize: 28,
+                    color: AppColors.whiteColor,
                   ),
-                ),
-                Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: height * 0.22, bottom: 30),
-                    child: Container(
-                      height: height * 0.62,
-                      width: width * 0.9,
-                      decoration: BoxDecoration(
-                          color: AppColors.firstColors,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              percentage(
-                                  (userData.mainWallet /
-                                          (userData.balance * 0.01))
-                                      .toStringAsFixed(2),
-                                  userData.mainWallet == null
-                                      ? 0
-                                      : userData.mainWallet.toStringAsFixed(2),
-                                  'Main wallet'),
-                              percentage(
-                                  (userData.thirdPartyWallet /
-                                          (userData.balance * 0.01))
-                                      .toStringAsFixed(2),
-                                  userData.thirdPartyWallet == null
-                                      ? 0
-                                      : userData.thirdPartyWallet
-                                          .toStringAsFixed(2),
-                                  '3rd party wallet'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: height * 0.05,
-                          ),
-                          AppBtn(
-                              height: height * 0.07,
-                              title: 'Main wallet transfer',
-                              fontSize: 17,
-                              onTap: () {
-                                mainWalletTransfer(context);
-                              },
-                              hideBorder: true,
-                              gradient: AppColors.loginSecondaryGrad),
-                          SizedBox(
-                            height: height * 0.05,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              groups(
-                                Assets.iconsProDeposit,
-                                'Deposit',
-                                () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const DepositScreen()));
-                                },
-                              ),
-                              groups(
-                                Assets.iconsProWithdraw,
-                                'Withdrawal',
-                                () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const WithdrawScreen()));
-                                },
-                              ),
-                              groups(
-                                Assets.iconsRechargeHistory,
-                                'Deposit\n history',
-                                () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const DepositHistory()));
-                                },
-                              ),
-                              groups(
-                                Assets.iconsWithdrawHistory,
-                                'Withdrawal\n     history',
-                                () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const WithdrawHistory()));
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                ],
+              ),
+              textWidget(
+                textAlign: TextAlign.center,
+                  text: 'Total Balance',
+                  color: AppColors.whiteColor,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700),
+              Sizes.spaceHeight20,
+              Container(
+                height: height * 0.62,
+                decoration: BoxDecoration(
+                    color: AppColors.contLightColor,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        percentage(
+                          ((double.tryParse(userData.mainWallet?.toString() ?? '0') ?? 0) /
+                              (double.tryParse(userData.balance?.toString() ?? '1') ?? 1) *
+                              100)
+                              .toStringAsFixed(2),
+                          (userData.mainWallet == null || userData.mainWallet.isEmpty)
+                              ? "0"
+                              : (double.tryParse(userData.mainWallet.toString()) ?? 0).toStringAsFixed(2),
+                          'Main wallet',
+                        ),
+
+                        percentage(
+                          ((double.tryParse(userData.thirdPartyWallet?.toString() ?? '0') ?? 0) /
+                              (double.tryParse(userData.balance?.toString() ?? '1') ?? 1) *
+                              100)
+                              .toStringAsFixed(2),
+                          (userData.thirdPartyWallet == null || userData.thirdPartyWallet.isEmpty)
+                              ? "0"
+                              : (double.tryParse(userData.thirdPartyWallet.toString()) ?? 0).toStringAsFixed(2),
+                          '3rd party wallet',
+                        ),
+                      ],
                     ),
-                  ),
-                )
-              ],
-            ),
-            const Text(
-              "Version : 2025",
-              style: TextStyle(color: AppColors.scaffoldDark),
-            ),
-          ],
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
+                    AppBtn(
+                        height: height * 0.07,
+                        title: 'Main wallet transfer',
+                        fontSize: 17,
+                        onTap: () {
+                          mainWalletTransfer(context);
+                        },
+                        hideBorder: true,
+                        gradient: AppColors.loginSecondaryGrad),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        groups(
+                          Assets.iconsProDeposit,
+                          'Deposit',
+                              () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    const DepositScreen()));
+                          },
+                        ),
+                        groups(
+                          Assets.iconsProWithdraw,
+                          'Withdrawal',
+                              () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    const WithdrawScreen()));
+                          },
+                        ),
+                        groups(
+                          Assets.iconsRechargeHistory,
+                          'Deposit\n history',
+                              () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    const DepositHistory()));
+                          },
+                        ),
+                        groups(
+                          Assets.iconsWithdrawHistory,
+                          'Withdrawal\n     history',
+                              () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    const WithdrawHistory()));
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Sizes.spaceHeight20,
+              const Text(
+                "Version : 2025",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: AppColors.whiteColor),
+              ),
+            ],
+          ),
         ));
   }
 
@@ -237,7 +232,7 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
             width: width * 0.16,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                gradient: AppColors.boxGradient),
+                gradient: AppColors.bgGrad),
             child: Center(
               child: Image.asset(
                 img,
@@ -251,7 +246,7 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
           ),
           textWidget(
               text: title,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
               fontSize: 14,
               fontWeight: FontWeight.w700),
         ],
@@ -260,7 +255,6 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
   }
 
   Widget percentage(String percentData, String amount, String title) {
-    // Ensure percentData can be parsed to a double
     double? percentage;
     try {
       percentage = double.parse(percentData) / 100;
@@ -280,19 +274,19 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
           startAngle: 8.0,
           radius: 120,
           circularStrokeCap: CircularStrokeCap.round,
-          backgroundColor: AppColors.primaryTextColor.withOpacity(0.2),
+          backgroundColor: AppColors.whiteColor.withOpacity(0.5),
           linearGradient: AppColors.loginSecondaryGrad,
           percent: percentage.isNaN ? 0 : percentage,
           center: CircleAvatar(
             radius: 50,
-            backgroundColor: AppColors.percentageColor,
+            backgroundColor: AppColors.contLightColor,
             child: textWidget(
               text: percentage.isNaN
                   ? "0.00%"
                   : '${(percentage * 100).toStringAsFixed(2)}%',
               fontSize: 20,
               fontWeight: FontWeight.w600,
-              color: AppColors.gradientFirstColor,
+              color: AppColors.whiteColor,
             ),
           ),
         ),
@@ -305,13 +299,13 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
             const Icon(
               Icons.currency_rupee,
               size: 16,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
             ),
             textWidget(
               text: amount,
               fontWeight: FontWeight.w900,
               fontSize: 16,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
             ),
           ],
         ),
@@ -322,7 +316,7 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
           text: title,
           fontWeight: FontWeight.w600,
           fontSize: 16,
-          color: AppColors.gradientFirstColor,
+          color: AppColors.whiteColor,
         ),
       ],
     );

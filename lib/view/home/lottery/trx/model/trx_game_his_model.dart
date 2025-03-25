@@ -31,15 +31,15 @@ class TrxGameHisModel {
 }
 
 class Data {
-  int? id;
-  int? number;
-  int? gamesNo;
-  int? gameId;
+  dynamic id;
+  dynamic number;
+  dynamic gamesNo;
+  dynamic gameId;
   String? jsonData;
   String? randomCard;
   String? token;
-  int? block;
-  int? status;
+  dynamic block;
+  dynamic status;
   String? createdAt;
   String? updatedAt;
 

@@ -25,7 +25,6 @@ class _OfferSecondState extends State<OfferSecond> {
 
   bool loading = false;
 
-  int? responseStatuscode;
   bool readAndAgreePolicy = false;
 
   @override
@@ -63,7 +62,7 @@ class _OfferSecondState extends State<OfferSecond> {
                   Container(
                       height: height * 0.4,
                       decoration: const BoxDecoration(
-                        gradient: AppColors.primaryUnselectedGradient,
+                        gradient: AppColors.bgGrad,
                       ),
                       child:
                       offer.OfferModelData != null?
@@ -78,7 +77,7 @@ class _OfferSecondState extends State<OfferSecond> {
                               padding: const EdgeInsets.all(8),
 
                               decoration: BoxDecoration(
-                                  color: AppColors.firstColors,
+                                  gradient: AppColors.unSelectedColor,
                                   borderRadius: BorderRadius.circular(10)),
                               child: Column(
                                 children: [
@@ -90,7 +89,7 @@ class _OfferSecondState extends State<OfferSecond> {
                                         height: 50,
                                         width:50,
                                         decoration: BoxDecoration(
-                                            image: DecorationImage(image: NetworkImage(data.image.toString() ?? ""))
+                                            image: DecorationImage(image: NetworkImage(data.image.toString()))
                                         ),
                                       ),
                                       SizedBox(
@@ -109,7 +108,7 @@ class _OfferSecondState extends State<OfferSecond> {
                                   ),
                                   textWidget(
                                       text: data.content.toString(),
-                                      color: AppColors.constColor,
+                                      color: AppColors.whiteColor,
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600),
                                 ],
@@ -129,7 +128,7 @@ class _OfferSecondState extends State<OfferSecond> {
                 },
                 icon: const Icon(
                   Icons.cancel_outlined,
-                  color: AppColors.primaryTextColor,
+                  color: AppColors.whiteColor,
                   size: 25,
                 ),
               ),

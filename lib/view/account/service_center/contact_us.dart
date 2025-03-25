@@ -5,7 +5,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/contactus_provider.dart';
+import 'package:globalbet/res/provider/contact_us_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -36,14 +36,14 @@ class _ContactUsState extends State<ContactUs> {
     final contactusData = Provider.of<ContactUsProvider>(context).ContactusData;
 
     return SafeArea(child: Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: const AppBackBtn(),
           title: textWidget(
               text: 'Contact Us',
               fontSize: 25,
-              color: AppColors.primaryTextColor),
-          gradient: AppColors.primaryappbargrey),
+              color: AppColors.whiteColor),
+          gradient: AppColors.primaryAppbarGrey),
       body: contactusData!= null?SizedBox(
         height: height,
         width: width,

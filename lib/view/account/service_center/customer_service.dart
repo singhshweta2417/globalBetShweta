@@ -6,7 +6,7 @@ import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/custmer_service_model.dart';
+import 'package:globalbet/model/customer_service_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
@@ -34,7 +34,7 @@ class _CustomerCareServiceState extends State<CustomerCareService> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -52,9 +52,9 @@ class _CustomerCareServiceState extends State<CustomerCareService> {
             text: 'Customer service',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: Stack(
         //clipBehavior: Clip.none,
         children: [
@@ -70,7 +70,7 @@ class _CustomerCareServiceState extends State<CustomerCareService> {
               height: height*0.7,
               width: width*0.999,
               decoration: const BoxDecoration(
-                  gradient: AppColors.primaryUnselectedGradient,
+                  gradient: AppColors.unSelectedColor,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30))
               ),
               child:ListView.builder(
@@ -91,7 +91,7 @@ class _CustomerCareServiceState extends State<CustomerCareService> {
                           width: width*0.7,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: AppColors.filledColor,
+                            color: AppColors.darkColor,
 
                           ),
                           child: Row(
@@ -104,11 +104,11 @@ class _CustomerCareServiceState extends State<CustomerCareService> {
                                 text: service.name.toString(),
                                 fontWeight: FontWeight.w900,
                                 fontSize: 16,
-                                color: AppColors.primaryTextColor,
+                                color: AppColors.whiteColor,
                               ),
                               const Spacer(),
 
-                              const Icon(Icons.arrow_forward_ios,color: AppColors.primaryTextColor,)
+                              const Icon(Icons.arrow_forward_ios,color: AppColors.whiteColor,)
                             ],
                           ),
                         ),

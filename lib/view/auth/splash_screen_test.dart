@@ -26,7 +26,7 @@ class _SplashState extends State<Splash> {
     final prefs = await SharedPreferences.getInstance();
     final userid = prefs.getString("token") ?? '0';
     print(userid);
-    print('nknknknkn');
+    print('My userId');
     Timer(
         const Duration(seconds: 3),
         () => userid != '0'
@@ -58,7 +58,7 @@ class _SplashState extends State<Splash> {
             text: 'Withdraw fast, safe and stable',
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/main.dart';
+import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
@@ -19,14 +20,12 @@ import 'package:globalbet/view/home/mini/HeadTail/head_tail_assets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../generated/assets.dart';
 import '../../../../res/aap_colors.dart';
 import '../../../../res/api_urls.dart';
 import '../../casino/AndarBahar/constant/andar_bahar_history.dart';
 import '../../casino/dragon_tiger_new/widgets/dragon_tiger_Assets.dart';
-import '../Aviator/widget/imagetoast.dart';
+import '../Aviator/widget/image_toast.dart';
 import 'loading_popup.dart';
 
 const double kCoinRadius = 20.0;
@@ -41,10 +40,10 @@ class HeadTailHome extends StatefulWidget {
   });
 
   @override
-  _HeadTailHomeState createState() => _HeadTailHomeState();
+  HeadTailHomeState createState() => HeadTailHomeState();
 }
 
-class _HeadTailHomeState extends State<HeadTailHome>
+class HeadTailHomeState extends State<HeadTailHome>
     with WidgetsBindingObserver, TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _toss;
@@ -101,7 +100,7 @@ class _HeadTailHomeState extends State<HeadTailHome>
   Timer? countdownTimer;
   Future<void> startCountdown() async {
     DateTime now = DateTime.now().toUtc();
-    int initialSeconds = 60 - now.second; // Calculate initial remaining seconds
+    int initialSeconds = 60 - now.second;
     setState(() {
       countdownSeconds = initialSeconds;
     });
@@ -141,7 +140,7 @@ class _HeadTailHomeState extends State<HeadTailHome>
               imagePath: AppAssets.dragontigerStopbetting,
               heights: 100,
               context: context);
-          hidebutton = true;
+          hideButton = true;
         }
       } else if (countdownSeconds == 10) {
         if (fristCome == false) {
@@ -172,7 +171,7 @@ class _HeadTailHomeState extends State<HeadTailHome>
         if (fristCome == false) {
         } else {
           Navigator.pop(context);
-          hidebutton = false;
+          hideButton = false;
           countAndCoinClear();
         }
         fristCome = true;
@@ -231,7 +230,7 @@ class _HeadTailHomeState extends State<HeadTailHome>
                   child: Container(
                     padding: const EdgeInsets.all(8.0),
                     decoration: const BoxDecoration(
-                      gradient: AppColors.appBarGradient,
+                      gradient: AppColors.loginSecondaryGrad,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -245,7 +244,7 @@ class _HeadTailHomeState extends State<HeadTailHome>
                               },
                               child: const Icon(
                                 Icons.arrow_back_ios,
-                                color: AppColors.primaryTextColor,
+                                color: AppColors.whiteColor,
                               )),
                         ),
                         Container(
@@ -439,7 +438,6 @@ class _HeadTailHomeState extends State<HeadTailHome>
                                     ),
                                   ),
                                 ),
-                                // color: Colors.red,
                               ),
                               Container(
                                 height: height * 0.3,
@@ -639,8 +637,6 @@ class _HeadTailHomeState extends State<HeadTailHome>
                       ),
                     ),
 
-                    /// middle
-
                     /// bottom
                     Container(
                       margin: EdgeInsets.only(top: height * 0.75),
@@ -720,10 +716,10 @@ class _HeadTailHomeState extends State<HeadTailHome>
                                   shrinkWrap: true,
                                   itemCount: list.length,
                                   scrollDirection: Axis.horizontal,
-                                  itemBuilder: (BuildContext, int index) {
+                                  itemBuilder: (context, int index) {
                                     final GlobalKey<CartIconKey> itemKey =
                                         GlobalKey<CartIconKey>();
-                                    return hidebutton == true
+                                    return hideButton == true
                                         ? hidecoins(list[index])
                                         : InkWell(
                                             onTap: () async {
@@ -745,9 +741,9 @@ class _HeadTailHomeState extends State<HeadTailHome>
                                                           if (selectedCart ==
                                                               1) {
                                                             headCoins.add(Positioned(
-                                                                left: Randomno(
+                                                                left: randomNo(
                                                                     1, 150),
-                                                                top: Randomno(
+                                                                top: randomNo(
                                                                     1, 50),
                                                                 child: CoindesignNew(
                                                                     list[
@@ -755,9 +751,9 @@ class _HeadTailHomeState extends State<HeadTailHome>
                                                           } else if (selectedCart ==
                                                               2) {
                                                             tailCoins.add(Positioned(
-                                                                left: Randomno(
+                                                                left: randomNo(
                                                                     1, 150),
-                                                                top: Randomno(
+                                                                top: randomNo(
                                                                     1, 50),
                                                                 child: CoindesignNew(
                                                                     list[
@@ -819,9 +815,9 @@ class _HeadTailHomeState extends State<HeadTailHome>
                         offset:
                             Offset(size.width / 2 - kCoinRadius, _toss.value),
                         child: Transform(
-                          child: child,
                           transform: _turn.value,
                           alignment: Alignment.center,
+                          child: child,
                         ),
                       ),
                       child: const SizedBox(
@@ -830,7 +826,6 @@ class _HeadTailHomeState extends State<HeadTailHome>
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              //color: Colors.red,
                               image: DecorationImage(
                                 image: AssetImage(HeadTailAssets.headTailTails),
                                 fit: BoxFit.fill,
@@ -850,15 +845,11 @@ class _HeadTailHomeState extends State<HeadTailHome>
   List<LastFifteen> items = [];
 
   Future<void> fetchData() async {
-    var gameids = widget.gameId;
+    var gameIds = widget.gameId;
     final response =
-        await http.get(Uri.parse("${ApiUrl.result}$gameids&limit=15"));
-    print("${ApiUrl.result}$gameids&limit=15");
-    print('qqqqqq');
+        await http.get(Uri.parse("${ApiUrl.result}$gameIds&limit=15"));
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
-      print(responseData);
-      print('eeeeeeee');
       setState(() {
         items = responseData.map((item) => LastFifteen.fromJson(item)).toList();
       });
@@ -875,12 +866,12 @@ class _HeadTailHomeState extends State<HeadTailHome>
   }
 
   UserViewModel userProvider = UserViewModel();
-  // *beting API*  //
+  // *betting API*  //
   bettingApi() async {
-    final prefs = await SharedPreferences.getInstance();
-    final userId = prefs.getInt("userId").toString();
-    // final prefs = await SharedPreferences.getInstance();
-    // final userid = prefs.getString("userId");
+    UserViewModel userProvider = UserViewModel();
+    UserModel user = await userProvider.getUser();
+    String userId = user.id.toString();
+
     final betList = [
       {'number': '1', 'amount': headCount.toString()},
       {'number': '2', 'amount': tailCount.toString()},
@@ -897,20 +888,15 @@ class _HeadTailHomeState extends State<HeadTailHome>
         "json": betList,
       }),
     );
-    print(ApiUrl.dragonBet);
-    print("ApiUrl.dragonBet");
-    print(widget.gameId);
-    print("gameidd head tail");
-    print(userId);
-    print("useriddd");
-
+    print(betList);
+    print('betList');
     var data = jsonDecode(response.body);
     if (data["status"] == 200) {
       ImageToast.show(
           imagePath: AppAssets.bettingplaceds, heights: 100, context: context);
       countAndCoinClear();
     } else {
-      Utils.flushBarErrorMessage(data['msg'], context, Colors.black);
+      Utils.flushBarErrorMessage(data['message'].toString(), context, Colors.black);
     }
   }
 
@@ -919,21 +905,15 @@ class _HeadTailHomeState extends State<HeadTailHome>
 
   List<String> stringList = [];
   lastResultView(context) async {
-    var gameids = widget.gameId;
+    var gameIds = widget.gameId;
     try {
-      final url = Uri.parse('${ApiUrl.result}$gameids&limit=1');
-      print('${ApiUrl.result}$gameids&limit=1');
-      print('jkk');
+      final url = Uri.parse('${ApiUrl.result}$gameIds&limit=1');
       final response = await http.get(url);
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body)["data"][0];
         setState(() {
           winResult = responseData["number"];
-          gamesNo = responseData["gamesno"] + 1;
-          print(responseData["gamesno"]);
-          print(gamesNo);
-          print(winResult);
-          print('wsxedcrfv');
+          gamesNo = responseData["games_no"] + 1;
           final List<dynamic> cardImage = json.decode(responseData["json"]);
           stringList =
               cardImage.map((dynamic item) => item.toString()).toList();
@@ -948,31 +928,25 @@ class _HeadTailHomeState extends State<HeadTailHome>
   }
 
   gameWinPopup() async {
-    final prefs = await SharedPreferences.getInstance();
-    final userId = prefs.getInt("userId").toString();
-    print('User ID: $userId');
-    print('Games No: ${gamesNo.toString()}');
-
+    UserViewModel userProvider = UserViewModel();
+    UserModel user = await userProvider.getUser();
+    String userId = user.id.toString();
     final response = await http.get(
-      Uri.parse('${ApiUrl.winAmount}$userId&game_id=$gameid&gamesno=$gamesNo'),
+      Uri.parse('${ApiUrl.winAmount}$userId&game_id=$gameid&games_no=$gamesNo'),
     );
     print(
-        'API URL: ${ApiUrl.winAmount}$userId&game_id=$gameid&gamesno=$gamesNo');
+        'API URL: ${ApiUrl.winAmount}$userId&game_id=$gameid&games_no=$gamesNo');
     print('Ho gyaaaaaaa');
 
     var data = jsonDecode(response.body);
     if (kDebugMode) {
-      print('ghjklhbjkl');
       print(data);
-      print('data founddddd');
     }
     if (data["status"] == 200) {
       var win = data["win"].toString();
       var result = data["result"].toString();
-      var gsm = data["gamesno"].toString();
-      print("winnnnnssssss");
-      print("rresulttttt");
-      print("game serial nooooo");
+      var gsm = data["games_no"].toString();
+
       win == '0'
           ? ImageToastWingo.showloss(
               subtext: result, subtext1: gsm, subtext2: win, context: context)
@@ -989,7 +963,7 @@ class _HeadTailHomeState extends State<HeadTailHome>
     }
   }
 
-  bool hidebutton = false;
+  bool hideButton = false;
   double wallet = 0;
 
   void deductAmount(int amountToDeduct) {
@@ -1015,7 +989,7 @@ class _HeadTailHomeState extends State<HeadTailHome>
   List<Widget> headCoins = [];
   List<Widget> tailCoins = [];
 
-  Randomno(int min, int max) {
+  randomNo(int min, int max) {
     Random random = Random();
     return double.parse((min + random.nextInt(max - min + 1)).toString());
   }
@@ -1163,15 +1137,15 @@ class _AnimatedCoinState extends State<_AnimatedCoin>
     _controller.forward();
   }
 
-  doublepj(double start, double end) {
+  doublePj(double start, double end) {
     Random random = Random();
 
     return start + random.nextDouble() * (end - start);
   }
 
   Offset _randomOffset(double start, double end) {
-    double randomPositionX = doublepj(50, 170);
-    double randomPositionY = doublepj(50, 130);
+    double randomPositionX = doublePj(50, 170);
+    double randomPositionY = doublePj(50, 130);
     return Offset(randomPositionX, randomPositionY);
   }
 

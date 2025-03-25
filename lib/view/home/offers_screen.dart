@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/extradepositmodel.dart';
+import 'package:globalbet/model/extra_deposit_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -77,7 +77,7 @@ class _OffersScreenState extends State<OffersScreen> {
                   Container(
                       height: height * 0.4,
                       decoration: const BoxDecoration(
-                        gradient: AppColors.primaryUnselectedGradient,
+                        gradient: AppColors.unSelectedColor,
                       ),
                       child: ListView.builder(
                           physics: const BouncingScrollPhysics(),
@@ -90,7 +90,7 @@ class _OffersScreenState extends State<OffersScreen> {
                               padding: const EdgeInsets.all(8),
 
                               decoration: BoxDecoration(
-                                  color: AppColors.firstColors,
+                                  color: AppColors.unSelectColor,
                                   borderRadius: BorderRadius.circular(10)),
                               child: Column(
                                 children: [
@@ -109,7 +109,7 @@ class _OffersScreenState extends State<OffersScreen> {
                                       const Spacer(),
                                       textWidget(
                                           text: '+₹${data.bonus}',
-                                          color: AppColors.gradientFirstColor,
+                                          color: AppColors.whiteColor,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w600),
                                     ],
@@ -174,14 +174,14 @@ class _OffersScreenState extends State<OffersScreen> {
                                           width: width * 0.23,
                                           decoration: BoxDecoration(
                                             border:
-                                            Border.all(color: AppColors.iconsColor),
+                                            Border.all(color: AppColors.whiteColor),
                                             borderRadius:
                                             BorderRadius.circular(5),
                                           ),
                                           child: textWidget(
                                               text: 'Deposit',
                                               fontWeight: FontWeight.w600,
-                                              color:  AppColors.gradientFirstColor,
+                                              color:  AppColors.whiteColor,
                                               fontSize: 15),
                                         ),
                                       ),
@@ -194,7 +194,7 @@ class _OffersScreenState extends State<OffersScreen> {
                   Container(
                     height: height * 0.09,
                     decoration: const BoxDecoration(
-                        gradient: AppColors.primaryUnselectedGradient,
+                        gradient: AppColors.unSelectedColor,
                         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15))),
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -216,13 +216,13 @@ class _OffersScreenState extends State<OffersScreen> {
                           //             // image: const DecorationImage(
                           //             //     image: AssetImage(Assets.)),
                           //             border: Border.all(
-                          //                 color: AppColors.secondaryTextColor),
+                          //                 color: AppColors.whiteColor),
                           //             borderRadius:
                           //                 BorderRadiusDirectional.circular(50),
                           //           )
                           //         : BoxDecoration(
                           //             border: Border.all(
-                          //                 color: AppColors.secondaryTextColor),
+                          //                 color: AppColors.whiteColor),
                           //             borderRadius:
                           //                 BorderRadiusDirectional.circular(50),
                           //           ),
@@ -259,7 +259,7 @@ class _OffersScreenState extends State<OffersScreen> {
                 },
                 icon: const Icon(
                   Icons.cancel_outlined,
-                  color: AppColors.primaryTextColor,
+                  color: AppColors.whiteColor,
                   size: 25,
                 ),
               ),

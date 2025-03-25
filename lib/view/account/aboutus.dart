@@ -4,7 +4,7 @@ import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/aboutus_provider.dart';
+import 'package:globalbet/res/provider/about_us_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:globalbet/view/account/about_us_screen/about_new.dart';
@@ -31,7 +31,7 @@ class _AboutusState extends State<Aboutus> {
 
     return SafeArea(
         child: Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -49,9 +49,9 @@ class _AboutusState extends State<Aboutus> {
             text: 'About Us',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body:Column(
         children: [
           Container(
@@ -59,7 +59,7 @@ class _AboutusState extends State<Aboutus> {
             width: width,
             // color: Colors.red,
             decoration: const BoxDecoration(
-              gradient: AppColors.primaryUnselectedGradient,
+              gradient: AppColors.unSelectedColor,
               image: DecorationImage(
                 image: AssetImage(Assets.imagesAboutus),
                 fit: BoxFit.contain,
@@ -76,7 +76,7 @@ class _AboutusState extends State<Aboutus> {
                     text: 'About Us',
                     fontWeight: FontWeight.w900,
                     fontSize: 15,
-                    color: AppColors.primaryTextColor,
+                    color: AppColors.whiteColor,
                   ),
                   trailing: IconButton(
                     onPressed: () {
@@ -84,12 +84,12 @@ class _AboutusState extends State<Aboutus> {
                         name:"About Us",type:"1"
                       )));
                     },
-                    icon: const Icon(Icons.arrow_forward_ios_sharp, color: AppColors.gradientFirstColor,size: 15,),
+                    icon: const Icon(Icons.arrow_forward_ios_sharp, color: AppColors.whiteColor,size: 15,),
                   ),
                 ),
                 const Divider(
                   thickness: 0.5,
-                  color: AppColors.gradientFirstColor,
+                  color: AppColors.whiteColor,
                   endIndent: 20,
                   indent: 20,
                 ),
@@ -99,7 +99,7 @@ class _AboutusState extends State<Aboutus> {
                     text: 'Confidentiality Agreement',
                     fontWeight: FontWeight.w900,
                     fontSize: 15,
-                    color: AppColors.primaryTextColor,
+                    color: AppColors.whiteColor,
                   ),
                   trailing: IconButton(
                     onPressed: () {
@@ -109,14 +109,14 @@ class _AboutusState extends State<Aboutus> {
                     },
                     icon: const Icon(
                       Icons.arrow_forward_ios_sharp,
-                      color: AppColors.gradientFirstColor,
+                      color: AppColors.whiteColor,
                       size: 15,
                     ),
                   ),
                 ),
                 const Divider(
                   thickness: 0.5,
-                  color: AppColors.gradientFirstColor,
+                  color: AppColors.whiteColor,
                   endIndent: 20,
                   indent: 20,
                 ),
@@ -126,7 +126,7 @@ class _AboutusState extends State<Aboutus> {
                     text: 'Risk Disclosure Agreement',
                     fontWeight: FontWeight.w900,
                     fontSize: 15,
-                    color: AppColors.primaryTextColor,
+                    color: AppColors.whiteColor,
                   ),
                   trailing: IconButton(
                     onPressed: () {
@@ -135,12 +135,12 @@ class _AboutusState extends State<Aboutus> {
 
                       )));
                     },
-                    icon: const Icon(Icons.arrow_forward_ios_sharp, color: AppColors.gradientFirstColor,size: 15,),
+                    icon: const Icon(Icons.arrow_forward_ios_sharp, color: AppColors.whiteColor,size: 15,),
                   ),
                 ),
                 const Divider(
                   thickness: 0.5,
-                  color: AppColors.gradientFirstColor,
+                  color: AppColors.whiteColor,
                   endIndent: 20,
                   indent: 20,
                 ),
@@ -150,7 +150,7 @@ class _AboutusState extends State<Aboutus> {
                     text: 'Terms & Condition',
                     fontWeight: FontWeight.w900,
                     fontSize: 15,
-                    color: AppColors.primaryTextColor,
+                    color: AppColors.whiteColor,
                   ),
                   trailing: IconButton(
                     onPressed: () {
@@ -158,12 +158,12 @@ class _AboutusState extends State<Aboutus> {
                           name:"Terms & Condition",type:"2"
                       )));
                     },
-                    icon: const Icon(Icons.arrow_forward_ios_sharp, color: AppColors.gradientFirstColor,size: 15,),
+                    icon: const Icon(Icons.arrow_forward_ios_sharp, color: AppColors.whiteColor,size: 15,),
                   ),
                 ),
                 const Divider(
                   thickness: 0.5,
-                  color: AppColors.gradientFirstColor,
+                  color: AppColors.whiteColor,
                   endIndent: 20,
                   indent: 20,
                 ),
@@ -173,7 +173,7 @@ class _AboutusState extends State<Aboutus> {
                     text: 'globalbet FAQs',
                     fontWeight: FontWeight.w900,
                     fontSize: 15,
-                    color: AppColors.primaryTextColor,
+                    color: AppColors.whiteColor,
                   ),
                   trailing: IconButton(
                     onPressed: () {
@@ -182,12 +182,12 @@ class _AboutusState extends State<Aboutus> {
 
                       )));
                     },
-                    icon: const Icon(Icons.arrow_forward_ios_sharp, color: AppColors.gradientFirstColor,size: 15,),
+                    icon: const Icon(Icons.arrow_forward_ios_sharp, color: AppColors.whiteColor,size: 15,),
                   ),
                 ),
                 const Divider(
                   thickness: 0.5,
-                  color: AppColors.gradientFirstColor,
+                  color: AppColors.whiteColor,
                   endIndent: 20,
                   indent: 20,
                 ),

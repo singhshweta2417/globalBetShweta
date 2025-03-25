@@ -139,7 +139,6 @@ class _GameHistoryState extends State<GameHistory> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     final l16hvm = Provider.of<Lucky16HistoryViewModel>(context);
     return Column(
       children: [
@@ -205,7 +204,6 @@ class ReportDetails extends StatefulWidget {
 class _ReportDetailsState extends State<ReportDetails> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Column(
       children: [

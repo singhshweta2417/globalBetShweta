@@ -70,7 +70,7 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(gradient: AppColors.secondaryappbar,
+                decoration: BoxDecoration(gradient: AppColors.secondaryAppbar,
                     borderRadius: BorderRadius.circular(10)
                 ),
                 child: Column(
@@ -83,7 +83,7 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                     //     child: Text('2024'+bets[index].gamesno.toString(),
                     //         maxLines: 1,
                     //         style: const TextStyle(
-                    //             color:  AppColors.secondaryTextColor, fontSize: 14)
+                    //             color:  AppColors.whiteColor, fontSize: 14)
                     //     ),
                     //   ),),
                     // Container(
@@ -94,12 +94,12 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                     //       children: [
                     //         Text(bets[index].multiplier=='null'?'${bets[index].amount}':'${bets[index].amount} , ',
                     //             style: const TextStyle(
-                    //                 color:  AppColors.secondaryTextColor, fontSize: 14)),
+                    //                 color:  AppColors.whiteColor, fontSize: 14)),
                     //         Container(
                     //           width: 35,
                     //           child: Text(bets[index].multiplier=='null'?'':'${bets[index].multiplier}',
                     //               style: const TextStyle(
-                    //                   color:  AppColors.secondaryTextColor, fontSize: 14)),
+                    //                   color:  AppColors.whiteColor, fontSize: 14)),
                     //         ),
                     //       ],
                     //     )),
@@ -122,7 +122,7 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                     //       text: DateFormat("dd-MMM-yyyy, hh:mm a").format(DateTime.parse(bets[index].datetime.toString())),
                     //       fontSize: 12,
                     //       fontWeight: FontWeight.w800,
-                    //       color: AppColors.primaryTextColor
+                    //       color: AppColors.whiteColor
                     //   ),
                     // ),
                     SizedBox(height: height*0.023),
@@ -135,12 +135,12 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                           textWidget(text: "Game S.No",
                               fontSize: width*0.03,
                               fontWeight: FontWeight.w800,
-                              color: AppColors.primaryTextColor
+                              color: AppColors.whiteColor
                           ),
                           textWidget(text: '2024${bets[index].gameSrNum}',
                               fontSize: width*0.045,
                               fontWeight: FontWeight.w800,
-                            color: AppColors.primaryTextColor
+                            color: AppColors.whiteColor
                           ),
                         ],
                       ),
@@ -154,7 +154,7 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                           textWidget(text: "Bet, INR X",
                               fontSize: width*0.03,
                               fontWeight: FontWeight.w800,
-                              color: AppColors.primaryTextColor
+                              color: AppColors.whiteColor
                           ),
                           SizedBox(
                               width: width * 0.3,
@@ -163,13 +163,13 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                                 children: [
                                   Text(bets[index].multiplier=='0.0'?'${bets[index].amount}':'${bets[index].amount} , ',
                                       style:  TextStyle(
-                                          color:  AppColors.primaryTextColor,
+                                          color:  AppColors.whiteColor,
                                            fontSize: width*0.045,
                                       )
                                   ),
                                   Text(bets[index].multiplier=='null'?'':'${bets[index].multiplier}',
                                       style:  TextStyle(
-                                          color:  AppColors.primaryTextColor,  fontSize: width*0.045,)),
+                                          color:  AppColors.whiteColor,  fontSize: width*0.045,)),
                                 ],
                               )),
 
@@ -186,7 +186,7 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                           textWidget(text: "Win, INR",
                               fontSize: width*0.03,
                               fontWeight: FontWeight.w800,
-                              color: AppColors.primaryTextColor
+                              color: AppColors.whiteColor
                           ),
                           Center(
                             child: Text(bets[index].cashoutAmount=="null"?'- ₹ 0.0':
@@ -209,13 +209,13 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                           textWidget(text: "Date & Time",
                               fontSize: width*0.03,
                               fontWeight: FontWeight.w800,
-                              color: AppColors.primaryTextColor
+                              color: AppColors.whiteColor
                           ),
                           textWidget(
                               text: DateFormat("dd-MMM-yyyy, hh:mm a").format(DateTime.parse(bets[index].datetime.toString())),
                               fontSize: width*0.045,
                               fontWeight: FontWeight.w800,
-                              color: AppColors.primaryTextColor
+                              color: AppColors.whiteColor
                           ),
                         ],
                       ),

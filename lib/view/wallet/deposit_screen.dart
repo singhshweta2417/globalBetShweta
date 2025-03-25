@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/addaccount_view_model.dart';
+import 'package:globalbet/model/add_account_view_model.dart';
 import 'package:globalbet/model/deposit_model_new.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
@@ -15,7 +15,7 @@ import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/wallet/deposit_history.dart';
-import 'package:globalbet/view/wallet/depositweb.dart';
+import 'package:globalbet/view/wallet/deposit_web.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +43,7 @@ class _DepositScreenState extends State<DepositScreen> {
   @override
   void initState() {
     Audio.depositmusic();
-    getwaySelect();
+    getWaySelect();
     invitationRuleApi();
     // TODO: implement initState
     super.initState();
@@ -57,38 +57,29 @@ class _DepositScreenState extends State<DepositScreen> {
   }
 
   int selectedIndex = 0;
-  int selectedIndexx = 1;
+  int selectIndex = 1;
 
   int result = 0;
-  String resultt = "";
+  String results = "";
 
   TextEditingController depositCon = TextEditingController();
   TextEditingController usdtCon = TextEditingController();
-  TextEditingController camilioCon = TextEditingController();
+  TextEditingController camelCon = TextEditingController();
   String selectedDeposit = '';
-  String selectedusdt = '';
+  String selectedUsdt = '';
 
   BaseApiHelper baseApiHelper = BaseApiHelper();
 
-  List<int> listt = [
-
-    200,
-    500,
-    1000,
-    2000,
-    5000,
-    10000
-  ];
+  List<int> listNew = [200, 500, 1000, 2000, 5000, 10000];
 
   @override
   Widget build(BuildContext context) {
     final double aspectRatio = width / height;
-    final userData =   Provider.of<ProfileViewModel>(context);
+    final userData = Provider.of<ProfileViewModel>(context);
 
-    int? responseStatuscode;
+    int? responseStatusCode;
 
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -107,599 +98,624 @@ class _DepositScreenState extends State<DepositScreen> {
             text: 'Deposit',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,),
-          actions: [InkWell(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const DepositHistory()));
-            },
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: textWidget(
-                  text: 'Deposit history',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                  color: AppColors.primaryTextColor,),
-              ),
-            ),
-          ),],
-          gradient: AppColors.primaryUnselectedGradient),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Container(
-                height: height * 0.22,
-                width: width,
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: const DecorationImage(
-                        image: AssetImage(Assets.imagesCardImage),
-                        fit: BoxFit.fill)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset(Assets.iconsDepoWallet, height: 30),
-                            const SizedBox(width: 15),
-                            textWidget(
-                                text: 'Balance',
-                                fontSize: 20,
-                                color: Colors.white),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            const SizedBox(width: 15),
-                            const Icon(
-                                Icons.currency_rupee,
-                                color: AppColors.primaryTextColor
-                            ),
-                            textWidget(
-                              text: userData.balance.toStringAsFixed(2),
-                              fontWeight: FontWeight.w900,
-                              fontSize: 25,
-                              color: AppColors.primaryTextColor,
-                            ),
-                            const SizedBox(width: 15),
-                            InkWell(
-                                onTap: () {
-                                  userData.profileApi(context);
-                                  Utils.flushBarSuccessMessage('Wallet refresh ✔', context, Colors.white);
-
-                                },
-                                child: Image.asset(
-                                  Assets.iconsTotalBal,
-                                  height: 30,
-                                )),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              responseStatuscode == 400
-                  ? const Notfounddata()
-                  : items.isEmpty
-                  ? Container()
-                  : GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: 1,
-                ),
-                itemCount: items.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final currentId =
-                  int.parse(items[index].type.toString());
-
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = currentId;
-                        if (kDebugMode) {
-                          print(selectedIndex);
-                          print('rrrrrrrrrrrrrrrrr');
-                        }
-                      });
-                      Audio.audioPlayers.play();
-                    },
-                    child: Card(
-                      elevation: selectedIndex == currentId ? 2 : 5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: selectedIndex == currentId
-                              ? AppColors.loginSecondaryGrad
-                              : AppColors.primaryUnselectedGradient,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceEvenly,
-                          children: [
-                            items[index].image != null
-                                ? Image.network(
-                              items[index].image.toString(),
-                              height: 45,
-                            )
-                                : const Placeholder(
-                              fallbackHeight: 45,
-                            ),
-                            textWidget(
-                                text: items[index].name.toString(),
-                                fontSize: 13,
-                                color: selectedIndex == currentId
-                                    ? AppColors.primaryTextColor
-                                    : AppColors.iconsColor,
-                                fontWeight: FontWeight.w900),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-
-              const SizedBox(
-                height: 20,
-              ),
-
-
-              selectedIndex == 1
-                  ? Container(
-                height: height * 0.33,
-                width: width,
-                padding: const EdgeInsets.only(
-                    top: 15, left: 15, right: 15),
-                decoration: BoxDecoration(
-                    gradient: AppColors.primaryUnselectedGradient,
-                    borderRadius:
-                    BorderRadiusDirectional.circular(15)),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          Assets.iconsSaveWallet,
-                          height: height * 0.05,
-                        ),
-                        const SizedBox(width: 15),
-                        textWidget(
-                            text: 'Deposit amount',
-                            fontSize: 20,
-                            fontWeight: FontWeight.w900,
-                            color: AppColors.primaryTextColor),
-                      ],
-                    ),
-                    SizedBox(height: height*0.01,),
-                    SizedBox(
-                      width: width,
-                      height: height*0.123,
-                      child: GridView.builder(
-                        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 3,
-                            mainAxisSpacing: 3,
-                            childAspectRatio: aspectRatio * 4.8
-
-                        ),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: listt.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return InkWell(
-                            onTap: () {
-                              setState(() {
-                                selectedIndexx = listt[index];
-                                depositCon.text = listt[index].toString();
-                              });
-                            },
-                            child: Center(
-                              child: Container(
-                                height: height*0.05  ,
-                                decoration: BoxDecoration(
-                                  color: selectedIndexx == listt[index]
-                                      ? AppColors.gradientFirstColor
-                                      : AppColors.filledColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                padding: const EdgeInsets.all(5),
-                                child: Center(
-                                  child: Text(
-                                    listt[index].toString(),
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w900,
-                                      color: selectedIndexx == listt[index]
-                                          ? Colors.white
-                                          : AppColors.gradientFirstColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    CustomTextField(
-                      fillColor: AppColors.scaffoldDark,
-                      hintText: 'Please add the amount',
-                      fieldRadius: const BorderRadius.only(topLeft: Radius.circular(30),bottomLeft: Radius.circular(30)),
-                      textColor: Colors.white,
-                      keyboardType: TextInputType.number,
-                      fontWeight: FontWeight.w600,
-                      controller: depositCon,
-                      onChanged: (value) {
-                        selectedIndexx != depositCon;
-                        selectedIndexx = -1;
-                      },
-                      prefixIcon: SizedBox(
-                        width: 70,
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 10),
-                            const Icon(Icons.currency_rupee,
-                                color: AppColors.gradientFirstColor),
-                            const SizedBox(width: 10),
-                            Container(
-                                height: 30,
-                                color: Colors.grey,
-                                width: 2)
-                          ],
-                        ),
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            depositCon.clear();
-                            selectedIndexx = -1;
-                            selectedDeposit = '';
-                          });
-                        },
-                        icon: const Icon(Icons.cancel_outlined,
-                            color: AppColors.dividerColor),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-                  : selectedIndex == 0?
-              Container(
-                width: width,
-                padding:  const EdgeInsets.only(top: 15, left: 15, right: 15),
-                decoration: BoxDecoration(
-                    gradient: AppColors.primaryUnselectedGradient,
-                    borderRadius: BorderRadiusDirectional.circular(10)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(Assets.imagesUsdtIcon,height: height*0.05,),
-                        const SizedBox(width: 15),
-                        textWidget(
-                            text: 'USDT amount',
-                            fontSize: 20,
-                            fontWeight: FontWeight.w900,
-                            color: AppColors.primaryTextColor
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    CustomTextField(
-                      fillColor: AppColors.scaffoldDark,
-                      hintText: 'Please add usdt amount',
-                      fieldRadius: const BorderRadius.only(topLeft: Radius.circular(30),bottomLeft: Radius.circular(30)),
-                      textColor: Colors.white,
-                      keyboardType: TextInputType.number,
-                      fontWeight: FontWeight.w600,
-                      controller: usdtCon,
-                      onChanged: (value) {
-                        setState(() {
-                          double amount = double.tryParse(value) ?? 0;
-                          resultt = (amount * 91).toStringAsFixed(2);
-                        });
-                      },
-                      prefixIcon: SizedBox(
-                        width: 70,
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 10),
-                            Image.asset(Assets.imagesUsdtIcon,height: height*0.03,),
-                            const SizedBox(width: 10),
-                            Container(height: 30, color: Colors.white, width: 2)
-                          ],
-                        ),
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            usdtCon.clear();
-                            selectedusdt = '';
-                            resultt="";
-                          });
-                        },
-                        icon: const Icon(Icons.cancel_outlined,
-                            color: AppColors.dividerColor),
-                      ),
-                    ),
-                    SizedBox(height: height*0.01),
-                    Text(
-                      'Total amount in Rupees: ${resultt.isNotEmpty ? "$resultt Rs" : "0 Rs"}',
-                      style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: AppColors.primaryTextColor),
-                    ),
-                    SizedBox(height: height*0.02),
-                  ],
-                ),
-              ):
-              Container(
-                height: height * 0.33,
-                width: width,
-                padding: const EdgeInsets.only(
-                    top: 15, left: 15, right: 15),
-                decoration: BoxDecoration(
-                    gradient: AppColors.primaryUnselectedGradient,
-                    borderRadius:
-                    BorderRadiusDirectional.circular(15)),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          Assets.iconsSaveWallet,
-                          height: height * 0.05,
-                        ),
-                        const SizedBox(width: 15),
-                        textWidget(
-                            text: 'Deposit amount',
-                            fontSize: 20,
-                            fontWeight: FontWeight.w900,
-                            color: AppColors.primaryTextColor),
-                      ],
-                    ),
-                    SizedBox(height: height*0.01,),
-                    SizedBox(
-                      width: width,
-                      height: height*0.123,
-                      child: GridView.builder(
-                        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 3,
-                            mainAxisSpacing: 3,
-                            childAspectRatio: aspectRatio * 4.8
-
-                        ),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: listt.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return InkWell(
-                            onTap: () {
-                              setState(() {
-                                selectedIndexx = listt[index];
-                                camilioCon.text = listt[index].toString();
-                              });
-                            },
-                            child: Center(
-                              child: Container(
-                                height: height*0.05  ,
-                                decoration: BoxDecoration(
-                                  color: selectedIndexx == listt[index]
-                                      ? AppColors.gradientFirstColor
-                                      : AppColors.filledColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                padding: const EdgeInsets.all(5),
-                                child: Center(
-                                  child: Text(
-                                    listt[index].toString(),
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w900,
-                                      color: selectedIndexx == listt[index]
-                                          ? Colors.white
-                                          : AppColors.gradientFirstColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    CustomTextField(
-                      fillColor: AppColors.scaffoldDark,
-                      hintText: 'Please add the amount',
-                      fieldRadius: const BorderRadius.only(topLeft: Radius.circular(30),bottomLeft: Radius.circular(30)),
-                      textColor: Colors.white,
-                      keyboardType: TextInputType.number,
-                      fontWeight: FontWeight.w600,
-                      controller: camilioCon,
-                      onChanged: (value) {
-                        selectedIndexx != camilioCon;
-                        selectedIndexx = -1;
-                      },
-                      prefixIcon: SizedBox(
-                        width: 70,
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 10),
-                            const Icon(Icons.currency_rupee,
-                                color: AppColors.gradientFirstColor),
-                            const SizedBox(width: 10),
-                            Container(
-                                height: 30,
-                                color: Colors.grey,
-                                width: 2)
-                          ],
-                        ),
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            camilioCon.clear();
-                            selectedIndexx = -1;
-                            selectedDeposit = '';
-                          });
-                        },
-                        icon: const Icon(Icons.cancel_outlined,
-                            color: AppColors.dividerColor),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              ///button
-              AppBtn(
-                onTap: () {
-                  if (!loading) {
-                    if (selectedIndex == 0) {
-                      addMoney(context, usdtCon.text);
-                    } else if (selectedIndex == 1) {
-                      IndianPay(depositCon.text, context);
-                    } else if(selectedIndex == 2){
-                      camlelioDeposit(camilioCon.text,selectedIndex.toString());
-                      print(camilioCon.text);
-                      print("camilioCon.text");
-                      print(selectedIndex.toString());
-                      print("selectedIndex.toString()");
-                    }
-                  }
-                },
-                hideBorder: true,
-                title: selectedIndex == 0 ? 'USDT Pay Deposit' :selectedIndex == 1 ? 'Indian Pay Deposit':"C2 Payin",
-                gradient: AppColors.loginSecondaryGrad,
-              ),
-              if (loading)
-                Center(
-                  child: Container(
-                    height: 45,
-                    width: 43,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [
-                          AppColors.gradientFirstColor,
-                          AppColors.gradientSecondColor,
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    padding: const EdgeInsets.all(12),
-                    child: const CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 4,
-                    ),
+            color: AppColors.whiteColor,
+          ),
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DepositHistory()));
+              },
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: textWidget(
+                    text: 'Deposit history',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                    color: AppColors.whiteColor,
                   ),
                 ),
-
-              const SizedBox(
-                height: 20,
               ),
-
-
-
-              const SizedBox(height: 20),
-              Container(
-                width: width,
-                padding: const EdgeInsets.only(top: 15, left: 15, right: 15,bottom: 15),
-                decoration: BoxDecoration(
-                    color: AppColors.percentageColor,
-                    borderRadius: BorderRadiusDirectional.circular(10)),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(Assets.iconsRecIns,scale: 1.5,),
-                        const SizedBox(width: 15),
-                        textWidget(
-                            text: 'Recharge instructions',
-                            fontSize: 20,
-                            color: AppColors.primaryTextColor,
-                            fontWeight: FontWeight.w900),
-                      ],
-                    ),
-                    const SizedBox(height: 10,),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.percentageColor,
-                          border: Border.all(color: AppColors.gradientFirstColor),
-                          borderRadius: BorderRadiusDirectional.circular(10)),
-                      child: Column(
+            ),
+          ],
+          gradient: AppColors.unSelectedColor),
+      body: Container(
+        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+        decoration: const BoxDecoration(
+          gradient: AppColors.bgGrad
+        ),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            const SizedBox(height: 20),
+            Container(
+              height: height * 0.22,
+              width: width,
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: const DecorationImage(
+                      image: AssetImage(Assets.imagesCardImage),
+                      fit: BoxFit.fill)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Row(
                         children: [
-                          ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: invitationRuleList.length,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return instruction(invitationRuleList[index]);
-                              }),
+                          Image.asset(Assets.iconsDepoWallet, height: 30),
+                          const SizedBox(width: 15),
+                          textWidget(
+                              text: 'Balance',
+                              fontSize: 20,
+                              color: Colors.white),
                         ],
                       ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          const SizedBox(width: 15),
+                          const Icon(Icons.currency_rupee,
+                              color: AppColors.whiteColor),
+                          textWidget(
+                            text: userData.balance.toStringAsFixed(2),
+                            fontWeight: FontWeight.w900,
+                            fontSize: 25,
+                            color: AppColors.whiteColor,
+                          ),
+                          const SizedBox(width: 15),
+                          InkWell(
+                              onTap: () {
+                                userData.profileApi(context);
+                                Utils.flushBarSuccessMessage(
+                                    'Wallet refresh ✔',
+                                    context,
+                                    Colors.white);
+                              },
+                              child: Image.asset(
+                                Assets.iconsTotalBal,
+                                height: 30,
+                              )),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            responseStatusCode == 400
+                ? const NotFoundData()
+                : items.isEmpty
+                    ? Container()
+                    : GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 5,
+                          crossAxisSpacing: 8,
+                          childAspectRatio: 1,
+                        ),
+                        itemCount: items.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final currentId =
+                              int.parse(items[index].type.toString());
+
+                          return InkWell(
+                            onTap: () {
+                              setState(() {
+                                selectedIndex = currentId;
+                              });
+                              Audio.audioPlayers.play();
+                            },
+                            child: Card(
+                              elevation: selectedIndex == currentId ? 2 : 5,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: selectedIndex == currentId
+                                      ? AppColors.loginSecondaryGrad
+                                      : AppColors.unSelectedColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    items[index].image != null
+                                        ? Image.network(
+                                            items[index].image.toString(),
+                                            height: 45,
+                                          )
+                                        : const Placeholder(
+                                            fallbackHeight: 45,
+                                          ),
+                                    textWidget(
+                                        text: items[index].name.toString(),
+                                        fontSize: 13,
+                                        color: selectedIndex == currentId
+                                            ? AppColors.whiteColor
+                                            : AppColors.whiteColor,
+                                        fontWeight: FontWeight.w900),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+
+            const SizedBox(
+              height: 20,
+            ),
+
+            selectedIndex == 1
+                ? Container(
+                    height: height * 0.33,
+                    width: width,
+                    padding:
+                        const EdgeInsets.only(top: 15, left: 15, right: 15),
+                    decoration: BoxDecoration(
+                        gradient: AppColors.unSelectedColor,
+                        borderRadius: BorderRadiusDirectional.circular(15)),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              Assets.iconsSaveWallet,
+                              height: height * 0.05,
+                            ),
+                            const SizedBox(width: 15),
+                            textWidget(
+                                text: 'Deposit amount',
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                                color: AppColors.whiteColor),
+                          ],
+                        ),
+                        SizedBox(
+                          height: height * 0.01,
+                        ),
+                        SizedBox(
+                          width: width,
+                          height: height * 0.123,
+                          child: GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                    crossAxisSpacing: 3,
+                                    mainAxisSpacing: 3,
+                                    childAspectRatio: aspectRatio * 4.8),
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: listNew.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    selectIndex = listNew[index];
+                                    depositCon.text = listNew[index].toString();
+                                  });
+                                },
+                                child: Center(
+                                  child: Container(
+                                    height: height * 0.05,
+                                    decoration: BoxDecoration(
+                                      color: selectIndex == listNew[index]
+                                          ? AppColors.whiteColor
+                                          : AppColors.darkColor,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    padding: const EdgeInsets.all(5),
+                                    child: Center(
+                                      child: Text(
+                                        listNew[index].toString(),
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w900,
+                                          color:
+                                              selectIndex == listNew[index]
+                                                  ? Colors.white
+                                                  : AppColors.whiteColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        CustomTextField(
+                          fillColor: AppColors.darkColor,
+                          hintText: 'Please add the amount',
+                          fieldRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              bottomLeft: Radius.circular(30)),
+                          textColor: Colors.white,
+                          keyboardType: TextInputType.number,
+                          fontWeight: FontWeight.w600,
+                          controller: depositCon,
+                          onChanged: (value) {
+                            selectIndex != depositCon;
+                            selectIndex = -1;
+                          },
+                          prefixIcon: SizedBox(
+                            width: 70,
+                            child: Row(
+                              children: [
+                                const SizedBox(width: 10),
+                                const Icon(Icons.currency_rupee,
+                                    color: AppColors.whiteColor),
+                                const SizedBox(width: 10),
+                                Container(
+                                    height: 30, color: Colors.grey, width: 2)
+                              ],
+                            ),
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                depositCon.clear();
+                                selectIndex = -1;
+                                selectedDeposit = '';
+                              });
+                            },
+                            icon: const Icon(Icons.cancel_outlined,
+                                color: AppColors.dividerColor),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  )
+                : selectedIndex == 0
+                    ? Container(
+                        width: width,
+                        padding: const EdgeInsets.only(
+                            top: 15, left: 15, right: 15),
+                        decoration: BoxDecoration(
+                            gradient: AppColors.unSelectedColor,
+                            borderRadius:
+                                BorderRadiusDirectional.circular(10)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(
+                                  Assets.imagesUsdtIcon,
+                                  height: height * 0.05,
+                                ),
+                                const SizedBox(width: 15),
+                                textWidget(
+                                    text: 'USDT amount',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w900,
+                                    color: AppColors.whiteColor),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            CustomTextField(
+                              fillColor: AppColors.darkColor,
+                              hintText: 'Please add usdt amount',
+                              fieldRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  bottomLeft: Radius.circular(30)),
+                              textColor: Colors.white,
+                              keyboardType: TextInputType.number,
+                              fontWeight: FontWeight.w600,
+                              controller: usdtCon,
+                              onChanged: (value) {
+                                setState(() {
+                                  double amount = double.tryParse(value) ?? 0;
+                                  results = (amount * 91).toStringAsFixed(2);
+                                });
+                              },
+                              prefixIcon: SizedBox(
+                                width: 70,
+                                child: Row(
+                                  children: [
+                                    const SizedBox(width: 10),
+                                    Image.asset(
+                                      Assets.imagesUsdtIcon,
+                                      height: height * 0.03,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Container(
+                                        height: 30,
+                                        color: Colors.white,
+                                        width: 2)
+                                  ],
+                                ),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    usdtCon.clear();
+                                    selectedUsdt = '';
+                                    results = "";
+                                  });
+                                },
+                                icon: const Icon(Icons.cancel_outlined,
+                                    color: AppColors.dividerColor),
+                              ),
+                            ),
+                            SizedBox(height: height * 0.01),
+                            Text(
+                              'Total amount in Rupees: ${results.isNotEmpty ? "$results Rs" : "0 Rs"}',
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w900,
+                                  color: AppColors.whiteColor),
+                            ),
+                            SizedBox(height: height * 0.02),
+                          ],
+                        ),
+                      )
+                    : Container(
+                        height: height * 0.33,
+                        width: width,
+                        padding: const EdgeInsets.only(
+                            top: 15, left: 15, right: 15),
+                        decoration: BoxDecoration(
+                            gradient: AppColors.unSelectedColor,
+                            borderRadius:
+                                BorderRadiusDirectional.circular(15)),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(
+                                  Assets.iconsSaveWallet,
+                                  height: height * 0.05,
+                                ),
+                                const SizedBox(width: 15),
+                                textWidget(
+                                    text: 'Deposit amount',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w900,
+                                    color: AppColors.whiteColor),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            SizedBox(
+                              width: width,
+                              height: height * 0.123,
+                              child: GridView.builder(
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 3,
+                                        crossAxisSpacing: 3,
+                                        mainAxisSpacing: 3,
+                                        childAspectRatio: aspectRatio * 4.8),
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: listNew.length,
+                                itemBuilder:
+                                    (BuildContext context, int index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        selectIndex = listNew[index];
+                                        camelCon.text =
+                                            listNew[index].toString();
+                                      });
+                                    },
+                                    child: Center(
+                                      child: Container(
+                                        height: height * 0.05,
+                                        decoration: BoxDecoration(
+                                          color:
+                                              selectIndex == listNew[index]
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.darkColor,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        padding: const EdgeInsets.all(5),
+                                        child: Center(
+                                          child: Text(
+                                            listNew[index].toString(),
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w900,
+                                              color: selectIndex ==
+                                                      listNew[index]
+                                                  ? Colors.white
+                                                  : AppColors.whiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            CustomTextField(
+                              fillColor: AppColors.darkColor,
+                              hintText: 'Please add the amount',
+                              fieldRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  bottomLeft: Radius.circular(30)),
+                              textColor: Colors.white,
+                              keyboardType: TextInputType.number,
+                              fontWeight: FontWeight.w600,
+                              controller: camelCon,
+                              onChanged: (value) {
+                                selectIndex != camelCon;
+                                selectIndex = -1;
+                              },
+                              prefixIcon: SizedBox(
+                                width: 70,
+                                child: Row(
+                                  children: [
+                                    const SizedBox(width: 10),
+                                    const Icon(Icons.currency_rupee,
+                                        color: AppColors.whiteColor),
+                                    const SizedBox(width: 10),
+                                    Container(
+                                        height: 30,
+                                        color: Colors.grey,
+                                        width: 2)
+                                  ],
+                                ),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    camelCon.clear();
+                                    selectIndex = -1;
+                                    selectedDeposit = '';
+                                  });
+                                },
+                                icon: const Icon(Icons.cancel_outlined,
+                                    color: AppColors.dividerColor),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+            const SizedBox(height: 20),
+
+            ///button
+            AppBtn(
+              onTap: () {
+                if (!loading) {
+                  if (selectedIndex == 0) {
+                    addMoney(context, usdtCon.text);
+                  } else if (selectedIndex == 1) {
+                    indianPay(depositCon.text, context);
+                  } else if (selectedIndex == 2) {
+                    camelDeposit(
+                        camelCon.text, selectedIndex.toString());
+                  }
+                }
+              },
+              hideBorder: true,
+              title: selectedIndex == 0
+                  ? 'USDT Pay Deposit'
+                  : selectedIndex == 1
+                      ? 'Indian Pay Deposit'
+                      : "C2 Payin",
+              gradient: AppColors.loginSecondaryGrad,
+            ),
+            if (loading)
+              Center(
+                child: Container(
+                  height: 45,
+                  width: 43,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [
+                        AppColors.whiteColor,
+                        AppColors.darkColor,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  padding: const EdgeInsets.all(12),
+                  child: const CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 4,
+                  ),
                 ),
               ),
-              const SizedBox(height: 20),
-            ],
-          ),
+
+            const SizedBox(
+              height: 20,
+            ),
+
+            const SizedBox(height: 20),
+            Container(
+              width: width,
+              padding: const EdgeInsets.only(
+                  top: 15, left: 15, right: 15, bottom: 15),
+              decoration: BoxDecoration(
+                  color: AppColors.contSelectColor,
+                  borderRadius: BorderRadiusDirectional.circular(10)),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        Assets.iconsRecIns,
+                        scale: 1.5,
+                      ),
+                      const SizedBox(width: 15),
+                      textWidget(
+                          text: 'Recharge instructions',
+                          fontSize: 20,
+                          color: AppColors.whiteColor,
+                          fontWeight: FontWeight.w900),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: AppColors.contSelectColor,
+                        border: Border.all(color: AppColors.whiteColor),
+                        borderRadius: BorderRadiusDirectional.circular(10)),
+                    child: Column(
+                      children: [
+                        ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: invitationRuleList.length,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return instruction(invitationRuleList[index]);
+                            }),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );
   }
 
-
-
   List<String> invitationRuleList = [];
   Future<void> invitationRuleApi() async {
-
-    final response = await http.get(Uri.parse('${ApiUrl.allRules}3'),);
+    final response = await http.get(
+      Uri.parse('${ApiUrl.allRules}3'),
+    );
     if (kDebugMode) {
       print('${ApiUrl.allRules}3');
       print('allRules');
     }
 
-
-    if (response.statusCode==200) {
+    if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
 
       setState(() {
-        invitationRuleList = json.decode(responseData[0]['list']).cast<String>();
+        invitationRuleList =
+            json.decode(responseData[0]['list']).cast<String>();
       });
-
-    }
-    else if(response.statusCode==400){
+    } else if (response.statusCode == 400) {
       if (kDebugMode) {
         print('Data not found');
       }
-    }
-    else {
+    } else {
       setState(() {
         invitationRuleList = [];
       });
@@ -707,25 +723,19 @@ class _DepositScreenState extends State<DepositScreen> {
     }
   }
 
-
-  int minimumamount = 100;
+  int minimumAmount = 100;
 
   ///gateway select api
   List<GetwayModel> items = [];
 
-  Future<void> getwaySelect() async {
+  Future<void> getWaySelect() async {
     final response = await http.get(
-      // Uri.parse(ApiUrl.getwayList+token),
       Uri.parse(ApiUrl.getWayList),
     );
-    if (kDebugMode) {
-      print(ApiUrl.getWayList);
-      print('getwayList+token');
-    }
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       setState(() {
-        minimumamount = json.decode(response.body)['minimum'];
+        minimumAmount = json.decode(response.body)['minimum'];
         items = responseData.map((item) => GetwayModel.fromJson(item)).toList();
         // selectedIndex = items.isNotEmpty ? 0:-1; //
       });
@@ -743,10 +753,9 @@ class _DepositScreenState extends State<DepositScreen> {
 
   UserViewModel userProvider = UserViewModel();
 
-  String userstatus = "";
+  String userStatus = "";
 
-
-  IndianPay(String depositCon, context) async {
+  indianPay(String depositCon, context) async {
     setState(() {
       loading = true;
     });
@@ -788,7 +797,8 @@ class _DepositScreenState extends State<DepositScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PaymentWeb(url: payUrl, type: selectedIndex),
+              builder: (context) =>
+                  PaymentWeb(url: payUrl, type: selectedIndex),
             ),
           );
         }
@@ -800,7 +810,7 @@ class _DepositScreenState extends State<DepositScreen> {
 
   addMoney(context, String depositCon) async {
     setState(() {
-      loadingg = true;
+      addLoading = true;
     });
 
     UserModel user = await userProvider.getUser();
@@ -820,20 +830,21 @@ class _DepositScreenState extends State<DepositScreen> {
 
     final data = jsonDecode(response.body);
     setState(() {
-      loadingg = false;
+      addLoading = false;
     });
 
     if (response.statusCode == 200 && data.containsKey('data')) {
       if (selectedIndex == 0) {
         var qrUrl = data['data']['status_url'].toString();
-        kIsWeb? _launchURL(context, qrUrl):
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PaymentWeb(url: qrUrl, type: selectedIndex),
-          ),
-        );
+        kIsWeb
+            ? _launchURL(context, qrUrl)
+            : Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PaymentWeb(url: qrUrl, type: selectedIndex),
+                ),
+              );
       } else if (selectedIndex == 1) {
         var payUrl = data['data']['payment_link'].toString();
         if (kIsWeb) {
@@ -842,7 +853,8 @@ class _DepositScreenState extends State<DepositScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PaymentWeb(url: payUrl, type: selectedIndex),
+              builder: (context) =>
+                  PaymentWeb(url: payUrl, type: selectedIndex),
             ),
           );
         }
@@ -853,7 +865,7 @@ class _DepositScreenState extends State<DepositScreen> {
     }
   }
 
-  Future<void> camlelioDeposit(String amount,String type) async {
+  Future<void> camelDeposit(String amount, String type) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
 
@@ -862,14 +874,12 @@ class _DepositScreenState extends State<DepositScreen> {
     );
     if (kDebugMode) {
       print("${ApiUrl.depositCamLenio}$token&amount=$amount&type=$type");
-      print('depositCamlenio');
+      print('deposit');
     }
     final data = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      print(data);
-      print("data");
       var qrUrl = data['result']['payment_url'].toString();
-      if(kIsWeb){
+      if (kIsWeb) {
         _launchURL(context, qrUrl);
       } else {
         _launchURL(context, qrUrl);
@@ -880,31 +890,27 @@ class _DepositScreenState extends State<DepositScreen> {
     }
   }
 
+  bool addLoading = false;
 
-  bool loadingg =  false;
-
-  _launchURL(context,String urlget) async {
-    var url = urlget;
+  _launchURL(context, String urlGet) async {
+    var url = urlGet;
     if (await canLaunch(url)) {
-
       await launch(url);
-
     } else {
-      Utils.flushBarErrorMessage("Could not launch $url", context, Colors.white);
+      Utils.flushBarErrorMessage(
+          "Could not launch $url", context, Colors.white);
       throw 'Could not launch $url';
     }
   }
 
-
-
-  paymentstatus(String userstatus, context) async {
+  paymentStatus(String userStatus, context) async {
     if (kDebugMode) {
-      print(ApiUrl.paymentCheckStatus + userstatus);
-      print("ApiUrl.paymentCheckStatus+userstatus");
+      print(ApiUrl.paymentCheckStatus + userStatus);
+      print("ApiUrl.paymentCheckStatus+userStatus");
     }
 
     final response = await http.get(
-      Uri.parse(ApiUrl.paymentCheckStatus + userstatus),
+      Uri.parse(ApiUrl.paymentCheckStatus + userStatus),
     );
     final data = jsonDecode(response.body);
     if (data["status"] == "200") {
@@ -915,8 +921,8 @@ class _DepositScreenState extends State<DepositScreen> {
   }
 }
 
-class Notfounddata extends StatelessWidget {
-  const Notfounddata({super.key});
+class NotFoundData extends StatelessWidget {
+  const NotFoundData({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -940,14 +946,10 @@ Widget instruction(String title) {
       child: Container(
         height: 10,
         width: 10,
-        color: AppColors.gradientFirstColor,
+        color: AppColors.whiteColor,
       ),
     ),
-    title: textWidget(
-        text: title,
-        fontSize: 14,
-        color: AppColors.primaryTextColor
-    ),
+    title: textWidget(text: title, fontSize: 14, color: AppColors.whiteColor),
   );
 }
 

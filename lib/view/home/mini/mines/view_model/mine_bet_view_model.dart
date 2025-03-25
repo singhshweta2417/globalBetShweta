@@ -23,7 +23,7 @@ class MineBetViewModel with ChangeNotifier {
     UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
-    print("🎉🎉🎉🎉");
+
     Map data = {
       "game_id":"12",
       "userid":userId,

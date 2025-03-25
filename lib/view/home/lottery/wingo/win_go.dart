@@ -20,7 +20,6 @@ import 'package:globalbet/view/home/lottery/wingo/widgets/win_go_bottom_sheet.da
 import 'package:globalbet/view/home/lottery/wingo/widgets/win_go_tab.dart';
 import 'package:provider/provider.dart';
 
-
 class WinGo extends StatefulWidget {
   const WinGo({super.key});
 
@@ -37,15 +36,13 @@ class _WinGoState extends State<WinGo> {
       final wgc = Provider.of<WinGoController>(context, listen: false);
       wgc.connectToServer(context);
       final winGoResult =
-      Provider.of<WinGoResultViewModel>(context, listen: false);
+          Provider.of<WinGoResultViewModel>(context, listen: false);
       winGoResult.wingoResultApi(context, 0, wgc.gameIndex);
       final winGoGameHis =
-      Provider.of<WinGoGameHisViewModel>(context, listen: false);
+          Provider.of<WinGoGameHisViewModel>(context, listen: false);
       winGoGameHis.gameHisApi(context, 0);
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +50,6 @@ class _WinGoState extends State<WinGo> {
       return PopScope(
         canPop: false,
         child: Scaffold(
-          backgroundColor: AppColors.scaffoldDark,
           appBar: GradientAppBar(
             centerTitle: true,
             leading: IconButton(
@@ -66,66 +62,64 @@ class _WinGoState extends State<WinGo> {
                   color: AppColors.whiteColor,
                   size: 15,
                 )),
-            title:  textWidget(
+            title: textWidget(
               text: "Win GO",
               fontWeight: FontWeight.bold,
               fontSize: 22,
               color: AppColors.whiteColor,
-            ), gradient: AppColors.primaryUnselectedGradient,
+            ),
+            gradient: AppColors.unSelectedColor,
           ),
           body: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             height: height,
             width: double.infinity,
             decoration: const BoxDecoration(
-              // image: DecorationImage(
-              //     image: AssetImage(Assets.imagesAppBg), fit: BoxFit.fill),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              child: ListView(
-                shrinkWrap: true,
-                physics: const ScrollPhysics(),
-                children: [
-                  Sizes.spaceHeight10,
-                  const WinGoWallet(),
-                  Sizes.spaceHeight15,
-                  const WingoGameType(),
-                  Sizes.spaceHeight15,
-                  const WingoContainer(),
-                  Sizes.spaceHeight15,
-                  const WingoBetWidget(),
-                  Sizes.spaceHeight15,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children:
-                    List.generate(wgc.gameDataTabList.length, (index) {
-                      return InkWell(
-                        onTap: () {
-                          wgc.setGameDataTab(index);
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: height * 0.05,
-                          width: width * 0.28,
-                          decoration: BoxDecoration(
-                            gradient: wgc.gameDataTab == index
-                                ? AppColors.primaryGradient
-                                : AppColors.buttonGradient,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: textWidget(
-                              text: wgc.gameDataTabList[index],
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.whiteColor),
+               gradient: AppColors.bgGrad
+                ),
+            child: ListView(
+              shrinkWrap: true,
+              physics: const ScrollPhysics(),
+              children: [
+                Sizes.spaceHeight10,
+                const WinGoWallet(),
+                Sizes.spaceHeight15,
+                const WingoGameType(),
+                Sizes.spaceHeight15,
+                const WingoContainer(),
+                Sizes.spaceHeight15,
+                const WingoBetWidget(),
+                Sizes.spaceHeight15,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children:
+                      List.generate(wgc.gameDataTabList.length, (index) {
+                    return InkWell(
+                      onTap: () {
+                        wgc.setGameDataTab(index);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: height * 0.05,
+                        width: width * 0.28,
+                        decoration: BoxDecoration(
+                          gradient: wgc.gameDataTab == index
+                              ? AppColors.primaryGradient
+                              : AppColors.primaryGradient,
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      );
-                    }),
-                  ),
-                  Sizes.spaceHeight15,
-                  const WinGoTab()
-                ],
-              ),
+                        child: textWidget(
+                            text: wgc.gameDataTabList[index],
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.whiteColor),
+                      ),
+                    );
+                  }),
+                ),
+                Sizes.spaceHeight15,
+                const WinGoTab()
+              ],
             ),
           ),
         ),
@@ -147,7 +141,7 @@ class WingoGameType extends StatelessWidget {
         height: height * 0.15,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          gradient: AppColors.primaryUnselectedGradient,
+          gradient: AppColors.unSelectedColor,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -173,33 +167,33 @@ class WingoGameType extends StatelessWidget {
                           ? Colors.grey.withOpacity(0.2)
                           : Colors.transparent),
                   gradient: wgc.gameIndex == index
-                      ? AppColors.boxGradient
-                      : AppColors.transparentgradient,
+                      ? AppColors.loginSecondaryGrad
+                      : AppColors.transparentGradient,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
                   children: [
                     wgc.gameIndex == index
                         ? Image.asset(
-                      Assets.winGoTimeColor,
-                      height: height * 0.09,
-                    )
+                            Assets.winGoTimeColor,
+                            height: height * 0.09,
+                          )
                         : Image.asset(
-                      Assets.winGoTime,
-                      height: height * 0.09,
-                    ),
+                            Assets.winGoTime,
+                            height: height * 0.09,
+                          ),
                     textWidget(
                         text: wgc.gameTimerList[index].title,
                         fontSize: 13,
                         color: wgc.gameIndex == index
                             ? AppColors.whiteColor
-                            : AppColors.gradientFirstColor),
+                            : AppColors.whiteColor),
                     textWidget(
                         text: wgc.gameTimerList[index].subTitle,
                         fontSize: 13,
                         color: wgc.gameIndex == index
                             ? AppColors.whiteColor
-                            : AppColors.gradientFirstColor),
+                            : AppColors.whiteColor),
                   ],
                 ),
               ),
@@ -217,7 +211,6 @@ class WingoContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final wingoResult = Provider.of<WinGoResultViewModel>(context);
     return Consumer<WinGoController>(builder: (context, wgc, child) {
-
       int getGameTime() {
         switch (wgc.gameIndex) {
           case 0:
@@ -252,7 +245,9 @@ class WingoContainer extends StatelessWidget {
                     showDialog(
                         barrierDismissible: false,
                         context: context,
-                        builder: (BuildContext context) =>  const HowToPlay(type: '8',));
+                        builder: (BuildContext context) => const HowToPlay(
+                              type: '8',
+                            ));
                     if (kDebugMode) {
                       print('How to play!');
                     }
@@ -299,10 +294,11 @@ class WingoContainer extends StatelessWidget {
                   Row(
                     children: List.generate(
                       min(5, wingoResult.wingoResultModelData!.data!.length),
-                          (index) {
-                        final resultData = wingoResult.wingoResultModelData!.data![index];
+                      (index) {
+                        final resultData =
+                            wingoResult.wingoResultModelData!.data![index];
                         final image = wgc.betNumbers.firstWhere(
-                              (e) => e['game_id'] == resultData.number,
+                          (e) => e['game_id'] == resultData.number,
                         );
                         return Container(
                           height: 25,
@@ -330,7 +326,7 @@ class WingoContainer extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      height: height*0.04,
+                      height: height * 0.04,
                       width: 30,
                       alignment: Alignment.center,
                       decoration: const BoxDecoration(
@@ -355,7 +351,7 @@ class WingoContainer extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                     ),
                     Container(
-                      height: height*0.04,
+                      height: height * 0.04,
                       width: 30,
                       alignment: Alignment.center,
                       decoration: const BoxDecoration(
@@ -389,7 +385,6 @@ class WingoContainer extends StatelessWidget {
     });
   }
 }
-
 
 class WingoBetWidget extends StatelessWidget {
   const WingoBetWidget({super.key});
@@ -440,9 +435,9 @@ class WingoBetWidget extends StatelessWidget {
               Sizes.spaceHeight15,
               Container(
                 padding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 decoration: const BoxDecoration(
-                    color: AppColors.filledColor,
+                    color: AppColors.darkColor,
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -529,8 +524,6 @@ class WingoBetWidget extends StatelessWidget {
     });
   }
 
-
-
   Widget _buildRemainingTimeWidget(WinGoController wgc) {
     int remainingTime;
 
@@ -544,11 +537,13 @@ class WingoBetWidget extends StatelessWidget {
       if (!isSoundPlaying && remainingTime > 0) {
         Audio.WingoTimerone();
         isSoundPlaying = true;
-      } else if (remainingTime == 0 && isSoundPlaying) {
-        Audio.audioPlayers.stop(); // Stop sound when countdown ends
-        isSoundPlaying = false;
       }
-    } else if (wgc.gameIndex == 1 &&
+    //   else if (remainingTime == 0 && isSoundPlaying) {
+    //     Audio.audioPlayers.stop(); // Stop sound when countdown ends
+    //     isSoundPlaying = false;
+    //   }
+    }
+    else if (wgc.gameIndex == 1 &&
         ((wgc.threeMinuteStatus == 1 && wgc.threeMinuteTime <= 5) ||
             wgc.threeMinuteStatus == 2)) {
       remainingTime = wgc.threeMinuteStatus == 2 ? 0 : wgc.threeMinuteTime;
@@ -556,10 +551,11 @@ class WingoBetWidget extends StatelessWidget {
       if (!isSoundPlaying && remainingTime > 0) {
         Audio.WingoTimerone();
         isSoundPlaying = true;
-      } else if (remainingTime == 0 && isSoundPlaying) {
-        Audio.audioPlayers.stop();
-        isSoundPlaying = false;
       }
+      // else if (remainingTime == 0 && isSoundPlaying) {
+      //   Audio.audioPlayers.stop();
+      //   isSoundPlaying = false;
+      // }
     } else if (wgc.gameIndex == 2 &&
         ((wgc.fiveMinuteStatus == 1 && wgc.fiveMinuteTime <= 5) ||
             wgc.fiveMinuteStatus == 2)) {
@@ -568,10 +564,11 @@ class WingoBetWidget extends StatelessWidget {
       if (!isSoundPlaying && remainingTime > 0) {
         Audio.WingoTimerone();
         isSoundPlaying = true;
-      } else if (remainingTime == 0 && isSoundPlaying) {
-        Audio.audioPlayers.stop();
-        isSoundPlaying = false;
       }
+      // else if (remainingTime == 0 && isSoundPlaying) {
+      //   Audio.audioPlayers.stop();
+      //   isSoundPlaying = false;
+      // }
     } else if (wgc.gameIndex == 3 &&
         ((wgc.tenMinuteStatus == 1 && wgc.tenMinuteTime <= 5) ||
             wgc.tenMinuteStatus == 2)) {
@@ -580,15 +577,17 @@ class WingoBetWidget extends StatelessWidget {
       if (!isSoundPlaying && remainingTime > 0) {
         Audio.WingoTimerone();
         isSoundPlaying = true;
-      } else if (remainingTime == 0 && isSoundPlaying) {
-        Audio.audioPlayers.stop();
-        isSoundPlaying = false;
       }
-    } else {
-      if (isSoundPlaying) {
-        Audio.audioPlayers.stop(); // Ensure sound stops in the else case
-        isSoundPlaying = false;
-      }
+      // else if (remainingTime == 0 && isSoundPlaying) {
+      //   Audio.audioPlayers.stop();
+      //   isSoundPlaying = false;
+      // }
+    }
+    else {
+      // if (isSoundPlaying) {
+      //   Audio.audioPlayers.stop(); // Ensure sound stops in the else case
+      //   isSoundPlaying = false;
+      // }
       return const SizedBox();
     }
 
@@ -625,7 +624,6 @@ class WingoBetWidget extends StatelessWidget {
 //   }
 //   return RemainingTime(time: remainingTime);
 // }
-
 }
 
 class RemainingTime extends StatelessWidget {
@@ -647,7 +645,7 @@ class RemainingTime extends StatelessWidget {
       alignment: Alignment.center,
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        gradient: AppColors.boxGradient,
+        gradient: AppColors.loginSecondaryGrad,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Text(

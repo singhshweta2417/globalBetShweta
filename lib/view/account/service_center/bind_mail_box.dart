@@ -24,12 +24,12 @@ class _BindMailBoxScreenState extends State<BindMailBoxScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
         centerTitle: true,
           title: textWidget(text:'Bind mailBox',fontSize: 25,color: Colors.white),
           leading: const AppBackBtn(),
-          gradient: AppColors.primaryUnselectedGradient ),
+          gradient: AppColors.unSelectedColor ),
 //iconsVerifySetting
       body: SingleChildScrollView(
         child: Form(
@@ -49,14 +49,14 @@ class _BindMailBoxScreenState extends State<BindMailBoxScreen> {
                         text:  'Mail',
                         fontWeight: FontWeight.w400,
                         fontSize: 15,
-                        color: AppColors.primaryTextColor)
+                        color: AppColors.whiteColor)
                   ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
                 child: CustomTextField(
-                  fillColor: AppColors.filledColor,
+                  fillColor: AppColors.darkColor,
                   controller: emailCon,
                   maxLines: 1,
                   hintText: 'please input your email',
@@ -76,14 +76,14 @@ class _BindMailBoxScreenState extends State<BindMailBoxScreen> {
                         text: 'Verification Code',
                         fontWeight: FontWeight.w400,
                         fontSize: 15,
-                        color: AppColors.primaryTextColor)
+                        color: AppColors.whiteColor)
                   ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
                 child: CustomTextField(
-                  fillColor: AppColors.filledColor,
+                  fillColor: AppColors.darkColor,
                   controller: verifyCode,
                   maxLines: 1,
                   hintText: 'Please Enter confirmation code',
@@ -101,7 +101,7 @@ class _BindMailBoxScreenState extends State<BindMailBoxScreen> {
                         width: width * 0.23,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
-                          gradient: AppColors.btnBlueGradient,
+                          gradient: AppColors.loginSecondaryGrad,
 
                         ),
                         child: const Text(
@@ -138,7 +138,7 @@ class _BindMailBoxScreenState extends State<BindMailBoxScreen> {
                       child: const Text(
                         'Contact customer\nservice',
                         style: TextStyle(
-                          color: AppColors.gradientFirstColor,
+                          color: AppColors.whiteColor,
                           fontSize: 13,
                         ),
                       ),

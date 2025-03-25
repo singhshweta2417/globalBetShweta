@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/betting_Rebate_Model.dart';
+import 'package:globalbet/model/betting_rebate_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
@@ -33,7 +33,6 @@ class _BettingRebatesState extends State<BettingRebates> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Rebate',
@@ -42,16 +41,20 @@ class _BettingRebatesState extends State<BettingRebates> {
               fontWeight: FontWeight.w700),
           leading: const AppBackBtn(),
           centerTitle: true,
-          gradient: AppColors.primaryUnselectedGradient),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
+          ),
+      body: Container(
+        height: height,
+        padding: EdgeInsets.symmetric(horizontal: width*0.03,vertical: height*0.02),
+        decoration: const BoxDecoration(
+          gradient: AppColors.bgGrad
+        ),
         child: ListView(
           shrinkWrap: true,
           children: [
             Container(
               width: width,
               decoration: BoxDecoration(
-                gradient: AppColors.primaryUnselectedGradient,
+                gradient: AppColors.unSelectedColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(
@@ -72,8 +75,8 @@ class _BettingRebatesState extends State<BettingRebates> {
                       height: height * 0.05,
                       width: width * 0.35,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 1.5, color: AppColors.gradientFirstColor),
+                        border:
+                            Border.all(width: 1.5, color: AppColors.whiteColor),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Row(
@@ -81,11 +84,11 @@ class _BettingRebatesState extends State<BettingRebates> {
                           const Image(
                               image: AssetImage(
                             Assets.iconsRebateVector,
-                          )),
+                          ),color: AppColors.whiteColor),
                           textWidget(
                               text: 'Real-time count',
                               fontSize: 12,
-                              color: AppColors.iconsColor,
+                              color: AppColors.whiteColor,
                               fontWeight: FontWeight.w700),
                         ],
                       ),
@@ -102,13 +105,13 @@ class _BettingRebatesState extends State<BettingRebates> {
                           const Image(
                               image: AssetImage(
                             Assets.iconsRebatewallet,
-                          )),
+                          ),color: AppColors.whiteColor),
                           textWidget(
                               text: totalamount == null
                                   ? "0"
                                   : totalamount.toString(),
                               fontSize: 20,
-                              color: AppColors.primaryTextColor,
+                              color: AppColors.whiteColor,
                               fontWeight: FontWeight.w900),
                         ],
                       ),
@@ -120,14 +123,14 @@ class _BettingRebatesState extends State<BettingRebates> {
                       height: height * 0.05,
                       width: width * 0.7,
                       decoration: BoxDecoration(
-                        color: AppColors.gridColor,
+                        color: AppColors.darkColor,
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Center(
                         child: textWidget(
                             text: 'Upgrade VIP level to increase rebate rate',
                             fontSize: 12,
-                            color: AppColors.iconsColor,
+                            color: AppColors.whiteColor,
                             fontWeight: FontWeight.w700),
                       ),
                     ),
@@ -141,7 +144,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                           height: height * 0.1,
                           width: width * 0.42,
                           decoration: BoxDecoration(
-                            color: AppColors.firstColors,
+                            color: AppColors.unSelectColor,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Padding(
@@ -153,14 +156,14 @@ class _BettingRebatesState extends State<BettingRebates> {
                                 textWidget(
                                     text: 'Today rebate',
                                     fontSize: 14,
-                                    color: AppColors.primaryTextColor,
+                                    color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w900),
                                 textWidget(
                                     text: todayrebet == null
                                         ? "0"
                                         : todayrebet.toString(),
                                     fontSize: 18,
-                                    color: AppColors.gradientFirstColor,
+                                    color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w900),
                               ],
                             ),
@@ -170,7 +173,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                           height: height * 0.1,
                           width: width * 0.42,
                           decoration: BoxDecoration(
-                            color: AppColors.firstColors,
+                            color: AppColors.unSelectColor,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Padding(
@@ -182,14 +185,14 @@ class _BettingRebatesState extends State<BettingRebates> {
                                 textWidget(
                                     text: 'Total rebate',
                                     fontSize: 14,
-                                    color: AppColors.primaryTextColor,
+                                    color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w900),
                                 textWidget(
                                     text: totalrebet == null
                                         ? "0"
                                         : totalrebet.toString(),
                                     fontSize: 18,
-                                    color: AppColors.gradientFirstColor,
+                                    color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w900),
                               ],
                             ),
@@ -214,7 +217,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                     //     fontSize: 20,
                     //     onTap: () {},
                     //     hideBorder: true,
-                    //     gradient: AppColors.buttonGradient
+                    //     gradient: AppColors.primaryGradient
                     // ),
                   ],
                 ),
@@ -230,7 +233,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                     width: width * 0.05,
                     child: const VerticalDivider(
                       thickness: 5,
-                      color: AppColors.gradientFirstColor,
+                      color: AppColors.whiteColor,
                     )),
                 const Text(
                   "  Rebate history",
@@ -256,7 +259,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                       child: Container(
                         width: width,
                         decoration: BoxDecoration(
-                          gradient: AppColors.primaryUnselectedGradient,
+                          gradient: AppColors.unSelectedColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
@@ -298,7 +301,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                               ),
                               const Divider(
                                 thickness: 1,
-                                color: AppColors.secondaryTextColor,
+                                color: AppColors.whiteColor,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -362,8 +365,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                                                 text:
                                                     "${RebateList[index].rebateRate}%",
                                                 fontSize: 12,
-                                                color: AppColors
-                                                    .gradientFirstColor,
+                                                color: AppColors.whiteColor,
                                                 fontWeight: FontWeight.w700),
                                           ],
                                         ),
@@ -389,7 +391,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                                                     .rebateAmount
                                                     .toStringAsFixed(2),
                                                 fontSize: 12,
-                                                color: AppColors.iconsColor,
+                                                color: AppColors.whiteColor,
                                                 fontWeight: FontWeight.w700),
                                           ],
                                         ),

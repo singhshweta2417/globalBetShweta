@@ -12,6 +12,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/view/activity/activity_record_history.dart';
 
@@ -34,183 +35,221 @@ class _ActivityAwardState extends State<ActivityAward> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
         leading: const AppBackBtn(),
-        title: const Text(''),
+        title: textWidget(
+            text: 'Activity',
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: AppColors.whiteColor),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ActivityRecordHistory()));
-              },
-              child: Row(
-                children: [
-                  SizedBox(
-                    height: 25,
-                    width: 25,
-                    child: Image.asset(
-                      Assets.iconsAwardRecord,
-                      scale: 1.8,
-                    ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ActivityRecordHistory()));
+            },
+            child: Row(
+              children: [
+                SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: Image.asset(
+                    Assets.iconsAwardRecord,
+                    scale: 1.8,
                   ),
-                  textWidget(
-                    text: ' Collection record  ',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                    color: AppColors.primaryTextColor,
-                  ),
-                ],
-              ),
+                ),
+                textWidget(
+                  text: ' Collection record  ',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                  color: AppColors.whiteColor,
+                ),
+              ],
             ),
           )
         ],
         centerTitle: true,
         gradient: AppColors.primaryGradient,
       ),
-      body: Column(
-        //    shrinkWrap: true,
-        children: [
-          Container(
-            height: height * 0.2,
-            width: width,
-            decoration: const BoxDecoration(
-              gradient: AppColors.primaryGradient,
-            ),
-            child: Row(
-              children: [
-                Container(
-                  height: height * 0.18,
-                  width: width * 0.35,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                    image: AssetImage(Assets.iconsActivitygift),
-                    fit: BoxFit.fill,
-                  )),
-                ),
-                SizedBox(
-                  height: height * 0.18,
-                  width: width * 0.6,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      textWidget(
-                        text: 'Activity record',
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20,
-                        color: AppColors.primaryTextColor,
-                      ),
-                      textWidget(
-                        text:
-                            'Complete weekly/daily tasks to receive rich rewards',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                        color: AppColors.primaryTextColor,
-                      ),
-                      textWidget(
-                        text:
-                            'Weekly rewards cannot be accumulated to the next week, and daily rewards cannot be accumulated to the next day.',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                        color: AppColors.primaryTextColor,
-                      ),
-                    ],
+      body: Container(
+        decoration: const BoxDecoration(gradient: AppColors.bgGrad),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Container(
+              height: height * 0.2,
+              width: width,
+              decoration: const BoxDecoration(
+                color: AppColors.contSelectColor,
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: height * 0.18,
+                    width: width * 0.35,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage(Assets.iconsActivitygift),
+                      fit: BoxFit.fill,
+                    )),
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: height * 0.18,
+                    width: width * 0.6,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        textWidget(
+                          text: 'Activity record',
+                          fontWeight: FontWeight.w900,
+                          fontSize: 20,
+                          color: AppColors.whiteColor,
+                        ),
+                        textWidget(
+                          text:
+                              'Complete weekly/daily tasks to receive rich rewards',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: AppColors.whiteColor,
+                        ),
+                        textWidget(
+                          text:
+                              'Weekly rewards cannot be accumulated to the next week, and daily rewards cannot be accumulated to the next day.',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: AppColors.whiteColor,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          activityRecords.isEmpty
-              ? const Center(child: CircularProgressIndicator())
-              : Expanded(
-                  child: ListView.builder(
+            Sizes.spaceHeight30,
+            activityRecords.isEmpty
+                ? const Center(child: CircularProgressIndicator())
+                : ListView.builder(
                     shrinkWrap: true,
                     itemCount: activityRecords.length,
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       final data = activityRecords[index];
-                      return Center(
-                        child: InkWell(
-                          onTap: () {
-                            // Call the onTap function associated with the item
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                            child: Container(
-                              height: height * 0.26,
+                      return Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: width * 0.04, vertical: height * 0.01),
+                        height: height * 0.26,
+                        width: width,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.unSelectColor),
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: AppColors.loginSecondaryGrad,
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  height: height * 0.05,
+                                  width: width * 0.36,
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10)),
+                                      gradient: data.name == 'daily mission'
+                                          ? AppColors
+                                              .loginSecondaryGrad // Use your gradient variable here
+                                          : AppColors.greenButtonGrad),
+                                  child: Center(
+                                    child: textWidget(
+                                      text: data.name.toString(),
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14,
+                                      color: AppColors.whiteColor,
+                                    ),
+                                  ),
+                                ),
+                                textWidget(
+                                  text: data.status == "2"
+                                      ? 'finished   '
+                                      : 'Unfinished   ',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  color: data.status == 1
+                                      ? Colors.green
+                                      : AppColors.whiteColor,
+                                ),
+                              ],
+                            ),
+                            Container(
+                              height: 1,
                               width: width,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: AppColors.primaryUnselectedGradient,
-                              ),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                              color: AppColors.unSelectColor,
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                SizedBox(
+                                  height: height * 0.05,
+                                  width: width * 0.09,
+                                  child: const Image(
+                                    image: AssetImage(Assets.iconsActivityball),
+                                    color: AppColors.whiteColor,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                textWidget(
+                                  text: 'Lottery Betting Task',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12,
+                                  color: AppColors.whiteColor,
+                                ),
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                textWidget(
+                                  text:
+                                      '${betAmount < data.rangeAmount ? betAmount : data.rangeAmount}/${data.rangeAmount}',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16,
+                                  color: AppColors.unSelectColor,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                textWidget(
+                                  text: 'Award Amount',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12,
+                                  color: AppColors.whiteColor,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Container(
-                                        height: height * 0.05,
-                                        width: width * 0.36,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(10),
-                                                    bottomRight:
-                                                        Radius.circular(10)),
-                                            gradient: data.name ==
-                                                    'daily mission'
-                                                ? AppColors
-                                                    .loginSecondaryGrad // Use your gradient variable here
-                                                : AppColors.ssbutton),
-                                        child: Center(
-                                          child: textWidget(
-                                            text: data.name.toString(),
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 14,
-                                            color: AppColors.primaryTextColor,
-                                          ),
-                                        ),
-                                      ),
-                                      textWidget(
-                                        text: data.status == "2"
-                                            ? 'finished   '
-                                            : 'Unfinished   ',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 15,
-                                        color: data.status == 1
-                                            ? Colors.green
-                                            : AppColors.dividerColor,
-                                      ),
-                                    ],
-                                  ),
-                                  Container(
-                                    height: 1,
-                                    width: width,
-                                    color: AppColors.gradientFirstColor,
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const SizedBox(
-                                        width: 7,
-                                      ),
-                                      Container(
-                                        height: height * 0.05,
-                                        width: width * 0.09,
+                                        height: height * 0.045,
+                                        width: width * 0.08,
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(
-                                                  Assets.iconsActivityball),
+                                                  Assets.iconsDepoWallet),
                                               fit: BoxFit.fill),
                                         ),
                                       ),
@@ -218,127 +257,65 @@ class _ActivityAwardState extends State<ActivityAward> {
                                         width: 7,
                                       ),
                                       textWidget(
-                                        text: 'Lottery Betting Task',
+                                        text: '₹${data.amount}',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 12,
-                                        color: AppColors.primaryTextColor,
-                                      ),
-                                      const SizedBox(
-                                        width: 7,
-                                      ),
-                                      textWidget(
-                                        text:
-                                            '${betAmount < data.rangeAmount ? betAmount : data.rangeAmount}/${data.rangeAmount}',
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 16,
-                                        color: AppColors.gradientFirstColor,
+                                        fontSize: 15,
+                                        color: AppColors.whiteColor,
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(height: 5),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 14.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        textWidget(
-                                          text: 'Award Amount',
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 12,
-                                          color: AppColors.primaryTextColor,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              height: height * 0.045,
-                                              width: width * 0.08,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: AssetImage(
-                                                        Assets.iconsDepoWallet),
-                                                    fit: BoxFit.fill),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 7,
-                                            ),
-                                            textWidget(
-                                              text: '₹${data.amount}',
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 15,
-                                              color: AppColors.primaryTextColor,
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        10, 10, 10, 0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        data.status == "2"
-                                            ? claimRewards(
-                                                context,
-                                                betAmount.toString(),
-                                                data.activityId.toString())
-                                            : null;
-                                        print(betAmount);
-                                        print("betAmount");
-                                        print(data.activityId);
-                                        print("data.activityId");
-                                      },
-                                      child: Container(
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                            color: data.status == "0"
-                                                ? Colors.red
-                                                : data.status == "1"
-                                                    ? Colors.orange
-                                                    : Colors.green,
-                                            borderRadius:
-                                                BorderRadiusDirectional
-                                                    .circular(30),
-                                            border: Border.all(
-                                                width: 0.5,
-                                                color: AppColors
-                                                    .gradientFirstColor)),
-                                        child: Center(
-                                          child: textWidget(
-                                              text: data.status == "0"
-                                                  ? 'Claimed'
-                                                  : data.status == "1"
-                                                      ? 'Not Completed'
-                                                      : "Claim",
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                )
+                              ],
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                data.status == "2"
+                                    ? claimRewards(
+                                        context,
+                                        betAmount.toString(),
+                                        data.activityId.toString())
+                                    : null;
+                              },
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    color: data.status == "0"
+                                        ? Colors.red
+                                        : data.status == "1"
+                                            ? Colors.orange
+                                            : Colors.green,
+                                    borderRadius:
+                                        BorderRadiusDirectional.circular(30),
+                                    border: Border.all(
+                                        width: 0.5,
+                                        color: AppColors.whiteColor)),
+                                child: Center(
+                                  child: textWidget(
+                                      text: data.status == "0"
+                                          ? 'Claimed'
+                                          : data.status == "1"
+                                              ? 'Not Completed'
+                                              : "Claim",
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       );
                     },
                   ),
-                ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  int? responseStatuscode;
+  int? responseStatusCode;
   UserViewModel userProvider = UserViewModel();
 
   dynamic betAmount;
@@ -356,7 +333,7 @@ class _ActivityAwardState extends State<ActivityAward> {
     }
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {

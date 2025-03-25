@@ -1,7 +1,6 @@
 
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/res/provider/profile_provider.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/model/result_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/repo/result_repo.dart';

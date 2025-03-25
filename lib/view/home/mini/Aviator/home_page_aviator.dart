@@ -129,7 +129,6 @@ class _GameAviatorState extends State<GameAviator>
       onWillPop: _onWillPop,
       child: firstCome == false
           ? Scaffold(
-              backgroundColor: AppColors.scaffoldDark,
               body: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -186,9 +185,7 @@ class _GameAviatorState extends State<GameAviator>
                 ],
               ),
             )
-          :
-          // child:
-          Scaffold(
+          : Scaffold(
               backgroundColor: const Color(0xff101011),
               appBar: AppBar(
                 backgroundColor: Colors.white12,

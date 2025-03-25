@@ -24,7 +24,7 @@ class _LogoutState extends State<Logout> {
   Widget build(BuildContext context) {
 
     return Dialog(
-      backgroundColor: AppColors.scaffoldDark,
+      
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
         height: 270,
@@ -44,7 +44,7 @@ class _LogoutState extends State<Logout> {
             SizedBox(height: height / 30),
             Text("Do you want to logout?",
                 style: TextStyle(
-                    color: AppColors.primaryTextColor,
+                    color: AppColors.whiteColor,
                     fontSize: width * 0.06,
                     fontWeight: FontWeight.bold)),
             SizedBox(height: height / 30),
@@ -60,14 +60,14 @@ class _LogoutState extends State<Logout> {
                     width: width*0.28,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColors.iconsColor)
+                      border: Border.all(color: AppColors.whiteColor)
                     ),
                     child: Center(
                       child: textWidget(
                           text: "Cancel",
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
-                        color: AppColors.primaryTextColor
+                        color: AppColors.whiteColor
                       ),
                     ),
                   ),
@@ -92,7 +92,7 @@ class _LogoutState extends State<Logout> {
                         text: "Confirm",
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
-                        color: AppColors.primaryTextColor
+                        color: AppColors.whiteColor
                       ),
                     ),
                   ),

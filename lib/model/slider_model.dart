@@ -1,20 +1,20 @@
 class SliderModel{
   final String? name;
   final String? image;
-  final String? activity_image;
+  final String? activityImage;
 
 
   SliderModel({
     this.name,
     this.image,
-    this.activity_image,
+    this.activityImage,
   });
   factory SliderModel.fromJson(Map<dynamic, dynamic>json){
 
     return SliderModel(
       name: json["name"],
       image: json["image"],
-      activity_image: json["activity_image"],
+      activityImage: json["activity_image"],
     );
   }
 

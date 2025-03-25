@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/acitvity_collection_bonus_model.dart';
+import 'package:globalbet/model/activity_collection_bonus_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
@@ -30,143 +30,148 @@ class _ActivityRecordHistoryState extends State<ActivityRecordHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
       appBar: const GradientAppBar(
         leading: AppBackBtn(),
         title: Text(
-          'Receive history ',
+          'Receive history',
           style: TextStyle(
               fontWeight: FontWeight.w800,
               fontSize: 20,
               color: AppColors.whiteColor),
         ),
         centerTitle: true,
-        gradient: AppColors.primaryUnselectedGradient,
+        gradient: AppColors.unSelectedColor,
       ),
-      body: Column(
-        children: [
-          Container(
-            height: height * 0.1,
-            width: width,
-            color: AppColors.bottomNavColor,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                buildInkWell(11, 'Daily'),
-                buildInkWell(12, 'Weekly'),
-              ],
+      body: Container(
+        decoration: const BoxDecoration(gradient: AppColors.bgGrad),
+        child: Column(
+          children: [
+            Container(
+              height: height * 0.1,
+              width: width,
+              color: AppColors.contSelectColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  buildInkWell(11, 'Daily'),
+                  buildInkWell(12, 'Weekly'),
+                ],
+              ),
             ),
-          ),
-          responseStatuscode == 400
-              ? const Notfounddata()
-              : Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: activityRecordsHistory.length,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-                      final data = activityRecordsHistory[index];
-                      return Center(
-                        child: InkWell(
-                          onTap: () {
-                            // Call the onTap function associated with the item
-                          },
-                          child: Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                              child: Container(
-                                //  height: height*0.2,
-                                width: width,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient:
-                                        AppColors.primaryUnselectedGradient),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(8, 15, 8, 15),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        selectedIndex == 11
-                                            ? 'Daily Mission Reward'
-                                            : 'Weekly Mission Reward',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 17,
-                                            color: AppColors.primaryTextColor),
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.02,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            selectedIndex == 11
-                                                ? 'Daily betting bonus'
-                                                : 'weekly betting bonus',
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 12,
-                                                color:
-                                                    AppColors.primaryTextColor),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            '${data.name ?? 0}',
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 12,
-                                                color: AppColors
-                                                    .gradientFirstColor),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.02,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            data.updatedAt.toString(),
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 12,
-                                                color: AppColors.dividerColor),
-                                          ),
-                                          const Spacer(),
-                                          Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: AssetImage(
-                                              Assets.iconsDepoWallet,
-                                            ))),
-                                          ),
-                                          Text(
-                                            '₹${data.amount}',
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 12,
-                                                color: AppColors
-                                                    .gradientFirstColor),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+            responseStatuscode == 400
+                ? const Notfounddata()
+                : Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: activityRecordsHistory.length,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        final data = activityRecordsHistory[index];
+                        return Center(
+                          child: InkWell(
+                            onTap: () {
+                              // Call the onTap function associated with the item
+                            },
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                                child: Container(
+                                  //  height: height*0.2,
+                                  width: width,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient:
+                                          AppColors.unSelectedColor),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(8, 15, 8, 15),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          selectedIndex == 11
+                                              ? 'Daily Mission Reward'
+                                              : 'Weekly Mission Reward',
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 17,
+                                              color:
+                                                  AppColors.whiteColor),
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.02,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              selectedIndex == 11
+                                                  ? 'Daily betting bonus'
+                                                  : 'weekly betting bonus',
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 12,
+                                                  color: AppColors
+                                                      .whiteColor),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              '${data.name ?? 0}',
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 12,
+                                                  color: AppColors
+                                                      .whiteColor),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.02,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              data.updatedAt.toString(),
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 12,
+                                                  color:
+                                                      AppColors.dividerColor),
+                                            ),
+                                            const Spacer(),
+                                            Container(
+                                              height: 30,
+                                              width: 30,
+                                              decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                Assets.iconsDepoWallet,
+                                              ))),
+                                            ),
+                                            Text(
+                                              '₹${data.amount}',
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 12,
+                                                  color: AppColors
+                                                      .whiteColor),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              )),
-                        ),
-                      );
-                    },
+                                )),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -187,16 +192,16 @@ class _ActivityRecordHistoryState extends State<ActivityRecordHistory> {
           width: width * 0.45,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              gradient: index == selectedIndex
-                  ? AppColors.loginSecondaryGrad
-                  : AppColors.timeGradient),
+              color: index == selectedIndex
+                  ? AppColors.contLightColor
+                  : AppColors.unSelectColor),
           child: Center(
             child: Text(
               title,
               style: const TextStyle(
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
-                  color: AppColors.primaryTextColor),
+                  color: AppColors.whiteColor),
             ),
           ),
         ),

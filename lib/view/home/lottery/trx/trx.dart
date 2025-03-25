@@ -74,7 +74,7 @@ class TrxState extends State<Trx> with SingleTickerProviderStateMixin {
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 color: TrxColors.whiteColor,
-              ),gradient: AppColors.secondaryappbar
+              ),gradient: AppColors.secondaryAppbar
             ),
             body: Container(
               height: height,
@@ -109,8 +109,8 @@ class TrxState extends State<Trx> with SingleTickerProviderStateMixin {
                             width: width * 0.28,
                             decoration: BoxDecoration(
                               gradient: trc.trxDataTab == index
-                                  ? TrxColors.appBarGradient
-                                  : TrxColors.appButton,
+                                  ? TrxColors.loginSecondaryGrad
+                                  : AppColors.unSelectedColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child:  textWidget(
@@ -173,7 +173,7 @@ class TrxGameType extends StatelessWidget {
                           ? Colors.grey.withOpacity(0.2)
                           : Colors.transparent),
                   gradient: trc.gameIndex == index
-                      ? TrxColors.appBarGradient
+                      ? TrxColors.loginSecondaryGrad
                       : TrxColors.transparentGradient,
                   borderRadius: BorderRadius.circular(20),
                 ),

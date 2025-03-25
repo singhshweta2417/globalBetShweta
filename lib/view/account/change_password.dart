@@ -47,7 +47,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-        backgroundColor: AppColors.scaffoldDark,
+        
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -65,9 +65,9 @@ class _ChangePasswordState extends State<ChangePassword> {
               text: 'Change Password',
               fontWeight: FontWeight.w900,
               fontSize: 20,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
             ),
-            gradient: AppColors.primaryUnselectedGradient),
+            gradient: AppColors.unSelectedColor),
       body: ScrollConfiguration(
         behavior: const ScrollBehavior().copyWith(overscroll: false),
         child: SingleChildScrollView(
@@ -93,7 +93,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               text: 'Login Password',
                               fontWeight: FontWeight.w400,
                               fontSize: 18,
-                              color: AppColors.primaryTextColor)
+                              color: AppColors.whiteColor)
                         ],
                       ),
                     ),
@@ -129,7 +129,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               text: 'New Password',
                               fontWeight: FontWeight.w400,
                               fontSize: 18,
-                              color: AppColors.primaryTextColor)
+                              color: AppColors.whiteColor)
                         ],
                       ),
                     ),
@@ -164,7 +164,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               text: 'Confirm Password',
                               fontWeight: FontWeight.w400,
                               fontSize: 18,
-                              color: AppColors.primaryTextColor)
+                              color: AppColors.whiteColor)
                         ],
                       ),
                     ),
@@ -193,7 +193,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       child: AppBtn(
                         title: 'U p d a t e',
                         fontSize: 20,
-                        titleColor: AppColors.primaryTextColor,
+                        titleColor: AppColors.whiteColor,
                         hideBorder: true,
                         onTap: () {
                           Changepass(oldPassCon.text,newPassCon.text,confirmPassCon.text);

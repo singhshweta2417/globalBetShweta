@@ -8,7 +8,7 @@ import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/view/home/mini/Aviator/widget/imagetoast.dart';
+import 'package:globalbet/view/home/mini/Aviator/widget/image_toast.dart';
 
 
 class BetColorResultProviderTRX with ChangeNotifier {

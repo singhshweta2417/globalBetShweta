@@ -1,4 +1,4 @@
-import 'package:globalbet/model/termsconditionModel.dart';
+import 'package:globalbet/model/terms_condition_model.dart';
 import 'package:flutter/material.dart';
 
 

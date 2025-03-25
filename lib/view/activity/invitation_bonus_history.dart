@@ -34,101 +34,98 @@ class _InvitationBonsHistoryState extends State<InvitationBonsHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
-          centerTitle: true,
-          title: textWidget(
-              text: 'Invitation record', fontSize: 25, color: Colors.white),
-          leading: const AppBackBtn(),
-          gradient: AppColors.primaryUnselectedGradient),
-      body: ListView(
-        children: [
-          responseStatuscode == 400
-              ? const Notfounddata()
-              : invitationRecordItems.isEmpty
-                  ? const Center(child: CircularProgressIndicator())
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                          itemCount: invitationRecordItems.length,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            final data = invitationRecordItems[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient:
-                                        AppColors.primaryUnselectedGradient),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Column(
+        centerTitle: true,
+        title: textWidget(
+            text: 'Invitation record', fontSize: 25, color: Colors.white),
+        leading: const AppBackBtn(),
+      ),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+        decoration: const BoxDecoration(gradient: AppColors.bgGrad),
+        child: ListView(
+          children: [
+            responseStatuscode == 400
+                ? const Notfounddata()
+                : invitationRecordItems.isEmpty
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                        itemCount: invitationRecordItems.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final data = invitationRecordItems[index];
+                          return Container(
+                            margin:
+                                EdgeInsets.symmetric(vertical: height * 0.02),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: AppColors.unSelectedColor),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          textWidget(
-                                              text: data.username.toString(),
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w900),
-                                          textWidget(
-                                              text: 'UID: ${data.uId}',
-                                              fontSize: 14,
-                                              color: AppColors.iconsColor,
-                                              fontWeight: FontWeight.w800),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          textWidget(
-                                              text: 'Registration time',
-                                              fontSize: 15,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700),
-                                          textWidget(
-                                              text: data.createdAt,
-                                              fontSize: 12,
-                                              color: AppColors.btnColor,
-                                              fontWeight: FontWeight.w800),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          textWidget(
-                                              text: 'Deposit amount',
-                                              fontSize: 15,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700),
-                                          textWidget(
-                                              text:
-                                                  '₹${data.firstRechargeAmount}',
-                                              fontSize: 15,
-                                              color:
-                                                  AppColors.gradientFirstColor,
-                                              fontWeight: FontWeight.w500),
-                                        ],
-                                      ),
+                                      textWidget(
+                                          text: data.username.toString(),
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w900),
+                                      textWidget(
+                                          text: 'UID: ${data.uId}',
+                                          fontSize: 14,
+                                          color: AppColors.whiteColor,
+                                          fontWeight: FontWeight.w800),
                                     ],
                                   ),
-                                ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      textWidget(
+                                          text: 'Registration time',
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700),
+                                      textWidget(
+                                          text: data.createdAt,
+                                          fontSize: 12,
+                                          color: AppColors.greyColor,
+                                          fontWeight: FontWeight.w800),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      textWidget(
+                                          text: 'Deposit amount',
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700),
+                                      textWidget(
+                                          text: '₹${data.firstRechargeAmount}',
+                                          fontSize: 15,
+                                          color: AppColors.whiteColor,
+                                          fontWeight: FontWeight.w500),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            );
-                          })),
-        ],
+                            ),
+                          );
+                        }),
+          ],
+        ),
       ),
     );
   }

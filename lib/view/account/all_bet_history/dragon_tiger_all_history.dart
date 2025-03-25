@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/bettingHistory_Model.dart';
+import 'package:globalbet/model/betting_history_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -33,7 +33,7 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -51,9 +51,9 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
             text: 'Dragon Tiger',
             fontWeight: FontWeight.w900,
             fontSize: 20,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -197,7 +197,7 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
                                     width: width,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: AppColors.firstColors),
+                                        color: AppColors.unSelectColor),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Column(
@@ -343,7 +343,7 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
                 text: '$pageNumber/${itemsDataHistory.length}',
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
-                color: AppColors.primaryTextColor,
+                color: AppColors.whiteColor,
                 maxLines: 1,
               ),
               const SizedBox(width: 16),
@@ -385,7 +385,7 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.firstColors),
+              color: AppColors.unSelectColor),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -424,7 +424,7 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.firstColors),
+              color: AppColors.unSelectColor),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -487,7 +487,7 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
         },
         body: jsonEncode(<String, String>{
           "game_id": widget.gameid.toString(),
-          "userid": token ?? '',
+          "userid": token,
           "limit": "10",
           // "offset": offset // Uncomment if offset is required
         }),

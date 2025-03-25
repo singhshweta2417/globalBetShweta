@@ -268,6 +268,8 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                           builder: (context) => AndarBaharHistory(
                                 gameid: widget.gameId,
                               )));
+                  print(gameid);
+                  print('gameid');
                 },
                 child: Column(
                   children: [

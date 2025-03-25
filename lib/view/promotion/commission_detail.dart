@@ -32,7 +32,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Commission detail',
@@ -41,7 +41,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
               fontWeight: FontWeight.w700),
           leading: const AppBackBtn(),
           centerTitle: true,
-          gradient: AppColors.primaryUnselectedGradient),
+          gradient: AppColors.unSelectedColor),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,7 +55,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
               height: height * 0.065,
               width: width * 0.85,
               decoration: BoxDecoration(
-                  color: AppColors.secondaryContainerTextColor,
+                  color: AppColors.contLightColor,
                   borderRadius: BorderRadius.circular(5)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,7 +64,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                       text:
                           '   ${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}',
                       fontSize: 18,
-                      color: AppColors.primaryTextColor),
+                      color: AppColors.whiteColor),
                   FilterDateFormat(
                     onDateSelected: (DateTime selectedDate) {
                       setState(() {
@@ -90,7 +90,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                       height: height * 0.5,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: AppColors.filledColor,
+                        color: AppColors.darkColor,
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -98,7 +98,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                           const Icon(
                             Icons.calendar_month_outlined,
                             size: 100,
-                            color: AppColors.gradientFirstColor,
+                            color: AppColors.whiteColor,
                           ),
                           SizedBox(
                             height: height * 0.04,
@@ -108,7 +108,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                                 '   ${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}',
                             fontWeight: FontWeight.w900,
                             fontSize: 14,
-                            color: AppColors.primaryTextColor,
+                            color: AppColors.whiteColor,
                           ),
                           SizedBox(
                             height: height * 0.04,
@@ -117,7 +117,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                             text: 'No data Found :(',
                             fontWeight: FontWeight.w900,
                             fontSize: 14,
-                            color: AppColors.primaryTextColor,
+                            color: AppColors.whiteColor,
                           ),
                         ],
                       ),
@@ -138,7 +138,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                             width: width * 0.85,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color: AppColors.filledColor,
+                              color: AppColors.darkColor,
                             ),
                             child: Column(
                               children: [
@@ -150,7 +150,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                                       topLeft: Radius.circular(5),
                                       topRight: Radius.circular(5),
                                     ),
-                                    color: AppColors.filledColor,
+                                    color: AppColors.darkColor,
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -162,7 +162,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                                             text: 'Settlement successful',
                                             fontWeight: FontWeight.w900,
                                             fontSize: 14,
-                                            color: AppColors.primaryTextColor,
+                                            color: AppColors.whiteColor,
                                           ),
                                         ),
                                         SizedBox(
@@ -175,7 +175,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                                                 data.settlementDate.toString(),
                                             fontWeight: FontWeight.w900,
                                             fontSize: 14,
-                                            color: AppColors.primaryTextColor,
+                                            color: AppColors.whiteColor,
                                           ),
                                         ),
                                         SizedBox(
@@ -188,7 +188,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                                                 'The commission has been automatically credited to your balance',
                                             fontWeight: FontWeight.w900,
                                             fontSize: 12,
-                                            color: AppColors.primaryTextColor,
+                                            color: AppColors.whiteColor,
                                           ),
                                         ),
                                       ],
@@ -208,7 +208,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
                                 historyDetails(
                                   'Commission payout',
                                   '${data.commissionPayout}',
-                                  AppColors.gradientFirstColor,
+                                  AppColors.whiteColor,
                                 ),
                                 historyDetails(
                                   'Date',
@@ -237,7 +237,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
             width: width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: AppColors.firstColors,
+              color: AppColors.unSelectColor,
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),

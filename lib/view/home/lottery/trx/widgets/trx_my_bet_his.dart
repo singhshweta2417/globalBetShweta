@@ -330,8 +330,8 @@ class _TrxMyBetHisState extends State<TrxMyBetHis> {
                   width: width * 0.10,
                   decoration: BoxDecoration(
                     gradient: pageValue == 1
-                        ? TrxColors.boxGradient
-                        : TrxColors.appBarGradient,
+                        ? TrxColors.loginSecondaryGrad
+                        : TrxColors.loginSecondaryGrad,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(
@@ -396,8 +396,8 @@ class _TrxMyBetHisState extends State<TrxMyBetHis> {
                                         1) ~/
                                     10) +
                                 1
-                        ? TrxColors.boxGradient
-                        : TrxColors.appBarGradient,
+                        ? TrxColors.loginSecondaryGrad
+                        : TrxColors.loginSecondaryGrad,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(Icons.navigate_next,

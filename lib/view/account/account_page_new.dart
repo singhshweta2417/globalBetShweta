@@ -1,11 +1,10 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:globalbet/res/app_constant.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/utils/utils.dart';
 import 'package:globalbet/view/account/all_bet_history/all_bet_history.dart';
 import 'package:globalbet/view/account/beginner_guide.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
 import 'package:provider/provider.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -34,29 +33,19 @@ class AccountPageNew extends StatefulWidget {
 }
 
 class _AccountPageNewState extends State<AccountPageNew> {
-
-
-  @override
-  void initState() {
-
-    // TODO: implement initState
-    super.initState();
-  }
-
   BaseApiHelper baseApiHelper = BaseApiHelper();
   @override
   Widget build(BuildContext context) {
-
-    final userData =Provider.of<ProfileViewModel>(context);
+    final userData = Provider.of<ProfileViewModel>(context);
     List<ServiceModel> serviceList = [
       ServiceModel(
           image: Assets.iconsSetting,
           title: 'Setting',
           onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const SettingPageNew()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SettingPageNew()));
           }),
       ServiceModel(
           image: Assets.iconsFeedback,
@@ -82,16 +71,16 @@ class _AccountPageNewState extends State<AccountPageNew> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => const CustomerCareService()));
-           }),
+          }),
       ServiceModel(
           image: Assets.iconsBigGuide,
           // title: "Privacy Policy",
           title: "Beginners Guide",
           onTap: () {
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) => const PrivacyPolicy()));
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const BeginnersGuideScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const BeginnersGuideScreen()));
           }),
       ServiceModel(
           image: Assets.iconsAboutus,
@@ -106,7 +95,10 @@ class _AccountPageNewState extends State<AccountPageNew> {
           image: Assets.iconsProNotification,
           title: 'Notification',
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>const NotificationScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NotificationScreen()));
           }),
       ProInfoModel(
           image: Assets.iconsGift,
@@ -114,126 +106,128 @@ class _AccountPageNewState extends State<AccountPageNew> {
           onTap: () {
             Navigator.pushNamed(context, RoutesName.giftsscreen);
           }),
-
     ];
 
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
-      body:
-      ListView(
-        children: [
-          Stack(
-            children: [
-              Column(
-                children: [
-                  Container(
-                      height: height * 0.39,
-                      width: width,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(image: AssetImage(Assets.imagesHeadbg,),fit: BoxFit.fill),
+      body: Container(
+        decoration: const BoxDecoration(gradient: AppColors.bgGrad),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Stack(
+              children: [
+                Container(
+                    height: height * 0.3,
+                    decoration: const BoxDecoration(
+                        color: AppColors.contLightColor,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(50),
+                            bottomRight: Radius.circular(50))),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage:
+                          NetworkImage(userData.userImage.toString()),
                         ),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 55, 10, 0),
-                        child: Row(
+                        const SizedBox(width: 10),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                             CircleAvatar(
-                              radius: 50,
-                              backgroundImage: NetworkImage(userData.userImage.toString()),
-                            ),
-                            const SizedBox(width: 10),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            Row(
                               children: [
-                                Row(
+                                textWidget(
+                                    text: userData.userName
+                                        .toString()
+                                        .toUpperCase(),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w900,
+                                    color: AppColors.whiteColor),
+                                SizedBox(
+                                  width: width * 0.02,
+                                ),
+                                Image.asset(
+                                  Assets.iconsProfilevip1,
+                                  scale: 1.7,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Container(
+                              height: 35,
+                              decoration: BoxDecoration(
+                                color: AppColors.darkColor,
+                                borderRadius:
+                                BorderRadiusDirectional.circular(30),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    10, 0, 10, 0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
                                   children: [
                                     textWidget(
-                                        text: userData.userName.toString().toUpperCase(),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w900,
-                                        color: AppColors.primaryTextColor),
-                                    SizedBox(width: width*0.02,),
-                                    Image.asset(Assets.iconsProfilevip1,scale: 1.7,),
+                                        text: 'UID',
+                                        color: AppColors.whiteColor,
+                                        fontSize: 16),
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      width: 2,
+                                      height: 18,
+                                      color: Colors.white,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    textWidget(
+                                        text: userData.userId.toString(),
+                                        color: AppColors.whiteColor,
+                                        fontSize: 16),
+                                    const SizedBox(width: 8),
+                                    InkWell(
+                                        onTap: () {
+                                          copyToClipboard(
+                                              userData.userId.toString(),
+                                              context);
+                                        },
+                                        child: Center(
+                                          child: Image.asset(
+                                            Assets.iconsCopy,
+                                            scale: 1.4,
+                                          ),
+                                        )),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Container(
-                                  height: 35,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.percentageColor,
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(30),
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        textWidget(
-                                            text: 'UID',
-                                            color: AppColors.primaryTextColor,
-                                            fontSize: 16),
-                                        const SizedBox(width: 8),
-                                        Container(
-                                          width: 2,
-                                          height: 18,
-                                          color: Colors.white,
-                                        ),
-                                        const SizedBox(width: 8),
-                                        textWidget(
-                                            text:
-                                            userData.userId.toString(),
-                                            color: AppColors.primaryTextColor,
-                                            fontSize: 16),
-                                        const SizedBox(width: 8),
-                                        InkWell(
-                                            onTap: () {
-                                              copyToClipboard(
-                                                  userData.userId.toString(), context);
-                                            },
-                                            child: Center(
-                                              child: Image.asset(
-                                                Assets.iconsCopy,
-                                                scale: 1.4,
-                                              ),
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                textWidget(
-                                    text:'Last Login: ${userData.lastLoginTime}',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                    color: AppColors.primaryTextColor),
-                              ],
-                            )
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            textWidget(
+                                text:
+                                'Last Login: ${userData.lastLoginTime}',
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                                color: AppColors.whiteColor),
                           ],
-                        ),
-                      )),
-                ],
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.only(top: height * 0.3, left: width * 0.025),
-                child: Column(
-                  children: [
-                    Container(
-                      height: height * 0.25,
-                      width: width * 0.95,
-                      decoration: BoxDecoration(
-                          gradient: AppColors.primaryUnselectedGradient,
-                          borderRadius: BorderRadiusDirectional.circular(15)),
-                      child: Padding(
+                        )
+                      ],
+                    )),
+                Padding(
+                  padding:  EdgeInsets.only(top:height*0.25),
+                  child: Column(
+                    children: [
+                      Container(
                         padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                        height: height * 0.25,
+                        width: width * 0.95,
+                        decoration: BoxDecoration(
+                            color: AppColors.contSelectColor,
+                            borderRadius: BorderRadiusDirectional.circular(15)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -241,180 +235,119 @@ class _AccountPageNewState extends State<AccountPageNew> {
                                 text: 'Total Balance',
                                 fontWeight: FontWeight.w400,
                                 fontSize: 18,
-                                color: AppColors.primaryTextColor),
+                                color: AppColors.whiteColor),
                             Row(
                               children: [
                                 const Icon(Icons.currency_rupee,
                                     size: 25,
-                                    color: AppColors.primaryTextColor),
+                                    color: AppColors.whiteColor),
                                 textWidget(
-                                    text:
-                                    userData.balance==null?'0':
-                                    userData.balance.toStringAsFixed(2),
+                                    text: userData.balance == null
+                                        ? '0'
+                                        : userData.balance.toStringAsFixed(2),
                                     fontWeight: FontWeight.w900,
                                     fontSize: 25,
-                                    color: AppColors.primaryTextColor),
+                                    color: AppColors.whiteColor),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 InkWell(
                                     onTap: () {
                                       userData.profileApi(context);
-                                      Utils.flushBarSuccessMessage('Wallet refresh ✔', context, Colors.white);
+                                      Utils.flushBarSuccessMessage(
+                                          'Wallet refresh ✔',
+                                          context,
+                                          Colors.white);
                                     },
                                     child: Image.asset(
                                       Assets.iconsTotalBal,
-                                      color: AppColors.primaryTextColor,
+                                      color: AppColors.whiteColor,
                                       scale: 2,
                                     )),
                               ],
                             ),
                             const Spacer(),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
                               children: [
-                                buildInkWell(
-                                    Assets.iconsWalletnew, 'Wallet', () {
-                                  NavigatorService.navigateToScreenThree(context);
+                                buildInkWell(Assets.iconsWalletnew, 'Wallet',
+                                    () {
+                                  NavigatorService.navigateToScreenThree(
+                                      context);
                                 }),
                                 buildInkWell(
                                     Assets.iconsProDeposit, 'Deposit', () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const DepositScreen()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const DepositScreen()));
                                 }),
                                 buildInkWell(
                                     Assets.iconsProWithdraw, 'Withdraw', () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const WithdrawScreen()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const WithdrawScreen()));
                                 }),
-                                // buildInkWell(Assets.iconsProVip, 'VIP', () {
-                                //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const VipScreenNew()));
-                                //
-                                // }),
                               ],
                             )
                           ],
                         ),
                       ),
-                    ),
-                    // SizedBox(
-                    //   height: height * 0.03,
-                    // ),
-                    // Container(
-                    //   height: height * 0.15,
-                    //   width: width * 0.95,
-                    //   decoration: BoxDecoration(
-                    //       gradient: AppColors.loginSecondryGrad,
-                    //       borderRadius: BorderRadiusDirectional.circular(15)),
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                    //     child: Row(
-                    //       children: [
-                    //         SizedBox(
-                    //           height: 50,
-                    //           width: 50,
-                    //           child: Image.asset(
-                    //             Assets.iconsVault,
-                    //             scale: 1,
-                    //           ),
-                    //         ),
-                    //         Column(
-                    //           mainAxisAlignment: MainAxisAlignment.start,
-                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                    //           children: [
-                    //             const SizedBox(
-                    //               height: 15,
-                    //             ),
-                    //             Row(
-                    //               mainAxisAlignment:
-                    //                   MainAxisAlignment.spaceBetween,
-                    //               children: [
-                    //                 textWidget(
-                    //                   text: 'Safe',
-                    //                   fontWeight: FontWeight.w900,
-                    //                   fontSize: 15,
-                    //                   color: AppColors.primaryTextColor,
-                    //                 ),
-                    //                 SizedBox(
-                    //                   width: width * 0.38,
-                    //                 ),
-                    //                 Container(
-                    //                   height: 25,
-                    //                   width: 70,
-                    //                   decoration: BoxDecoration(
-                    //                     color: AppColors.iconsColor,
-                    //                     borderRadius:
-                    //                         BorderRadiusDirectional.circular(
-                    //                             30),
-                    //                   ),
-                    //                   child: Center(
-                    //                     child: textWidget(
-                    //                       text: '₹ 0.00',
-                    //                       fontWeight: FontWeight.w900,
-                    //                       fontSize: 14,
-                    //                       color: AppColors.primaryTextColor,
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //                 const Icon(
-                    //                   Icons.arrow_forward_ios,
-                    //                   color: Colors.white,
-                    //                 )
-                    //               ],
-                    //             ),
-                    //             textWidget(
-                    //               text:
-                    //                   'Daily interest rate 0.1% + VIP extra income\n safe, calculated every 1 minute',
-                    //               fontWeight: FontWeight.w500,
-                    //               fontSize: 12,
-                    //               color: AppColors.primaryTextColor,
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        historyWidget(Assets.iconsBetHistory, 'Game History',
-                            'My Game History', () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const AllBetHistory()));
-                            }),
-                        historyWidget(Assets.iconsTransHistory, 'Transction',
-                            'My Transction\nHistory', () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>const TransctionHistory()));
-                            }),
-                      ],
-                    ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        historyWidget(
-                            Assets.iconsRechargeHistory,
-                            'Deposit        ',
-                            'My Deposit\nHistory',
-                            () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const DepositHistory()));
-
-                        }),
-                        historyWidget(Assets.iconsWithdrawHistory,
-                            'Withdraw   ', 'My Withdraw\nHistory', () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const WithdrawHistory()));
-
-                            }),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
-                      child: Container(
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          historyWidget(Assets.iconsBetHistory, 'Game History',
+                              'My Game History', () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AllBetHistory()));
+                          }),
+                          historyWidget(Assets.iconsTransHistory, 'Transction',
+                              'My Transction\nHistory', () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const TransctionHistory()));
+                          }),
+                        ],
+                      ),
+                      Sizes.spaceHeight20,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          historyWidget(Assets.iconsRechargeHistory,
+                              'Deposit        ', 'My Deposit\nHistory', () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DepositHistory()));
+                          }),
+                          historyWidget(Assets.iconsWithdrawHistory,
+                              'Withdraw   ', 'My Withdraw\nHistory', () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const WithdrawHistory()));
+                          }),
+                        ],
+                      ),
+                      Sizes.spaceHeight20,
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: width*0.04),
                         decoration: BoxDecoration(
-                            gradient: AppColors.primaryUnselectedGradient,
+                            color: AppColors.contSelectColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: ListView.builder(
                             padding: const EdgeInsets.all(0),
@@ -429,61 +362,60 @@ class _AccountPageNewState extends State<AccountPageNew> {
                                     leading: Image.asset(
                                       proInfoList[index].image,
                                       height: height * 0.055,
+                                      color: AppColors.whiteColor,
                                     ),
                                     title: textWidget(
                                       text: proInfoList[index].title,
                                       fontSize: 18,
-                                      color: AppColors.primaryTextColor,
+                                      color: AppColors.whiteColor,
                                     ),
                                     trailing: const Icon(
                                       Icons.arrow_forward_ios,
                                       size: 18,
-                                      color: AppColors.secondaryTextColor,
+                                      color: AppColors.whiteColor,
                                     ),
                                   ),
-                                  if (index != proInfoList.length - 1) // Render divider for all except last item
+                                  if (index !=
+                                      proInfoList.length -
+                                          1) // Render divider for all except last item
                                     const Divider(
                                       thickness: 0.5,
-                                      color: AppColors.gradientFirstColor,
+                                      color: AppColors.whiteColor,
                                       endIndent: 20,
                                       indent: 20,
                                     ),
                                 ],
                               );
-                            }
-                        ),
+                            }),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
-                      child: Container(
+                      Sizes.spaceHeight20,
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: width*0.04),
+                        padding: EdgeInsets.symmetric(horizontal: width*0.03,vertical: height*0.01),
                         decoration: BoxDecoration(
-                            gradient: AppColors.primaryUnselectedGradient,
+                            color: AppColors.contSelectColor,
                             borderRadius:
-                            BorderRadiusDirectional.circular(15)),
+                                BorderRadiusDirectional.circular(15)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, top: 10, bottom: 15),
-                              child: textWidget(
-                                  text: 'Service center',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.primaryTextColor),
-                            ),
+                            textWidget(
+                                text: 'Service center',
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.whiteColor),
+                            Sizes.spaceHeight10,
                             GridView.builder(
                                 padding: const EdgeInsets.all(0),
                                 shrinkWrap: true,
                                 itemCount: serviceList.length,
                                 physics: const NeverScrollableScrollPhysics(),
                                 gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisSpacing: 0,
-                                    mainAxisSpacing: 0,
-                                    crossAxisCount: 3,
-                                    childAspectRatio: 2.5 / 2),
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisSpacing: 0,
+                                        mainAxisSpacing: 0,
+                                        crossAxisCount: 3,
+                                        childAspectRatio: 2 / 2),
                                 itemBuilder: (context, index) {
                                   return InkWell(
                                     onTap: serviceList[index].onTap,
@@ -492,21 +424,22 @@ class _AccountPageNewState extends State<AccountPageNew> {
                                         Image.asset(
                                           serviceList[index].image,
                                           height: height * 0.055,
+                                          color: AppColors.whiteColor,
                                         ),
                                         textWidget(
                                             text: serviceList[index].title,
                                             fontWeight: FontWeight.w700,
                                             fontSize: 14,
                                             color:
-                                            AppColors.primaryTextColor),
+                                                AppColors.whiteColor),
                                         textWidget(
                                             text:
-                                            serviceList[index].subtitle ??
-                                                '',
+                                                serviceList[index].subtitle ??
+                                                    '',
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16,
                                             color:
-                                            AppColors.primaryTextColor),
+                                                AppColors.whiteColor),
                                       ],
                                     ),
                                   );
@@ -514,10 +447,8 @@ class _AccountPageNewState extends State<AccountPageNew> {
                           ],
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 30, 10, 30),
-                      child: GestureDetector(
+                      Sizes.spaceHeight25,
+                      GestureDetector(
                         onTap: () {
                           showDialog(
                               context: context,
@@ -527,42 +458,42 @@ class _AccountPageNewState extends State<AccountPageNew> {
                           height: 55,
                           decoration: BoxDecoration(
                               borderRadius:
-                              BorderRadiusDirectional.circular(30),
+                                  BorderRadiusDirectional.circular(30),
                               border: Border.all(
-                                  width: 0.5, color: AppColors.gradientFirstColor)),
+                                  width: 0.5,
+                                  color: AppColors.whiteColor)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Center(child: Image.asset(Assets.iconsLogOut,scale: 1.5,color: AppColors.gradientFirstColor,)),
+                              Center(
+                                  child: Image.asset(
+                                Assets.iconsLogOut,
+                                scale: 1.5,
+                                color: AppColors.whiteColor,
+                              )),
                               textWidget(
                                   text: '  Log out',
                                   fontSize: 20,
-                                  color: AppColors.gradientFirstColor)
+                                  color: AppColors.whiteColor)
                             ],
                           ),
                         ),
                       ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 50),
-                      child: Text(
+                      Sizes.spaceHeight20,
+                      const Text(
                         "Version : ${AppConstants.appVersion}",
-                        style: TextStyle(
-                          color: AppColors.whiteColor
-                        ),
-
+                        style: TextStyle(color: AppColors.whiteColor),
                       ),
-                    ),
-                  ],
+                      Sizes.spaceHeight30,
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
-        //    :const Center(child: CircularProgressIndicator())
     );
-
   }
 
   historyWidget(
@@ -570,51 +501,47 @@ class _AccountPageNewState extends State<AccountPageNew> {
     return InkWell(
       onTap: onTapCallback,
       child: Container(
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         height: height * 0.12,
         width: width * 0.45,
         decoration: BoxDecoration(
-            gradient: AppColors.primaryUnselectedGradient,
+            color: AppColors.contSelectColor,
             borderRadius: BorderRadiusDirectional.circular(15)),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 50,
-                width: 50,
-                child: Image.asset(
-                  img,
-                  // Assets.iconsBetHistory,
-                  scale: 1,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: Image.asset(
+                img,
+                scale: 1,
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                textWidget(
+                  text: title,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 14,
+                  color: AppColors.whiteColor,
                 ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //  const SizedBox(height: 15,),
-
-                  textWidget(
-                    text: title,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 14,
-                    color: AppColors.primaryTextColor,
-                  ),
-                  textWidget(
-                    text: subtitle,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 11,
-                    color: AppColors.dividerColor,
-                  ),
-                ],
-              ),
-            ],
-          ),
+                textWidget(
+                  text: subtitle,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 11,
+                  color: AppColors.greyColor,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
+
   ///profile
   Widget buildInkWell(String img, String title, VoidCallback onTapCallback) {
     return InkWell(
@@ -633,14 +560,14 @@ class _AccountPageNewState extends State<AccountPageNew> {
             text: title,
             fontWeight: FontWeight.w900,
             fontSize: 14,
-            color: AppColors.primaryTextColor,
+            color: AppColors.whiteColor,
           ),
         ],
       ),
     );
   }
-
 }
+
 class ProInfoModel {
   final String image;
   final String title;
@@ -652,6 +579,7 @@ class ProInfoModel {
     this.onTap,
   });
 }
+
 class ServiceModel {
   final String image;
   final String title;

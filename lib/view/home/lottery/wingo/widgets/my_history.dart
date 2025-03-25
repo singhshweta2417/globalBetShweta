@@ -133,7 +133,7 @@ class _WingoMyHisState extends State<WingoMyHis> {
                                   ? Colors.green
                                   : Colors.red,
                           fontSize: 12,
-                          gradient: AppColors.transparentgradient,
+                          gradient: AppColors.transparentGradient,
                           border: Border.all(
                             color: betHistoryData.status == 0
                                 ? Colors.orange
@@ -249,7 +249,7 @@ class _WingoMyHisState extends State<WingoMyHis> {
                   width: width * 0.10,
                   decoration: BoxDecoration(
                     gradient: pageValue ==1
-                        ? AppColors.boxGradient:AppColors.primaryGradient,
+                        ? AppColors.loginSecondaryGrad:AppColors.primaryGradient,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(
@@ -306,7 +306,7 @@ class _WingoMyHisState extends State<WingoMyHis> {
                             1) ~/
                             10) +
                             1
-                        ? AppColors.boxGradient:AppColors.primaryGradient,
+                        ? AppColors.loginSecondaryGrad:AppColors.primaryGradient,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child:  const Icon(Icons.navigate_next,

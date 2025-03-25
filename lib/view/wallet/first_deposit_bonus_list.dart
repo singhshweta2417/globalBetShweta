@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/extradepositmodel.dart';
+import 'package:globalbet/model/extra_deposit_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -70,7 +70,7 @@ class _FirstDepositBonusListState extends State<FirstDepositBonusList> {
                   padding: const EdgeInsets.all(8),
 
                   decoration: BoxDecoration(
-                      color: AppColors.firstColors,
+                      color: AppColors.unSelectColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     children: [
@@ -89,7 +89,7 @@ class _FirstDepositBonusListState extends State<FirstDepositBonusList> {
                           const Spacer(),
                           textWidget(
                               text: '+₹${data.bonus}',
-                              color: AppColors.gradientFirstColor,
+                              color: AppColors.whiteColor,
                               fontSize: 12,
                               fontWeight: FontWeight.w600),
                         ],
@@ -154,14 +154,14 @@ class _FirstDepositBonusListState extends State<FirstDepositBonusList> {
                               width: width * 0.23,
                               decoration: BoxDecoration(
                                 border:
-                                Border.all(color: AppColors.iconsColor),
+                                Border.all(color: AppColors.whiteColor),
                                 borderRadius:
                                 BorderRadius.circular(5),
                               ),
                               child: textWidget(
                                   text: 'Deposit',
                                   fontWeight: FontWeight.w600,
-                                  color:  AppColors.gradientFirstColor,
+                                  color:  AppColors.whiteColor,
                                   fontSize: 15),
                             ),
                           ),
@@ -177,7 +177,7 @@ class _FirstDepositBonusListState extends State<FirstDepositBonusList> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.secondaryContainerTextColor,width: 2),
+                      border: Border.all(color: AppColors.contLightColor,width: 2),
                       borderRadius: BorderRadius.circular(10)
                   ),
                   child: Column(
@@ -209,7 +209,7 @@ class _FirstDepositBonusListState extends State<FirstDepositBonusList> {
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 20,
-                          color: AppColors.primaryTextColor),
+                          color: AppColors.whiteColor),
                     ),
                   ),
                 ),

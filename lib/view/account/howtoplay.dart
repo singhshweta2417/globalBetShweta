@@ -47,12 +47,12 @@ class _HowToPlayState extends State<HowToPlay> {
                       text: 'How to Play',
                       fontSize: 14,
                       fontWeight: FontWeight.w900,
-                      color: AppColors.primaryTextColor)),
+                      color: AppColors.whiteColor)),
             ),
             Container(
               height:responseStatuscode == 400? height * 0.1:height * 0.4,
               width: width,
-              color: AppColors.scaffoldDark,
+              color: AppColors.darkColor,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
@@ -73,7 +73,7 @@ class _HowToPlayState extends State<HowToPlay> {
             Container(
               height: height * 0.085,
               decoration: const BoxDecoration(
-                color: AppColors.scaffoldDark,
+                color: AppColors.darkColor,
                 borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10),
                     bottomLeft: Radius.circular(10)),
@@ -87,7 +87,7 @@ class _HowToPlayState extends State<HowToPlay> {
                       Navigator.pop(context);
                     },
                     hideBorder: true,
-                    gradient: AppColors.buttonGradient2),
+                    gradient: AppColors.loginSecondaryGrad),
               ),
             )
           ],

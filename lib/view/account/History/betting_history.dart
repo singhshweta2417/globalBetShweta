@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:globalbet/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/model/bettingHistory_Model.dart';
-import 'package:globalbet/model/bettinghistoryTRX.dart';
+import 'package:globalbet/model/betting_history_model.dart';
+import 'package:globalbet/model/betting_history_trx.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -57,14 +57,14 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
         appBar: GradientAppBar(
           leading: const AppBackBtn(),
           title: textWidget(
               text: 'Bet History',
               fontSize: 25,
-              color: AppColors.primaryTextColor),
-          gradient: AppColors.secondaryappbar),
+              color: AppColors.whiteColor),
+          gradient: AppColors.secondaryAppbar),
       body: ScrollConfiguration(
         behavior: const ScrollBehavior().copyWith(overscroll: false),
         child: ListView(
@@ -93,7 +93,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                         decoration: BoxDecoration(
                           gradient: selectedCatIndex == index
                               ? AppColors.goldenGradientDir
-                              : AppColors.secondaryappbar,
+                              : AppColors.secondaryAppbar,
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.1),
                           boxShadow: [
@@ -205,7 +205,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          gradient: AppColors.secondaryappbar,
+                          gradient: AppColors.secondaryAppbar,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -251,7 +251,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Balance",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
 
                                     ),
                                     textWidget(
@@ -259,7 +259,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                         //  text: "₹${(double.parse(items[index].amount.toString())-0.02).toStringAsFixed(0)}",
                                         fontSize: 12,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                   ],
                                 ),
@@ -272,7 +272,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Bet Type",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     int.parse(items[index].number.toString())<=9?
                                     Container(
@@ -319,12 +319,12 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Type",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     textWidget(text: items[index].gameId=="1"?"1 min":items[index].gameId=="2"?"3 min":items[index].gameId=="4"?"5 min":"10 min",
                                         fontSize: 12,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                   ],
                                 ),
@@ -337,12 +337,12 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Win Amount",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     textWidget(text: items[index].winNumber==null?'₹ 0.0':'₹ ${items[index].winNumber}',
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                   ],
                                 ),
@@ -355,13 +355,13 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Time",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     textWidget(
                                         text: DateFormat("dd-MMM-yyyy, hh:mm a").format(DateTime.parse(items[index].createdAt.toString())),
                                         fontSize: 12,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     )
                                   ],
                                 ),
@@ -374,14 +374,14 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Order number",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     Row(
                                       children: [
                                         textWidget(text: items[index].gamesno.toString(),
                                             fontSize: 12,
                                             fontWeight: FontWeight.w800,
-                                            color: AppColors.primaryTextColor
+                                            color: AppColors.whiteColor
                                         ),
                                         SizedBox(width: width*0.01,),
                                         InkWell(
@@ -472,7 +472,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                       elevation: 3,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       child: Container(
-                        decoration: BoxDecoration(gradient: AppColors.secondaryappbar,
+                        decoration: BoxDecoration(gradient: AppColors.secondaryAppbar,
                             borderRadius: BorderRadius.circular(10)
                         ),
                         child: Padding(
@@ -519,13 +519,13 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Balance",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
 
                                     ),
                                     textWidget(text: "₹${itemsTRX[index].amount}",
                                         fontSize: 12,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                   ],
                                 ),
@@ -538,7 +538,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Bet Type",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     int.parse(itemsTRX[index].number.toString())<=9?
                                     Container(
@@ -585,12 +585,12 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Type",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     textWidget(text: itemsTRX[index].gameid=="1"?"1 min":itemsTRX[index].gameid=="2"?"3 min":itemsTRX[index].gameid=="4"?"5 min":"10 min",
                                         fontSize: 12,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                   ],
                                 ),
@@ -603,12 +603,12 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Win Amount",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     textWidget(text: itemsTRX[index].win==null?'₹ 0.0':'₹ ${itemsTRX[index].win}',
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                   ],
                                 ),
@@ -621,14 +621,14 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Time",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     textWidget(
                                         text: DateFormat("dd-MMM-yyyy, hh:mm a").format(
                                             DateTime.parse(itemsTRX[index].datetime.toString())),
                                         fontSize: 12,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
 
                                     )
                                   ],
@@ -642,14 +642,14 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                     textWidget(text: "Order number",
                                         fontSize: width*0.03,
                                         fontWeight: FontWeight.w800,
-                                        color: AppColors.primaryTextColor
+                                        color: AppColors.whiteColor
                                     ),
                                     Row(
                                       children: [
                                         textWidget(text: itemsTRX[index].gamesno.toString(),
                                             fontSize: 12,
                                             fontWeight: FontWeight.w800,
-                                            color: AppColors.primaryTextColor
+                                            color: AppColors.whiteColor
                                         ),
                                         SizedBox(width: width*0.01,),
                                         InkWell(

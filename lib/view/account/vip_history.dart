@@ -31,7 +31,7 @@ class _AllVipHistoryState extends State<AllVipHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           title: textWidget(text: 'VIP History', fontSize: 25, color: Colors.white),
           leading: const AppBackBtn(),
@@ -105,7 +105,7 @@ class _AllVipHistoryState extends State<AllVipHistory> {
                           ),
                           const Divider(
                             color:
-                            AppColors.secondaryTextColor,
+                            AppColors.whiteColor,
                           ),
                         ],
                       ),

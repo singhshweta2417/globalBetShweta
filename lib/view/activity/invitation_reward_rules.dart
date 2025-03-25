@@ -11,6 +11,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
 import 'package:http/http.dart' as http;
 
 import '../../res/api_urls.dart';
@@ -33,9 +34,8 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
-      appBar: GradientAppBar(
-        leading: const AppBackBtn(),
+      appBar: const GradientAppBar(
+        leading: AppBackBtn(),
         title: Text(
           'Invitation reward rules',
           style: TextStyle(
@@ -44,10 +44,13 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
               color: AppColors.whiteColor),
         ),
         centerTitle: true,
-        gradient: AppColors.primaryUnselectedGradient,
+        gradient: AppColors.unSelectedColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: width*0.03,vertical: height*0.03),
+        decoration: const BoxDecoration(
+          gradient: AppColors.bgGrad
+        ),
         child: ListView(
           shrinkWrap: true,
           physics: const ScrollPhysics(),
@@ -57,7 +60,7 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: AppColors.primaryTextColor),
+                  color: AppColors.whiteColor),
             ),
             SizedBox(
               height: height * 0.01,
@@ -67,111 +70,100 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 15,
-                  color: AppColors.primaryTextColor),
+                  color: AppColors.whiteColor),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: AppColors.primaryUnselectedGradient,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                          gradient: AppColors.buttonGradient,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10))),
-                      height: height * 0.08,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          buildContainer('Invite Account'),
-                          buildContainer('Deposit Amount'),
-                          buildContainer('Bonus'),
-                        ],
-                      ),
-                    ),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: invationbonus.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          final data = invationbonus[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    buildContainer('${data.noOfUser} People'),
-                                    buildContainer('₹${data.amount}'),
-                                    buildContainer('₹${data.claimAmount}'),
-                                  ],
-                                ),
-                                const Divider(
-                                  color: AppColors.gradientFirstColor,
-                                  thickness: 1,
-                                )
-                              ],
-                            ),
-                          );
-                        }),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Stack(
+            Sizes.spaceHeight25,
+            Container(
+              decoration: BoxDecoration(
+                  color: AppColors.contSelectColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
                 children: [
                   Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: AppColors.secondaryContainerTextColor,
-                            width: 2),
-                        //  gradient: AppColors.primaryUnselectedGradient,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
+                    decoration: const BoxDecoration(
+                        color: AppColors.unSelectColor,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10))),
+                    height: height * 0.08,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        SizedBox(
-                          height: height * 0.06,
-                        ),
-                        ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: invitationRuleList.length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: instruction(invitationRuleList[index]),
-                              );
-                            }),
+                        buildContainer('Invite Account'),
+                        buildContainer('Deposit Amount'),
+                        buildContainer('Bonus'),
                       ],
                     ),
                   ),
-                  Container(
-                    height: height * 0.06,
-                    width: width,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(Assets.iconsRulehead),
-                            fit: BoxFit.fill)),
-                    child: const Center(
-                      child: Text(
-                        'Rules',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 20,
-                            color: AppColors.primaryTextColor),
-                      ),
-                    ),
-                  ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: invationbonus.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final data = invationbonus[index];
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  buildContainer('${data.noOfUser} People'),
+                                  buildContainer('₹${data.amount}'),
+                                  buildContainer('₹${data.claimAmount}'),
+                                ],
+                              ),
+                              const Divider(
+                                color: AppColors.whiteColor,
+                                thickness: 1,
+                              )
+                            ],
+                          ),
+                        );
+                      }),
                 ],
               ),
+            ),
+            Sizes.spaceHeight25,
+            Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: AppColors.unSelectColor,
+                          width: 2),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: ListView.builder(
+                    padding: EdgeInsets.only(top: height*0.05),
+                      shrinkWrap: true,
+                      itemCount: invitationRuleList.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: instruction(invitationRuleList[index]),
+                        );
+                      }),
+                ),
+                Container(
+                  height: height * 0.06,
+                  width: width,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(Assets.iconsRulehead),
+                          fit: BoxFit.fill)),
+                  child: const Center(
+                    child: Text(
+                      'Rules',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 20,
+                          color: AppColors.whiteColor),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -186,25 +178,23 @@ class _InvitationRewardRulesState extends State<InvitationRewardRules> {
         child: Container(
           height: 10,
           width: 10,
-          color: AppColors.gradientFirstColor,
+          color: AppColors.whiteColor,
         ),
       ),
-      title: textWidget(
-          text: title, fontSize: 14, color: AppColors.primaryTextColor),
+      title: textWidget(text: title, fontSize: 14, color: AppColors.whiteColor),
     );
   }
 
   buildContainer(String text) {
     return SizedBox(
       width: width * 0.28,
-      //  color: Colors.black,
       child: Center(
         child: Text(
           text,
           style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 13,
-              color: AppColors.primaryTextColor),
+              color: AppColors.whiteColor),
         ),
       ),
     );

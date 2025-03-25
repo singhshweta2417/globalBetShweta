@@ -49,7 +49,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               text: 'Global Bet',
               fontWeight: FontWeight.w600,
               fontSize: 28,
-              color: AppColors.primaryTextColor)),
+              color: AppColors.whiteColor)),
       body: ScrollConfiguration(
         behavior: const ScrollBehavior().copyWith(overscroll: false),
         child: SingleChildScrollView(
@@ -68,14 +68,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             text: 'Forget Password',
                             fontWeight: FontWeight.w600,
                             fontSize: 22,
-                            color: AppColors.primaryTextColor),
+                            color: AppColors.whiteColor),
                       ),
                       subtitle: textWidget(
                           text:
                               'Please retrieve/change your password through your mobile phone number or email',
                           fontWeight: FontWeight.w600,
                           fontSize: 12,
-                          color: AppColors.primaryTextColor),
+                          color: AppColors.whiteColor),
                     ),
                   ),
                 ),
@@ -124,7 +124,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   text: 'Phone Number',
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
-                  color: AppColors.primaryTextColor)
+                  color: AppColors.whiteColor)
             ],
           ),
         ),
@@ -219,7 +219,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   text: 'Phone Number',
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
-                  color: AppColors.primaryTextColor)
+                  color: AppColors.whiteColor)
             ],
           ),
         ),
@@ -244,7 +244,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   text: 'New Password',
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
-                  color: AppColors.primaryTextColor)
+                  color: AppColors.whiteColor)
             ],
           ),
         ),
@@ -279,7 +279,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   text: 'Confirm New Password',
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
-                  color: AppColors.primaryTextColor)
+                  color: AppColors.whiteColor)
             ],
           ),
         ),

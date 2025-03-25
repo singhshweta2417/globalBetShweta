@@ -27,10 +27,6 @@ class _KenoGameState extends State<KenoGame> {
 
   @override
   void initState() {
-    // SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.portraitUp,
-    //   DeviceOrientation.portraitDown,
-    // ]);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final resultProvider = Provider.of<KinoResultApi>(context, listen: false);
       resultProvider.resultFetch();
@@ -74,7 +70,7 @@ class _KenoGameState extends State<KenoGame> {
                         color: Colors.black26),
                     child: Center(
                         child: Text(
-                      'SNo.${resultApi.response.first.gamesno+1}',
+                      'SNo.',//${resultApi.response.first.gamesno+1}
                       style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,

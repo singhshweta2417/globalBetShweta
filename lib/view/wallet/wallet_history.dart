@@ -36,14 +36,14 @@ class _WalletHistoryState extends State<WalletHistory>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
+      
       appBar: GradientAppBar(
           leading: const AppBackBtn(),
           title: textWidget(
               text: widget.name.toString(),
               fontSize: 25,
-              color: AppColors.primaryTextColor),
-          gradient: AppColors.secondaryappbar),
+              color: AppColors.whiteColor),
+          gradient: AppColors.secondaryAppbar),
       body: ScrollConfiguration(
         behavior: const ScrollBehavior().copyWith(overscroll: false),
         child: ListView(
@@ -67,7 +67,7 @@ class _WalletHistoryState extends State<WalletHistory>
                                     borderRadius: BorderRadius.circular(12)),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      gradient: AppColors.secondaryappbar,
+                                      gradient: AppColors.secondaryAppbar,
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Column(
                                     children: [
@@ -83,14 +83,14 @@ class _WalletHistoryState extends State<WalletHistory>
                                                 fontSize: width * 0.04,
                                                 fontWeight: FontWeight.w600,
                                                 color: AppColors
-                                                    .secondaryTextColor),
+                                                    .whiteColor),
                                             textWidget(
                                                 text:
                                                     "₹${historyItem[index].amount}",
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                                 color: AppColors
-                                                    .secondaryTextColor),
+                                                    .whiteColor),
                                           ],
                                         ),
                                       ),
@@ -105,7 +105,7 @@ class _WalletHistoryState extends State<WalletHistory>
                                                 fontSize: width * 0.04,
                                                 fontWeight: FontWeight.w600,
                                                 color: AppColors
-                                                    .secondaryTextColor),
+                                                    .whiteColor),
                                             textWidget(
                                                 // text: historyItem[index].type=="1"?"Winning":historyItem[index].type=="2"?"Bonus":"Commission",
                                                 text: historyItem[index]
@@ -114,7 +114,7 @@ class _WalletHistoryState extends State<WalletHistory>
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                                 color: AppColors
-                                                    .secondaryTextColor),
+                                                    .whiteColor),
                                           ],
                                         ),
                                       ),
@@ -129,7 +129,7 @@ class _WalletHistoryState extends State<WalletHistory>
                                                 fontSize: width * 0.04,
                                                 fontWeight: FontWeight.w600,
                                                 color: AppColors
-                                                    .secondaryTextColor),
+                                                    .whiteColor),
                                             Text(
                                               DateFormat("dd-MMM-yyyy, hh:mm a")
                                                   .format(DateTime.parse(

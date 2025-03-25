@@ -87,7 +87,7 @@ class _AppBtnState extends State<AppBtn> with SingleTickerProviderStateMixin {
                           text: widget.title ?? 'Press me',
                           fontSize: widget.fontSize ?? 16,
                           color:
-                              widget.titleColor ?? AppColors.primaryTextColor,
+                              widget.titleColor ?? AppColors.whiteColor,
                           fontWeight: widget.fontWeight ?? FontWeight.w600,
                         ),
                   )
@@ -99,8 +99,8 @@ class _AppBtnState extends State<AppBtn> with SingleTickerProviderStateMixin {
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           colors: [
-                            AppColors.gradientFirstColor,
-                            AppColors.gradientSecondColor,
+                            AppColors.whiteColor,
+                            AppColors.darkColor,
                           ],
                         ),
                         borderRadius:
@@ -135,7 +135,6 @@ class AppBackBtn extends StatelessWidget {
             Icons.arrow_back_ios_new_sharp,
             color: Colors.white,
           )
-          // Image.asset(Assets.iconsArrowBack)
           ),
     );
   }
@@ -238,7 +237,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
         decoration: BoxDecoration(
             shape: widget.shape == null ? BoxShape.rectangle : widget.shape!,
             borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
-            color: widget.color ?? AppColors.primaryTextColor,
+            color: widget.color ?? AppColors.whiteColor,
             gradient: widget.gradient,
             boxShadow: widget.boxShadow,
             border: widget.border),
@@ -249,7 +248,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
                     style: TextStyle(
                         fontSize: widget.fontSize ??
                             MediaQuery.of(context).size.width / 25,
-                        color: widget.textColor ?? AppColors.primaryTextColor,
+                        color: widget.textColor ?? AppColors.whiteColor,
                         fontWeight: widget.fontWeight ?? FontWeight.w500),
                     textAlign: TextAlign.center,
                   )
@@ -261,7 +260,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
                           Icon(
                             widget.icon,
                             color:
-                                widget.iconColor ?? AppColors.primaryTextColor,
+                                widget.iconColor ?? AppColors.whiteColor,
                             size: widget.iconSize,
                           ),
                           SizedBox(
@@ -273,7 +272,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
                                 fontSize: widget.fontSize ??
                                     MediaQuery.of(context).size.width / 25,
                                 color: widget.textColor ??
-                                    AppColors.primaryTextColor,
+                                    AppColors.whiteColor,
                                 fontWeight:
                                     widget.fontWeight ?? FontWeight.w500),
                           ),
@@ -285,7 +284,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
                           Icon(
                             widget.icon,
                             color:
-                                widget.iconColor ?? AppColors.primaryTextColor,
+                                widget.iconColor ?? AppColors.whiteColor,
                             size: widget.iconSize,
                           ),
                           SizedBox(
@@ -295,7 +294,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
                             widget.label == null ? "" : widget.label!,
                             style: TextStyle(
                                 color: widget.textColor ??
-                                    AppColors.primaryTextColor,
+                                    AppColors.whiteColor,
                                 fontSize: widget.fontSize ??
                                     MediaQuery.of(context).size.width / 25,
                                 fontWeight:

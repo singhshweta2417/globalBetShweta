@@ -42,7 +42,7 @@ class _RandomListState extends State<RandomList> {
           title: textWidget(
               text: 'Winners',
               fontSize: 25,
-              color: AppColors.primaryTextColor),
+              color: AppColors.whiteColor),
           gradient: AppColors.primaryGradient),
       body: ListView.builder(
         itemCount: 40, // Number of items you want to display

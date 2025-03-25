@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/bettingHistory_Model.dart';
+import 'package:globalbet/model/betting_history_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
@@ -53,10 +53,10 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
             style: TextStyle(
               fontWeight: FontWeight.w900,
               fontSize: 15,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
             ),
           ),
-          gradient: AppColors.appBarGradient),
+          gradient: AppColors.loginSecondaryGrad),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -371,7 +371,7 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
                   style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.primaryTextColor,
+                    color: AppColors.whiteColor,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -499,14 +499,9 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
   List<BettingHistoryModel> itemsDataHistory = [];
   Future<void> gameHistory() async {
     try {
-      // Fetch userId
       UserViewModel userProvider = UserViewModel();
       UserModel user = await userProvider.getUser();
       String userId = user.id.toString();
-      print(userId);
-      print(widget.gameid);
-      print('pdmksfmgkmpkmhkpemjo');
-      // Prepare the API request
       final response = await http.post(
         Uri.parse(ApiUrl.gameHistory),
         headers: <String, String>{
@@ -514,7 +509,7 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
         },
         body: jsonEncode(<String, String>{
           "game_id": widget.gameid.toString(),
-          "userid": userId ?? '',
+          "userid": userId,
           "limit": "10",
           // "offset": offset // Uncomment if offset is required
         }),

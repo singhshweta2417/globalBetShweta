@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/addaccount_view_model.dart';
+import 'package:globalbet/model/add_account_view_model.dart';
 import 'package:globalbet/model/deposit_model_new.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
@@ -70,7 +70,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     double withdrawAmount = double.tryParse(withdrawCon.text) ?? 0;
 
     return Scaffold(
-        backgroundColor: AppColors.scaffoldDark,
+        
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -88,7 +88,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               text: 'Withdraw',
               fontWeight: FontWeight.w900,
               fontSize: 20,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
             ),
             actions: [
               InkWell(
@@ -105,13 +105,13 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       text: 'Withdraw history',
                       fontWeight: FontWeight.w600,
                       fontSize: 14,
-                      color: AppColors.primaryTextColor,
+                      color: AppColors.whiteColor,
                     ),
                   ),
                 ),
               ),
             ],
-            gradient: AppColors.primaryUnselectedGradient),
+            gradient: AppColors.unSelectedColor),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
           child: SingleChildScrollView(
@@ -149,12 +149,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                             children: [
                               const SizedBox(width: 15),
                               const Icon(Icons.currency_rupee,
-                                  color: AppColors.primaryTextColor),
+                                  color: AppColors.whiteColor),
                               textWidget(
                                 text: userData.balance.toStringAsFixed(2),
                                 fontWeight: FontWeight.w900,
                                 fontSize: 25,
-                                color: AppColors.primaryTextColor,
+                                color: AppColors.whiteColor,
                               ),
                               const SizedBox(width: 15),
                               InkWell(
@@ -217,7 +217,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           decoration: BoxDecoration(
                             gradient: payUsing == currentId
                                 ? AppColors.loginSecondaryGrad
-                                : AppColors.primaryUnselectedGradient,
+                                : AppColors.unSelectedColor,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Column(
@@ -235,8 +235,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                   text: depositType[index].name.toString(),
                                   fontSize: 13,
                                   color: payUsing == currentId
-                                      ? AppColors.primaryTextColor
-                                      : AppColors.iconsColor,
+                                      ? AppColors.whiteColor
+                                      : AppColors.whiteColor,
                                   fontWeight: FontWeight.w900),
                             ],
                           ),
@@ -273,7 +273,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                                     ),
                                                     fit: BoxFit.fill),
                                                 color:
-                                                    AppColors.percentageColor,
+                                                    AppColors.contSelectColor,
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                             child: ListTile(
@@ -314,7 +314,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                                         : BoxDecoration(
                                                             border: Border.all(
                                                                 color: AppColors
-                                                                    .gradientFirstColor),
+                                                                    .whiteColor),
                                                             borderRadius:
                                                                 BorderRadiusDirectional
                                                                     .circular(
@@ -370,7 +370,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                           15, 15, 15, 15),
                                       decoration: BoxDecoration(
                                           gradient: AppColors
-                                              .primaryUnselectedGradient,
+                                              .unSelectedColor,
                                           borderRadius:
                                               BorderRadiusDirectional.circular(
                                                   10)),
@@ -384,7 +384,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                           const SizedBox(width: 15),
                                           textWidget(
                                               text: 'Add a bank account number',
-                                              color: AppColors.primaryTextColor,
+                                              color: AppColors.whiteColor,
                                               fontSize: 16,
                                               fontWeight: FontWeight.w900),
                                         ],
@@ -399,7 +399,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                             padding: const EdgeInsets.only(
                                 top: 15, left: 15, right: 15),
                             decoration: BoxDecoration(
-                                gradient: AppColors.primaryUnselectedGradient,
+                                gradient: AppColors.unSelectedColor,
                                 borderRadius:
                                     BorderRadiusDirectional.circular(15)),
                             child: Column(
@@ -408,7 +408,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                 textWidget(
                                     text:
                                         'Need to add beneficiary information to be able to withdraw money',
-                                    color: AppColors.primaryTextColor,
+                                    color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w900),
                                 const SizedBox(height: 10),
                                 CustomTextField(
@@ -430,7 +430,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                         const SizedBox(width: 10),
                                         const Icon(
                                           Icons.currency_rupee,
-                                          color: AppColors.gradientFirstColor,
+                                          color: AppColors.whiteColor,
                                           size: 25,
                                         ),
                                         const SizedBox(width: 10),
@@ -455,14 +455,14 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                         const Icon(Icons.currency_rupee,
                                             size: 16,
                                             color:
-                                                AppColors.gradientFirstColor),
+                                                AppColors.whiteColor),
                                         textWidget(
                                             text: userData.mainWallet
                                                 .toStringAsFixed(2),
                                             //==''?'0.0':(int.parse(withdrawCon.text)*0.96).toStringAsFixed(2),
                                             fontSize: 16,
                                             color:
-                                                AppColors.gradientFirstColor),
+                                                AppColors.whiteColor),
                                       ],
                                     )
                                   ],
@@ -482,7 +482,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                         const Icon(Icons.currency_rupee,
                                             size: 20,
                                             color:
-                                                AppColors.gradientFirstColor),
+                                                AppColors.whiteColor),
                                         textWidget(
                                             text: withdrawCon.text == ''
                                                 ? '0.0'
@@ -490,7 +490,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                             // (int.parse(withdrawCon.text)*0.96).toStringAsFixed(2),
                                             fontSize: 18,
                                             color:
-                                                AppColors.gradientFirstColor),
+                                                AppColors.whiteColor),
                                       ],
                                     )
                                   ],
@@ -539,7 +539,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                         title: 'Withdraw',
                                         fontWeight: FontWeight.w900,
                                         fontSize: 18,
-                                        gradient: AppColors.primaryappbargrey,
+                                        gradient: AppColors.primaryAppbarGrey,
                                         child: isLoading
                                             ? const CircularProgressIndicator(
                                                 valueColor:
@@ -554,7 +554,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                   width: width * 0.85,
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                          color: AppColors.gradientFirstColor,
+                                          color: AppColors.whiteColor,
                                           width: 1),
                                       borderRadius:
                                           BorderRadiusDirectional.circular(15)),
@@ -565,7 +565,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                           '₹${userData.recharge.toStringAsFixed(2)}',
                                           ' to be able to withdraw',
                                           Colors.white,
-                                          AppColors.gradientFirstColor,
+                                          AppColors.whiteColor,
                                           Colors.white),
                                       ListView.builder(
                                           shrinkWrap: true,
@@ -593,7 +593,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                             padding: const EdgeInsets.only(
                                 top: 15, left: 15, right: 15),
                             decoration: BoxDecoration(
-                                gradient: AppColors.primaryUnselectedGradient,
+                                gradient: AppColors.unSelectedColor,
                                 borderRadius:
                                     BorderRadiusDirectional.circular(15)),
                             child: Column(
@@ -615,7 +615,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                 ),
                                 const SizedBox(height: 10),
                                 CustomTextField(
-                                  fillColor: AppColors.scaffoldDark,
+                                  fillColor: AppColors.darkColor,
                                   hintText: 'Please enter usdt amount',
                                   fieldRadius: BorderRadius.circular(30),
                                   textColor: Colors.white,
@@ -679,7 +679,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                   title: 'W i t h d r a w',
                                   fontWeight: FontWeight.w900,
                                   fontSize: 18,
-                                  gradient: AppColors.primaryappbargrey,
+                                  gradient: AppColors.primaryAppbarGrey,
                                 ),
                                 const SizedBox(height: 40),
                               ],
@@ -974,11 +974,11 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         child: Container(
           height: 10,
           width: 10,
-          color: AppColors.gradientFirstColor,
+          color: AppColors.whiteColor,
         ),
       ),
       title: textWidget(
-          text: title, fontSize: 14, color: AppColors.primaryTextColor),
+          text: title, fontSize: 14, color: AppColors.whiteColor),
     );
   }
 
@@ -996,7 +996,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
           child: Container(
             height: 10,
             width: 10,
-            color: AppColors.gradientFirstColor,
+            color: AppColors.whiteColor,
           ),
         ),
         title: CustomRichText(

@@ -4,11 +4,11 @@ class PlinkoBetHistory {
   dynamic amount;
   dynamic type;
   dynamic multipler;
-  dynamic win_amount;
+  dynamic winAmount;
   dynamic status;
   dynamic datetime;
   dynamic tax;
-  dynamic after_tax;
+  dynamic afterTax;
   dynamic orderid;
 
 
@@ -18,11 +18,11 @@ class PlinkoBetHistory {
     required this.amount,
     required this.type,
     required this.multipler,
-    required this.win_amount,
+    required this.winAmount,
     required this.status,
     required this.datetime,
     required this.tax,
-    required this.after_tax,
+    required this.afterTax,
     required this.orderid,
 
   });
@@ -33,11 +33,11 @@ class PlinkoBetHistory {
       amount: json['amount'],
       type: json['type'],
       multipler: json['multipler'],
-      win_amount: json['win_amount'],
+      winAmount: json['win_amount'],
       status: json['status'],
       datetime: json['created_at'],
       tax: json['tax'],
-      after_tax: json['after_tax'],
+      afterTax: json['after_tax'],
       orderid: json['orderid'],
 
     );

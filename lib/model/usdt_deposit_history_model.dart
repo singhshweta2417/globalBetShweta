@@ -1,23 +1,23 @@
 class USDTDepositModel {
-  final String? actual_amount;
+  final String? actualAmount;
   final String? amount;
-  final String? created_at;
+  final String? createdAt;
   final String? id;
   final String? status;
 
 
   USDTDepositModel({
-    required this.actual_amount,
+    required this.actualAmount,
     required this.amount,
-    required this.created_at,
+    required this.createdAt,
     required this.id,
     required this.status,
   });
   factory USDTDepositModel.fromJson(Map<String, dynamic> json) {
     return USDTDepositModel(
-      actual_amount: json['actual_amount'],
+      actualAmount: json['actual_amount'],
       amount: json['amount'],
-      created_at: json['created_at'],
+      createdAt: json['created_at'],
       id: json['id'],
       status: json['status'],
     );

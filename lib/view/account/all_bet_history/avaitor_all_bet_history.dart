@@ -99,9 +99,9 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
                         BorderRadius.circular(
                             10),
                         border: Border.all(
-                            color: items[index].status==0? AppColors.primaryTextColor:items[index].status==2?
+                            color: items[index].status==0? AppColors.whiteColor:items[index].status==2?
                             AppColors
-                                .secondaryTextColor: Colors.green)),
+                                .whiteColor: Colors.green)),
                     child: Center(
                       child:  Text(
                         items[index].status==2?'Failed':items[index].status==0?'Pending':'Succeed',
@@ -113,7 +113,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
                             items[index].status==0?Colors.white:
                             items[index].status==2?
                             AppColors
-                                .secondaryTextColor: Colors.green),
+                                .whiteColor: Colors.green),
                       ),
                     ),
                   ),
@@ -126,7 +126,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
                         FontWeight.w700,
                         color: items[index].status==0?Colors.white:items[index].status==2?
                         AppColors
-                            .secondaryTextColor: Colors.green),
+                            .whiteColor: Colors.green),
                   ),
                 ],
               ),
@@ -233,7 +233,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
               text: '$pageNumber/${items.length}',
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
               maxLines: 1,
             ),
             const SizedBox(width: 16),
@@ -274,7 +274,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.firstColors),
+              color: AppColors.unSelectColor),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -313,7 +313,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.firstColors),
+              color: AppColors.unSelectColor),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

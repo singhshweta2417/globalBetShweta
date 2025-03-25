@@ -39,7 +39,7 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.scaffoldDark,
+        
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -52,8 +52,8 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
             title: textWidget(
                 text: 'Upload Screenshot',
                 fontSize: 25,
-                color: AppColors.primaryTextColor),
-            gradient: AppColors.secondaryappbar),
+                color: AppColors.whiteColor),
+            gradient: AppColors.secondaryAppbar),
         body: ListView(
           shrinkWrap: true,
           children: [
@@ -110,7 +110,7 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
                   _settingModalBottomSheet(context);
                 },
                 title: "Upload Screenshot",
-                gradient: AppColors.containerGradient,
+                gradient: AppColors.loginSecondaryGrad,
               ),
             ),
             SizedBox(

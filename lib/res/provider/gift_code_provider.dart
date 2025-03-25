@@ -1,4 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
 import 'dart:convert';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -8,7 +7,7 @@ import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 
 
-class GiftcardProvider with ChangeNotifier {
+class GiftCardProvider with ChangeNotifier {
 
   UserViewModel userProvider = UserViewModel();
 

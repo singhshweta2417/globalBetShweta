@@ -108,18 +108,18 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                    color: int.parse(fetchPlinkoBetTwo[index].win_amount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
+                                    color: int.parse(fetchPlinkoBetTwo[index].winAmount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
                                         ? Colors.green
                                         : Colors.white,)),
                               child: Center(
                                 child: Text(
-                                   int.parse(fetchPlinkoBetTwo[index].win_amount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
+                                   int.parse(fetchPlinkoBetTwo[index].winAmount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
                                       ? 'Success'
                                       : 'Lose',
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w700,
-                                    color: int.parse(fetchPlinkoBetTwo[index].win_amount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
+                                    color: int.parse(fetchPlinkoBetTwo[index].winAmount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
                                         ? Colors.green
                                         : Colors.white,),
                                 ),
@@ -130,11 +130,11 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                                   ? '--'
                                   : fetchPlinkoBetTwo[index].status == 2
                                       ? '- ₹${fetchPlinkoBetTwo[index].amount.toStringAsFixed(2)}'
-                                      : '+ ₹${fetchPlinkoBetTwo[index].win_amount.toStringAsFixed(2)}',
+                                      : '+ ₹${fetchPlinkoBetTwo[index].winAmount.toStringAsFixed(2)}',
                               style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
-                                color: int.parse(fetchPlinkoBetTwo[index].win_amount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
+                                color: int.parse(fetchPlinkoBetTwo[index].winAmount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
                                     ? Colors.green
                                     : Colors.white,),
                             ),
@@ -169,7 +169,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                                       BorderRadius
                                           .circular(10),
                                       color: AppColors
-                                          .firstColors),
+                                          .unSelectColor),
                                   child: Padding(
                                     padding:
                                     const EdgeInsets
@@ -218,7 +218,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                                     Colors.red),
                                 historyDetails(
                                     'Amount after tax',
-                                    fetchPlinkoBetTwo[index].after_tax.toString(),
+                                    fetchPlinkoBetTwo[index].afterTax.toString(),
                                     Colors.white),
 
 
@@ -232,10 +232,10 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                                     Colors.white),
                                 historyDetails(
                                     'Status',
-                                   int.parse(fetchPlinkoBetTwo[index].win_amount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
+                                   int.parse(fetchPlinkoBetTwo[index].winAmount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
                                       ? 'Success'
                                       : 'Failed',
-                                   int.parse(fetchPlinkoBetTwo[index].win_amount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
+                                   int.parse(fetchPlinkoBetTwo[index].winAmount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
                                       ? Colors.green
                                       : Colors.white,),
                                 historyDetails('Multiplier',
@@ -244,8 +244,8 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                                     'CashOut',
                                     fetchPlinkoBetTwo[index].status == 0
                                         ? '--'
-                                        : '₹${fetchPlinkoBetTwo[index].win_amount.toStringAsFixed(2)}',
-                                   int.parse(fetchPlinkoBetTwo[index].win_amount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
+                                        : '₹${fetchPlinkoBetTwo[index].winAmount.toStringAsFixed(2)}',
+                                   int.parse(fetchPlinkoBetTwo[index].winAmount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
                                       ? Colors.green
                                       : Colors.white,),
                                 historyDetails(
@@ -294,7 +294,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
               text: '$pageNumber/${fetchPlinkoBetTwo.length}',
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
               maxLines: 1,
             ),
             const SizedBox(width: 16),
@@ -336,7 +336,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.firstColors),
+              color: AppColors.unSelectColor),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -375,7 +375,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
           width: width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.firstColors),
+              color: AppColors.unSelectColor),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

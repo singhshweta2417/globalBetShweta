@@ -141,6 +141,7 @@ class _CategoryElementState extends State<CategoryElement> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => const DragonTiger(gameId: '10')));
+
           }),
       MiniGameModel(
           image: Assets.categoryAndarBaharCat,
@@ -248,7 +249,7 @@ class _CategoryElementState extends State<CategoryElement> {
                                     width: width * 0.05,
                                     child: const VerticalDivider(
                                       thickness: 3,
-                                      color: AppColors.gradientFirstColor,
+                                      color: AppColors.whiteColor,
                                     )),
                                 Text(
                                   " Original".toUpperCase(),
@@ -308,7 +309,7 @@ class _CategoryElementState extends State<CategoryElement> {
                                 width: width * 0.05,
                                 child: const VerticalDivider(
                                   thickness: 3,
-                                  color: AppColors.gradientFirstColor,
+                                  color: AppColors.whiteColor,
                                 )),
                             Text(
                               " Casino".toUpperCase(),
@@ -374,7 +375,7 @@ class _CategoryElementState extends State<CategoryElement> {
         height: height * 0.2,
         width: width * 0.9,
         decoration: BoxDecoration(
-            gradient: AppColors.primaryUnselectedGradient,
+            gradient: AppColors.unSelectedColor,
             borderRadius: BorderRadius.circular(10)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -384,7 +385,7 @@ class _CategoryElementState extends State<CategoryElement> {
               height: height * 0.15,
               width: width * 0.24,
               decoration: BoxDecoration(
-                  gradient: AppColors.btnBlueGradient,
+                  gradient: AppColors.loginSecondaryGrad,
                   borderRadius: BorderRadius.circular(10)),
               child: Image.asset(imagePath),
             ),
@@ -432,7 +433,7 @@ class _CategoryElementState extends State<CategoryElement> {
                       height: height * 0.04,
                       width: width * 0.52,
                       decoration: BoxDecoration(
-                          gradient: AppColors.buttonGradient,
+                          gradient: AppColors.primaryGradient,
                           borderRadius: BorderRadius.circular(5)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -452,7 +453,7 @@ class _CategoryElementState extends State<CategoryElement> {
                           const Text(
                             "0.00",
                             style: TextStyle(
-                                color: AppColors.gradientFirstColor,
+                                color: AppColors.whiteColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           ),

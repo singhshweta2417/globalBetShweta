@@ -65,7 +65,7 @@ class _SettingPageNewState extends State<SettingPageNew> {
     ];
    final profileView= Provider.of<ProfileViewModel>(context);
     return Scaffold(
-        backgroundColor: AppColors.scaffoldDark,
+        
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -83,7 +83,7 @@ class _SettingPageNewState extends State<SettingPageNew> {
               text: 'Setting center',
               fontWeight: FontWeight.w900,
               fontSize: 20,
-              color: AppColors.primaryTextColor,
+              color: AppColors.whiteColor,
             ),
             gradient: AppColors.primaryGradient),
         body:
@@ -116,7 +116,7 @@ class _SettingPageNewState extends State<SettingPageNew> {
                               height: height * 0.35,
                               width: width * 0.95,
                               decoration: BoxDecoration(
-                                  gradient: AppColors.primaryUnselectedGradient,
+                                  gradient: AppColors.unSelectedColor,
                                   borderRadius:
                                       BorderRadiusDirectional.circular(15)),
                               child: Padding(
@@ -152,12 +152,12 @@ class _SettingPageNewState extends State<SettingPageNew> {
                                           textWidget(
                                               text: 'Change Avatar ',
                                               color:
-                                                  AppColors.gradientFirstColor,
+                                                  AppColors.whiteColor,
                                               fontSize: 16),
                                           const Icon(
                                             Icons.arrow_forward_ios,
                                             size: 17,
-                                            color: AppColors.primaryTextColor,
+                                            color: AppColors.whiteColor,
                                           )
                                         ],
                                       ),
@@ -175,37 +175,37 @@ class _SettingPageNewState extends State<SettingPageNew> {
                                         children: [
                                           textWidget(
                                               text: '    NickName',
-                                              color: AppColors.primaryTextColor,
+                                              color: AppColors.whiteColor,
                                               fontWeight: FontWeight.w800,
                                               fontSize: 15),
                                           const Spacer(),
                                           textWidget(
                                               text: profileView.userName.toString(),
-                                              color: AppColors.primaryTextColor,
+                                              color: AppColors.whiteColor,
                                               fontWeight: FontWeight.w800,
                                               fontSize: 15),
                                           const Icon(
                                             Icons.arrow_forward_ios,
                                             size: 17,
-                                            color: AppColors.primaryTextColor,
+                                            color: AppColors.whiteColor,
                                           )
                                         ],
                                       ),
                                     ),
                                     const Divider(
-                                      color: AppColors.secondaryTextColor,
+                                      color: AppColors.whiteColor,
                                     ),
                                     Row(
                                       children: [
                                         textWidget(
                                             text: '    UID',
-                                            color: AppColors.primaryTextColor,
+                                            color: AppColors.whiteColor,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 15),
                                         const Spacer(),
                                         textWidget(
                                             text: profileView.userId.toString(),
-                                            color: AppColors.primaryTextColor,
+                                            color: AppColors.whiteColor,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 15),
                                         IconButton(
@@ -237,14 +237,14 @@ class _SettingPageNewState extends State<SettingPageNew> {
                               Container(
                                 height: 20,
                                 width: 3,
-                                color: AppColors.gradientFirstColor,
+                                color: AppColors.whiteColor,
                               ),
                               SizedBox(
                                 width: width * 0.02,
                               ),
                               textWidget(
                                   text: 'Security Information',
-                                  color: AppColors.primaryTextColor,
+                                  color: AppColors.whiteColor,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w900),
                             ],
@@ -268,7 +268,7 @@ class _SettingPageNewState extends State<SettingPageNew> {
                                     width: width * 0.5,
                                     decoration: BoxDecoration(
                                         gradient:
-                                            AppColors.primaryUnselectedGradient,
+                                            AppColors.unSelectedColor,
                                         borderRadius: BorderRadius.circular(10)),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -301,7 +301,7 @@ class _SettingPageNewState extends State<SettingPageNew> {
                                                 .toString(),
                                             fontSize: 15,
                                             fontWeight: FontWeight.w800,
-                                            color: AppColors.primaryTextColor),
+                                            color: AppColors.whiteColor),
                                         const Spacer(),
                                         textWidget(
                                             text: settingList[index]
@@ -309,10 +309,10 @@ class _SettingPageNewState extends State<SettingPageNew> {
                                                 .toString(),
                                             fontSize: 15,
                                             fontWeight: FontWeight.w800,
-                                            color: AppColors.primaryTextColor),
+                                            color: AppColors.whiteColor),
                                         const Icon(Icons.arrow_forward_ios,
                                             size: 17,
-                                            color: AppColors.primaryTextColor),
+                                            color: AppColors.whiteColor),
                                         SizedBox(
                                           width: width * 0.02,
                                         ),

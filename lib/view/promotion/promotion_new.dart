@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:globalbet/generated/assets.dart';
@@ -36,7 +37,7 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
     super.initState();
   }
 
-  bool verssionview = false;
+  bool versionView = false;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +96,6 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
     ];
 
     return Scaffold(
-      backgroundColor: AppColors.scaffoldDark,
       appBar: GradientAppBar(
           title: const Text(
             'Agency',
@@ -110,328 +110,304 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
                     MaterialPageRoute(
                         builder: (context) => const NewSubordinate()));
               },
-              child: Center(
-                child: Image.asset(
-                  Assets.iconsFilternew,
-                  height: 30,
-                ),
+              child: Image.asset(
+                Assets.iconsFilternew,
+                height: 30,
+                color: AppColors.whiteColor,
               ),
             ),
           ],
           centerTitle: true,
-          gradient: AppColors.primaryUnselectedGradient),
-      body: ListView(
-        children: [
-          Stack(
-            children: [
-              Column(
+          gradient: AppColors.unSelectedColor),
+      body: Container(
+        padding:
+            EdgeInsets.fromLTRB(width * 0.04, height * 0.04, width * 0.03, 0),
+        decoration: const BoxDecoration(gradient: AppColors.bgGrad),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Text(
+              textAlign: TextAlign.center,
+              yesterdayTotalCommission.toString(),
+              style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.whiteColor),
+            ),
+            Sizes.spaceHeight5,
+            Container(
+              height: height * 0.06,
+              width: width * 0.8,
+              decoration: BoxDecoration(
+                  gradient: AppColors.unSelectedColor,
+                  borderRadius: BorderRadius.circular(20)),
+              child: const Center(
+                child: Text(
+                  "Yesterday's total commission",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.whiteColor),
+                ),
+              ),
+            ),
+            Sizes.spaceHeight20,
+            Container(
+              height: height * 0.45,
+              decoration: BoxDecoration(
+                  color: AppColors.contLightColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
                 children: [
                   Container(
-                    height: height * 0.48,
-                    width: double.infinity,
+                    height: height * 0.08,
                     decoration: const BoxDecoration(
-                        gradient: AppColors.primaryGradient),
-                    child: Column(
+                        gradient: AppColors.loginSecondaryGrad,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        SizedBox(
-                          height: height * 0.06,
+                        const SizedBox(
+                          width: 8,
                         ),
-                        Text(
-                          yesterdayTotalCommission.toString(),
-                          style: const TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.primaryTextColor),
+                        Image.asset(
+                          Assets.iconsAgFirst,
+                          scale: 2,
+                          color: AppColors.whiteColor,
                         ),
-                        Container(
-                          height: height * 0.06,
-                          width: width * 0.8,
-                          decoration: BoxDecoration(
-                              color: AppColors.constColor,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: const Center(
-                            child: Text(
-                              "Yesterday's total commission",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.primaryTextColor),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.02,
+                        const SizedBox(
+                          width: 4,
                         ),
                         const Text(
-                          "Upgrade the level to increase level income",
+                          "Direct Subordinate",
                           style: TextStyle(
-                              fontSize: 17,
+                              fontSize: 13,
                               fontWeight: FontWeight.w700,
-                              color: AppColors.primaryTextColor),
+                              color: AppColors.whiteColor),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Container(
+                          height: height * 0.08,
+                          width: 2,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Image.asset(
+                          Assets.iconsAgSecond,
+                          scale: 2,
+                          color: AppColors.whiteColor,
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        const Text(
+                          "Team  Subordinate",
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.whiteColor),
+                        ),
+                        const SizedBox(
+                          width: 8,
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: height * 0.26,
-                  ),
-                  kIsWeb == true
-                      ? AppBtn(
-                          gradient: AppColors.primaryGradient,
-                          hideBorder: true,
-                          title: 'INVITATION LINK',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          onTap: () async {
-                            Share.share(userData.referralCodeUrl.toString());
-                          },
-                        )
-                      : AppBtn(
-                          titleColor: AppColors.primaryTextColor,
-                          gradient: AppColors.loginSecondaryGrad,
-                          hideBorder: true,
-                          title: 'INVITATION LINK',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          onTap: () async {
-                            await Share.share(
-                                'Join our gaming platform to win exciting prizes. Here is my Referral Code : $invitationCode and '
-                                '${userData.referralCodeUrl}');
-                          },
-                        ),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: items.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                            onTap: () {
-                              items[index]['onTap']();
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                              child: Container(
-                                height: height * 0.12,
-                                width: width * 0.9,
-                                decoration: BoxDecoration(
-                                    color: AppColors.firstColors,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    SizedBox(
-                                        height: 40,
-                                        width: 40,
-                                        child: Image(
-                                          image: AssetImage(
-                                            items[index]['icon'].toString(),
-                                          ),
-                                        )),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      items[index]['text'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w800,
-                                          color: Colors.white),
-                                    ),
-                                    const Spacer(),
-                                    Text(
-                                      items[index]['Subtext'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w800,
-                                          color: Colors.white),
-                                    ),
-                                    const Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      width: width * 0.02,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ));
-                      }),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Container(
-                    height: height * 0.32,
-                    width: width * 0.925,
-                    decoration: BoxDecoration(
-                        color: AppColors.firstColors,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
                         children: [
-                          Row(
+                          addTextColumn(numberOfRegister.toString(),
+                              'Number of Register', Colors.white),
+                          addTextColumn(depositNumber.toString(),
+                              'Deposit Number', Colors.green),
+                          addTextColumn(depositAmount.toString(),
+                              'Deposit amount', Colors.deepOrange),
+                          addTextColumn(
+                              numberOfFirstDeposit.toString(),
+                              'Number of People making\n            first deposit',
+                              Colors.white),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          addTextColumn(subNumberOfRegister.toString(),
+                              'Number of Register', Colors.white),
+                          addTextColumn(subDepositNumber.toString(),
+                              'Deposit Number', Colors.green),
+                          addTextColumn(subDepositAmount.toString(),
+                              'Deposit amount', Colors.deepOrange),
+                          addTextColumn(
+                              subNumberOfFirstDeposit.toString(),
+                              'Number of People making\n            first deposit',
+                              Colors.white),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Sizes.spaceHeight10,
+            const Text(
+              "Upgrade the level to increase level income",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.whiteColor),
+            ),
+            Sizes.spaceHeight20,
+            kIsWeb == true
+                ? AppBtn(
+                    gradient: AppColors.primaryGradient,
+                    hideBorder: true,
+                    title: 'INVITATION LINK',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    onTap: () async {
+                      Share.share(userData.referralCodeUrl.toString());
+                    },
+                  )
+                : AppBtn(
+                    titleColor: AppColors.whiteColor,
+                    hideBorder: true,
+                    title: 'INVITATION LINK',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    onTap: () async {
+                      await Share.share(
+                          'Join our gaming platform to win exciting prizes. Here is my Referral Code : $invitationCode and '
+                          '${userData.referralCodeUrl}');
+                    },
+                  ),
+            Sizes.spaceHeight10,
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: items.length,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                      onTap: () {
+                        items[index]['onTap']();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                        child: Container(
+                          height: height * 0.12,
+                          width: width * 0.9,
+                          decoration: BoxDecoration(
+                              color: AppColors.contLightColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Image.asset(
-                                Assets.iconsMoneyicon,
-                                scale: 1.5,
+                              const SizedBox(
+                                width: 10,
                               ),
                               SizedBox(
-                                width: width * 0.02,
+                                  height: 40,
+                                  width: 40,
+                                  child: Image(
+                                    image: AssetImage(
+                                      items[index]['icon'].toString(),
+                                    ),
+                                    color: AppColors.whiteColor,
+                                  )),
+                              const SizedBox(
+                                width: 10,
                               ),
-                              const Text(
-                                'promotion data',
-                                style: TextStyle(
-                                    fontSize: 16,
+                              Text(
+                                items[index]['text'].toString(),
+                                style: const TextStyle(
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w800,
                                     color: Colors.white),
                               ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              addSecondTextColumn(totalSubordinate.toString(),
-                                  'Direct Subordinate', '', Colors.white),
-                              Container(
-                                height: 50,
-                                width: 1,
+                              const Spacer(),
+                              Text(
+                                items[index]['Subtext'].toString(),
+                                style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w800,
+                                    color: Colors.white),
+                              ),
+                              const Icon(
+                                Icons.arrow_forward_ios,
                                 color: Colors.white,
                               ),
-                              addSecondTextColumn(totalCommission.toString(),
-                                  'Total Commission', '', Colors.white),
-                            ],
-                          ),
-                          addSecondTextColumn(
-                              totalSubordinateInTeam.toString(),
-                              'Total number of',
-                              'Subordinates in the team',
-                              Colors.white)
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.08,
-                  ),
-                ],
-              ),
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(top: height * 0.25),
-                  child: Container(
-                    height: height * 0.45,
-                    width: width * 0.9,
-                    decoration: BoxDecoration(
-                        color: AppColors.firstColors,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: height * 0.08,
-                          width: width * 0.9,
-                          decoration: const BoxDecoration(
-                              color: AppColors.secondaryContainerTextColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Image.asset(
-                                Assets.iconsAgFirst,
-                                scale: 2,
-                              ),
-                              const SizedBox(
-                                width: 4,
-                              ),
-                              const Text(
-                                "Direct Subordinate",
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.primaryTextColor),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Container(
-                                height: height * 0.08,
-                                width: 2,
-                                color: Colors.white,
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Image.asset(
-                                Assets.iconsAgSecond,
-                                scale: 2,
-                              ),
-                              const SizedBox(
-                                width: 4,
-                              ),
-                              const Text(
-                                "Team  Subordinate",
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.primaryTextColor),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
+                              SizedBox(
+                                width: width * 0.02,
+                              )
                             ],
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                addTextColumn(numberOfRegister.toString(),
-                                    'Number of Register', Colors.white),
-                                addTextColumn(depositNumber.toString(),
-                                    'Deposit Number', Colors.green),
-                                addTextColumn(depositAmount.toString(),
-                                    'Deposit amount', Colors.deepOrange),
-                                addTextColumn(
-                                    numberOfFirstDeposit.toString(),
-                                    'Number of People making\n            first deposit',
-                                    Colors.white),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                addTextColumn(subNumberOfRegister.toString(),
-                                    'Number of Register', Colors.white),
-                                addTextColumn(subDepositNumber.toString(),
-                                    'Deposit Number', Colors.green),
-                                addTextColumn(subDepositAmount.toString(),
-                                    'Deposit amount', Colors.deepOrange),
-                                addTextColumn(
-                                    subNumberOfFirstDeposit.toString(),
-                                    'Number of People making\n            first deposit',
-                                    Colors.white),
-                              ],
-                            ),
-                          ],
-                        )
+                      ));
+                }),
+            Sizes.spaceHeight20,
+            Container(
+              height: height * 0.32,
+              width: width * 0.925,
+              decoration: BoxDecoration(
+                  gradient: AppColors.loginSecondaryGrad,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Image.asset(
+                          Assets.iconsMoneyicon,
+                          scale: 1.5,
+                          color: AppColors.whiteColor,
+                        ),
+                        SizedBox(
+                          width: width * 0.02,
+                        ),
+                        const Text(
+                          'promotion data',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white),
+                        ),
                       ],
                     ),
-                  ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        addSecondTextColumn(totalSubordinate.toString(),
+                            'Direct Subordinate', '', Colors.white),
+                        Container(
+                          height: 50,
+                          width: 1,
+                          color: Colors.white,
+                        ),
+                        addSecondTextColumn(totalCommission.toString(),
+                            'Total Commission', '', Colors.white),
+                      ],
+                    ),
+                    addSecondTextColumn(
+                        totalSubordinateInTeam.toString(),
+                        'Total number of',
+                        'Subordinates in the team',
+                        Colors.white)
+                  ],
                 ),
-              )
-            ],
-          ),
-        ],
+              ),
+            ),
+            Sizes.spaceHeight20,
+          ],
+        ),
       ),
     );
   }
@@ -451,7 +427,7 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
             style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
-                color: AppColors.dividerColor),
+                color: AppColors.whiteColor),
           ),
         ],
       ),
@@ -474,14 +450,14 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
             style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: AppColors.dividerColor),
+                color: AppColors.whiteColor),
           ),
           Text(
             subtextOne,
             style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: AppColors.dividerColor),
+                color: AppColors.whiteColor),
           ),
         ],
       ),
@@ -501,21 +477,7 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
   String? yesterdayTotalCommission = '0';
   String? totalSubordinate = '0';
   String? totalSubordinateInTeam = '0';
-  int? responseStatuscode;
-
-  // "yesterday_total_commission": 12.04,
-  // "register": 0,
-  // "deposit_number": 0,
-  // "deposit_amount": 0,
-  // "first_deposit": 0,
-  // "subordinates_register": 0,
-  // "subordinates_deposit_number": 0,
-  // "subordinates_deposit_amount": 0,
-  // "subordinates_first_deposit": 0,
-  // "direct_subordinate": 14,
-  // "total_commission": 49,
-  // "team_subordinate": 3550,
-  // "referral_code": "KW5227"
+  int? responseStatusCode;
 
   UserViewModel userProvider = UserViewModel();
 
@@ -528,7 +490,7 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
       print('promotionData');
     }
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     final responseData = json.decode(response.body);
@@ -558,14 +520,14 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
       }
     } else {
       setState(() {
-        // attendenceItems = [];
+        // attendanceItems = [];
       });
       throw Exception('Failed to load data');
     }
   }
 
   dynamic map;
-  dynamic versionlink;
+  dynamic versionLink;
 
   Future<void> versionCheck() async {
     Provider.of<ProfileViewModel>(context, listen: false).profileApi(context);
@@ -577,13 +539,13 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
       var responseData = jsonDecode(response.body);
       if (kDebugMode) {
         print(responseData);
-        print('rrrrrrrr');
+        print('Okay');
       }
       if (responseData['version'] != AppConstants.appVersion) {
         setState(() {
           map = responseData['version'];
-          versionlink = responseData['link'];
-          verssionview = true;
+          versionLink = responseData['link'];
+          versionView = true;
         });
       } else {
         if (kDebugMode) {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/attendence_model.dart';
+import 'package:globalbet/model/attendance_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
@@ -36,105 +36,106 @@ class _AttendenceBonusState extends State<AttendenceBonus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.scaffoldDark,
         appBar: GradientAppBar(
             centerTitle: true,
             title: textWidget(
                 text: 'Attendance', fontSize: 25, color: Colors.white),
             leading: const AppBackBtn(),
-            gradient: AppColors.primaryUnselectedGradient),
+            gradient: AppColors.unSelectedColor),
         body: attendenceItems.isEmpty
             ? const Center(child: CircularProgressIndicator())
-            : ListView(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                        gradient: AppColors.primaryUnselectedGradient,
-                        image: DecorationImage(
-                            image: AssetImage(Assets.imagesBggifts),
-                            fit: BoxFit.fill)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          textWidget(
-                              text: "Attendance Bonus",
-                              fontSize: width * 0.047,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.primaryTextColor),
-                          SizedBox(
-                            height: height * 0.01,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              textWidget(
-                                  text:
-                                      "Get your rewards based on consecutive \n login days.",
-                                  fontSize: width * 0.034,
-                                  color: AppColors.primaryTextColor),
-                            ],
-                          ),
-                          SizedBox(height: height * 0.01),
-                          Container(
-                            height: height * 0.10,
-                            width: width * 0.45,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(Assets.imagesBookmark),
-                                    fit: BoxFit.fill)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
+            : Container(
+                height: height,
+                decoration: const BoxDecoration(gradient: AppColors.bgGrad),
+                child: ListView(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                          gradient: AppColors.loginSecondaryGrad,
+                          image: DecorationImage(
+                              image: AssetImage(Assets.imagesBggifts),
+                              fit: BoxFit.fill)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            textWidget(
+                                text: "Attendance Bonus",
+                                fontSize: width * 0.047,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.whiteColor),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
                                 textWidget(
-                                    text: "Attended consecutively",
-                                    fontSize: width * 0.035,
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                textWidget(
-                                    text: "$attendancesConsecutively Days",
-                                    fontSize: width * 0.045,
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold),
+                                    text:
+                                        "Get your rewards based on consecutive \n login days.",
+                                    fontSize: width * 0.034,
+                                    color: AppColors.whiteColor),
                               ],
                             ),
-                          ),
-                          SizedBox(height: height * 0.01),
-                          textWidget(
-                              text: "Accumulated",
-                              fontSize: width * 0.045,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.primaryTextColor),
-                          Row(
-                            children: [
-                              textWidget(
-                                text: accumulated.toString(),
-                                fontSize: width * 0.05,
-                                color: AppColors.primaryTextColor,
+                            SizedBox(height: height * 0.01),
+                            Container(
+                              height: height * 0.10,
+                              width: width * 0.45,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(Assets.imagesBookmark),
+                                      fit: BoxFit.fill)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  textWidget(
+                                      text: "Attended consecutively",
+                                      fontSize: width * 0.035,
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  textWidget(
+                                      text: "$attendancesConsecutively Days",
+                                      fontSize: width * 0.045,
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold),
+                                ],
                               ),
-                              InkWell(
-                                  onTap: () {
-                                    attendenceList();
-                                    // attendenceDays();
-                                  },
-                                  child: Image.asset(
-                                    Assets.iconsTotalBal,
-                                    height: height * 0.03,
-                                  )),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              AppBtn(
+                            ),
+                            SizedBox(height: height * 0.01),
+                            textWidget(
+                                text: "Accumulated",
+                                fontSize: width * 0.045,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.whiteColor),
+                            Row(
+                              children: [
+                                textWidget(
+                                  text: accumulated.toString(),
+                                  fontSize: width * 0.05,
+                                  color: AppColors.whiteColor,
+                                ),
+                                InkWell(
+                                    onTap: () {
+                                      attendenceList();
+                                    },
+                                    child: Image.asset(
+                                      Assets.iconsTotalBal,
+                                      height: height * 0.03,
+                                    )),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                AppBtn(
                                   height: height * 0.045,
                                   width: width * 0.40,
                                   title: 'Game rule',
@@ -146,13 +147,8 @@ class _AttendenceBonusState extends State<AttendenceBonus> {
                                             builder: (context) =>
                                                 const AttendanceRule()));
                                   },
-                                  // hideBorder: true,
-                                  gradient: AppColors.blueGradient
-                                  // gradient: activeButton
-                                  //     ? AppColors.primaryGradient
-                                  //     : AppColors.inactiveGradient,
-                                  ),
-                              AppBtn(
+                                ),
+                                AppBtn(
                                   height: height * 0.045,
                                   width: width * 0.40,
                                   title: 'Attendance History',
@@ -162,190 +158,189 @@ class _AttendenceBonusState extends State<AttendenceBonus> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const AttendenceHistory()));
+                                                const AttendanceHistory()));
                                   },
-                                  // hideBorder: true,
-                                  gradient: AppColors.blueGradient
-                                  // gradient: activeButton
-                                  //     ? AppColors.primaryGradient
-                                  //     : AppColors.inactiveGradient,
-                                  ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 8.0,
-                              mainAxisSpacing: 8.0,
-                              childAspectRatio: 1.2),
-                      shrinkWrap: true,
-                      itemCount: attendenceItems.length - 1,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (BuildContext context, int index) {
-                        final data = attendenceItems[index];
-                        return Container(
-                          decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.only(
-                                  bottomRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10)),
-                              gradient: data.status == '0'
-                                  ? AppColors.buttonGradient
-                                  : AppColors.primaryUnselectedGradient),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: height * 0.05,
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            Assets.imagesUnsignInTop),
-                                        fit: BoxFit.fill)),
-                                child: Center(
-                                  child: textWidget(
-                                      text: "₹${data.attendanceBonus}",
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.primaryTextColor),
-                                ),
-                              ),
-                              SizedBox(
-                                height: height * 0.02,
-                              ),
-                              Container(
-                                height: width * 0.14,
-                                width: width * 0.14,
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        image:
-                                            AssetImage(Assets.imagesCoingifts),
-                                        fit: BoxFit.fill)),
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              textWidget(
-                                  text: "${data.id} Day",
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primaryTextColor),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount:
-                        attendenceItems.length, // Use the original length
-                    itemBuilder: (context, index) {
-                      final datas = attendenceItems[index];
-                      if (index == attendenceItems.length - 1) {
-                        return Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-                          child: Container(
-                            height: height * 0.17,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                image: AssetImage(Assets.imagesGiftsbelow),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(width: width * 0.45),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 20, // Adjust width as needed
-                                          height: 1, // Adjust height as needed
-                                          decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: Alignment.centerRight,
-                                              end: Alignment.centerLeft,
-                                              colors: [
-                                                Color(0xFFC0C4DC),
-                                                Color(
-                                                    0x00C0C4DC), // Use 0x00 for transparent color
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        textWidget(
-                                          text: "  ₹${datas.attendanceBonus}  ",
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: AppColors.primaryTextColor,
-                                        ),
-                                        Container(
-                                          width: 20, // Adjust width as needed
-                                          height: 1, // Adjust height as needed
-                                          decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: Alignment.centerLeft,
-                                              end: Alignment.centerRight,
-                                              colors: [
-                                                Color(0xFFC0C4DC),
-                                                Color(
-                                                    0x00C0C4DC), // Use 0x00 for transparent color
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    textWidget(
-                                      text: "${datas.id} Day",
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.primaryTextColor,
-                                    ),
-                                  ],
                                 ),
                               ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 8.0,
+                                mainAxisSpacing: 8.0,
+                                childAspectRatio: 1.2),
+                        shrinkWrap: true,
+                        itemCount: attendenceItems.length - 1,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          final data = attendenceItems[index];
+                          return Container(
+                            decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                    bottomRight: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10)),
+                                gradient: data.status == '0'
+                                    ? AppColors.primaryGradient
+                                    : AppColors.unSelectedColor),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: height * 0.05,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              Assets.imagesUnsignInTop),
+                                          fit: BoxFit.fill)),
+                                  child: Center(
+                                    child: textWidget(
+                                        text: "₹${data.attendanceBonus}",
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.whiteColor),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
+                                Container(
+                                  height: width * 0.14,
+                                  width: width * 0.14,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              Assets.imagesCoingifts),
+                                          fit: BoxFit.fill)),
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                textWidget(
+                                    text: "${data.id} Day",
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.whiteColor),
+                              ],
                             ),
-                          ),
-                        );
-                      } else {
-                        return Container();
-                      }
-                    },
-                  ),
-                  SizedBox(
-                    height: height * 0.04,
-                  ),
-                  AppBtn(
-                      title: 'Attendance ',
-                      fontSize: 20,
-                      onTap: () {
-                        attendanceClem(context);
+                          );
+                        },
+                      ),
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount:
+                          attendenceItems.length, // Use the original length
+                      itemBuilder: (context, index) {
+                        final datas = attendenceItems[index];
+                        if (index == attendenceItems.length - 1) {
+                          return Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                            child: Container(
+                              height: height * 0.17,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: const DecorationImage(
+                                  image: AssetImage(Assets.imagesGiftsbelow),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(width: width * 0.45),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 20, // Adjust width as needed
+                                            height:
+                                                1, // Adjust height as needed
+                                            decoration: const BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.centerRight,
+                                                end: Alignment.centerLeft,
+                                                colors: [
+                                                  Color(0xFFC0C4DC),
+                                                  Color(
+                                                      0x00C0C4DC), // Use 0x00 for transparent color
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          textWidget(
+                                            text:
+                                                "  ₹${datas.attendanceBonus}  ",
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.whiteColor,
+                                          ),
+                                          Container(
+                                            width: 20, // Adjust width as needed
+                                            height:
+                                                1, // Adjust height as needed
+                                            decoration: const BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.centerLeft,
+                                                end: Alignment.centerRight,
+                                                colors: [
+                                                  Color(0xFFC0C4DC),
+                                                  Color(
+                                                      0x00C0C4DC), // Use 0x00 for transparent color
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      textWidget(
+                                        text: "${datas.id} Day",
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.whiteColor,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        } else {
+                          return Container();
+                        }
                       },
-                      hideBorder: true,
-                      gradient: AppColors.loginSecondaryGrad),
-                  SizedBox(
-                    height: height * 0.08,
-                  ),
-                ],
+                    ),
+                    SizedBox(
+                      height: height * 0.04,
+                    ),
+                    AppBtn(
+                        title: 'Attendance ',
+                        fontSize: 20,
+                        onTap: () {
+                          attendanceClem(context);
+                        },
+                        hideBorder: true,
+                        gradient: AppColors.loginSecondaryGrad),
+                    SizedBox(
+                      height: height * 0.08,
+                    ),
+                  ],
+                ),
               ));
   }
 

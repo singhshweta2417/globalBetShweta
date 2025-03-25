@@ -192,7 +192,7 @@ class _GameHistoryState extends State<GameHistory> {
                     width: width * 0.10,
                     decoration: BoxDecoration(
                       gradient: pageValue == 1
-                          ? AppColors.boxGradient
+                          ? AppColors.loginSecondaryGrad
                           : AppColors.primaryGradient,
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -257,7 +257,7 @@ class _GameHistoryState extends State<GameHistory> {
                               1) ~/
                               10) +
                               1
-                          ? AppColors.boxGradient
+                          ? AppColors.loginSecondaryGrad
                           : AppColors.primaryGradient,
                       borderRadius: BorderRadius.circular(10),
                     ),

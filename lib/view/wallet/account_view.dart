@@ -1,11 +1,9 @@
-import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/model/addaccount_view_model.dart';
+import 'package:globalbet/model/add_account_view_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
 
 class AccountView extends StatefulWidget {
   final AddacountViewModel data;
@@ -19,7 +17,7 @@ class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.scaffoldDark,
+        
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -37,7 +35,7 @@ class _AccountViewState extends State<AccountView> {
               text: 'Bank account',
               fontWeight: FontWeight.w900,
               fontSize: 20,
-              color: AppColors.primaryTextColor,),
+              color: AppColors.whiteColor,),
 
             gradient: AppColors.primaryGradient),
       body: Padding(
@@ -51,7 +49,7 @@ class _AccountViewState extends State<AccountView> {
               child: Container(
                 decoration:  BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  gradient: AppColors.primaryUnselectedGradient,
+                  gradient: AppColors.unSelectedColor,
                 ),
                 child: Column(
                   children: [
@@ -66,15 +64,15 @@ class _AccountViewState extends State<AccountView> {
                       padding: const EdgeInsets.only(top: 5,left: 10,right: 10),
                       child: Container(
                         height: height*0.07,
-                        color: AppColors.filledColor,
+                        color: AppColors.darkColor,
                         child: Row(
                           children: [
                             SizedBox(
                               width: width*0.45,
-                              child:  textWidget(text: "   Name",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: "   Name",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.whiteColor),
                             ),
                             Container(
-                              child:  textWidget(text: widget.data.name.toString(),fontWeight: FontWeight.w600,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: widget.data.name.toString(),fontWeight: FontWeight.w600,color: AppColors.whiteColor),
                             ),
                           ],
                         ),),
@@ -83,15 +81,15 @@ class _AccountViewState extends State<AccountView> {
                       padding: const EdgeInsets.only(top: 5,left: 10,right: 10),
                       child: Container(
                         height: height*0.07,
-                        color: AppColors.filledColor,
+                        color: AppColors.darkColor,
                         child: Row(
                           children: [
                             SizedBox(
                               width: width*0.45,
-                              child:  textWidget(text: "   Account Number",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: "   Account Number",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.whiteColor),
                             ),
                             Container(
-                              child:  textWidget(text: widget.data.accountNumber.toString(),fontWeight: FontWeight.w600,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: widget.data.accountNumber.toString(),fontWeight: FontWeight.w600,color: AppColors.whiteColor),
                             ),
                           ],
                         ),),
@@ -100,15 +98,15 @@ class _AccountViewState extends State<AccountView> {
                       padding: const EdgeInsets.only(top: 5,left: 10,right: 10),
                       child: Container(
                         height: height*0.07,
-                        color: AppColors.filledColor,
+                        color: AppColors.darkColor,
                         child: Row(
                           children: [
                             SizedBox(
                               width: width*0.45,
-                              child:  textWidget(text: "   Bank Name",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: "   Bank Name",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.whiteColor),
                             ),
                             Container(
-                              child:  textWidget(text: widget.data.bankName.toString(),fontWeight: FontWeight.w600,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: widget.data.bankName.toString(),fontWeight: FontWeight.w600,color: AppColors.whiteColor),
                             ),
                           ],
                         ),),
@@ -117,15 +115,15 @@ class _AccountViewState extends State<AccountView> {
                       padding: const EdgeInsets.only(top: 5,left: 10,right: 10),
                       child: Container(
                         height: height*0.07,
-                        color: AppColors.filledColor,
+                        color: AppColors.darkColor,
                         child: Row(
                           children: [
                             SizedBox(
                               width: width*0.45,
-                              child:  textWidget(text: "   Branch",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: "   Branch",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.whiteColor),
                             ),
                             Container(
-                              child:  textWidget(text: widget.data.branch.toString(),fontWeight: FontWeight.w600,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: widget.data.branch.toString(),fontWeight: FontWeight.w600,color: AppColors.whiteColor),
                             ),
                           ],
                         ),),
@@ -134,15 +132,15 @@ class _AccountViewState extends State<AccountView> {
                       padding: const EdgeInsets.only(top: 5,left: 10,right: 10),
                       child: Container(
                         height: height*0.07,
-                        color: AppColors.filledColor,
+                        color: AppColors.darkColor,
                         child: Row(
                           children: [
                             SizedBox(
                               width: width*0.45,
-                              child:  textWidget(text: "   IFSC",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: "   IFSC",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.whiteColor),
                             ),
                             Container(
-                              child:  textWidget(text: widget.data.ifscCode.toString(),fontWeight: FontWeight.w600,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: widget.data.ifscCode.toString(),fontWeight: FontWeight.w600,color: AppColors.whiteColor),
                             ),
                           ],
                         ),),
@@ -151,15 +149,15 @@ class _AccountViewState extends State<AccountView> {
                       padding: const EdgeInsets.only(top: 5,left: 10,right: 10),
                       child: Container(
                         height: height*0.07,
-                        color: AppColors.filledColor,
+                        color: AppColors.darkColor,
                         child: Row(
                           children: [
                             SizedBox(
                               width: width*0.45,
-                              child:  textWidget(text: "   UPI-ID",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: "   UPI-ID",fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.whiteColor),
                             ),
                             Container(
-                              child:  textWidget(text: widget.data.upiId.toString(),fontWeight: FontWeight.w600,color: AppColors.primaryTextColor),
+                              child:  textWidget(text: widget.data.upiId.toString(),fontWeight: FontWeight.w600,color: AppColors.whiteColor),
                             ),
                           ],
                         ),),
@@ -180,7 +178,7 @@ class _AccountViewState extends State<AccountView> {
             //     child: Container(
             //       width: width,
             //       padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-            //       decoration: BoxDecoration(gradient: AppColors.primaryUnselectedGradient, borderRadius: BorderRadiusDirectional.circular(10)),
+            //       decoration: BoxDecoration(gradient: AppColors.unSelectedColor, borderRadius: BorderRadiusDirectional.circular(10)),
             //       child: Column(
             //         children: [
             //           const SizedBox(width: 15),
@@ -188,7 +186,7 @@ class _AccountViewState extends State<AccountView> {
             //           const SizedBox(width: 15),
             //           textWidget(
             //               text: 'Add a bank account number',
-            //               color: AppColors.primaryTextColor,
+            //               color: AppColors.whiteColor,
             //               fontSize: 16,
             //               fontWeight: FontWeight.w900),
             //         ],

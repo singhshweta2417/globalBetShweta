@@ -18,7 +18,6 @@ class PaymentWeb extends StatefulWidget {
   _PaymentWebState createState() => _PaymentWebState();
 }
 class _PaymentWebState extends State<PaymentWeb> {
-  late WebViewController _controller;
   bool _isLoading = true;
 
   @override
@@ -50,7 +49,6 @@ class _PaymentWebState extends State<PaymentWeb> {
                 initialUrl: widget.url,
                 javascriptMode: JavascriptMode.unrestricted,
                 onWebViewCreated: (WebViewController webViewController) {
-                  _controller = webViewController;
                   webViewController.clearCache();
                   final cookieManager = CookieManager();
                   cookieManager.clearCookies();

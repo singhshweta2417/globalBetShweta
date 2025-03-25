@@ -71,9 +71,9 @@ class ApiUrl {
 
   static const String resultList = "${configModel}results?game_id=";
   static const String betHistory = "${configModel}bet_history?userid=";
-  static const String bettingApi = "${configModel}bet";
+  static const String bettingApi = "${configModel}bets";//bet
   static const String gameWin = "${configModel}win_amount?userid=";
-  static const String dragonBet = "${configModel}dragon_bet_new";
+  static const String dragonBet = "${configModel}dragon_bet";
 
   static const String promotionCount =
       "${configModel}promotion_dashboard_count?id=";
@@ -126,10 +126,10 @@ class ApiUrl {
 
   ///andarBahar
 
-  static const String gameHistory = '${baseUrl}api/bet_history?game_id=';
+  static const String gameHistory = '${configModel}bet_history?game_id=';
   static const String result = '${baseUrl}api/results?game_id=';
   static const String betPlaced = '${baseUrl}api/bet';
-  static const String winAmount = '${baseUrl}api/win_amount?userid=';
+  static const String winAmount = '${baseUrl}api/win-amount?userid=';
 
   ///head tails
 
