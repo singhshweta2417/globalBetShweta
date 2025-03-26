@@ -45,7 +45,7 @@ class _PromotionScreenNewState extends State<PromotionScreenNew> {
     final List<Map<String, dynamic>> items = [
       {
         'text': 'Copy Invitation Code',
-        'icon': Assets.iconsCopycode,
+        'icon': Assets.iconsCopyCode,
         'Subtext': invitationCode.toString(),
         'onTap': () {
           copyToClipboard(invitationCode.toString(), context);

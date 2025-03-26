@@ -16,7 +16,7 @@ class AndarAssets{
   static const String andarbaharPlayerWallet = 'assets/Andarbahar/player_wallet.png';
   static const String andarbaharTopPopAndhar = 'assets/Andarbahar/top_pop_andhar.png';
   static const String andarbaharTopPopUpBahar = 'assets/Andarbahar/top_pop_up_bahar.png';
-  static const String andarbaharGamebuttonbg = 'assets/Andarbahar/gamebuttonbg.png';
+  static const String andarbaharGamebuttonbg = 'assets/Andarbahar/game_button_bg.png';
   static const String andarbaharB = 'assets/Andarbahar/B.png';
   static const String andarbaharA = 'assets/Andarbahar/A.png';
   static const String andarbaharLine = 'assets/Andarbahar/line.png';

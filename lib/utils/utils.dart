@@ -105,7 +105,7 @@ class Utils {
                             },
                             child: Text("Yes",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontSize: width * 0.06,
                                     fontWeight: FontWeight.bold))),
                         SizedBox(height: height * 0.03),

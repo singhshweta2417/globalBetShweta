@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:globalbet/main.dart';
+import 'package:globalbet/res/orientation.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bet_api.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bool_provider.dart';
@@ -22,7 +23,7 @@ class KenoGame extends StatefulWidget {
 
 class _KenoGameState extends State<KenoGame> {
   final List<int> items = [10, 50, 100, 200, 500, 1000];
-  
+
   String? number;
 
   @override
@@ -31,9 +32,10 @@ class _KenoGameState extends State<KenoGame> {
       final resultProvider = Provider.of<KinoResultApi>(context, listen: false);
       resultProvider.resultFetch();
       final betProvider = Provider.of<KiNoBoolProvider>(context, listen: false);
-      betProvider.startCountdown(context,resultProvider);
-      Provider.of<KinoResultApi>(context,listen: false).resultFetch();
-      final profileProvider = Provider.of<ProfileViewModel>(context, listen: false);
+      betProvider.startCountdown(context, resultProvider);
+      Provider.of<KinoResultApi>(context, listen: false).resultFetch();
+      final profileProvider =
+          Provider.of<ProfileViewModel>(context, listen: false);
       profileProvider.profileApi(context);
     });
     super.initState();
@@ -55,7 +57,9 @@ class _KenoGameState extends State<KenoGame> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: height * 0.035,),
+            SizedBox(
+              height: height * 0.035,
+            ),
             KiNoAppbar(betPlaced: betPlaced),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.032),
@@ -68,9 +72,9 @@ class _KenoGameState extends State<KenoGame> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.black26),
-                    child: Center(
+                    child:  Center(
                         child: Text(
-                      'SNo.',//${resultApi.response.first.gamesno+1}
+                      'SNo.${(resultApi.response.isNotEmpty) ? resultApi.response.first.gamesno+1 : 'N/A'}',
                       style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -112,7 +116,8 @@ class _KenoGameState extends State<KenoGame> {
                         int randomNum;
                         do {
                           randomNum = Random().nextInt(40) + 1;
-                        } while (betPlaced.selectedNumbers.contains(randomNum));
+                        } while (
+                            betPlaced.selectedNumbers.contains(randomNum));
                         betPlaced.selectedNumbers.add(randomNum);
                       }
                     }
@@ -153,16 +158,18 @@ class _KenoGameState extends State<KenoGame> {
                               onTap: () {
                                 betApi.kinoBetPlacedApi(
                                     context: context,
-                                    riskLevel: betPlaced.selectedValue.toString(),
+                                    riskLevel:
+                                        betPlaced.selectedValue.toString(),
                                     selectedNumber: betPlaced.selectedNumbers,
-                                    betAmount: betPlaced.selectedNumber.toString()
-                                );
+                                    betAmount:
+                                        betPlaced.selectedNumber.toString());
                               },
                               child: Container(
                                 height: height * 0.055,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(width: 1, color: Colors.black),
+                                  border: Border.all(
+                                      width: 1, color: Colors.black),
                                   gradient: betPlaced.kiNoBetPlaced != true
                                       ? KiNoColors.greenButton
                                       : KiNoColors.redBtn,
@@ -195,7 +202,7 @@ class _KenoGameState extends State<KenoGame> {
                                           color: Colors.white),
                                     ),
                                     SizedBox(
-                                      width: width*0.1,
+                                      width: width * 0.1,
                                     ),
                                   ],
                                 ),
@@ -204,17 +211,21 @@ class _KenoGameState extends State<KenoGame> {
                             Container(
                               height: height * 0.08,
                               width: double.infinity,
-                              margin: EdgeInsets.symmetric(vertical: height * 0.01),
+                              margin: EdgeInsets.symmetric(
+                                  vertical: height * 0.01),
                               decoration: BoxDecoration(
-                                border: Border.all(width: 1, color: Colors.black),
+                                border:
+                                    Border.all(width: 1, color: Colors.black),
                                 color: const Color(0xff569123),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 5.0, bottom: 5, right: 12, left: 12),
+                                padding: const EdgeInsets.only(
+                                    top: 5.0, bottom: 5, right: 12, left: 12),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
                                   children: [
                                     Column(
                                       children: [
@@ -226,14 +237,15 @@ class _KenoGameState extends State<KenoGame> {
                                               color: Colors.white),
                                         ),
                                         Container(
-                                          height: height*0.04,
-                                          width: width*0.38,
+                                          height: height * 0.04,
+                                          width: width * 0.38,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                             color: const Color(0xff2b7009),
                                             border: Border.all(
-                                                width: 1, color: Colors.black),
+                                                width: 1,
+                                                color: Colors.black),
                                           ),
                                           child: Center(
                                               child: Text(
@@ -250,8 +262,8 @@ class _KenoGameState extends State<KenoGame> {
                                     InkWell(
                                       onTap: betPlaced.decrement,
                                       child: Container(
-                                          height: height*0.048,
-                                          width: width*0.1,
+                                          height: height * 0.048,
+                                          width: width * 0.1,
                                           margin: const EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                               borderRadius:
@@ -266,7 +278,6 @@ class _KenoGameState extends State<KenoGame> {
                                             color: Colors.white,
                                           )),
                                     ),
-                                    
                                     InkWell(
                                       onTap: () {
                                         showDialog(
@@ -279,10 +290,11 @@ class _KenoGameState extends State<KenoGame> {
                                                     CrossAxisAlignment.end,
                                                 children: [
                                                   AlertDialog(
-                                                    alignment:
-                                                        Alignment.bottomCenter,
+                                                    alignment: Alignment
+                                                        .bottomCenter,
                                                     backgroundColor:
-                                                        const Color(0xff2b7009),
+                                                        const Color(
+                                                            0xff2b7009),
                                                     content: Column(
                                                       children: [
                                                         const Text(
@@ -292,25 +304,26 @@ class _KenoGameState extends State<KenoGame> {
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w900,
-                                                              color:
-                                                                  Colors.white),
+                                                              color: Colors
+                                                                  .white),
                                                         ),
                                                         const SizedBox(
                                                             height: 20),
                                                         Container(
-                                                          color:
-                                                              const Color(0xff2b7009),
+                                                          color: const Color(
+                                                              0xff2b7009),
                                                           height: 100,
-                                                          width:
-                                                              double.maxFinite,
-                                                          child:
-                                                              GridView.builder(
+                                                          width: double
+                                                              .maxFinite,
+                                                          child: GridView
+                                                              .builder(
                                                             shrinkWrap: true,
                                                             itemCount:
                                                                 items.length,
                                                             gridDelegate:
                                                                 const SliverGridDelegateWithFixedCrossAxisCount(
-                                                              crossAxisCount: 3,
+                                                              crossAxisCount:
+                                                                  3,
                                                               mainAxisSpacing:
                                                                   10,
                                                               crossAxisSpacing:
@@ -328,7 +341,8 @@ class _KenoGameState extends State<KenoGame> {
                                                                           index];
                                                               return InkWell(
                                                                 onTap: () {
-                                                                  setState(() {
+                                                                  setState(
+                                                                      () {
                                                                     betPlaced.setSelectedNumber(
                                                                         items[
                                                                             index]);
@@ -348,15 +362,18 @@ class _KenoGameState extends State<KenoGame> {
                                                                     border:
                                                                         Border
                                                                             .all(
-                                                                      width: 1,
+                                                                      width:
+                                                                          1,
                                                                       color: Colors
                                                                           .black,
                                                                     ),
                                                                     color: const Color(
                                                                         0xff569123),
                                                                   ),
-                                                                  child: Center(
-                                                                    child: Text(
+                                                                  child:
+                                                                      Center(
+                                                                    child:
+                                                                        Text(
                                                                       '${items[index]}',
                                                                       style:
                                                                           TextStyle(
@@ -386,8 +403,8 @@ class _KenoGameState extends State<KenoGame> {
                                             });
                                       },
                                       child: Container(
-                                          height: height*0.048,
-                                          width: width*0.1,
+                                          height: height * 0.048,
+                                          width: width * 0.1,
                                           margin: const EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                               borderRadius:
@@ -402,12 +419,11 @@ class _KenoGameState extends State<KenoGame> {
                                             color: Colors.white,
                                           )),
                                     ),
-
                                     InkWell(
                                       onTap: betPlaced.increment,
                                       child: Container(
-                                          height: height*0.048,
-                                          width: width*0.1,
+                                          height: height * 0.048,
+                                          width: width * 0.1,
                                           margin: const EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                               borderRadius:
@@ -447,7 +463,7 @@ class _KenoGameState extends State<KenoGame> {
         var filteredData = krv.response.take(2).toList();
 
         return InkWell(
-          onTap: (){
+          onTap: () {
             showDialog(
               context: context,
               barrierDismissible: true,
@@ -457,7 +473,8 @@ class _KenoGameState extends State<KenoGame> {
             );
           },
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.035, vertical: height * 0.01),
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 0.035, vertical: height * 0.01),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               height: height * 0.12,
@@ -489,7 +506,7 @@ class _KenoGameState extends State<KenoGame> {
                           width: width * 0.07,
                           height: height * 0.035,
                           child: InkWell(
-                            onTap: (){
+                            onTap: () {
                               print(betPlaced.selectedNumbers.contains(num));
                               print("betPlaced.selectedNumbers.contains(num)");
                             },
@@ -516,7 +533,6 @@ class _KenoGameState extends State<KenoGame> {
       },
     );
   }
-
 
   Widget mainGridNumber(KiNoBoolProvider betPlaced) {
     return Wrap(
@@ -546,9 +562,7 @@ class _KenoGameState extends State<KenoGame> {
                       : KiNoColors.greenGradient,
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: isSelected
-                        ? Colors.yellowAccent
-                        : Colors.black,
+                    color: isSelected ? Colors.yellowAccent : Colors.black,
                     width: 3, // Border width
                   ),
                 ),
@@ -560,9 +574,7 @@ class _KenoGameState extends State<KenoGame> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: isSelected
-                          ? Colors.black
-                          : Colors.white,
+                      color: isSelected ? Colors.black : Colors.white,
                     ),
                   ),
                 ),
@@ -619,7 +631,8 @@ class _KenoGameState extends State<KenoGame> {
                           ),
                           Text(
                             displayedList[index],
-                            style: const TextStyle(fontSize: 12, color: Colors.white),
+                            style: const TextStyle(
+                                fontSize: 12, color: Colors.white),
                           ),
                         ],
                       ),

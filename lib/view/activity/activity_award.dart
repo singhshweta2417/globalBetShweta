@@ -91,7 +91,7 @@ class _ActivityAwardState extends State<ActivityAward> {
                     width: width * 0.35,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                      image: AssetImage(Assets.iconsActivitygift),
+                      image: AssetImage(Assets.iconsActivityGift),
                       fit: BoxFit.fill,
                     )),
                   ),
@@ -201,7 +201,7 @@ class _ActivityAwardState extends State<ActivityAward> {
                                   height: height * 0.05,
                                   width: width * 0.09,
                                   child: const Image(
-                                    image: AssetImage(Assets.iconsActivityball),
+                                    image: AssetImage(Assets.iconsActivityBall),
                                     color: AppColors.whiteColor,
                                   ),
                                 ),

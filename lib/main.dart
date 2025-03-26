@@ -21,6 +21,10 @@ import 'package:globalbet/utils/routes/routes.dart';
 import 'package:globalbet/utils/routes/routes_name.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:globalbet/view/home/casino/fun_target/Provider/result_history_provider.dart';
+import 'package:globalbet/view/home/casino/fun_target/Provider/result_provider.dart';
+import 'package:globalbet/view/home/casino/fun_target/api/bet_service.dart';
+import 'package:globalbet/view/home/casino/fun_target/api/take_winning_amount_service.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/controller/lucky_12_controller.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_bet_view_model.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_history_view_model.dart';
@@ -59,6 +63,10 @@ import 'package:globalbet/view/home/mini/titli_kabootar/controller/controller.da
 import 'package:globalbet/view/home/mini/titli_kabootar/view_model/bet_view_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view_model/history_view_model.dart';
+import 'package:globalbet/view/home/rummy/spin_to_win/controller/spin_controller.dart';
+import 'package:globalbet/view/home/rummy/spin_to_win/view_model/spin_bet_view_model.dart';
+import 'package:globalbet/view/home/rummy/spin_to_win/view_model/spin_history_view_model.dart';
+import 'package:globalbet/view/home/rummy/spin_to_win/view_model/spin_result_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
@@ -73,7 +81,9 @@ void main() {
   setPathUrlStrategy();
   runApp(const MyApp());
 }
-
+double heightFun = 360.0;
+double widthFun = 720.0;
+double ratioFun = 2;
 double height = 0.0;
 double width = 0.0;
 
@@ -81,6 +91,11 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    double heightRatio = MediaQuery.of(context).size.height;
+    double widthRatio = MediaQuery.of(context).size.width;
+    ratioFun = widthRatio / heightRatio;
+    heightFun = heightRatio;
+    widthFun = widthRatio;
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width > 500
         ? 500
@@ -154,6 +169,18 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) => TripleChanceResultViewModel()),
         ChangeNotifierProvider(create: (context) => TripleChanceController()),
+
+        ///spinToWin
+        ChangeNotifierProvider(create: (context) => SpinBetViewModel()),
+        ChangeNotifierProvider(create: (context) => SpinHistoryViewModel()),
+        ChangeNotifierProvider(create: (context) => SpinResultViewModel()),
+        ChangeNotifierProvider(create: (context) => SpinController()),
+
+        ///funTarget
+        ChangeNotifierProvider(create: (context) => ResultHistoryProvider()),
+        ChangeNotifierProvider(create: (context) => ResultProvider()),
+        ChangeNotifierProvider(create: (context) => BetService()),
+        ChangeNotifierProvider(create: (context) => WinningAmountService()),
       ],
       child: Builder(
         builder: (context) {

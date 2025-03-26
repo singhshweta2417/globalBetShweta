@@ -37,6 +37,7 @@ dependencies:
   socket_io_client: ^2.0.3+1
   draggable_fab: ^0.1.4
   add_to_cart_animation: ^2.0.3
+  google_fonts: ^6.2.1
   flutter_inappwebview:
   page_transition: ^2.1.0
   flutter_flip_card:
@@ -87,6 +88,8 @@ flutter:
     - assets/lucky_16/
     - assets/triple_chance/
     - assets/jackpot/
+    - assets/spin/
+    - assets/fun_target/
 
 
 

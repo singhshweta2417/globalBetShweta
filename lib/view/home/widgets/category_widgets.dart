@@ -33,7 +33,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
       CategoryModel(
           title: 'Casino',
           image: Assets.categoryChess,
-          subImage: Assets.categoryDragontiger),
+          subImage: Assets.categoryDragonTiger),
       CategoryModel(
           title: 'Rummy',
           image: Assets.categoryPopula,

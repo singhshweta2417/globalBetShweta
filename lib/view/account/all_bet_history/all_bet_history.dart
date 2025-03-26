@@ -66,16 +66,9 @@ class _AllBetHistoryState extends State<AllBetHistory> {
                     selectIndex(0);
                   },
                   text: 'Wingo',
-                  imagePath: Assets.categoryWingocoin1,
+                  imagePath: Assets.categoryWingoCoin1,
                 ),
-                // selectableContainer(
-                //   isSelected: selectedIndex == 1,
-                //   onTap: () {
-                //     selectIndex(1);
-                //   },
-                //   text: 'Trx',
-                //   imagePath: Assets.categoryTrxcoin1,
-                // ),
+
                 selectableContainer(
                   isSelected: selectedIndex == 2,
                   onTap: () {

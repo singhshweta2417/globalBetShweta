@@ -76,7 +76,7 @@ class _HomePageBottomState extends State<HomePageBottom> {
         ),
         if (kIsWeb)
           ProInfoModel(
-            image: Assets.iconsDownloadbutton,
+            image: Assets.iconsDownloadButton,
             title: 'Download APP',
             onTap: () {
               launchURL2();

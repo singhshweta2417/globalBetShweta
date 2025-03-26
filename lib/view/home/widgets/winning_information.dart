@@ -24,31 +24,31 @@ class _WinningInformationState extends State<WinningInformation> {
       "user": "mdw**e764",
       "image": Assets.person1,
       "border": '₹ 200.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "wde**fr44",
       "image": Assets.person2,
       "border": '₹ 243.12',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "cfs*23ww",
       "image": Assets.person3,
       "border": '₹ 126.00',
-      'centering': Assets.categoryTrxcoin1
+      'centering': Assets.categoryTrxCoin1
     },
     {
       "user": "hde**fr465",
       "image": Assets.person4,
       "border": '₹ 400.00',
-      'centering': Assets.categoryTrxcoin1
+      'centering': Assets.categoryTrxCoin1
     },
     {
       "user": "wee**fr4",
       "image": Assets.person5,
       "border": '₹ 180.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
   ];
   final List<Map<String, dynamic>> possibleFirstElements = [
@@ -56,73 +56,73 @@ class _WinningInformationState extends State<WinningInformation> {
       "user": "mdw**e764",
       "image": Assets.person1,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryTrxcoin1
+      'centering': Assets.categoryTrxCoin1
     },
     {
       "user": "wde**fr44",
       "image": Assets.person2,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "cfs*23ww",
       "image": Assets.person3,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "hde**fr465",
       "image": Assets.person4,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryFivedCoin
+      'centering': Assets.categoryFivesCoin
     },
     {
       "user": "wee**fr4",
       "image": Assets.person5,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryFivedCoin
+      'centering': Assets.categoryFivesCoin
     },
     {
       "user": "aas**rr12",
       "image": Assets.personPerson6,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "bss**rr13",
       "image": Assets.personPerson7,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "css**rr14",
       "image": Assets.personPerson8,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "dss**rr15",
       "image": Assets.personPerson9,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "ess**rr16",
       "image": Assets.personPerson10,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "fss**rr17",
       "image": Assets.personPerson11,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryFivedCoin
+      'centering': Assets.categoryFivesCoin
     },
     {
       "user": "gss**rr18",
       "image": Assets.personPerson12,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryWingocoin1
+      'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "hss**rr19",
@@ -134,7 +134,7 @@ class _WinningInformationState extends State<WinningInformation> {
       "user": "iss**rr20",
       "image": Assets.personPerson14,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryFivedCoin
+      'centering': Assets.categoryFivesCoin
     },
     {
       "user": "jss**rr21",
@@ -146,7 +146,7 @@ class _WinningInformationState extends State<WinningInformation> {
       "user": "kss**rr22",
       "image": Assets.personPerson16,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryFivedCoin
+      'centering': Assets.categoryFivesCoin
     },
     {
       "user": "lss**rr23",
@@ -158,7 +158,7 @@ class _WinningInformationState extends State<WinningInformation> {
       "user": "mss**rr24",
       "image": Assets.personPerson18,
       "border": '₹ ${Random().nextInt(491) * 10}.00',
-      'centering': Assets.categoryFivedCoin
+      'centering': Assets.categoryFivesCoin
     },
     {
       "user": "nss**rr25",
@@ -278,8 +278,7 @@ class _WinningInformationState extends State<WinningInformation> {
                   width: width * 0.2,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      gradient: AppColors.contGrad
-                  ),
+                      gradient: AppColors.contGrad),
                   child: Image.asset(item['centering']),
                 ),
                 SizedBox(

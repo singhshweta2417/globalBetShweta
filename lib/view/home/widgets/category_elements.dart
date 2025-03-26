@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/services.dart';
 import 'package:globalbet/Plinko/my_game.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -8,6 +7,7 @@ import 'package:globalbet/res/aap_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:globalbet/view/home/casino/AndarBahar/andar_home_page.dart';
 import 'package:globalbet/view/home/casino/dragon_tiger_new/dragon_tiger.dart';
+import 'package:globalbet/view/home/casino/fun_target/game_home/home_screen.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/lucky_card_12.dart';
 import 'package:globalbet/view/home/casino/lucky_card_16/lucky_card_16.dart';
 import 'package:globalbet/view/home/casino/triple_chance/triple_chance.dart';
@@ -18,6 +18,7 @@ import 'package:globalbet/view/home/mini/HeadTail/head_tail_home.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/keno_home.dart';
 import 'package:globalbet/view/home/mini/mines/mines.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view/titli_home.dart';
+import 'package:globalbet/view/home/rummy/spin_to_win/spin_to_win.dart';
 
 class CategoryElement extends StatefulWidget {
   final int selectedCategoryIndex;
@@ -76,8 +77,7 @@ class _CategoryElementState extends State<CategoryElement> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const TitliHomeScreen()),
+              MaterialPageRoute(builder: (context) => const TitliHomeScreen()),
             );
           }),
       MiniGameModel(
@@ -85,8 +85,7 @@ class _CategoryElementState extends State<CategoryElement> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const Mines()),
+              MaterialPageRoute(builder: (context) => const Mines()),
             );
           }),
       MiniGameModel(
@@ -94,8 +93,7 @@ class _CategoryElementState extends State<CategoryElement> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const GameAviator()),
+              MaterialPageRoute(builder: (context) => const GameAviator()),
             );
           }),
       MiniGameModel(
@@ -103,8 +101,7 @@ class _CategoryElementState extends State<CategoryElement> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const KenoGame()),
+              MaterialPageRoute(builder: (context) => const KenoGame()),
             );
           }),
       MiniGameModel(
@@ -113,7 +110,10 @@ class _CategoryElementState extends State<CategoryElement> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const HeadTailHome(gameId: '14', tittle: 'Head & Tail',)),
+                  builder: (context) => const HeadTailHome(
+                        gameId: '14',
+                        tittle: 'Head & Tail',
+                      )),
             );
           }),
     ];
@@ -141,7 +141,6 @@ class _CategoryElementState extends State<CategoryElement> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => const DragonTiger(gameId: '10')));
-
           }),
       MiniGameModel(
           image: Assets.categoryAndarBaharCat,
@@ -149,7 +148,9 @@ class _CategoryElementState extends State<CategoryElement> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const AndarBaharHome(gameId: '13',)),
+                  builder: (context) => const AndarBaharHome(
+                        gameId: '13',
+                      )),
             );
           }),
       MiniGameModel(
@@ -157,8 +158,7 @@ class _CategoryElementState extends State<CategoryElement> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const LuckyCard12()),
+              MaterialPageRoute(builder: (context) => const LuckyCard12()),
             );
           }),
       MiniGameModel(
@@ -166,8 +166,7 @@ class _CategoryElementState extends State<CategoryElement> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const LuckyCard16()),
+              MaterialPageRoute(builder: (context) => const LuckyCard16()),
             );
           }),
       MiniGameModel(
@@ -175,9 +174,30 @@ class _CategoryElementState extends State<CategoryElement> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const TripleChance()),
+              MaterialPageRoute(builder: (context) => const TripleChance()),
             );
+          }),
+      MiniGameModel(
+          image: Assets.categoryFunTarget,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePageScreen()),
+            );
+          }),
+    ];
+    List<MiniGameModel> rummyGameList = [
+      MiniGameModel(
+          image: Assets.categoryDSpin2Win,
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SpinToWin()));
+          }),
+      MiniGameModel(
+          image: Assets.categoryTeenPatti,
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SpinToWin()));
           }),
     ];
     return widget.selectedCategoryIndex == 0
@@ -237,66 +257,66 @@ class _CategoryElementState extends State<CategoryElement> {
             ),
           )
         : widget.selectedCategoryIndex == 1
-            ?
-            Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 25, 10, 0),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                    height: height * 0.05,
-                                    width: width * 0.05,
-                                    child: const VerticalDivider(
-                                      thickness: 3,
-                                      color: AppColors.whiteColor,
-                                    )),
-                                Text(
-                                  " Original".toUpperCase(),
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.03,
-                            ),
-                            GridView.builder(
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 8.0,
-                                mainAxisSpacing: 9.0,
-                                // childAspectRatio: 1.5
-                              ),
-                              shrinkWrap: true,
-                              itemCount: originalGameList.length,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: originalGameList[index].onTap,
-                                  child: Center(
-                                    child: Container(
-                                      height: height * 0.25,
-                                      width: width * 0.5,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          image: DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image: AssetImage(
-                                              originalGameList[index].image,
-                                            ),
-                                          )),
-                                      //  color: Colors.deepPurpleAccent,
+            ? Padding(
+                padding: const EdgeInsets.fromLTRB(10, 25, 10, 0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                            height: height * 0.05,
+                            width: width * 0.05,
+                            child: const VerticalDivider(
+                              thickness: 3,
+                              color: AppColors.whiteColor,
+                            )),
+                        Text(
+                          " Original".toUpperCase(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 9.0,
+                        // childAspectRatio: 1.5
+                      ),
+                      shrinkWrap: true,
+                      itemCount: originalGameList.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: originalGameList[index].onTap,
+                          child: Center(
+                            child: Container(
+                              height: height * 0.25,
+                              width: width * 0.5,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                      originalGameList[index].image,
                                     ),
-                                  ),
-                                );
-                              },
+                                  )),
+                              //  color: Colors.deepPurpleAccent,
                             ),
-                          ],
-                        ),
-                      )
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              )
             : widget.selectedCategoryIndex == 2
                 ? Padding(
                     padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
@@ -359,12 +379,75 @@ class _CategoryElementState extends State<CategoryElement> {
                       ],
                     ),
                   )
-                : Image.asset(
-                    Assets.imagesCommingsoon,
-                    fit: BoxFit.cover,
-                    height: height * 0.25,
-                    width: width * 0.8,
-                  );
+                : widget.selectedCategoryIndex == 3
+                    ? Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                    height: height * 0.05,
+                                    width: width * 0.05,
+                                    child: const VerticalDivider(
+                                      thickness: 3,
+                                      color: AppColors.whiteColor,
+                                    )),
+                                Text(
+                                  " Rummy".toUpperCase(),
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.03,
+                            ),
+                            GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                // crossAxisSpacing: 8.0,
+                                // mainAxisSpacing: 2.0,
+                                // childAspectRatio: 1.6
+                              ),
+                              shrinkWrap: true,
+                              itemCount: rummyGameList.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: rummyGameList[index].onTap,
+                                  child: Center(
+                                    child: Container(
+                                      margin: const EdgeInsets.all(4),
+                                      height: height * 0.25,
+                                      width: width * 0.5,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: AssetImage(
+                                              rummyGameList[index].image,
+                                            ),
+                                          )),
+                                      //  color: Colors.deepPurpleAccent,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      )
+                    : Image.asset(
+                        Assets.imagesCommingsoon,
+                        fit: BoxFit.cover,
+                        height: height * 0.25,
+                        width: width * 0.8,
+                      );
   }
 
   lotteryContainer(double height, double width, String title, String subtitle,
@@ -439,7 +522,7 @@ class _CategoryElementState extends State<CategoryElement> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           const Text(
-                            "   The Hightest bonus in history",
+                            "   The HighTest bonus in history",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -526,8 +609,8 @@ class MiniGameModel {
   MiniGameModel({required this.image, this.onTap});
 }
 
-class RummylistModel {
+class RummyListModel {
   final String image;
   final VoidCallback? onTap;
-  RummylistModel({required this.image, this.onTap});
+  RummyListModel({required this.image, this.onTap});
 }

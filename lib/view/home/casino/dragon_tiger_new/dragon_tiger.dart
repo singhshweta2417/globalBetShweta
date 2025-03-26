@@ -699,7 +699,7 @@ class _DragonTigerState extends State<DragonTiger> {
           generateRandomCoin();
 
           Utils.showImageToast(
-            imagePath: Assets.dragontigerStartbetting,
+            imagePath: Assets.dragontigerStartBetting,
             context: context,
             width: width,
             height: height * 0.1,
@@ -715,7 +715,7 @@ class _DragonTigerState extends State<DragonTiger> {
         }
         if (value == 10 && !_stopBet) {
           Utils.showImageToast(
-            imagePath: Assets.dragontigerStopbetting,
+            imagePath: Assets.dragontigerStopBetting,
             context: context,
             width: width,
             height: height * 0.1,

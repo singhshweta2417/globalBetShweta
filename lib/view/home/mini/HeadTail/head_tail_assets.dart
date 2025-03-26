@@ -7,7 +7,7 @@ class HeadTailAssets{
   static const String headTailTeenPattiTable = 'assets/HeadTail/teen_patti_table.png';
   static const String headTailUpdatedBackground = 'assets/HeadTail/updated_background.png';
   static const String headTailNextRound = 'assets/HeadTail/waiting_for_next.gif';
-  static const String headTailHomeHeadTales = 'assets/HeadTail/home_headtales.gif';
+  static const String headTailHomeHeadTales = 'assets/HeadTail/home_head_tales.gif';
   static const String headTailAdornGift = 'assets/HeadTail/adorn_gift.png';
 
 }

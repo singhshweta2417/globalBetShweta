@@ -288,7 +288,7 @@ class HeadTailHomeState extends State<HeadTailHome>
                                 decoration: const BoxDecoration(
                                     image: DecorationImage(
                                   image:
-                                      AssetImage(Assets.andarbaharBethistory),
+                                      AssetImage(Assets.andarbaharBetHistory),
                                   fit: BoxFit.fill,
                                 )),
                               ),

@@ -133,7 +133,7 @@ class _GameAviatorState extends State<GameAviator>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    Assets.aviatorAviatorwait,
+                    Assets.aviatorAviatorWait,
                     height: height * 0.40,
                   ),
                   SizedBox(

@@ -1,17 +1,19 @@
 class WinGoResultModel {
   int? status;
   String? message;
+  int? totalResult;
   List<Data>? data;
 
-  WinGoResultModel({this.status, this.message, this.data});
+  WinGoResultModel({this.status, this.message, this.totalResult, this.data});
 
   WinGoResultModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
+    totalResult = json['total_result'];
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
   }
@@ -20,6 +22,7 @@ class WinGoResultModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
+    data['total_result'] = totalResult;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -29,11 +32,15 @@ class WinGoResultModel {
 
 class Data {
   int? id;
-  int? number;
+  String? number;
   int? gamesNo;
   int? gameId;
-  String? jsonData;
+  String? json;
+  dynamic image;
   String? randomCard;
+  dynamic cardId;
+  dynamic multiplier;
+  String? cardName;
   dynamic token;
   dynamic block;
   int? status;
@@ -45,8 +52,12 @@ class Data {
         this.number,
         this.gamesNo,
         this.gameId,
-        this.jsonData,
+        this.json,
+        this.image,
         this.randomCard,
+        this.cardId,
+        this.multiplier,
+        this.cardName,
         this.token,
         this.block,
         this.status,
@@ -58,8 +69,12 @@ class Data {
     number = json['number'];
     gamesNo = json['games_no'];
     gameId = json['game_id'];
-    jsonData = json['json'];
+    json = json['json'];
+    image = json['image'];
     randomCard = json['random_card'];
+    cardId = json['card_id'];
+    multiplier = json['multiplier'];
+    cardName = json['card_name'];
     token = json['token'];
     block = json['block'];
     status = json['status'];
@@ -73,8 +88,12 @@ class Data {
     data['number'] = number;
     data['games_no'] = gamesNo;
     data['game_id'] = gameId;
-    data['json'] = jsonData;
+    data['json'] = json;
+    data['image'] = image;
     data['random_card'] = randomCard;
+    data['card_id'] = cardId;
+    data['multiplier'] = multiplier;
+    data['card_name'] = cardName;
     data['token'] = token;
     data['block'] = block;
     data['status'] = status;

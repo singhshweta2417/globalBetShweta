@@ -278,7 +278,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                       width: height * 0.04,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                        image: AssetImage(Assets.andarbaharBethistory),
+                        image: AssetImage(Assets.andarbaharBetHistory),
                         fit: BoxFit.fill,
                       )),
                     ),
