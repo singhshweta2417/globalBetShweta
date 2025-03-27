@@ -65,13 +65,13 @@ class _OfferSecondState extends State<OfferSecond> {
                         gradient: AppColors.bgGrad,
                       ),
                       child:
-                      offer.OfferModelData != null?
+                      offer.offerModelData != null?
                       ListView.builder(
                           physics: const BouncingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: offer.OfferModelData!.data!.length,
+                          itemCount: offer.offerModelData!.data!.length,
                           itemBuilder: (context, index) {
-                            final data= offer.OfferModelData!.data![index];
+                            final data= offer.offerModelData!.data![index];
                             return Container(
                               margin: const EdgeInsets.all(5),
                               padding: const EdgeInsets.all(8),

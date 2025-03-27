@@ -1,29 +1,29 @@
 class SubordinateModel {
   dynamic id;
-  dynamic u_id;
-  dynamic bet_amount;
-  dynamic total_cash;
+  dynamic uId;
+  dynamic betAmount;
+  dynamic totalCash;
   dynamic commission;
-  dynamic yesterday_date;
+  dynamic yesterdayDate;
 
 
   SubordinateModel({
     required this.id,
-    required this.u_id,
-    required this.bet_amount,
-    required this.total_cash,
+    required this.uId,
+    required this.betAmount,
+    required this.totalCash,
     required this.commission,
-    required this.yesterday_date,
+    required this.yesterdayDate,
 
   });
   factory SubordinateModel.fromJson(Map<String, dynamic> json) {
     return SubordinateModel(
       id: json['id'],
-      u_id: json['u_id'],
-      bet_amount: json['bet_amount'],
-      total_cash: json['total_cash'],
+      uId: json['u_id'],
+      betAmount: json['bet_amount'],
+      totalCash: json['total_cash'],
       commission: json['commission'],
-      yesterday_date: json['yesterday_date'],
+      yesterdayDate: json['yesterday_date'],
 
     );
   }

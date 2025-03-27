@@ -18,7 +18,7 @@ import 'package:globalbet/model/plinko_result.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/plinko/lesson_02/objects/ball_dynamic.dart';
 import 'package:globalbet/plinko/routes.dart';
-import 'package:globalbet/plinko/utils/Plinko_Pop_up.dart';
+import 'package:globalbet/plinko/utils/plinko_pop_up.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';

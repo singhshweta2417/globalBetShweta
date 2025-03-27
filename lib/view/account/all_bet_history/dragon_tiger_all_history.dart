@@ -476,9 +476,6 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
       // Fetch userId
       UserModel user = await userProvider.getUser();
       String token = user.id.toString();
-      print(token);
-      print(widget.gameid);
-      print('pdmksfmgkmpkmhkpemjo');
       // Prepare the API request
       final response = await http.post(
         Uri.parse(ApiUrl.gameHistory),

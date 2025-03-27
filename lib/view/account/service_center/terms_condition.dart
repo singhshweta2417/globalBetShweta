@@ -31,7 +31,7 @@ class _TermsConditionState extends State<TermsCondition> {
   @override
   Widget build(BuildContext context) {
 
-    final dataTc = Provider.of<TermsConditionProvider>(context).TcData;
+    final dataTc = Provider.of<TermsConditionProvider>(context).tcData;
 
 
     return SafeArea(child: Scaffold(

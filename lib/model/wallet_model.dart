@@ -1,6 +1,6 @@
 class WalletModel {
   final String? wallet;
-  final String? winning_wallet;
+  final String? winningWallet;
   final String? commission;
   final String? bonus;
   final String? salary;
@@ -8,7 +8,7 @@ class WalletModel {
 
   WalletModel({
     required this.wallet,
-    required this.winning_wallet,
+    required this.winningWallet,
     required this.commission,
     required this.bonus,
     required this.salary,
@@ -17,7 +17,7 @@ class WalletModel {
   factory WalletModel.fromJson(Map<String, dynamic> json) {
     return WalletModel(
       wallet: json['wallet'],
-      winning_wallet: json['winning_wallet'],
+      winningWallet: json['winning_wallet'],
       commission: json['commission'],
       bonus: json['bonus'],
       salary: json['salary'],

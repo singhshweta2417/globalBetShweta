@@ -20,7 +20,7 @@ class AddacountProvider with ChangeNotifier {
     _regLoading=value;
     notifyListeners();
   }
-  Future Addacount(context, String name, String bankname,String accountno,String branch, String ifsc, String upiId) async {
+  Future addAccount(context, String name, String bankname,String accountno,String branch, String ifsc, String upiId) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     setRegLoading(true);

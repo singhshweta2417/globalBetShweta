@@ -49,16 +49,16 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
   BaseApiHelper baseApiHelper = BaseApiHelper();
 
-  int? responseStatuscode;
+  int? responseStatusCode;
   int selectedIndex = 0;
   int payUsing = 1;
 
   TextEditingController usdtCon = TextEditingController();
-  TextEditingController walletaddress = TextEditingController();
-  String selectedusdt = '';
-  String selectedwalletadd = '';
+  TextEditingController walletAddress = TextEditingController();
+  String selectUsdt = '';
+  String selectWalletAdd = '';
   int result = 0;
-  String resultt = "";
+  String results = "";
   String selectedOptionTwo = "";
   Color buttonColor = Colors.grey;
 
@@ -70,7 +70,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     double withdrawAmount = double.tryParse(withdrawCon.text) ?? 0;
 
     return Scaffold(
-        
+        backgroundColor: AppColors.darkColor,
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -203,10 +203,6 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       onTap: () {
                         setState(() {
                           payUsing = currentId;
-                          if (kDebugMode) {
-                            print(payUsing);
-                            print('rrrrrrrrrrrrrrrrr');
-                          }
                         });
                       },
                       child: Card(
@@ -249,7 +245,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 payUsing == 1 || payUsing == 2
                     ? Column(
                         children: [
-                          responseStatuscode == 400
+                          responseStatusCode == 400
                               ? Container()
                               : items.isEmpty
                                   ? Container()
@@ -281,15 +277,9 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                                   onTap: () {
                                                     setState(() {
                                                       selectedIndex = currentId;
-                                                      withdrawacid =
-                                                          items[index]
-                                                              .id
-                                                              .toString();
-                                                      if (kDebugMode) {
-                                                        print(selectedIndex);
-                                                        print(currentId);
-                                                        print("zxcfvgbhn");
-                                                      }
+                                                      withdrawId = items[index]
+                                                          .id
+                                                          .toString();
                                                     });
                                                   },
                                                   child: Container(
@@ -369,8 +359,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                       padding: const EdgeInsets.fromLTRB(
                                           15, 15, 15, 15),
                                       decoration: BoxDecoration(
-                                          gradient: AppColors
-                                              .unSelectedColor,
+                                          gradient: AppColors.unSelectedColor,
                                           borderRadius:
                                               BorderRadiusDirectional.circular(
                                                   10)),
@@ -454,15 +443,13 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                       children: [
                                         const Icon(Icons.currency_rupee,
                                             size: 16,
-                                            color:
-                                                AppColors.whiteColor),
+                                            color: AppColors.whiteColor),
                                         textWidget(
-                                            text: userData.mainWallet
+                                            text: double.parse(
+                                                    userData.mainWallet)
                                                 .toStringAsFixed(2),
-                                            //==''?'0.0':(int.parse(withdrawCon.text)*0.96).toStringAsFixed(2),
                                             fontSize: 16,
-                                            color:
-                                                AppColors.whiteColor),
+                                            color: AppColors.whiteColor),
                                       ],
                                     )
                                   ],
@@ -481,16 +468,14 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                       children: [
                                         const Icon(Icons.currency_rupee,
                                             size: 20,
-                                            color:
-                                                AppColors.whiteColor),
+                                            color: AppColors.whiteColor),
                                         textWidget(
                                             text: withdrawCon.text == ''
                                                 ? '0.0'
                                                 : withdrawCon.text.toString(),
                                             // (int.parse(withdrawCon.text)*0.96).toStringAsFixed(2),
                                             fontSize: 18,
-                                            color:
-                                                AppColors.whiteColor),
+                                            color: AppColors.whiteColor),
                                       ],
                                     )
                                   ],
@@ -562,7 +547,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                     children: [
                                       instruction(
                                           'Need to bet ',
-                                          '₹${userData.recharge.toStringAsFixed(2)}',
+                                          '₹${double.parse(userData.recharge).toStringAsFixed(2)}',
                                           ' to be able to withdraw',
                                           Colors.white,
                                           AppColors.whiteColor,
@@ -626,7 +611,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                     setState(() {
                                       double amount =
                                           double.tryParse(value) ?? 0;
-                                      resultt =
+                                      results =
                                           (amount / 92).toStringAsFixed(2);
                                     });
                                   },
@@ -651,8 +636,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                     onPressed: () {
                                       setState(() {
                                         usdtCon.clear();
-                                        selectedusdt = '';
-                                        resultt = "";
+                                        selectUsdt = '';
+                                        results = "";
                                       });
                                     },
                                     icon: const Icon(Icons.cancel_outlined,
@@ -661,7 +646,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                 ),
                                 SizedBox(height: height * 0.01),
                                 Text(
-                                  'Total amount received in USDT: ${resultt.isNotEmpty ? resultt : "0 "}',
+                                  'Total amount received in USDT: ${results.isNotEmpty ? results : "0 "}',
                                   style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w900,
@@ -673,7 +658,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                 AppBtn(
                                   onTap: () {
                                     withdrawalUsdtMoney(context, usdtCon.text,
-                                        walletaddress.text);
+                                        walletAddress.text);
                                   },
                                   hideBorder: true,
                                   title: 'W i t h d r a w',
@@ -694,13 +679,13 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   }
 
   ///withdraw api
-  String withdrawacid = '';
+  String withdrawId = '';
   UserViewModel userProvider = UserViewModel();
 
   bool isLoading = false; // Track loading state
 
   Future<void> withdrawalMoney(BuildContext context, String money) async {
-    if (withdrawacid.isEmpty) {
+    if (withdrawId.isEmpty) {
       Utils.flushBarErrorMessage(
           "Please select a bank account", context, Colors.red);
       return;
@@ -721,7 +706,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         },
         body: jsonEncode(<String, String>{
           "user_id": token,
-          "account_id": withdrawacid,
+          "account_id": withdrawId,
           "type": payUsing.toString(),
           "amount": money,
         }),
@@ -761,58 +746,6 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     }
   }
 
-  // Future<void> withdrawalMoney(BuildContext context, String money) async {
-  //   if (withdrawacid.isEmpty) {
-  //     Utils.flushBarErrorMessage("Please select a bank account", context, Colors.red);
-  //     return;
-  //   }
-  //
-  //   UserModel user = await userProvider.getUser();
-  //   String token = user.id.toString();
-  //
-  //   final response = await http.post(
-  //     Uri.parse(ApiUrl.withdrawl),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //     body: jsonEncode(<String, String>{
-  //       "user_id": token,
-  //       "account_id": withdrawacid,
-  //       "type": payUsing.toString(),
-  //       "amount": money,
-  //     }),
-  //   );
-  //
-  //   print({
-  //     "user_id": token,
-  //     "account_id": withdrawacid,
-  //     "type": payUsing.toString(),
-  //     "amount": money,
-  //   });
-  //
-  //   var data = jsonDecode(response.body);
-  //
-  //   if (data["status"] == 200) {
-  //     Navigator.pop(context);
-  //      Utils.flushBarSuccessMessage(data['message'], context, Colors.black);
-  //     Navigator.push(context, MaterialPageRoute(builder: (context)=>WalletScreenNew()));
-  //     Utils.flushBarSuccessMessage(data['message'], context, Colors.black);
-  //   } else if (data["status"] == "400") {
-  //     Utils.flushBarErrorMessage(data['message'], context, Colors.black);
-  //
-  //     Future.delayed(const Duration(seconds: 2), () {
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => AddBankAccount(data: items),
-  //         ),
-  //       );
-  //     });
-  //   } else {
-  //     Utils.flushBarErrorMessage(data['message'], context, Colors.black);
-  //   }
-  // }
-
   String usdtWalletAddress = '';
   Future<void> withdrawalUsdtMoney(
     context,
@@ -836,9 +769,6 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
           "type": payUsing,
         }),
       );
-
-      print("Response Status Code: ${response.statusCode}");
-      print("Response Body: ${response.body}");
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
@@ -882,7 +812,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
       print('addAccount_View+token');
     }
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
@@ -905,7 +835,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   }
 
   ///select deposit type
-  int minimumamount = 100;
+  int minimumAmount = 100;
 
   List<GetwayModel> depositType = [];
 
@@ -916,7 +846,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       setState(() {
-        minimumamount = json.decode(response.body)['minimum'];
+        minimumAmount = json.decode(response.body)['minimum'];
 
         depositType =
             responseData.map((item) => GetwayModel.fromJson(item)).toList();
@@ -945,7 +875,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     }
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
@@ -977,8 +907,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
           color: AppColors.whiteColor,
         ),
       ),
-      title: textWidget(
-          text: title, fontSize: 14, color: AppColors.whiteColor),
+      title: textWidget(text: title, fontSize: 14, color: AppColors.whiteColor),
     );
   }
 
@@ -1015,8 +944,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   }
 }
 
-class Notfounddata extends StatelessWidget {
-  const Notfounddata({super.key});
+class NotFoundData extends StatelessWidget {
+  const NotFoundData({super.key});
 
   @override
   Widget build(BuildContext context) {

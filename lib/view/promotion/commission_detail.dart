@@ -10,7 +10,7 @@ import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/utils/filter_date-formate.dart';
+import 'package:globalbet/utils/filter_date_format.dart';
 import 'package:http/http.dart' as http;
 
 class CommissionDetails extends StatefulWidget {
@@ -32,7 +32,7 @@ class _CommissionDetailsState extends State<CommissionDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: AppColors.darkColor,
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Commission detail',
@@ -43,7 +43,6 @@ class _CommissionDetailsState extends State<CommissionDetails> {
           centerTitle: true,
           gradient: AppColors.unSelectedColor),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(

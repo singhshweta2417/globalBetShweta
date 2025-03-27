@@ -1,7 +1,3 @@
-//import 'dart:math';
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -179,13 +175,13 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
       _animation = Tween(begin: 0.0, end: widget.percent).animate(
         CurvedAnimation(parent: _animationController!, curve: widget.curve),
       )..addListener(() {
-        setState(() {
-          _percent = _animation!.value;
+          setState(() {
+            _percent = _animation!.value;
+          });
+          if (widget.restartAnimation && _percent == 1.0) {
+            _animationController!.repeat(min: 0, max: 1.0);
+          }
         });
-        if (widget.restartAnimation && _percent == 1.0) {
-          _animationController!.repeat(min: 0, max: 1.0);
-        }
-      });
       _animationController!.addStatusListener((status) {
         if (widget.onAnimationEnd != null &&
             status == AnimationStatus.completed) {
@@ -274,10 +270,10 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
               Positioned.fill(
                 child: Transform.rotate(
                   angle: radians(
-                      (widget.circularStrokeCap != CircularStrokeCap.butt &&
-                          widget.reverse)
-                          ? -15
-                          : 0)
+                          (widget.circularStrokeCap != CircularStrokeCap.butt &&
+                                  widget.reverse)
+                              ? -15
+                              : 0)
                       .toDouble(),
                   child: Transform.rotate(
                     angle: getCurrentPercent(_percent),
@@ -434,7 +430,7 @@ class _CirclePainter extends CustomPainter {
         _paintLine.shader = SweepGradient(
           transform: reverse
               ? GradientRotation(
-              radians(-90 - progress + startAngle) - correction)
+                  radians(-90 - progress + startAngle) - correction)
               : GradientRotation(radians(-90.0 + startAngle) - correction),
           startAngle: radians(0).toDouble(),
           endAngle: radians(progress).toDouble(),
@@ -464,8 +460,8 @@ class _CirclePainter extends CustomPainter {
 
     if (reverse) {
       final start =
-      radians(360 * startAngleFixedMargin - 90.0 + fixedStartAngle)
-          .toDouble();
+          radians(360 * startAngleFixedMargin - 90.0 + fixedStartAngle)
+              .toDouble();
       final end = radians(-progress * startAngleFixedMargin).toDouble();
       canvas.drawArc(
         Rect.fromCircle(

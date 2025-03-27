@@ -21,7 +21,7 @@ class BetColorResultProviderTRX with ChangeNotifier {
     _regLoading=value;
     notifyListeners();
   }
-  Future ColorbetTRX(context, String amount, String number,int gameid) async {
+  Future colorBetTrx(context, String amount, String number,int gameid) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     setRegLoading(true);

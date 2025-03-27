@@ -184,7 +184,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                       isLoading = true; // Show loader
                     });
 
-                    await authProvider.Addacount(
+                    await authProvider.addAccount(
                       context,
                       nameCon.text,
                       banknameCon.text,

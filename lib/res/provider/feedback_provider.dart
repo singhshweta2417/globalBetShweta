@@ -24,7 +24,7 @@ class FeedbackProvider with ChangeNotifier {
     _regLoading=value;
     notifyListeners();
   }
-  Future Feedbacksubmit(context, String description) async {
+  Future feedbackSubmit(context, String description) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
 

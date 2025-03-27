@@ -317,7 +317,7 @@ class _AccountPageNewState extends State<AccountPageNew> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const TransctionHistory()));
+                                        const TransactionHistory()));
                           }),
                         ],
                       ),

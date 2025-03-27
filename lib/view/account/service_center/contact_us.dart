@@ -33,7 +33,7 @@ class _ContactUsState extends State<ContactUs> {
   @override
   Widget build(BuildContext context) {
 
-    final contactusData = Provider.of<ContactUsProvider>(context).ContactusData;
+    final contactusData = Provider.of<ContactUsProvider>(context).contactUsData;
 
     return SafeArea(child: Scaffold(
       

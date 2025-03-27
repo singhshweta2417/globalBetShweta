@@ -10,11 +10,11 @@ import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/view/account/gifts.dart';
-import 'package:globalbet/view/activity/Invitationbonus.dart';
+import 'package:globalbet/view/activity/invitation_bonus.dart';
 import 'package:globalbet/view/activity/activity_award.dart';
 import 'package:globalbet/view/activity/activity_details.dart';
-import 'package:globalbet/view/activity/attendence_bonus.dart';
-import 'package:globalbet/view/activity/betting_rebats.dart';
+import 'package:globalbet/view/activity/attendance_bonus.dart';
+import 'package:globalbet/view/activity/betting_rebate.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
@@ -76,7 +76,9 @@ class _ActivityScreenState extends State<ActivityScreen> {
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(width*0.02, height*0.02, width*0.02, 0),
+        height: height,
+        padding:
+            EdgeInsets.fromLTRB(width * 0.02, height * 0.02, width * 0.02, 0),
         decoration: const BoxDecoration(gradient: AppColors.bgGrad),
         child: ListView(
           shrinkWrap: true,
@@ -122,7 +124,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                             child: Center(
                               child: Image.asset(
                                 items[index]['icon'],
-                                color:AppColors.whiteColor,
+                                color: AppColors.whiteColor,
                                 scale: 1.8,
                               ),
                             ),
@@ -178,12 +180,11 @@ class _ActivityScreenState extends State<ActivityScreen> {
                                 bannerdata: sliderData[index])));
                   },
                   child: Container(
-                    padding: EdgeInsets.only(bottom: height*0.02),
-                    margin: EdgeInsets.fromLTRB(0,height*0.02,0,0),
+                    padding: EdgeInsets.only(bottom: height * 0.02),
+                    margin: EdgeInsets.fromLTRB(0, height * 0.02, 0, 0),
                     decoration: BoxDecoration(
                         color: AppColors.unSelectColor,
-                        borderRadius: BorderRadius.circular(10)
-                    ),
+                        borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -220,26 +221,21 @@ class _ActivityScreenState extends State<ActivityScreen> {
     );
   }
 
-  int? responseStatuscode;
+  int? responseStatusCode;
   List<SliderModel> sliderData = [];
 
   Future<void> activitySliderList() async {
     final response = await http.get(
       Uri.parse(ApiUrl.banner),
     );
-    if (kDebugMode) {
-      print(ApiUrl.banner);
-      print('banner');
-    }
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       setState(() {
         sliderData =
             responseData.map((item) => SliderModel.fromJson(item)).toList();
-        // selectedIndex = items.isNotEmpty ? 0:-1; //
       });
     } else if (response.statusCode == 400) {
       if (kDebugMode) {

@@ -12,6 +12,9 @@ environment:
 
 
 dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
   flame: ^1.7.3
   flame_forge2d: ^0.13.0+1
   another_flushbar: ^1.12.30
@@ -22,6 +25,8 @@ dependencies:
   fluttertoast: ^8.2.4
   dio: ^5.4.0
   flutter_widget_from_html:
+  firebase_core: ^3.12.1
+  cloud_firestore: ^5.6.5
   url_launcher:
   webview_flutter: 3.0.4
   image_picker: ^1.1.2
@@ -43,13 +48,6 @@ dependencies:
   flutter_flip_card:
   fwfh_text_style: ^2.23.8
   wakelock_plus: ^1.2.8
-
-  flutter:
-    sdk: flutter
-
-
-
-  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +88,16 @@ flutter:
     - assets/jackpot/
     - assets/spin/
     - assets/fun_target/
+    - assets/teen_patti/
+    - assets/teen_patti/cards/
+    - assets/teen_patti/cards/clubs/
+    - assets/teen_patti/cards/hearts/
+    - assets/teen_patti/cards/spades/
+    - assets/teen_patti/cards/diamonds/
+    - assets/teen_patti/person/
+    - assets/teen_patti/sound_effects/
+    - assets/seven_up_down_new/
+    - assets/seven_up_down_new/loading7.gif
 
 
 

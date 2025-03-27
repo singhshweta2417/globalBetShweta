@@ -123,10 +123,9 @@ class _DepositScreenState extends State<DepositScreen> {
           ],
           gradient: AppColors.unSelectedColor),
       body: Container(
+        height: height,
         padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-        decoration: const BoxDecoration(
-          gradient: AppColors.bgGrad
-        ),
+        decoration: const BoxDecoration(gradient: AppColors.bgGrad),
         child: ListView(
           shrinkWrap: true,
           children: [
@@ -173,9 +172,7 @@ class _DepositScreenState extends State<DepositScreen> {
                               onTap: () {
                                 userData.profileApi(context);
                                 Utils.flushBarSuccessMessage(
-                                    'Wallet refresh ✔',
-                                    context,
-                                    Colors.white);
+                                    'Wallet refresh ✔', context, Colors.white);
                               },
                               child: Image.asset(
                                 Assets.iconsTotalBal,
@@ -323,10 +320,9 @@ class _DepositScreenState extends State<DepositScreen> {
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w900,
-                                          color:
-                                              selectIndex == listNew[index]
-                                                  ? Colors.white
-                                                  : AppColors.whiteColor,
+                                          color: selectIndex == listNew[index]
+                                              ? Colors.white
+                                              : AppColors.whiteColor,
                                         ),
                                       ),
                                     ),
@@ -382,12 +378,11 @@ class _DepositScreenState extends State<DepositScreen> {
                 : selectedIndex == 0
                     ? Container(
                         width: width,
-                        padding: const EdgeInsets.only(
-                            top: 15, left: 15, right: 15),
+                        padding:
+                            const EdgeInsets.only(top: 15, left: 15, right: 15),
                         decoration: BoxDecoration(
                             gradient: AppColors.unSelectedColor,
-                            borderRadius:
-                                BorderRadiusDirectional.circular(10)),
+                            borderRadius: BorderRadiusDirectional.circular(10)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -466,12 +461,11 @@ class _DepositScreenState extends State<DepositScreen> {
                     : Container(
                         height: height * 0.33,
                         width: width,
-                        padding: const EdgeInsets.only(
-                            top: 15, left: 15, right: 15),
+                        padding:
+                            const EdgeInsets.only(top: 15, left: 15, right: 15),
                         decoration: BoxDecoration(
                             gradient: AppColors.unSelectedColor,
-                            borderRadius:
-                                BorderRadiusDirectional.circular(15)),
+                            borderRadius: BorderRadiusDirectional.circular(15)),
                         child: Column(
                           children: [
                             Row(
@@ -503,8 +497,7 @@ class _DepositScreenState extends State<DepositScreen> {
                                         childAspectRatio: aspectRatio * 4.8),
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: listNew.length,
-                                itemBuilder:
-                                    (BuildContext context, int index) {
+                                itemBuilder: (BuildContext context, int index) {
                                   return InkWell(
                                     onTap: () {
                                       setState(() {
@@ -517,10 +510,9 @@ class _DepositScreenState extends State<DepositScreen> {
                                       child: Container(
                                         height: height * 0.05,
                                         decoration: BoxDecoration(
-                                          color:
-                                              selectIndex == listNew[index]
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.darkColor,
+                                          color: selectIndex == listNew[index]
+                                              ? AppColors.whiteColor
+                                              : AppColors.darkColor,
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         ),
@@ -531,10 +523,10 @@ class _DepositScreenState extends State<DepositScreen> {
                                             style: TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w900,
-                                              color: selectIndex ==
-                                                      listNew[index]
-                                                  ? Colors.white
-                                                  : AppColors.whiteColor,
+                                              color:
+                                                  selectIndex == listNew[index]
+                                                      ? Colors.white
+                                                      : AppColors.whiteColor,
                                             ),
                                           ),
                                         ),
@@ -600,8 +592,7 @@ class _DepositScreenState extends State<DepositScreen> {
                   } else if (selectedIndex == 1) {
                     indianPay(depositCon.text, context);
                   } else if (selectedIndex == 2) {
-                    camelDeposit(
-                        camelCon.text, selectedIndex.toString());
+                    camelDeposit(camelCon.text, selectedIndex.toString());
                   }
                 }
               },

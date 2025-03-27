@@ -31,8 +31,6 @@ class VipCardProvider with ChangeNotifier {
     String token = user.id.toString();
     try {
       final response = await http.get(Uri.parse('${ApiUrl.vipLevel}$token'));
-      print(('${ApiUrl.vipLevel}$token'));
-      print(('https'));
       if (response.statusCode == 200) {
 
         final List<dynamic> jsonResponse = jsonDecode(response.body)['data'];

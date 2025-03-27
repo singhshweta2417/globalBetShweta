@@ -1,24 +1,24 @@
 class PromotionCountModel {
 
-  String? total_user_count;
-  String? today_user;
-  String? total_commission;
-  String? refer_bonus;
+  String? totalUserCount;
+  String? todayUser;
+  String? totalCommission;
+  String? referBonus;
 
   PromotionCountModel({
-    required this.total_user_count,
-    required this.today_user,
-    required this.total_commission,
-    required this.refer_bonus,
+    required this.totalUserCount,
+    required this.todayUser,
+    required this.totalCommission,
+    required this.referBonus,
 
   });
 
   factory PromotionCountModel.fromJson(Map<String, dynamic>json) {
     return PromotionCountModel(
-      total_user_count: json['total_user_count'],
-      today_user: json['today_user'],
-      total_commission: json['total_commission'],
-      refer_bonus: json['refer_bonus'],
+      totalUserCount: json['total_user_count'],
+      todayUser: json['today_user'],
+      totalCommission: json['total_commission'],
+      referBonus: json['refer_bonus'],
 
     );
   }

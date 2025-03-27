@@ -21,16 +21,17 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen> {
   @override
   void initState() {
-    notificationn();
+    notify();
     // TODO: implement initState
     super.initState();
   }
 
-  int? responseStatuscode;
+  int? responseStatusCode;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColors.darkColor,
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -55,8 +56,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
           shrinkWrap: true,
           children: [
             const SizedBox(height: 10),
-            responseStatuscode == 400
-                ? const Notfounddata()
+            responseStatusCode == 400
+                ? const NotFoundData()
                 : items.isEmpty
                     ? const Center(child: CircularProgressIndicator())
                     : ListView.builder(
@@ -80,7 +81,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
-                                      //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Image.asset(
                                           Assets.iconsProNotification,
@@ -104,7 +104,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: HtmlWidget(
-                                          items[index].disc.toString()),
+                                        items[index].disc.toString(),
+                                        textStyle: const TextStyle(
+                                            color: AppColors.greyColor),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -119,17 +122,17 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   List<NotificationModel> items = [];
 
-  Future<void> notificationn() async {
+  Future<void> notify() async {
     final response = await http.get(
       Uri.parse(ApiUrl.notificationApi),
     );
     if (kDebugMode) {
       print(ApiUrl.notificationApi);
-      print('notificationapi');
+      print('notify');
     }
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
@@ -138,7 +141,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
         items = responseData
             .map((item) => NotificationModel.fromJson(item))
             .toList();
-        // selectedIndex = items.isNotEmpty ? 0:-1; //
       });
     } else if (response.statusCode == 400) {
       if (kDebugMode) {
@@ -153,8 +155,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
   }
 }
 
-class Notfounddata extends StatelessWidget {
-  const Notfounddata({super.key});
+class NotFoundData extends StatelessWidget {
+  const NotFoundData({super.key});
 
   @override
   Widget build(BuildContext context) {

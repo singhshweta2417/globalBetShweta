@@ -13,7 +13,7 @@ import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/res/helper/api_helper.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 
 class NewSubordinate extends StatefulWidget {
   const NewSubordinate({super.key});
@@ -23,17 +23,16 @@ class NewSubordinate extends StatefulWidget {
 }
 
 class _NewSubordinateState extends State<NewSubordinate> {
-
-
   @override
   void initState() {
     newSubordinate();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: AppColors.darkColor,
       appBar: GradientAppBar(
           title: textWidget(
               text: 'New Subordinate', fontSize: 25, color: Colors.white),
@@ -42,7 +41,6 @@ class _NewSubordinateState extends State<NewSubordinate> {
           gradient: AppColors.unSelectedColor),
       body: ListView(
         shrinkWrap: true,
-
         children: [
           Container(
             height: height * 0.07,
@@ -65,93 +63,97 @@ class _NewSubordinateState extends State<NewSubordinate> {
           responseStatuscode == 400
               ? const Notfounddata()
               : itemsSubordinate.isEmpty
-              ? const Center(child: CircularProgressIndicator()):
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  decoration:  const BoxDecoration(
-                    borderRadius:BorderRadius.all(Radius.circular(10)) ,
-                    gradient: AppColors.unSelectedColor,
-                  ),
-                  child: Column(
-                  //  shrinkWrap: true,
-                    children: [
-                      ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: itemsSubordinate.length,
-                        itemBuilder: (context, index) {
-                          final data=itemsSubordinate[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                  ? const Center(child: CircularProgressIndicator())
+                  : Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              gradient: AppColors.unSelectedColor,
+                            ),
                             child: Column(
+                              //  shrinkWrap: true,
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    textWidget(
-                                      text: obscureCenterDigits( data.mobile.toString()),
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 15,
-                                      color: AppColors.whiteColor,
-                                    ),
-                                    textWidget(
-                                      text: 'UID: ${data.userName}',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 15,
-                                      color: AppColors.whiteColor,
-                                    ),
-                                  ],
+                                ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: itemsSubordinate.length,
+                                  itemBuilder: (context, index) {
+                                    final data = itemsSubordinate[index];
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              textWidget(
+                                                text: obscureCenterDigits(
+                                                    data.mobile.toString()),
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 15,
+                                                color: AppColors.whiteColor,
+                                              ),
+                                              textWidget(
+                                                text: 'UID: ${data.userName}',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 15,
+                                                color: AppColors.whiteColor,
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              textWidget(
+                                                text: 'Direct Subordinate',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14,
+                                                color: AppColors.whiteColor,
+                                              ),
+                                              textWidget(
+                                                text: data.datetime.toString(),
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 13,
+                                                color: AppColors.btnColor,
+                                              ),
+                                            ],
+                                          ),
+                                          const Divider(
+                                            thickness: 1,
+                                            color: AppColors.whiteColor,
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  },
                                 ),
-                                const SizedBox(height: 8,),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    textWidget(
-                                      text: 'Direct Subordinate',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14,
-                                      color: AppColors.whiteColor,
-                                    ),
-                                    textWidget(
-                                      text: data.datetime.toString(),
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 13,
-                                      color: AppColors.btnColor,
-                                    ),
-                                  ],
+                                Center(
+                                  child: textWidget(
+                                    text: 'No more',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    color: AppColors.btnColor,
+                                  ),
                                 ),
-                                const Divider(
-                                  thickness: 1,
-                                  color: AppColors.whiteColor,
-                                )
                               ],
                             ),
-                          );
-                        },
-                      ),
-                      Center(
-                        child: textWidget(
-                          text: 'No more',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 15,
-                          color: AppColors.btnColor,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+                      ],
+                    ),
         ],
       ),
     );
   }
-
-
 
   ///condition for obscure text
   String obscureCenterDigits(String input) {
@@ -206,8 +208,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
               ? Container(
                   height: 3,
                   width: width * 0.3,
-                  color:
-                      isSelected ? Colors.blue : AppColors.whiteColor,
+                  color: isSelected ? Colors.blue : AppColors.whiteColor,
                 )
               : Container()
         ],
@@ -216,8 +217,6 @@ class _NewSubordinateState extends State<NewSubordinate> {
   }
 
   UserViewModel userProvider = UserViewModel();
-
-
 
   BaseApiHelper baseApiHelper = BaseApiHelper();
   int? responseStatuscode;
@@ -240,13 +239,11 @@ class _NewSubordinateState extends State<NewSubordinate> {
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
 
-
-
       setState(() {
-        itemsSubordinate = responseData.map((item) => NewSubordinateModel.fromJson(item)).toList();
-
+        itemsSubordinate = responseData
+            .map((item) => NewSubordinateModel.fromJson(item))
+            .toList();
       });
-
     } else if (response.statusCode == 400) {
       if (kDebugMode) {
         print('Data not found');
@@ -259,6 +256,7 @@ class _NewSubordinateState extends State<NewSubordinate> {
     }
   }
 }
+
 class Notfounddata extends StatelessWidget {
   const Notfounddata({super.key});
 

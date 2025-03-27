@@ -65,7 +65,7 @@ class _SettingPageNewState extends State<SettingPageNew> {
     ];
    final profileView= Provider.of<ProfileViewModel>(context);
     return Scaffold(
-        
+        backgroundColor: AppColors.darkColor,
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -87,9 +87,6 @@ class _SettingPageNewState extends State<SettingPageNew> {
             ),
             gradient: AppColors.primaryGradient),
         body:
-        // context.read<ProfileProvider>() == null
-        //     ? const Center(child: CircularProgressIndicator())
-        //     :
         ScrollConfiguration(
                 behavior: const ScrollBehavior().copyWith(overscroll: false),
                 child: SingleChildScrollView(

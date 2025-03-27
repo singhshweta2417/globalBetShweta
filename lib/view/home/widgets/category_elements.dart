@@ -5,7 +5,8 @@ import 'package:globalbet/main.dart';
 import 'package:globalbet/plinko/lesson_02/game_lesson_02.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/AndarBahar/andar_home_page.dart';
+import 'package:globalbet/view/home/casino/7up_down_new/seven_up_down_new.dart';
+import 'package:globalbet/view/home/casino/andar_bahar/andar_home_page.dart';
 import 'package:globalbet/view/home/casino/dragon_tiger_new/dragon_tiger.dart';
 import 'package:globalbet/view/home/casino/fun_target/game_home/home_screen.dart';
 import 'package:globalbet/view/home/casino/lucky_card_12/lucky_card_12.dart';
@@ -14,11 +15,13 @@ import 'package:globalbet/view/home/casino/triple_chance/triple_chance.dart';
 import 'package:globalbet/view/home/lottery/trx/trx.dart';
 import 'package:globalbet/view/home/lottery/wingo/win_go.dart';
 import 'package:globalbet/view/home/mini/Aviator/home_page_aviator.dart';
-import 'package:globalbet/view/home/mini/HeadTail/head_tail_home.dart';
+import 'package:globalbet/view/home/mini/head_tail/head_tail_home.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/keno_home.dart';
 import 'package:globalbet/view/home/mini/mines/mines.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view/titli_home.dart';
 import 'package:globalbet/view/home/rummy/spin_to_win/spin_to_win.dart';
+import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_services.dart';
+import 'package:provider/provider.dart';
 
 class CategoryElement extends StatefulWidget {
   final int selectedCategoryIndex;
@@ -28,7 +31,7 @@ class CategoryElement extends StatefulWidget {
   State<CategoryElement> createState() => _CategoryElementState();
 }
 
-class _CategoryElementState extends State<CategoryElement> {
+class _CategoryElementState extends State<CategoryElement> with SingleTickerProviderStateMixin{
   @override
   void initState() {
     startCountdown();
@@ -62,6 +65,7 @@ class _CategoryElementState extends State<CategoryElement> {
 
   @override
   Widget build(BuildContext context) {
+    final gameCon=Provider.of<TeenPattiGameController>(context);
     List<MiniGameModel> originalGameList = [
       MiniGameModel(
           image: Assets.categoryPlinko,
@@ -185,6 +189,14 @@ class _CategoryElementState extends State<CategoryElement> {
               MaterialPageRoute(builder: (context) => const HomePageScreen()),
             );
           }),
+      MiniGameModel(
+          image: Assets.categoryUpdownGamelogo,
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SevenUpDownScreen()));
+          }),
     ];
     List<MiniGameModel> rummyGameList = [
       MiniGameModel(
@@ -196,8 +208,15 @@ class _CategoryElementState extends State<CategoryElement> {
       MiniGameModel(
           image: Assets.categoryTeenPatti,
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SpinToWin()));
+            gameCon.joinGame(context).then((v) {
+              if (v) {
+                gameCon.startListeningToGame(context, this);
+              } else {
+                debugPrint('something went wrong');
+              }
+            });
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => const GameUIControlScreenActivity()));
           }),
     ];
     return widget.selectedCategoryIndex == 0

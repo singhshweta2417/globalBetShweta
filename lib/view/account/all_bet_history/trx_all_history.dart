@@ -27,7 +27,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
   int pageNumber = 1;
   @override
   void initState() {
-    BettingHistory();
+    bettingHistory();
     super.initState();
   }
 
@@ -53,7 +53,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
             ),
           ),
         ),
-        responseStatuscode == 400
+        responseStatusCode == 400
             ? const Notfounddata()
             : items.isEmpty
                 ? const Center(child: CircularProgressIndicator())
@@ -373,7 +373,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                         offsetResult = offsetResult - 10;
                       });
                       setState(() {});
-                      BettingHistory();
+                      bettingHistory();
                     },
               child: Container(
                 height: height * 0.06,
@@ -405,7 +405,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                   pageNumber++;
                 });
                 setState(() {});
-                BettingHistory();
+                bettingHistory();
               },
               child: Container(
                 height: height * 0.06,
@@ -428,9 +428,9 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
   BaseApiHelper baseApiHelper = BaseApiHelper();
   int? totalBets;
 
-  int? responseStatuscode;
+  int? responseStatusCode;
   List<BettingHistoryModel> items = [];
-  Future<void> BettingHistory() async {
+  Future<void> bettingHistory() async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     final response = await http.get(
@@ -444,7 +444,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
     }
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
@@ -574,7 +574,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
           selectedIndex = index;
           offsetResult = 0;
         });
-        BettingHistory();
+        bettingHistory();
       },
       child: Column(
         children: [

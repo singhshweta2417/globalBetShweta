@@ -334,7 +334,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               alignment: Alignment.center,
                               decoration: rememberPass
                                   ? BoxDecoration(
-                                      color: AppColors.whiteColor,
+                                      color: AppColors.greyColor,
                                       border: Border.all(
                                           color: AppColors.whiteColor),
                                       borderRadius:

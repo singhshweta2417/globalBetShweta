@@ -18,7 +18,7 @@ import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 
 class SubOrdinateDataScreen extends StatefulWidget {
-  const SubOrdinateDataScreen( {super.key});
+  const SubOrdinateDataScreen({super.key});
 
   @override
   State<SubOrdinateDataScreen> createState() => _SubOrdinateDataScreenState();
@@ -29,18 +29,18 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
 
   @override
   void initState() {
-    TierData();
-    SubData();
+    tierData();
+    subData();
     // TODO: implement initState
     super.initState();
   }
 
-  int?responseStatuscode;
+  int? responseStatusCode;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: AppColors.darkColor,
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Subordinate Data', fontSize: 25, color: Colors.white),
@@ -67,11 +67,21 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                           Column(
                             children: [
                               addTextColumn(
-                                  depositnumber==null?"0":depositnumber.toString(), 'Deposit Number', Colors.white),
+                                  depositNumber == null
+                                      ? "0"
+                                      : depositNumber.toString(),
+                                  'Deposit Number',
+                                  Colors.white),
                               addTextColumn(
-                                  numberofbettor==null?"0":numberofbettor.toString(), 'Number of bettor', Colors.white),
+                                  numberOfBet == null
+                                      ? "0"
+                                      : numberOfBet.toString(),
+                                  'Number of bettor',
+                                  Colors.white),
                               addTextColumn(
-                                  noofirstdeposit==null?"0":noofirstdeposit.toString(),
+                                  noFirstDeposit == null
+                                      ? "0"
+                                      : noFirstDeposit.toString(),
                                   'Number of People making\n            first deposit',
                                   Colors.white),
                             ],
@@ -79,10 +89,19 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                           Column(
                             children: [
                               addTextColumn(
-                                  depositAmount==null?"0":depositAmount.toString(), 'Deposit Amount', Colors.white),
-                              addTextColumn(totalbet==null?"0":totalbet.toString(), 'Total bet', Colors.white),
+                                  depositAmount == null
+                                      ? "0"
+                                      : depositAmount.toString(),
+                                  'Deposit Amount',
+                                  Colors.white),
                               addTextColumn(
-                                  firstdepositamount==null?"0":firstdepositamount.toString(),
+                                  totalBet == null ? "0" : totalBet.toString(),
+                                  'Total bet',
+                                  Colors.white),
+                              addTextColumn(
+                                  firstDepositAmount == null
+                                      ? "0"
+                                      : firstDepositAmount.toString(),
                                   'first deposit amount',
                                   Colors.white),
                             ],
@@ -98,7 +117,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                 ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: sundataitem.length,
+                    itemCount: subDataItem.length,
                     itemBuilder: (context, index) {
                       return Container(
                         margin: const EdgeInsets.all(10),
@@ -113,12 +132,14 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                             Row(
                               children: [
                                 textWidget(
-                                    text: '  UID:${sundataitem[index].u_id}',
+                                    text: '  UID:${subDataItem[index].uId}',
                                     fontSize: 18,
                                     color: AppColors.whiteColor),
                                 IconButton(
                                     onPressed: () {
-                                      copyToClipboard(sundataitem[index].u_id.toString(),context);
+                                      copyToClipboard(
+                                          subDataItem[index].uId.toString(),
+                                          context);
                                     },
                                     icon: const Icon(
                                       Icons.copy,
@@ -136,14 +157,16 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   textWidget(
                                       text: 'Level',
                                       fontSize: 16,
                                       color: AppColors.whiteColor),
                                   textWidget(
-                                      text:selectedTierIndex==-1? '  All':'Tier ${selectedTierIndex+1}',
+                                      text: selectedTierIndex == -1
+                                          ? '  All'
+                                          : 'Tier ${selectedTierIndex + 1}',
                                       fontSize: 16,
                                       color: AppColors.whiteColor),
                                 ],
@@ -153,14 +176,14 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   textWidget(
                                       text: 'Deposit amount',
                                       fontSize: 16,
                                       color: AppColors.whiteColor),
                                   textWidget(
-                                      text: "₹${sundataitem[index].total_cash}",
+                                      text: "₹${subDataItem[index].totalCash}",
                                       fontSize: 16,
                                       color: AppColors.whiteColor),
                                 ],
@@ -170,14 +193,14 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   textWidget(
                                       text: 'Bet amount',
                                       fontSize: 18,
                                       color: AppColors.whiteColor),
                                   textWidget(
-                                      text: "₹${sundataitem[index].bet_amount}",
+                                      text: "₹${subDataItem[index].betAmount}",
                                       fontSize: 18,
                                       color: AppColors.whiteColor),
                                 ],
@@ -187,14 +210,16 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   textWidget(
                                       text: 'Commission',
                                       fontSize: 18,
                                       color: AppColors.whiteColor),
                                   textWidget(
-                                      text:sundataitem[index].commission.toString(),
+                                      text: subDataItem[index]
+                                          .commission
+                                          .toString(),
                                       fontSize: 18,
                                       color: AppColors.whiteColor),
                                 ],
@@ -204,20 +229,21 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   textWidget(
                                       text: 'Date',
                                       fontSize: 18,
                                       color: AppColors.whiteColor),
                                   textWidget(
-                                      text:sundataitem[index].yesterday_date.toString(),
+                                      text: subDataItem[index]
+                                          .yesterdayDate
+                                          .toString(),
                                       fontSize: 18,
                                       color: AppColors.whiteColor),
                                 ],
                               ),
                             ),
-
                           ],
                         ),
                       );
@@ -235,9 +261,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                     fieldRadius: BorderRadius.circular(10),
                     fillColor: Colors.white.withOpacity(0.01),
                     controller: searchCon,
-                    onChanged: (val){
-
-                    },
+                    onChanged: (val) {},
                     maxLines: 1,
                     hintText: 'Search subordinate UID',
                     suffixIcon: InkWell(
@@ -264,32 +288,32 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                     ),
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
                   child: Container(
                     height: height * 0.065,
-
                     decoration: BoxDecoration(
                         color: AppColors.contLightColor,
                         borderRadius: BorderRadius.circular(5)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const SizedBox(width: 20,),
+                        const SizedBox(
+                          width: 20,
+                        ),
                         Center(
                           child: textWidget(
-                              text:selectedTierIndex==-1? '  All':'Tier ${selectedTierIndex+1}',
+                              text: selectedTierIndex == -1
+                                  ? '  All'
+                                  : 'Tier ${selectedTierIndex + 1}',
                               fontSize: 18,
                               color: AppColors.whiteColor),
                         ),
                         IconButton(
                             onPressed: () {
                               showSubordinateFilterBottomSheet(context);
-
                             },
-                            icon: const Icon(
-                                Icons.keyboard_arrow_down_outlined,
+                            icon: const Icon(Icons.keyboard_arrow_down_outlined,
                                 color: AppColors.whiteColor)),
                       ],
                     ),
@@ -305,21 +329,18 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
 
   int selectedTierIndex = 0;
 
-
-  String type='all';
+  String type = 'all';
 
   showSubordinateFilterBottomSheet(BuildContext context) {
     showModalBottomSheet(
-      backgroundColor:AppColors.contLightColor,
+      backgroundColor: AppColors.contLightColor,
       shape: const RoundedRectangleBorder(
-          borderRadius:   BorderRadius.only(
-              topRight: Radius.circular(10), topLeft: Radius.circular(10))
-      ),
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(10), topLeft: Radius.circular(10))),
       context: context,
       builder: (BuildContext context) {
         return Container(
           padding: const EdgeInsets.all(20),
-
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -336,10 +357,9 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      //
-                      Navigator.pop(context,selectedTierIndex);
-                      TierData();
-                      SubData();
+                      Navigator.pop(context, selectedTierIndex);
+                      tierData();
+                      subData();
                     },
                     child: textWidget(
                         text: 'Confirm', fontSize: 16, color: Colors.blue),
@@ -349,7 +369,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
               Expanded(
                 child: CupertinoPicker(
                     selectionOverlay:
-                    const CupertinoPickerDefaultSelectionOverlay(
+                        const CupertinoPickerDefaultSelectionOverlay(
                       background: CupertinoDynamicColor.withBrightness(
                         color: Colors.transparent,
                         darkColor: Colors.transparent,
@@ -362,15 +382,16 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                     onSelectedItemChanged: (tierIndex) {
                       setState(() {
                         selectedTierIndex = tierIndex; // Update selected index
-                        type=tierIndex==0?'all':'Tier $tierIndex';
+                        type = tierIndex == 0 ? 'all' : 'Tier $tierIndex';
                       });
-
                     },
                     children: [
-                      for (var datas in tieritem)
-                        Text(datas.name,style: const TextStyle(color: Colors.white),)
-                    ]
-                ),
+                      for (var data in tierItem)
+                        Text(
+                          data.name,
+                          style: const TextStyle(color: Colors.white),
+                        )
+                    ]),
               ),
             ],
           ),
@@ -405,92 +426,87 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
     );
   }
 
-
-
-  List<TierModel> tieritem = [];
-  Future<void> TierData() async {
-    final response = await http.get(Uri.parse(ApiUrl.tierApi),);
+  List<TierModel> tierItem = [];
+  Future<void> tierData() async {
+    final response = await http.get(
+      Uri.parse(ApiUrl.tierApi),
+    );
     if (kDebugMode) {
       print(ApiUrl.tierApi);
       print('TierApi');
     }
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
-    if (response.statusCode==200) {
+    if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
 
       setState(() {
-        tieritem = responseData.map((item) => TierModel.fromJson(item)).toList();
+        tierItem =
+            responseData.map((item) => TierModel.fromJson(item)).toList();
       });
-
-    }
-    else if(response.statusCode==400){
+    } else if (response.statusCode == 400) {
       if (kDebugMode) {
         print('Data not found');
       }
-    }
-    else {
+    } else {
       setState(() {
-        tieritem = [];
+        tierItem = [];
       });
       throw Exception('Failed to load data');
     }
   }
-
 
   UserViewModel userProvider = UserViewModel();
 
-  int ? depositnumber;
-  String ? depositAmount;
-  int ? numberofbettor;
-  int ? totalbet;
-  int ? noofirstdeposit;
-  int ? firstdepositamount;
+  int? depositNumber;
+  String? depositAmount;
+  int? numberOfBet;
+  int? totalBet;
+  int? noFirstDeposit;
+  int? firstDepositAmount;
 
-  List<SubordinateModel> sundataitem = [];
-  Future<void> SubData() async {
-
+  List<SubordinateModel> subDataItem = [];
+  Future<void> subData() async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
 
-    final response = await http.get(Uri.parse("${ApiUrl.subDataApi}$token&tier=${selectedTierIndex+1}"),);
+    final response = await http.get(
+      Uri.parse("${ApiUrl.subDataApi}$token&tier=${selectedTierIndex + 1}"),
+    );
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
-
-    if (response.statusCode==200) {
-      final List<dynamic> responseData = json.decode(response.body)['subordinates_data'];
+    if (response.statusCode == 200) {
+      final List<dynamic> responseData =
+          json.decode(response.body)['subordinates_data'];
 
       setState(() {
-        sundataitem = responseData.map((item) => SubordinateModel.fromJson(item)).toList();
-        noofirstdeposit = json.decode(response.body)['first deposit '];
-        depositnumber = json.decode(response.body)['number of deposit'];
+        subDataItem = responseData
+            .map((item) => SubordinateModel.fromJson(item))
+            .toList();
+        noFirstDeposit = json.decode(response.body)['first deposit '];
+        depositNumber = json.decode(response.body)['number of deposit'];
         depositAmount = json.decode(response.body)['payin amount'];
-        numberofbettor = json.decode(response.body)['number of bettor'];
-        totalbet = json.decode(response.body)['bet amount'];
-        firstdepositamount = json.decode(response.body)['first deposit amount'];
-
+        numberOfBet = json.decode(response.body)['number of bettor'];
+        totalBet = json.decode(response.body)['bet amount'];
+        firstDepositAmount = json.decode(response.body)['first deposit amount'];
       });
-
-    }
-    else if(response.statusCode==400){
+    } else if (response.statusCode == 400) {
       if (kDebugMode) {
         print('Data not found');
       }
-    }
-    else {
+    } else {
       setState(() {
-        sundataitem = [];
+        subDataItem = [];
       });
       throw Exception('Failed to load data');
     }
   }
-
 
   Future<void> searchData(String search) async {
     try {
@@ -498,23 +514,27 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
       String token = user.id.toString();
 
       final response = await http.get(
-        Uri.parse("${ApiUrl.subDataApi}$token&tier=${selectedTierIndex+1}&u_id=$search"),
+        Uri.parse(
+            "${ApiUrl.subDataApi}$token&tier=${selectedTierIndex + 1}&u_id=$search"),
       );
 
       if (kDebugMode) {
-        print("${ApiUrl.subDataApi}$token&tier=${selectedTierIndex+1}&u_id=$search");
+        print(
+            "${ApiUrl.subDataApi}$token&tier=${selectedTierIndex + 1}&u_id=$search");
         print("HTTP GET request sent");
       }
 
       setState(() {
-        responseStatuscode = response.statusCode;
+        responseStatusCode = response.statusCode;
       });
 
       if (response.statusCode == 200) {
-        List<SubordinateModel> searchResult = sundataitem.where((data) => data.u_id.toString().contains(search)).toList();
+        List<SubordinateModel> searchResult = subDataItem
+            .where((data) => data.uId.toString().contains(search))
+            .toList();
 
         setState(() {
-          sundataitem = searchResult;
+          subDataItem = searchResult;
         });
       } else if (response.statusCode == 400) {
         if (kDebugMode) {
@@ -522,7 +542,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
         }
       } else {
         setState(() {
-          sundataitem = [];
+          subDataItem = [];
         });
         throw Exception("Failed to load data");
       }
@@ -534,5 +554,3 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
     }
   }
 }
-
-

@@ -15,19 +15,19 @@ class Audio {
     audioPlayers.setLoopMode(LoopMode.off);
     return Future.delayed(duration ?? Duration.zero);
   }
-  static Future<void> WingoTimerone() async {
+  static Future<void> wingoTimerOne() async {
     var duration = await audioPlayers.setAsset('assets/music/countdownone.mp3');
     audioPlayers.play();
     audioPlayers.setLoopMode(LoopMode.off);
     return Future.delayed(duration ?? Duration.zero);
   }
-  static Future<void> WingoTimertwo() async {
+  static Future<void> wingoTimerTwo() async {
     var duration = await audioPlayers.setAsset('assets/music/countdowntwo.mp3');
     audioPlayers.play();
     audioPlayers.setLoopMode(LoopMode.off);
     return Future.delayed(duration ?? Duration.zero);
   }
-  static Future<void> DragonbgSound() async {
+  static Future<void> dragonBgSound() async {
     var duration = await audioPlayers.setAsset('assets/music/dragontiger.mp3');
     audioPlayers.play();
     audioPlayers.setLoopMode(LoopMode.off);

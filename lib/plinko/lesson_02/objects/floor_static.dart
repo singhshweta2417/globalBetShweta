@@ -79,7 +79,7 @@ class FloorStatic extends BodyComponent with ContactCallbacks {
   String processBallPosition(double ballPosition) {
     if (ballPosition >= 1.0 && ballPosition <= 2.42) {
       print(ballPosition);
-      print('rtu9o;opk7uy6');
+      print('ballPosition');
       return '0';
     } else if (ballPosition > 2.42 && ballPosition <= 3.84) {
       return '1';
@@ -88,39 +88,38 @@ class FloorStatic extends BodyComponent with ContactCallbacks {
     }
   }
 
-  String SetIndex = '';
+  String setIndex = '';
 
   plinkoBet(double ballPosition) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     print(token);
-    print("token");
     print("ballPosition");
     print(ballPosition);
 
     if (ballPosition >= 1.0 && ballPosition <= 2.42) {
-      SetIndex = '1';
+      setIndex = '1';
     } else
       if (ballPosition > 2.42 && ballPosition <= 3.84) {
-      SetIndex = '2';
+      setIndex = '2';
     } else if (ballPosition > 3.84 && ballPosition <= 5.26) {
-      SetIndex = '3';
+      setIndex = '3';
     } else if (ballPosition > 5.26 && ballPosition <= 6.68) {
-      SetIndex = '4';
+      setIndex = '4';
     } else if (ballPosition > 6.68 && ballPosition <= 8.1) {
-      SetIndex = '5';
+      setIndex = '5';
     } else if (ballPosition > 8.1 && ballPosition <= 9.52) {
-      SetIndex = '6';
+      setIndex = '6';
     } else if (ballPosition > 9.52 && ballPosition <= 10.94) {
-      SetIndex = '7';
+      setIndex = '7';
     } else if (ballPosition > 10.94 && ballPosition <= 12.36) {
-      SetIndex = '8';
+      setIndex = '8';
     } else if (ballPosition > 12.36) {
-      SetIndex = '9';
+      setIndex = '9';
     }
 
 
-    print(SetIndex);
+    print(setIndex);
     print('SetIndex');
 
     final response = await http.post(
@@ -128,7 +127,7 @@ class FloorStatic extends BodyComponent with ContactCallbacks {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{"userid": token, "index": SetIndex}),
+      body: jsonEncode(<String, String>{"userid": token, "index": setIndex}),
     );
 
     if (response.statusCode == 200) {

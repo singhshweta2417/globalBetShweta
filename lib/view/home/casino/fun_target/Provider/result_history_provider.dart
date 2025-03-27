@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:globalbet/view/home/casino/fun_target/Constant/url.dart';
 import 'package:http/http.dart' as http;
 import '../../../../../utils/utils.dart';
-import '../Model/result-history-model.dart';
+import '../Model/result_history_model.dart';
 
 class ResultHistoryProvider extends ChangeNotifier {
   ResultHistoryModel? _result;

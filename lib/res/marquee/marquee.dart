@@ -725,7 +725,7 @@ class _CustomMarqueeState extends State<CustomMarquee> with SingleTickerProvider
         break;
     }
 
-    Widget CustomMarquee = ListView.builder(
+    Widget customMarquee = ListView.builder(
       controller: _controller,
       scrollDirection: widget.scrollAxis,
       reverse: widget.textDirection == TextDirection.rtl,
@@ -741,7 +741,7 @@ class _CustomMarqueeState extends State<CustomMarquee> with SingleTickerProvider
       },
     );
 
-    return kIsWeb ? CustomMarquee : _wrapWithFadingEdgeScrollView(CustomMarquee);
+    return kIsWeb ? customMarquee : _wrapWithFadingEdgeScrollView(customMarquee);
   }
 
   /// Builds the blank space between children.

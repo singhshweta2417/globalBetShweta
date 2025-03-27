@@ -25,14 +25,7 @@ class Launcher{
   }
 
   String email="general@rootsgoods.com";
-  _launchEmail() async {
-    if (await canLaunch("mailto:$email")) {
-      await launch("mailto:$email");
-    } else {
-      throw 'Could not launch';
-    }
-  }
-  static void  linkurlnew() async {
+  static void  linkUrlNew() async {
     const url = 'https://www.whatsapp.com/';
     if (await canLaunch(url)) {
       await launch(url, forceWebView: true, enableJavaScript: true);

@@ -17,7 +17,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      
+      backgroundColor: AppColors.darkColor,
       appBar: const GradientAppBar(
           title: Text(
             "Activity Details",
@@ -54,7 +54,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
           :Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              height: height*0.90,
+              height: height*0.50,
               width: width,
               decoration: BoxDecoration(
                 borderRadius:  BorderRadius.circular(10),

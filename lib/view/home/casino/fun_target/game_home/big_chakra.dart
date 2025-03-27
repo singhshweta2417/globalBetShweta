@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/fun_target/Constant/SharedPreference.dart';
+import 'package:globalbet/view/home/casino/fun_target/Constant/shared_preferences.dart';
 
 class WheelSpinController {
   late void Function() startWheel;

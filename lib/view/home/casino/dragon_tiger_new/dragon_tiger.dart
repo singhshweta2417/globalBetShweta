@@ -16,9 +16,9 @@ import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/audio.dart';
 import 'package:globalbet/res/components/text_widget.dart';
 import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/Image_tost.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/dragonTost.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/dragon_tiger_Assets.dart';
+import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/Image_toast.dart';
+import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/dragon_toast.dart';
+import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/dragon_tiger_assets.dart';
 import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/fade_animation.dart';
 import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/glory_border.dart';
 import 'package:globalbet/view/home/casino/dragon_tiger_new/coin/single_coin.dart';
@@ -63,7 +63,7 @@ class _DragonTigerState extends State<DragonTiger> {
               as RenderBox)
           .localToGlobal(Offset.zero);
     });
-    Audio.DragonbgSound();
+    Audio.dragonBgSound();
     standingPeople();
     super.initState();
     fetchData();

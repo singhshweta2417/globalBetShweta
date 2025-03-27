@@ -13,10 +13,10 @@ class OfferViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  OfferModel? _OfferModelData;
-  OfferModel? get OfferModelData => _OfferModelData;
+  OfferModel? _offerModelData;
+  OfferModel? get offerModelData => _offerModelData;
   setOfferModel(OfferModel value) {
-    _OfferModelData = value;
+    _offerModelData = value;
     notifyListeners();
   }
 

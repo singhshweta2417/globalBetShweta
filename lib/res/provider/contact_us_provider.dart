@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class ContactUsProvider with ChangeNotifier {
   TcModel? _contactusData;
 
-  TcModel? get ContactusData => _contactusData;
+  TcModel? get contactUsData => _contactusData;
 
   void setCu(TcModel contactData) {
     _contactusData = contactData;

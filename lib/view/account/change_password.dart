@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
@@ -23,14 +22,11 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-
-
   bool hideSetPassword = true;
   bool hideConfirmPassword = true;
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -42,12 +38,10 @@ class _ChangePasswordState extends State<ChangePassword> {
   TextEditingController newPassCon = TextEditingController();
   TextEditingController confirmPassCon = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-        
+      backgroundColor: AppColors.darkColor,
         appBar: GradientAppBar(
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -68,197 +62,183 @@ class _ChangePasswordState extends State<ChangePassword> {
               color: AppColors.whiteColor,
             ),
             gradient: AppColors.unSelectedColor),
-      body: ScrollConfiguration(
-        behavior: const ScrollBehavior().copyWith(overscroll: false),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(height: height*0.01,),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            Assets.iconsPassword,
-                            height: 30,
-                           // color: AppColors.goldencolortwo,
-                          ),
-                          const SizedBox(width: 20),
-                          textWidget(
-                              text: 'Login Password',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                              color: AppColors.whiteColor)
-                        ],
+        body: ScrollConfiguration(
+          behavior: const ScrollBehavior().copyWith(overscroll: false),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: height * 0.01,
                       ),
-                    ),
-                    SizedBox(height: height*0.01,),
-                    Padding(
+                      Padding(
                         padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
-                        child: CustomTextField(
-                          obscureText: hideSetPassword,
-                          controller: oldPassCon,
-                          maxLines: 1,
-                          style: const TextStyle(color: Colors.white),
-                          hintText: 'Enter your old password',
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  hideSetPassword = !hideSetPassword;
-                                });
-                              },
-                              icon: Image.asset(hideSetPassword
-                                  ? Assets.iconsEyeClose
-                                  : Assets.iconsEyeOpen,)),
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            Assets.iconsPassword,
-                            height: 30,
-                          ),
-                          const SizedBox(width: 20),
-                          textWidget(
-                              text: 'New Password',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                              color: AppColors.whiteColor)
-                        ],
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Assets.iconsPassword,
+                              height: 30,
+                            ),
+                            const SizedBox(width: 20),
+                            textWidget(
+                                text: 'Login Password',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                                color: AppColors.whiteColor)
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
-                        child: CustomTextField(
-                          obscureText: hideSetPassword,
-                          controller: newPassCon,
-                          maxLines: 1,
-                          style: const TextStyle(color: Colors.white),
-                          hintText: 'Please enter the new password',
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  hideSetPassword = !hideSetPassword;
-                                });
-                              },
-                              icon: Image.asset(hideSetPassword
-                                  ? Assets.iconsEyeClose
-                                  : Assets.iconsEyeOpen,)),
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            Assets.iconsPassword,
-                            height: 30,
-                          ),
-                          const SizedBox(width: 20),
-                          textWidget(
-                              text: 'Confirm Password',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                              color: AppColors.whiteColor)
-                        ],
+                      SizedBox(
+                        height: height * 0.01,
                       ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
-                        child: CustomTextField(
-                          obscureText: hideSetPassword,
-                          controller: confirmPassCon,
-                          maxLines: 1,
-                          style: const TextStyle(color: Colors.white),
-                          hintText: 'Please re-enter password',
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  hideSetPassword = !hideSetPassword;
-                                });
-                              },
-                              icon: Image.asset(hideSetPassword
-                                  ? Assets.iconsEyeClose
-                                  : Assets.iconsEyeOpen,
-                              )),
-                        )),
-
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
-                      child: AppBtn(
-                        title: 'U p d a t e',
-                        fontSize: 20,
-                        titleColor: AppColors.whiteColor,
-                        hideBorder: true,
-                        onTap: () {
-                          Changepass(oldPassCon.text,newPassCon.text,confirmPassCon.text);
-                        },
-                        gradient: AppColors.loginSecondaryGrad,
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                          child: CustomTextField(
+                            obscureText: hideSetPassword,
+                            controller: oldPassCon,
+                            maxLines: 1,
+                            style: const TextStyle(color: Colors.white),
+                            hintText: 'Enter your old password',
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    hideSetPassword = !hideSetPassword;
+                                  });
+                                },
+                                icon: Image.asset(
+                                  hideSetPassword
+                                      ? Assets.iconsEyeClose
+                                      : Assets.iconsEyeOpen,
+                                )),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Assets.iconsPassword,
+                              height: 30,
+                            ),
+                            const SizedBox(width: 20),
+                            textWidget(
+                                text: 'New Password',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                                color: AppColors.whiteColor)
+                          ],
+                        ),
                       ),
-                    ),
-
-                  ],
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                          child: CustomTextField(
+                            obscureText: hideSetPassword,
+                            controller: newPassCon,
+                            maxLines: 1,
+                            style: const TextStyle(color: Colors.white),
+                            hintText: 'Please enter the new password',
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    hideSetPassword = !hideSetPassword;
+                                  });
+                                },
+                                icon: Image.asset(
+                                  hideSetPassword
+                                      ? Assets.iconsEyeClose
+                                      : Assets.iconsEyeOpen,
+                                )),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Assets.iconsPassword,
+                              height: 30,
+                            ),
+                            const SizedBox(width: 20),
+                            textWidget(
+                                text: 'Confirm Password',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                                color: AppColors.whiteColor)
+                          ],
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                          child: CustomTextField(
+                            obscureText: hideSetPassword,
+                            controller: confirmPassCon,
+                            maxLines: 1,
+                            style: const TextStyle(color: Colors.white),
+                            hintText: 'Please re-enter password',
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    hideSetPassword = !hideSetPassword;
+                                  });
+                                },
+                                icon: Image.asset(
+                                  hideSetPassword
+                                      ? Assets.iconsEyeClose
+                                      : Assets.iconsEyeOpen,
+                                )),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+                        child: AppBtn(
+                          title: 'U p d a t e',
+                          fontSize: 20,
+                          titleColor: AppColors.whiteColor,
+                          hideBorder: true,
+                          onTap: () {
+                            changePass(oldPassCon.text, newPassCon.text,
+                                confirmPassCon.text);
+                          },
+                          gradient: AppColors.loginSecondaryGrad,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-
-            ],
+              ],
+            ),
           ),
-        ),
-      )
-    );
+        ));
   }
+
   UserViewModel userProvider = UserViewModel();
 
-  Changepass(String oldpass, String newpass,String confirmpass) async {
-    if (kDebugMode) {
-      print("guycyg");
-    }
+  changePass(String oldPass, String newPass, String confirmPass) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     if (kDebugMode) {
       print(token);
     }
     final response = await http.post(Uri.parse(ApiUrl.changePasswordApi),
-        headers: <String,String>{
+        headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, dynamic >{
-          "userid":token,
-          "old_password":oldpass,
-          "new_password":newpass,
-          "confirm_password":confirmpass
-        })
-    );
-    if(response.statusCode==200){
+        body: jsonEncode(<String, dynamic>{
+          "userid": token,
+          "old_password": oldPass,
+          "new_password": newPass,
+          "confirm_password": confirmPass
+        }));
+    if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      if (kDebugMode) {
-        print(data);
-        print("👍👍👍👍updatee");
-      }
-      if(data["status"]==200){
+      if (data["status"] == 200) {
         Utils.flushBarSuccessMessage(data["msg"], context, Colors.white);
-      }
-      else {
+      } else {
         Utils.flushBarErrorMessage(data["msg"], context, Colors.white);
       }
-    }
-    else{
+    } else {
       throw Exception("error");
     }
-
   }
-
-
-
-
-
-
-
-
-
 }

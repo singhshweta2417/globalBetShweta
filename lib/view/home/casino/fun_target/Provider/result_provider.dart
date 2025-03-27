@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:globalbet/view/home/casino/fun_target/Constant/url.dart';
 import '../../../../../utils/utils.dart';
-import '../Model/result-model.dart';
+import '../Model/result_model.dart';
 
 import 'package:http/http.dart' as http;
 

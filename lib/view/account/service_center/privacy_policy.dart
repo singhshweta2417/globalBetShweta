@@ -31,7 +31,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
 
-    final dataprivacy = Provider.of<PrivacyPolicyProvider>(context).PpData;
+    final dataprivacy = Provider.of<PrivacyPolicyProvider>(context).ppData;
 
 
     return SafeArea(child: Scaffold(

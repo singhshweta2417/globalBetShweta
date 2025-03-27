@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/model/change_avatar_list_model.dart';
+import 'package:globalbet/model/change_aviator_list_model.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';

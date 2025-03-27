@@ -73,13 +73,6 @@ class UserAuthProvider with ChangeNotifier {
         "country_code": countryCode
       }),
     );
-    print({
-      "mobile": identity,
-      "password": password,
-      "email": email,
-      "referral_code": referralCode,
-      "country_code": countryCode
-    });
     var data = jsonDecode(response.body);
     if (data["status"] == 200) {
       setRegLoading(false);

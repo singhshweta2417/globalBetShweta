@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:globalbet/model/vip_bet_card/vip_his_model.dart';
-import 'package:globalbet/plinko/utils/Plinko_Pop_up.dart';
+import 'package:globalbet/plinko/utils/plinko_pop_up.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart'as http;
 import 'package:globalbet/main.dart';
@@ -37,7 +37,7 @@ class _AllVipHistoryState extends State<AllVipHistory> {
           leading: const AppBackBtn(),
           centerTitle: true,
           gradient: AppColors.primaryGradient),
-      body:    responseStatusCode==400?const notFoundData():
+      body:    responseStatusCode==400?const NotFoundData():
       vipHistory.isEmpty?const Center(child: CircularProgressIndicator()) :
       Column(
         children: [

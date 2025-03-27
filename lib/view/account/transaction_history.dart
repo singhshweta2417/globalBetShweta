@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/account/all_bet_history/avaitor_all_bet_history.dart';
+import 'package:globalbet/view/account/all_bet_history/aviator_all_bet_history.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:globalbet/main.dart';
@@ -13,22 +13,22 @@ import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/utils/filter_date-formate.dart';
+import 'package:globalbet/utils/filter_date_format.dart';
 import 'package:globalbet/utils/routes/routes_name.dart';
 
-class TransctionHistory extends StatefulWidget {
-  const TransctionHistory({Key? key}) : super(key: key);
+class TransactionHistory extends StatefulWidget {
+  const TransactionHistory({Key? key}) : super(key: key);
 
   @override
-  State<TransctionHistory> createState() => _TransctionHistoryState();
+  State<TransactionHistory> createState() => _TransactionHistoryState();
 }
 
-class _TransctionHistoryState extends State<TransctionHistory> {
+class _TransactionHistoryState extends State<TransactionHistory> {
   int selectedId = 0;
   String typeName = 'All';
   DateTime? _selectedDate;
   List<AllTransactionModel> allTransactions = [];
-  List<TransctionTypeModel> transctionTypes = [];
+  List<TransctionTypeModel> transactionTypes = [];
   bool isLoading = false;
 
   @override
@@ -41,7 +41,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: AppColors.darkColor,
       appBar: GradientAppBar(
         leading: const AppBackBtn(),
         title: textWidget(
@@ -71,7 +71,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                       ),
                       context: context,
                       builder: (BuildContext context) {
-                        return allTransctionType(context);
+                        return allTransactionType(context);
                       },
                     );
                   },
@@ -88,7 +88,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: width*0.3,
+                            width: width * 0.3,
                             child: textWidget(
                               text: typeName,
                               fontWeight: FontWeight.w900,
@@ -107,7 +107,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                 ),
                 Container(
                   height: height * 0.08,
-                    width: width * 0.45,
+                  width: width * 0.45,
                   decoration: BoxDecoration(
                       color: AppColors.contLightColor,
                       borderRadius: BorderRadius.circular(5)),
@@ -115,14 +115,13 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       textWidget(
-                          text:   _selectedDate==null?'Select date':
-                          '   ${_selectedDate!.year}-${_selectedDate!.month}-${_selectedDate!.day}',
+                          text: _selectedDate == null
+                              ? 'Select date'
+                              : '   ${_selectedDate!.year}-${_selectedDate!.month}-${_selectedDate!.day}',
                           fontSize: 18,
                           color: AppColors.whiteColor),
                       FilterDateFormat(
                         onDateSelected: (DateTime selectedDate) {
-
-
                           setState(() {
                             _selectedDate = selectedDate;
                           });
@@ -136,81 +135,83 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                     ],
                   ),
                 ),
-
               ],
             ),
-            responseStatusCode==400?const Notfounddata():
-            allTransactions.isEmpty?const Center(child: CircularProgressIndicator()) :
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                  itemCount: allTransactions.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final transaction = allTransactions[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: AppColors.darkColor,
-                        ),
-                        child: Column(
-                          children: [
-                            Container(
-                              height: height * 0.06,
-                              width: width,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(5),
-                                ),
-                                gradient: AppColors.loginSecondaryGrad,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: textWidget(
-                                    text: transaction.type.toString(),
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 18,
-                                    color: AppColors.whiteColor,
+            responseStatusCode == 400
+                ? const Notfounddata()
+                : allTransactions.isEmpty
+                    ? const Center(child: CircularProgressIndicator())
+                    : Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListView.builder(
+                            itemCount: allTransactions.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final transaction = allTransactions[index];
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: AppColors.darkColor,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: height * 0.06,
+                                        width: width,
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(5),
+                                            topRight: Radius.circular(5),
+                                          ),
+                                          gradient:
+                                              AppColors.loginSecondaryGrad,
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: textWidget(
+                                              text: transaction.type.toString(),
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 18,
+                                              color: AppColors.whiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      historyDetails(
+                                        'Detail',
+                                        transaction.type.toString(),
+                                        Colors.white,
+                                      ),
+                                      historyDetails(
+                                        'Time',
+                                        transaction.datetime.toString(),
+                                        Colors.white,
+                                      ),
+                                      historyDetails(
+                                        'balance',
+                                        '₹${transaction.amount!.toStringAsFixed(2)}',
+                                        Colors.red,
+                                      ),
+                                      SizedBox(height: height * 0.015),
+                                    ],
                                   ),
                                 ),
-                              ),
-                            ),
-                            historyDetails(
-                              'Detail',
-                              transaction.type.toString(),
-                              Colors.white,
-                            ),
-                            historyDetails(
-                              'Time',
-                              transaction.datetime.toString(),
-                              Colors.white,
-                            ),
-                            historyDetails(
-                              'balance',
-                             '₹${transaction.amount!.toStringAsFixed(2)}',
-                              Colors.red,
-                            ),
-                            SizedBox(height: height * 0.015),
-                          ],
+                              );
+                            },
+                          ),
                         ),
                       ),
-                    );
-                  },
-                ),
-              ),
-            ),
           ],
         ),
       ),
     );
   }
 
-  Widget allTransctionType(BuildContext context) {
+  Widget allTransactionType(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -235,9 +236,8 @@ class _TransctionHistoryState extends State<TransctionHistory> {
                     text: 'Cancel',
                     fontWeight: FontWeight.w900,
                     fontSize: 16,
-                    color: selectedId == 0
-                        ? Colors.blue
-                        : AppColors.dividerColor,
+                    color:
+                        selectedId == 0 ? Colors.blue : AppColors.dividerColor,
                   ),
                 ),
                 InkWell(
@@ -261,41 +261,40 @@ class _TransctionHistoryState extends State<TransctionHistory> {
             child: isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
-              shrinkWrap: true,
-              itemCount: transctionTypes.length,
-              itemBuilder: (BuildContext context, int index) {
-                final transactionType = transctionTypes[index];
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      selectedId = transactionType.id;
-                      typeName=transactionType.name;
-                    });
-                    if (kDebugMode) {
-                      print(selectedId);
-                    }
-                  },
-                  child: Column(
-                    children: [
-                      Center(
-                        child: textWidget(
-                          text: transactionType.name,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 16,
-                          color: selectedId == index.toString()
-                              ? Colors.blue
-                              : AppColors.whiteColor,
+                    shrinkWrap: true,
+                    itemCount: transactionTypes.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final transactionType = transactionTypes[index];
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            selectedId = transactionType.id;
+                            typeName = transactionType.name;
+                          });
+                          if (kDebugMode) {
+                            print(selectedId);
+                          }
+                        },
+                        child: Column(
+                          children: [
+                            Center(
+                              child: textWidget(
+                                text: transactionType.name,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 16,
+                                color: selectedId == index.toString()
+                                    ? Colors.blue
+                                    : AppColors.whiteColor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(
-                        height:
-                        MediaQuery.of(context).size.height * 0.02,
-                      ),
-                    ],
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
@@ -344,6 +343,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
       ],
     );
   }
+
   UserViewModel userProvider = UserViewModel();
 
   Future<void> fetchTransactionTypes() async {
@@ -357,7 +357,7 @@ class _TransctionHistoryState extends State<TransctionHistory> {
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body)['data'];
         setState(() {
-          transctionTypes = responseData
+          transactionTypes = responseData
               .map((item) => TransctionTypeModel.fromJson(item))
               .toList();
         });
@@ -383,8 +383,9 @@ class _TransctionHistoryState extends State<TransctionHistory> {
     String token = user.id.toString();
 
     final response = await http.get(
-
-      Uri.parse(_selectedDate==null?'${ApiUrl.allTransaction}$token&subtypeid=$selectedId':'${ApiUrl.allTransaction}$token&subtypeid=$selectedId&created_at=$_selectedDate'),
+      Uri.parse(_selectedDate == null
+          ? '${ApiUrl.allTransaction}$token&subtypeid=$selectedId'
+          : '${ApiUrl.allTransaction}$token&subtypeid=$selectedId&created_at=$_selectedDate'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -410,5 +411,3 @@ class _TransctionHistoryState extends State<TransctionHistory> {
     }
   }
 }
-
-

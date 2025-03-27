@@ -113,7 +113,7 @@ class GiftsPageState extends State<GiftsPage> {
                         titleColor: Colors.white,
                         gradient: AppColors.goldenGradient,
                         onTap: () {
-                          giftProvider.Giftcode(context, giftcode.text);
+                          giftProvider.giftCode(context, giftcode.text);
                         },
                       )
                     ],
@@ -153,7 +153,7 @@ class GiftsPageState extends State<GiftsPage> {
                         shrinkWrap: true,
                         physics: const ScrollPhysics(),
                         itemBuilder: (context, index) {
-                          final Gift = giftHistory[index];
+                          final gift = giftHistory[index];
                           return Column(
                             children: [
                               Row(
@@ -171,7 +171,7 @@ class GiftsPageState extends State<GiftsPage> {
                                         height: 5,
                                       ),
                                       textWidget(
-                                          text: Gift.dateTime.toString(),
+                                          text: gift.dateTime.toString(),
                                           fontSize: 14,
                                           color: AppColors.whiteColor,
                                           fontWeight: FontWeight.w500),
@@ -195,7 +195,7 @@ class GiftsPageState extends State<GiftsPage> {
                                         children: [
                                           Image.asset(Assets.iconsDepoWallet),
                                           textWidget(
-                                              text: Gift.amount.toString(),
+                                              text: gift.amount.toString(),
                                               fontSize: 14,
                                               color: AppColors.whiteColor,
                                               fontWeight: FontWeight.w500),

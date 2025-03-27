@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:globalbet/model/color_prediction_result_provider.dart';
 import 'package:globalbet/offer/offer_view_model.dart';
 import 'package:globalbet/res/app_constant.dart';
@@ -49,7 +51,7 @@ import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_game_his_vie
 import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_my_his_view_model.dart';
 import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_pop_up_view_model.dart';
 import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_result_view_model.dart';
-import 'package:globalbet/view/home/mini/Aviator/AviatorProvider.dart';
+import 'package:globalbet/view/home/mini/Aviator/aviator_provider.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bet_api.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bet_history_api.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bool_provider.dart';
@@ -67,20 +69,35 @@ import 'package:globalbet/view/home/rummy/spin_to_win/controller/spin_controller
 import 'package:globalbet/view/home/rummy/spin_to_win/view_model/spin_bet_view_model.dart';
 import 'package:globalbet/view/home/rummy/spin_to_win/view_model/spin_history_view_model.dart';
 import 'package:globalbet/view/home/rummy/spin_to_win/view_model/spin_result_view_model.dart';
+import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/card_throw_animaton.dart';
+import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_services.dart';
+import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/room_timer_service.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import 'firebase_options.dart';
 import 'view/home/mini/titli_kabootar/view_model/result_view_model.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    debugPrint("error $e");
+  }
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+      overlays: []);
   HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   runApp(const MyApp());
 }
+
 double heightFun = 360.0;
 double widthFun = 720.0;
 double ratioFun = 2;
@@ -181,6 +198,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ResultProvider()),
         ChangeNotifierProvider(create: (context) => BetService()),
         ChangeNotifierProvider(create: (context) => WinningAmountService()),
+
+        ///teenPatti
+        ChangeNotifierProvider(create: (context) => TeenPattiGameController()),
+        ChangeNotifierProvider(create: (context) => CardThrowAnimation()),
+        ChangeNotifierProvider(create: (context) => RoomTimerProvider()),
       ],
       child: Builder(
         builder: (context) {

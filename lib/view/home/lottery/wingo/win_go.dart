@@ -535,7 +535,7 @@ class WingoBetWidget extends StatelessWidget {
       remainingTime = wgc.oneMinuteStatus == 2 ? 0 : wgc.oneMinuteTime;
 
       if (!isSoundPlaying && remainingTime > 0) {
-        Audio.WingoTimerone();
+        Audio.wingoTimerOne();
         isSoundPlaying = true;
       }
     //   else if (remainingTime == 0 && isSoundPlaying) {
@@ -549,7 +549,7 @@ class WingoBetWidget extends StatelessWidget {
       remainingTime = wgc.threeMinuteStatus == 2 ? 0 : wgc.threeMinuteTime;
 
       if (!isSoundPlaying && remainingTime > 0) {
-        Audio.WingoTimerone();
+        Audio.wingoTimerOne();
         isSoundPlaying = true;
       }
       // else if (remainingTime == 0 && isSoundPlaying) {
@@ -562,7 +562,7 @@ class WingoBetWidget extends StatelessWidget {
       remainingTime = wgc.fiveMinuteStatus == 2 ? 0 : wgc.fiveMinuteTime;
 
       if (!isSoundPlaying && remainingTime > 0) {
-        Audio.WingoTimerone();
+        Audio.wingoTimerOne();
         isSoundPlaying = true;
       }
       // else if (remainingTime == 0 && isSoundPlaying) {
@@ -575,7 +575,7 @@ class WingoBetWidget extends StatelessWidget {
       remainingTime = wgc.tenMinuteStatus == 2 ? 0 : wgc.tenMinuteTime;
 
       if (!isSoundPlaying && remainingTime > 0) {
-        Audio.WingoTimerone();
+        Audio.wingoTimerOne();
         isSoundPlaying = true;
       }
       // else if (remainingTime == 0 && isSoundPlaying) {

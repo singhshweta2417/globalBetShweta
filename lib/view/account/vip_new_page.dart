@@ -7,7 +7,7 @@ import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/main.dart';
 import 'package:globalbet/model/user_model.dart';
 import 'package:globalbet/model/vip_bet_card/model.dart';
-import 'package:globalbet/plinko/utils/Plinko_Pop_up.dart';
+import 'package:globalbet/plinko/utils/plinko_pop_up.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
@@ -915,7 +915,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                             borderRadius: BorderRadius.circular(10),
                             color: AppColors.unSelectColor),
                         child: responseStatusCode == 400
-                            ? const notFoundData()
+                            ? const NotFoundData()
                             : vipHistory.isEmpty
                                 ? const Center(
                                     child: CircularProgressIndicator())

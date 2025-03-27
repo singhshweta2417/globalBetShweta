@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:globalbet/main.dart';
 
 class AppConstant{
-  static String appName="Titli";
+  static String appName="GameOn";
   static double get luckyBtnFont =>width < 850? 12: height*0.025;
   static double get luckyRoFont =>width < 850? 12: height*0.03;
   static double get luckyKaFont =>width < 850? 8: height*0.02;

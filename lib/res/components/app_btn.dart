@@ -307,7 +307,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
   }
 }
 
-class Text_Button extends StatelessWidget {
+class TextButtons extends StatelessWidget {
   final String? text;
   final double? fontSize;
   final FontWeight? fontWeight;
@@ -316,7 +316,7 @@ class Text_Button extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final TextDecoration? decoration;
 
-  const Text_Button(
+  const TextButtons(
       {super.key,
       this.text,
       this.fontSize,

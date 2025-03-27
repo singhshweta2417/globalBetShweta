@@ -7,10 +7,10 @@ import 'package:globalbet/main.dart';
 import 'package:globalbet/res/orientation.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
-import 'package:globalbet/view/home/casino/fun_target/Constant/SharedPreference.dart';
+import 'package:globalbet/view/home/casino/fun_target/Constant/shared_preferences.dart';
 import 'package:globalbet/view/home/casino/fun_target/Constant/audio-player.dart';
 import 'package:globalbet/view/home/casino/fun_target/Constant/color.dart';
-import 'package:globalbet/view/home/casino/fun_target/Model/result-history-model.dart';
+import 'package:globalbet/view/home/casino/fun_target/Model/result_history_model.dart';
 import 'package:globalbet/view/home/casino/fun_target/Provider/result_history_provider.dart';
 import 'package:globalbet/view/home/casino/fun_target/Provider/result_provider.dart';
 import 'package:globalbet/view/home/casino/fun_target/api/bet_service.dart';
@@ -1179,7 +1179,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   Widget yellowButton(
       Widget? innerText, outerText, EdgeInsetsGeometry padding) {
-    final width = MediaQuery.of(context).size.width;
     return Padding(
       padding: padding,
       child: Column(
@@ -1210,7 +1209,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
     BorderRadiusGeometry? borderRadius,
     Widget child,
   ) {
-    final width = MediaQuery.of(context).size.width;
     return CustomContainer(
       alignment: Alignment.center,
       padding: const EdgeInsets.only(bottom: 3, top: 3),

@@ -22,5 +22,6 @@ class RoutesName {
   static const String giftsscreen = '/gifts';
   static const String dashboard = '/dashboard';
   static const String titli = '/titli';
+  static const String waitingActivity = '/waiting_activity';
 
 }

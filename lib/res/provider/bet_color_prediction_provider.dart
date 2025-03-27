@@ -19,7 +19,7 @@ class BetColorResultProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future Colorbet(context, String amount, String number, String gameid) async {
+  Future colorBet(context, String amount, String number, String gameid) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
     setRegLoading(true);

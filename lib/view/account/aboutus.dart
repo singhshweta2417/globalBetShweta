@@ -202,11 +202,11 @@ class _AboutusState extends State<Aboutus> {
 
   Future<void> fetchDataAboutus() async {
     try {
-      final AbouttDataa = await baseApiHelper.fetchaboutusData();
+      final aboutData = await baseApiHelper.fetchaboutusData();
 
-      if (AbouttDataa != null) {
+      if (aboutData != null) {
         Provider.of<AboutusProvider>(context, listen: false)
-            .setUser(AbouttDataa);
+            .setUser(aboutData);
       }
     } catch (error) {
       // Handle error here

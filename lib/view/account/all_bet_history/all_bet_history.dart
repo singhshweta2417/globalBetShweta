@@ -1,14 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:globalbet/generated/assets.dart';
 import 'package:globalbet/res/aap_colors.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/view/account/all_bet_history/avaitor_all_bet_history.dart';
+import 'package:globalbet/view/account/all_bet_history/aviator_all_bet_history.dart';
 import 'package:globalbet/view/account/all_bet_history/dragon_tiger_all_history.dart';
 import 'package:globalbet/view/account/all_bet_history/plinko_history.dart';
 import 'package:globalbet/view/account/all_bet_history/trx_all_history.dart';
-import 'package:globalbet/view/account/all_bet_history/wingoallhistory.dart';
+import 'package:globalbet/view/account/all_bet_history/wingo_all_history.dart';
 
 class AllBetHistory extends StatefulWidget {
   const AllBetHistory({super.key});
@@ -29,7 +28,7 @@ class _AllBetHistoryState extends State<AllBetHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: AppColors.darkColor,
       appBar: GradientAppBar(
           leading: Padding(
             padding: const EdgeInsets.fromLTRB(15, 5, 5, 5),
@@ -82,7 +81,7 @@ class _AllBetHistoryState extends State<AllBetHistory> {
                   onTap: () {
                     selectIndex(3);
                   },
-                  text: 'Avaitor',
+                  text: 'Aviator',
                   imagePath: Assets.aviatorFanAviator,
                 ),
                 selectableContainer(
@@ -93,22 +92,6 @@ class _AllBetHistoryState extends State<AllBetHistory> {
                   text: 'Plinko',
                   imagePath: Assets.iconsPlonkoicon,
                 ),
-                // selectableContainer(
-                //   isSelected: selectedIndex == 5,
-                //   onTap: () {
-                //     selectIndex(5);
-                //   },
-                //   text: 'Andar Bahar',
-                //   imagePath: Assets.categoryAndharBahar,
-                // ),
-                // selectableContainer(
-                //   isSelected: selectedIndex == 6,
-                //   onTap: () {
-                //     selectIndex(6);
-                //   },
-                //   text: 'Head Tail',
-                //   imagePath: Assets.categoryHeadsTails,
-                // ),
               ],
             ),
           ),
@@ -118,16 +101,20 @@ class _AllBetHistoryState extends State<AllBetHistory> {
                   ? const TrxAllHistory()
                   : selectedIndex == 2
                       ? const DragonTigerHistory(
-                          gameid: '10',)
+                          gameid: '10',
+                        )
                       : selectedIndex == 3
-              ? const AvaitorAllHistory(gameid: '5',):
-          selectedIndex == 4
-              ? const PlinkobetHistoryPage(gameid: '11'):
-          // selectedIndex == 5
-          // ?const AndharBaharPopUpPage(gameId: '13',):
-          //     selectedIndex == 6
-          // ?const AndharBaharPopUpPage(gameId: '14',):
-                  Container()
+                          ? const AvaitorAllHistory(
+                              gameid: '5',
+                            )
+                          : selectedIndex == 4
+                              ? const PlinkobetHistoryPage(gameid: '11')
+                              :
+                              // selectedIndex == 5
+                              // ?const AndharBaharPopUpPage(gameId: '13',):
+                              //     selectedIndex == 6
+                              // ?const AndharBaharPopUpPage(gameId: '14',):
+                              Container()
         ],
       ),
     );
@@ -145,9 +132,7 @@ class _AllBetHistoryState extends State<AllBetHistory> {
         padding: const EdgeInsets.all(8.0),
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
-            color: isSelected
-                ? AppColors.whiteColor
-                : AppColors.contLightColor,
+            color: isSelected ? AppColors.blackColor : AppColors.contLightColor,
             borderRadius: const BorderRadius.all(Radius.circular(5))),
         child: Row(
           children: [

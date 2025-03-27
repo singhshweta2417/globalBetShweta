@@ -34,8 +34,6 @@ class VipBetCardModel {
   });
 
   VipBetCardModel.fromJson(Map<String, dynamic> json) {
-    print(json['percantage']);
-    print("jjjjjj");
     id = json['id'];
     name = json['name'];
     rangeAmount = json['range_amount'];

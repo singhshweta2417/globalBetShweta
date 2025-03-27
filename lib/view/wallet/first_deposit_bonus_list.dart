@@ -10,7 +10,7 @@ import 'package:globalbet/res/api_urls.dart';
 import 'package:globalbet/res/components/app_bar.dart';
 import 'package:globalbet/res/components/app_btn.dart';
 import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/components/theam_color.dart';
+import 'package:globalbet/res/components/theme_color.dart';
 import 'package:globalbet/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:globalbet/view/wallet/deposit_screen.dart';

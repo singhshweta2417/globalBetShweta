@@ -17,7 +17,7 @@ class GiftCardProvider with ChangeNotifier {
     _regLoading=value;
     notifyListeners();
   }
-  Future Giftcode(context, String code) async {
+  Future giftCode(context, String code) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
 

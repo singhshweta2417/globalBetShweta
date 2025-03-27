@@ -626,7 +626,7 @@ class TrxBetWidget extends StatelessWidget {
 
 
       if (!isSoundPlaying && remainingTime > 0) {
-        Audio.WingoTimerone();
+        Audio.wingoTimerOne();
         isSoundPlaying = true;
       }
 
@@ -638,7 +638,7 @@ class TrxBetWidget extends StatelessWidget {
       remainingTime = trc.threeMinuteStatus == 2 ? 0 : trc.threeMinuteTime;
 
       if (!isSoundPlaying && remainingTime > 0) {
-        Audio.WingoTimerone();
+        Audio.wingoTimerOne();
         isSoundPlaying = true;
       }
 
@@ -647,7 +647,7 @@ class TrxBetWidget extends StatelessWidget {
             trc.fiveMinuteStatus == 2)) {
       remainingTime = trc.fiveMinuteStatus == 2 ? 0 : trc.fiveMinuteTime;
       if (!isSoundPlaying && remainingTime > 0) {
-        Audio.WingoTimerone();
+        Audio.wingoTimerOne();
         isSoundPlaying = true;
       }
 
@@ -656,7 +656,7 @@ class TrxBetWidget extends StatelessWidget {
             trc.tenMinuteStatus == 2)) {
       remainingTime = trc.tenMinuteStatus == 2 ? 0 : trc.tenMinuteTime;
       if (!isSoundPlaying && remainingTime > 0) {
-        Audio.WingoTimerone();
+        Audio.wingoTimerOne();
         isSoundPlaying = true;
       }
     } else {

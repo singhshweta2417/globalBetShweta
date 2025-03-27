@@ -1,8 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:globalbet/main.dart';
-import 'package:globalbet/res/orientation.dart';
 import 'package:globalbet/res/view_model/profile_view_model.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bet_api.dart';
 import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bool_provider.dart';

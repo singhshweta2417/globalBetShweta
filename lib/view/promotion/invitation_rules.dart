@@ -12,8 +12,8 @@ class InvitationRules extends StatefulWidget {
   @override
   State<InvitationRules> createState() => _InvitationRulesState();
 }
-class _InvitationRulesState extends State<InvitationRules> {
 
+class _InvitationRulesState extends State<InvitationRules> {
   List<LevelList> itemsLevel = [
     LevelList(l1: 'L0', l2: '0', l3: '0', l4: '0'),
     LevelList(l1: 'L1', l2: '5', l3: '500k', l4: '100k'),
@@ -21,21 +21,24 @@ class _InvitationRulesState extends State<InvitationRules> {
     LevelList(l1: 'L3', l2: '15', l3: '2.50M', l4: '500k'),
     LevelList(l1: 'L4', l2: '20', l3: '3.50M', l4: '700k'),
     LevelList(l1: 'L5', l2: '25', l3: '5M', l4: '1,000k'),
-
   ];
   List<LevelList1> itemsLevel1 = [
-    LevelList1(l1: 'Only registered users can send invitations.             \nInvite friends who are 18 years or older.'),
-    LevelList1(l1: 'Use the unique invitation link found in your profile.\nShare via email, social media, or direct message.'),
-    LevelList1(l1: "Earn rewards for each successful referral who registers and plays.\nBoth the inviter and the invitee receive bonus coins."),
-    LevelList1(l1: "Do not spam or misuse the invitation system.\nInvitations must be to genuine friends or contacts."),
-    LevelList1(l1: "We monitor invitation activity.\nMisuse can result in suspension of invitation privileges."),
-
+    LevelList1(
+        l1: 'Only registered users can send invitations.             \nInvite friends who are 18 years or older.'),
+    LevelList1(
+        l1: 'Use the unique invitation link found in your profile.\nShare via email, social media, or direct message.'),
+    LevelList1(
+        l1: "Earn rewards for each successful referral who registers and plays.\nBoth the inviter and the invitee receive bonus coins."),
+    LevelList1(
+        l1: "Do not spam or misuse the invitation system.\nInvitations must be to genuine friends or contacts."),
+    LevelList1(
+        l1: "We monitor invitation activity.\nMisuse can result in suspension of invitation privileges."),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: AppColors.darkColor,
       appBar: GradientAppBar(
           title: textWidget(
               text: 'Invitation rules',
@@ -85,15 +88,12 @@ class _InvitationRulesState extends State<InvitationRules> {
                                   decoration: BoxDecoration(
                                       color: AppColors.darkColor,
                                       border: Border.all(
-                                          color:
-                                          AppColors.contLightColor,
+                                          color: AppColors.contLightColor,
                                           width: 2),
                                       borderRadius: BorderRadius.circular(10)),
                                 ),
-
                               ],
                             ),
-
                             Positioned(
                               top: -12,
                               child: Padding(
@@ -104,12 +104,12 @@ class _InvitationRulesState extends State<InvitationRules> {
                                   decoration: const BoxDecoration(
                                       image: DecorationImage(
                                           image:
-                                          AssetImage(Assets.iconsRulehead2),
+                                              AssetImage(Assets.iconsRulehead2),
                                           fit: BoxFit.fill)),
                                   child: Center(
                                     child: Padding(
                                       padding:
-                                      const EdgeInsets.only(bottom: 15.0),
+                                          const EdgeInsets.only(bottom: 15.0),
                                       child: Text(
                                         '0${index + 1}',
                                         style: const TextStyle(
@@ -122,8 +122,6 @@ class _InvitationRulesState extends State<InvitationRules> {
                                 ),
                               ),
                             ),
-
-
                           ],
                         )
                       : Stack(
@@ -134,15 +132,15 @@ class _InvitationRulesState extends State<InvitationRules> {
                               decoration: BoxDecoration(
                                   color: AppColors.darkColor,
                                   border: Border.all(
-                                      color:
-                                          AppColors.contLightColor,
+                                      color: AppColors.contLightColor,
                                       width: 2),
                                   //  gradient: AppColors.unSelectedColor,
                                   borderRadius: BorderRadius.circular(10)),
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(8,30,8,20),
+                                padding:
+                                    const EdgeInsets.fromLTRB(8, 30, 8, 20),
                                 child: textWidget(
-                                    text:itemsLevel1[index].l1.toString(),
+                                    text: itemsLevel1[index].l1.toString(),
                                     fontSize: 15,
                                     color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w500),
@@ -199,9 +197,9 @@ class LevelList {
     this.l4,
   });
 }
+
 class LevelList1 {
   String? l1;
-
 
   LevelList1({
     this.l1,

@@ -10,6 +10,7 @@ import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
 import 'package:globalbet/view/home/lottery/wingo/win_go.dart';
 import 'package:globalbet/view/home/mini/Aviator/home_page_aviator.dart';
 import 'package:globalbet/view/home/mini/titli_kabootar/view/titli_home.dart';
+import 'package:globalbet/view/home/rummy/teen_patti/user_interface/game_screens/game_ui_control_screen.dart';
 import 'package:globalbet/view/wallet/add_bank_account.dart';
 import 'package:globalbet/view/wallet/deposit_history.dart';
 import 'package:globalbet/view/wallet/deposit_screen.dart';
@@ -23,20 +24,18 @@ class Routers {
     switch (routeName) {
       case RoutesName.splashScreen:
         return (context) => const Splash();
-    case RoutesName.bottomNavBar:
-      return (context) => const BottomNavBar();
+      case RoutesName.bottomNavBar:
+        return (context) => const BottomNavBar();
       case RoutesName.loginScreen:
         return (context) => const LoginScreen();
-      // case RoutesName.registerScreen:
-      //   return (context) => const RegisterScreen();
       case RoutesName.registerScreenOtp:
         return (context) => const RegisterScreenOtp();
       case RoutesName.depositScreen:
         return (context) => const DepositScreen();
       case RoutesName.withdrawScreen:
-        return (context) =>  const WithdrawScreen();
+        return (context) => const WithdrawScreen();
       case RoutesName.addBankAccount:
-        return (context) =>  AddBankAccount();
+        return (context) => AddBankAccount();
       case RoutesName.depositHistory:
         return (context) => const DepositHistory();
       case RoutesName.withdrawalHistory:
@@ -45,20 +44,17 @@ class Routers {
         return (context) => const GameAviator();
       case RoutesName.winGoScreen:
         return (context) => const WinGo();
-      // case RoutesName.levelscreen:
-      //   return (context) =>  LevelScreen();
       case RoutesName.Bethistoryscreen:
         return (context) => const BetHistory();
 
       case RoutesName.feedbackscreen:
         return (context) => const FeedbackPage();
       case RoutesName.giftsscreen:
-        return (context) =>const GiftsPage();
-      // case RoutesName.subscription:
-      //   return (context) => const Subscription();
-
+        return (context) => const GiftsPage();
+      case RoutesName.waitingActivity:
+        return (context) => const GameUIControlScreenActivity();
       case RoutesName.titli:
-        return (context) =>  TitliHomeScreen();
+        return (context) => const TitliHomeScreen();
       default:
         return (context) => Scaffold(
               body: Center(
