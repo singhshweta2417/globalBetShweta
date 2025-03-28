@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/components/game_history_data_view.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_services.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/components/game_history_data_view.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/game_services.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../material_imports.dart';
 

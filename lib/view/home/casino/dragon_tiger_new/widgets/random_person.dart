@@ -1,4 +1,4 @@
-import 'package:globalbet/generated/assets.dart';
+import 'package:game_on/generated/assets.dart';
 
 
 final Map<String, dynamic> dragonTigerJson = {

@@ -26,10 +26,10 @@ class EasyCartAnimation extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CartAnimationPageState createState() => _CartAnimationPageState();
+  CartAnimationPageState createState() => CartAnimationPageState();
 }
 
-class _CartAnimationPageState extends State<EasyCartAnimation>
+class CartAnimationPageState extends State<EasyCartAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

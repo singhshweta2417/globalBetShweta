@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/hello_how_to_play.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/keno_game_history.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/hello_how_to_play.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/keno_game_history.dart';
 
 
 class KinoMenuBar extends StatefulWidget {

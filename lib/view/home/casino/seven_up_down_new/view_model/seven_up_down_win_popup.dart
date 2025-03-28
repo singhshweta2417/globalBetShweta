@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/7_up_model/jackpot_win_popup_model.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/seven_up_down_repo/jackpot_winpopup_repo.dart';
-import 'package:globalbet/view/home/lottery/wingo/widgets/loss_pop_up.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/7_up_model/jackpot_win_popup_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/seven_up_down_repo/jackpot_winpopup_repo.dart';
+import 'package:game_on/view/home/lottery/wingo/widgets/loss_pop_up.dart';
 import 'package:provider/provider.dart';
 
 import '../../../lottery/wingo/widgets/win_pop_up.dart';

@@ -1,31 +1,34 @@
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/add_account_view_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_field.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/add_acount_controller.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/add_account_view_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_field.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/provider/add_acount_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/utils/utils.dart';
+import 'package:game_on/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class AddBankAccount extends StatefulWidget {
-  final List<AddacountViewModel> ? data;
-   AddBankAccount({super.key,  this.data,});
+  final List<AddacountViewModel>? data;
+  AddBankAccount({
+    super.key,
+    this.data,
+  });
 
   @override
   State<AddBankAccount> createState() => _AddBankAccountState();
 }
 
 class _AddBankAccountState extends State<AddBankAccount> {
-  TextEditingController accNumberCon=TextEditingController();
-  TextEditingController nameCon=TextEditingController();
-  TextEditingController ifscCon=TextEditingController();
-  TextEditingController upiCon=TextEditingController();
-  TextEditingController banknameCon=TextEditingController();
-  TextEditingController branchnameCon=TextEditingController();
+  TextEditingController accNumberCon = TextEditingController();
+  TextEditingController nameCon = TextEditingController();
+  TextEditingController ifscCon = TextEditingController();
+  TextEditingController upiCon = TextEditingController();
+  TextEditingController banknameCon = TextEditingController();
+  TextEditingController branchnameCon = TextEditingController();
 
   bool isLoading = false;
 
@@ -35,11 +38,11 @@ class _AddBankAccountState extends State<AddBankAccount> {
     super.initState();
 
     if (widget.data != null) {
-      nameCon.text = widget.data!.first.name?? "";
+      nameCon.text = widget.data!.first.name ?? "";
       banknameCon.text = widget.data!.first.bankName ?? "";
       accNumberCon.text = widget.data!.first.accountNumber ?? "";
       branchnameCon.text = widget.data!.first.branch ?? "";
-      ifscCon.text = widget.data!.first.ifscCode?? "";
+      ifscCon.text = widget.data!.first.ifscCode ?? "";
     }
 
     // ✅ Add Listeners to Detect Changes in Input Fields
@@ -60,16 +63,13 @@ class _AddBankAccountState extends State<AddBankAccount> {
           ifscCon.text.isNotEmpty &&
           upiCon.text.isNotEmpty;
     });
-
   }
 
-
+  @override
   Widget build(BuildContext context) {
-
     final authProvider = Provider.of<AddacountProvider>(context);
 
     return Scaffold(
-      
       appBar: GradientAppBar(
           leading: const AppBackBtn(),
           title: textWidget(
@@ -85,45 +85,46 @@ class _AddBankAccountState extends State<AddBankAccount> {
             children: [
               const SizedBox(height: 20),
               Container(
-                height: height*0.08,
-                  padding: const EdgeInsets.only(left: 5, right: 5,top: 5,bottom: 5),
+                  height: height * 0.08,
+                  padding: const EdgeInsets.only(
+                      left: 5, right: 5, top: 5, bottom: 5),
                   decoration: BoxDecoration(
                       gradient: AppColors.unSelectedColor,
                       borderRadius: BorderRadiusDirectional.circular(30)),
                   child: Row(
                     children: [
-                      Image.asset(Assets.iconsAttention,color: AppColors.whiteColor,),
+                      Image.asset(
+                        Assets.iconsAttention,
+                        color: AppColors.whiteColor,
+                      ),
                       textWidget(
-                          text: 'Need to add beneficiary information to be able to \nwithdraw money',
+                          text:
+                              'Need to add beneficiary information to be able to \nwithdraw money',
                           color: AppColors.whiteColor,
                           fontWeight: FontWeight.w900),
                     ],
-                  )
-
-              ),
+                  )),
               const SizedBox(height: 15),
-              titleWidget(Assets.iconsPeople,"Full recipient's name"),
+              titleWidget(Assets.iconsPeople, "Full recipient's name"),
               const SizedBox(height: 15),
               CustomTextField(
-                controller: nameCon,
-                cursorColor: AppColors.whiteColor,
-                hintText: "Please enter the recipient's name",
-                style: const TextStyle(color: AppColors.whiteColor),
-                hintColor: AppColors.whiteColor
-              ),
+                  controller: nameCon,
+                  cursorColor: AppColors.whiteColor,
+                  hintText: "Please enter the recipient's name",
+                  style: const TextStyle(color: AppColors.whiteColor),
+                  hintColor: AppColors.whiteColor),
               const SizedBox(height: 15),
-              titleWidget(Assets.iconsBank,'Bank name'),
+              titleWidget(Assets.iconsBank, 'Bank name'),
               const SizedBox(height: 15),
               CustomTextField(
-                controller: banknameCon,
-                cursorColor: AppColors.whiteColor,
-                hintText: 'Please enter your bank name ',
-                style: const TextStyle(color: AppColors.whiteColor),
-                hintColor: AppColors.whiteColor
-              ),
+                  controller: banknameCon,
+                  cursorColor: AppColors.whiteColor,
+                  hintText: 'Please enter your bank name ',
+                  style: const TextStyle(color: AppColors.whiteColor),
+                  hintColor: AppColors.whiteColor),
 
               const SizedBox(height: 15),
-              titleWidget(Assets.iconsAccNumber,'Bank account number'),
+              titleWidget(Assets.iconsAccNumber, 'Bank account number'),
               const SizedBox(height: 15),
               CustomTextField(
                 controller: accNumberCon,
@@ -133,52 +134,57 @@ class _AddBankAccountState extends State<AddBankAccount> {
                 hintColor: AppColors.whiteColor,
               ),
               const SizedBox(height: 15),
-              titleWidget(Assets.iconsAccNumber,'Bank branch'),
+              titleWidget(Assets.iconsAccNumber, 'Bank branch'),
               const SizedBox(height: 15),
               CustomTextField(
-                controller: branchnameCon,
-                cursorColor: AppColors.whiteColor,
-                hintText: 'Please enter your branch name ',
-                style: const TextStyle(color: AppColors.whiteColor),
-                hintColor: AppColors.whiteColor
-              ),
+                  controller: branchnameCon,
+                  cursorColor: AppColors.whiteColor,
+                  hintText: 'Please enter your branch name ',
+                  style: const TextStyle(color: AppColors.whiteColor),
+                  hintColor: AppColors.whiteColor),
 
               const SizedBox(height: 15),
-              titleWidget(Assets.iconsIfscCode,'IFSC code'),
+              titleWidget(Assets.iconsIfscCode, 'IFSC code'),
               const SizedBox(height: 15),
               CustomTextField(
-                controller: ifscCon,
-                cursorColor: AppColors.whiteColor,
-                hintText: 'Please enter IFSC code',
-                style: const TextStyle(color: AppColors.whiteColor),
-                hintColor: AppColors.whiteColor
-              ),
+                  controller: ifscCon,
+                  cursorColor: AppColors.whiteColor,
+                  hintText: 'Please enter IFSC code',
+                  style: const TextStyle(color: AppColors.whiteColor),
+                  hintColor: AppColors.whiteColor),
               const SizedBox(height: 15),
-              titleWidget(Assets.iconsIfscCode,'UPI ID'),
+              titleWidget(Assets.iconsIfscCode, 'UPI ID'),
               const SizedBox(height: 15),
               CustomTextField(
                   controller: upiCon,
                   cursorColor: AppColors.whiteColor,
                   hintText: 'Please enter UPI ID ',
                   style: const TextStyle(color: AppColors.whiteColor),
-                  hintColor: AppColors.whiteColor
-              ),
+                  hintColor: AppColors.whiteColor),
               const SizedBox(height: 15), // Add this state variable
 
               AppBtn(
                 onTap: () async {
                   if (nameCon.text.isEmpty) {
-                    Utils.flushBarErrorMessage("Please enter Recipient Name", context, Colors.black);
+                    Utils.flushBarErrorMessage(
+                        "Please enter Recipient Name", context, Colors.black);
                   } else if (banknameCon.text.isEmpty) {
-                    Utils.flushBarErrorMessage("Please enter Bank Name", context, Colors.black);
+                    Utils.flushBarErrorMessage(
+                        "Please enter Bank Name", context, Colors.black);
                   } else if (accNumberCon.text.isEmpty) {
-                    Utils.flushBarErrorMessage("Please enter Bank Account Number", context, Colors.black);
+                    Utils.flushBarErrorMessage(
+                        "Please enter Bank Account Number",
+                        context,
+                        Colors.black);
                   } else if (branchnameCon.text.isEmpty) {
-                    Utils.flushBarErrorMessage("Please enter Branch Name", context, Colors.black);
+                    Utils.flushBarErrorMessage(
+                        "Please enter Branch Name", context, Colors.black);
                   } else if (ifscCon.text.isEmpty) {
-                    Utils.flushBarErrorMessage("Please enter IFSC Code", context, Colors.black);
+                    Utils.flushBarErrorMessage(
+                        "Please enter IFSC Code", context, Colors.black);
                   } else if (upiCon.text.isEmpty) {
-                    Utils.flushBarErrorMessage("Please enter UPI ID", context, Colors.black);
+                    Utils.flushBarErrorMessage(
+                        "Please enter UPI ID", context, Colors.black);
                   } else if (isAllFilled) {
                     setState(() {
                       isLoading = true; // Show loader
@@ -199,27 +205,28 @@ class _AddBankAccountState extends State<AddBankAccount> {
                     });
                   }
                 },
+                hideBorder: true,
+                gradient: isAllFilled
+                    ? AppColors.greenButtonGrad
+                    : AppColors.primaryAppbarGrey,
                 child: isLoading
                     ? const SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                    strokeWidth: 2,
-                  ),
-                )
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
                     : const Text(
-                  'S a v e',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  ),
-                ),
-                hideBorder: true,
-                gradient: isAllFilled ? AppColors.greenButtonGrad : AppColors.primaryAppbarGrey,
+                        'S a v e',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
+                      ),
               ),
-
 
               const SizedBox(height: 30),
             ],
@@ -228,19 +235,21 @@ class _AddBankAccountState extends State<AddBankAccount> {
       ),
     );
   }
-  Widget titleWidget(String image,String title){
+
+  Widget titleWidget(String image, String title) {
     return Row(
       children: [
-        Image.asset(image ,height: 30,),
+        Image.asset(
+          image,
+          height: 30,
+        ),
         const SizedBox(width: 10),
         textWidget(
-            text:
-            title,
+            text: title,
             fontSize: 18,
             color: AppColors.whiteColor,
             fontWeight: FontWeight.w600),
       ],
     );
   }
-
 }

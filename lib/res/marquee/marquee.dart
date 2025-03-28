@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:globalbet/res/marquee/fedding_edge.dart';
+import 'package:game_on/res/marquee/fedding_edge.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 

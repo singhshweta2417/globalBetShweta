@@ -1,4 +1,4 @@
-import 'package:globalbet/res/api_urls.dart';
+import 'package:game_on/res/api_urls.dart';
 
 class TitliKabootarApiUrl {
   static const baseUrl = ApiUrl.configModel;

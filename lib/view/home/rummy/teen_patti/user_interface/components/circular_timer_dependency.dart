@@ -169,7 +169,6 @@ class CircularPercentIndicatorState extends State<CircularPercentIndicator>
   AnimationController? _animationController;
   Animation? _animation;
   double _percent = 0.0;
-  double _diameter = 0.0;
 
   @override
   void dispose() {
@@ -208,7 +207,6 @@ class CircularPercentIndicatorState extends State<CircularPercentIndicator>
     } else {
       _updateProgress();
     }
-    _diameter = widget.radius * 2;
     super.initState();
   }
 

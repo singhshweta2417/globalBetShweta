@@ -1,22 +1,22 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_field.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/auth_provider.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_field.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/utils/routes/routes_name.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/account/service_center/customer_service.dart';
-import 'package:globalbet/view/auth/forget_password_otp.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/account/service_center/customer_service.dart';
+import 'package:game_on/view/auth/forget_password_otp.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: GradientAppBar(
             centerTitle: true,
             title: textWidget(
-                text: 'Global Bet',
+                text: 'Game On',
                 fontWeight: FontWeight.w600,
                 fontSize: 28,
                 color: AppColors.whiteColor),

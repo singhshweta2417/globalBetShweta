@@ -1,4 +1,4 @@
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_services.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/game_services.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../material_imports.dart';
 import '../../../../../../res/components/circular_percent.dart';
@@ -18,12 +18,12 @@ class PersonProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TeenPattiGameController>(builder: (context, gameCon, _) {
       final status =gameCon.gameData!['game_event']['status']>=4? gameCon.gameData!['slide_show']['status']:0;
-      final reciever_id =gameCon.gameData!['game_event']['status']>=4? gameCon.gameData!['slide_show']['receiver_player_id']:'';
+      final recieverId =gameCon.gameData!['game_event']['status']>=4? gameCon.gameData!['slide_show']['receiver_player_id']:'';
       final requesterId =gameCon.gameData!['game_event']['status']>=4? gameCon.gameData!['slide_show']['req_player_id']:'';
       final slideShowStatus =
-          (playerId == reciever_id || playerId == requesterId) && status == 1
+          (playerId == recieverId || playerId == requesterId) && status == 1
               ? 1
-              : (playerId == reciever_id || playerId == requesterId) &&
+              : (playerId == recieverId || playerId == requesterId) &&
                       status >= 1 &&
                       status < 5
                   ? 2

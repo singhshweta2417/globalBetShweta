@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/view/home/rummy/spin_to_win/controller/spin_controller.dart';
-import 'package:globalbet/view/home/rummy/spin_to_win/view_model/spin_history_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/view/home/rummy/spin_to_win/controller/spin_controller.dart';
+import 'package:game_on/view/home/rummy/spin_to_win/view_model/spin_history_view_model.dart';
 import 'package:provider/provider.dart';
 
 class InfoSpinDialog extends StatefulWidget {

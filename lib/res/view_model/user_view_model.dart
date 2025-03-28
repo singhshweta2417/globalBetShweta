@@ -1,4 +1,4 @@
-import 'package:globalbet/model/user_model.dart';
+import 'package:game_on/model/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

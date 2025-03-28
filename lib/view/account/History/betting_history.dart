@@ -1,20 +1,20 @@
 // ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names, unrelated_type_equality_checks
 
 import 'dart:convert';
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/model/betting_history_model.dart';
-import 'package:globalbet/model/betting_history_trx.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/clipboard.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/account/History/aviator_bet_history.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/model/betting_history_model.dart';
+import 'package:game_on/model/betting_history_trx.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/clipboard.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/account/History/aviator_bet_history.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
@@ -255,8 +255,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
 
                                     ),
                                     textWidget(
-                                        text: "₹$finalAmount",
-                                        //  text: "₹${(double.parse(items[index].amount.toString())-0.02).toStringAsFixed(0)}",
+                                        text: "🪙 $finalAmount",
                                         fontSize: 12,
                                         fontWeight: FontWeight.w800,
                                         color: AppColors.whiteColor
@@ -339,7 +338,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                         fontWeight: FontWeight.w800,
                                         color: AppColors.whiteColor
                                     ),
-                                    textWidget(text: items[index].winNumber==null?'₹ 0.0':'₹ ${items[index].winNumber}',
+                                    textWidget(text: items[index].winNumber==null?'🪙 0.0':'🪙 ${items[index].winNumber}',
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
                                         color: AppColors.whiteColor
@@ -522,7 +521,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                         color: AppColors.whiteColor
 
                                     ),
-                                    textWidget(text: "₹${itemsTRX[index].amount}",
+                                    textWidget(text: "🪙${itemsTRX[index].amount}",
                                         fontSize: 12,
                                         fontWeight: FontWeight.w800,
                                         color: AppColors.whiteColor
@@ -605,7 +604,7 @@ class _BetHistoryState extends State<BetHistory> with SingleTickerProviderStateM
                                         fontWeight: FontWeight.w800,
                                         color: AppColors.whiteColor
                                     ),
-                                    textWidget(text: itemsTRX[index].win==null?'₹ 0.0':'₹ ${itemsTRX[index].win}',
+                                    textWidget(text: itemsTRX[index].win==null?'🪙 0.0':'🪙 ${itemsTRX[index].win}',
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
                                         color: AppColors.whiteColor

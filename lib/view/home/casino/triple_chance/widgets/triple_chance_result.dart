@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/view/home/casino/triple_chance/view_model/triple_chance_result_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/view/home/casino/triple_chance/view_model/triple_chance_result_view_model.dart';
 import 'package:provider/provider.dart';
 
 class TripleChanceResult extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/fun_target/Constant/url.dart';
+import 'package:game_on/view/home/casino/fun_target/Constant/url.dart';
 import 'package:http/http.dart' as http;
 import '../../../../../utils/utils.dart';
 import '../Model/result_history_model.dart';
@@ -14,11 +14,9 @@ class ResultHistoryProvider extends ChangeNotifier {
     final response = await http.get(Uri.parse(AppUrls.resultHistoryApiUrl));
 
     if (response.statusCode == 200) {
-      print(response.body);
       final responseData = json.decode(response.body);
       if(responseData['status']==200){
         final Map<String, dynamic> data = responseData;
-        print(data);
         _result = ResultHistoryModel.fromJson(data);
       }
       else{

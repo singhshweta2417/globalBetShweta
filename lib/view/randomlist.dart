@@ -1,22 +1,20 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
 import 'package:flutter/material.dart';
-
-
 
 class RandomList extends StatefulWidget {
   const RandomList({super.key});
 
   @override
-  _RandomListState createState() => _RandomListState();
+  RandomListState createState() => RandomListState();
 }
 
-class _RandomListState extends State<RandomList> {
+class RandomListState extends State<RandomList> {
   Random random = Random();
   Timer? timer;
 
@@ -40,15 +38,13 @@ class _RandomListState extends State<RandomList> {
       appBar: GradientAppBar(
           leading: const AppBackBtn(),
           title: textWidget(
-              text: 'Winners',
-              fontSize: 25,
-              color: AppColors.whiteColor),
+              text: 'Winners', fontSize: 25, color: AppColors.whiteColor),
           gradient: AppColors.primaryGradient),
       body: ListView.builder(
         itemCount: 40, // Number of items you want to display
         itemBuilder: (context, index) {
           int randomNumber = generateRandomNumber();
-          return  SizedBox(
+          return SizedBox(
             height: 50,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,62 +54,55 @@ class _RandomListState extends State<RandomList> {
                 Container(
                   alignment: Alignment.centerRight,
                   width: 25,
-                  child:  randomNumber == 4
+                  child: randomNumber == 4
                       ? const SizedBox(
-                    width: 100,
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 5,
-                          backgroundColor: Colors.red,
-
-                        ),
-                        SizedBox(width: 2),
-                        CircleAvatar(
-                          radius: 5,
-                          backgroundColor: Colors.deepPurpleAccent,
-
-                        ),
-                      ],
-                    ),
-                  ):
-                  randomNumber == 5
-                      ?const SizedBox(
-                    width: 100,
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 5,
-                          backgroundColor: Colors.green,
-                        ),
-                        SizedBox(width: 2),
-                        CircleAvatar(
-                          radius: 5,
-                          backgroundColor: Colors.deepPurpleAccent,
-
-                        ),
-                      ],
-                    ),
-                  )
-                      :randomNumber == 1?
-                  const CircleAvatar(
-                    radius: 5,
-                    backgroundColor: Colors.green,
-
-                  ):
-                  randomNumber == 2?
-                  const CircleAvatar(
-                    radius: 5,
-                    backgroundColor: Colors.deepPurpleAccent,
-
-                  ):
-                  const CircleAvatar(
-                    radius: 5,
-                    backgroundColor: Colors.red,
-
-                  ),
+                          width: 100,
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 5,
+                                backgroundColor: Colors.red,
+                              ),
+                              SizedBox(width: 2),
+                              CircleAvatar(
+                                radius: 5,
+                                backgroundColor: Colors.deepPurpleAccent,
+                              ),
+                            ],
+                          ),
+                        )
+                      : randomNumber == 5
+                          ? const SizedBox(
+                              width: 100,
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 5,
+                                    backgroundColor: Colors.green,
+                                  ),
+                                  SizedBox(width: 2),
+                                  CircleAvatar(
+                                    radius: 5,
+                                    backgroundColor: Colors.deepPurpleAccent,
+                                  ),
+                                ],
+                              ),
+                            )
+                          : randomNumber == 1
+                              ? const CircleAvatar(
+                                  radius: 5,
+                                  backgroundColor: Colors.green,
+                                )
+                              : randomNumber == 2
+                                  ? const CircleAvatar(
+                                      radius: 5,
+                                      backgroundColor: Colors.deepPurpleAccent,
+                                    )
+                                  : const CircleAvatar(
+                                      radius: 5,
+                                      backgroundColor: Colors.red,
+                                    ),
                 ),
-
               ],
             ),
           );
@@ -136,12 +125,14 @@ class _RandomListState extends State<RandomList> {
   }
 
   int generateRandomBetPrice() {
-    return (random.nextInt(50) + 1) * 10; // Generates bet prices between 10 and 500 in increments of 10
+    return (random.nextInt(50) + 1) *
+        10; // Generates bet prices between 10 and 500 in increments of 10
   }
 
   String generateRandomName() {
     const alphabet = '12356790';
-    return List.generate(2, (index) => alphabet[random.nextInt(alphabet.length)]).join();
+    return List.generate(
+        2, (index) => alphabet[random.nextInt(alphabet.length)]).join();
   }
 
   @override

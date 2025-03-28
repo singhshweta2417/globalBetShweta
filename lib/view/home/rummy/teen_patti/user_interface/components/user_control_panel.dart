@@ -1,16 +1,12 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/res/material_widgets/custom_container.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/res/material_widgets/custom_text.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/components/person_profile.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/components/slideshow_overlay.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_services.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/components/person_profile.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/components/slideshow_overlay.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/game_services.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../../material_imports.dart';
-import '../../res/sizes_const.dart';
 
 class UserControlPanelSection extends StatelessWidget {
   const UserControlPanelSection({super.key});
@@ -147,7 +143,7 @@ class UserControlPanelSection extends StatelessWidget {
     return ContBox(
       height: Sizes.screenWidth / 14,
       width: Sizes.screenWidth / 21,
-      boxShadow: [const BoxShadow(offset: Offset(-.5, 0), color: Colors.grey)],
+      boxShadow: const [BoxShadow(offset: Offset(-.5, 0), color: Colors.grey)],
       borderRadius: BorderRadius.circular(5),
       image: DecorationImage(image: AssetImage(cardImage), fit: BoxFit.fill),
     );
@@ -193,8 +189,8 @@ class UserControlPanelSection extends StatelessWidget {
         begin: Alignment.bottomCenter,
         end: Alignment.topCenter,
       ),
-      boxShadow: [
-        const BoxShadow(
+      boxShadow: const [
+        BoxShadow(
             offset: Offset(
               1,
               1,

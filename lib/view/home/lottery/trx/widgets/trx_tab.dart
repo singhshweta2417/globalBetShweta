@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/lottery/trx/controller/trx_controller.dart';
-import 'package:globalbet/view/home/lottery/trx/widgets/trx_chart.dart';
-import 'package:globalbet/view/home/lottery/trx/widgets/trx_game_his.dart';
-import 'package:globalbet/view/home/lottery/trx/widgets/trx_my_bet_his.dart';
+import 'package:game_on/view/home/lottery/trx/controller/trx_controller.dart';
+import 'package:game_on/view/home/lottery/trx/widgets/trx_chart.dart';
+import 'package:game_on/view/home/lottery/trx/widgets/trx_game_his.dart';
+import 'package:game_on/view/home/lottery/trx/widgets/trx_my_bet_his.dart';
 import 'package:provider/provider.dart';
 
 class TrxTab extends StatelessWidget {

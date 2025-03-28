@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/fun_target/Constant/shared_preferences.dart';
+import 'package:game_on/view/home/casino/fun_target/Constant/shared_preferences.dart';
 
 class WheelSpinController {
   late void Function() startWheel;
@@ -62,7 +62,6 @@ class _WheelSpinState extends State<WheelSpin> with TickerProviderStateMixin {
   bool isStart = false;
 
   Future<void> _loadLastResult() async {
-    print("ssssssssssssssddff");
     setState(() {
       int lastResult = 20 - SharedPreferencesUtil.getLastResult() * 2;
       // If there's a last result, calculate the angle and set it
@@ -145,7 +144,6 @@ class _WheelSpinState extends State<WheelSpin> with TickerProviderStateMixin {
   }
 
   void stopWheel(int index) {
-    print("sssssss");
     nhanketqua(index);
     widget.controller.targetNumber = index;
   }

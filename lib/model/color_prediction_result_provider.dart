@@ -1,4 +1,4 @@
-import 'package:globalbet/model/color_prediction_model.dart';
+import 'package:game_on/model/color_prediction_model.dart';
 import 'package:flutter/material.dart';
 
 

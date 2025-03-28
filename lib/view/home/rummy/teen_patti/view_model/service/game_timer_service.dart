@@ -14,7 +14,7 @@ class TimerService {
       "game_timer": {"isActive": true, 'timeLeft': 60}
     });
 
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) async {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
       DocumentSnapshot snapshot =
           await _firestore.collection("rooms").doc(docId).get();
       if (snapshot.exists && snapshot.data() != null) {

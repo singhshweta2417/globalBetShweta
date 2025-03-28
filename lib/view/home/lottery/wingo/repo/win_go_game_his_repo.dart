@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/base_api_services.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/network_api_services.dart';
-import 'package:globalbet/view/home/lottery/wingo/model/win_go_game_his_model.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/win_go_api_url.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/base_api_services.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/network_api_services.dart';
+import 'package:game_on/view/home/lottery/wingo/model/win_go_game_his_model.dart';
+import 'package:game_on/view/home/lottery/wingo/res/win_go_api_url.dart';
 
 
 class WinGoGameHisRepository {

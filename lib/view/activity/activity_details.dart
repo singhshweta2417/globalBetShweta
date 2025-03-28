@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/slider_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/slider_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
 
 class ActivityDetails extends StatefulWidget {
   final SliderModel bannerdata;

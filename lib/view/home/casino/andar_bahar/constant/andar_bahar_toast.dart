@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:ui' as ui;
 
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 
 class AndarBaharToast {
   static void show({

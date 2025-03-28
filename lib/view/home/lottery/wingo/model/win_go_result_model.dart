@@ -13,7 +13,7 @@ class WinGoResultModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
@@ -49,20 +49,20 @@ class Data {
 
   Data(
       {this.id,
-        this.number,
-        this.gamesNo,
-        this.gameId,
-        this.json,
-        this.image,
-        this.randomCard,
-        this.cardId,
-        this.multiplier,
-        this.cardName,
-        this.token,
-        this.block,
-        this.status,
-        this.createdAt,
-        this.updatedAt});
+      this.number,
+      this.gamesNo,
+      this.gameId,
+      this.json,
+      this.image,
+      this.randomCard,
+      this.cardId,
+      this.multiplier,
+      this.cardName,
+      this.token,
+      this.block,
+      this.status,
+      this.createdAt,
+      this.updatedAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];

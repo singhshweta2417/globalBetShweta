@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/fun_target/Constant/color.dart';
+import 'package:game_on/view/home/casino/fun_target/Constant/color.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 

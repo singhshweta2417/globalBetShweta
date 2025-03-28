@@ -8,9 +8,9 @@ class GameHistoryDataViewList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       itemCount: players.length,
       itemBuilder: (ctx, int i) {
         final playerData = players[i];
@@ -25,12 +25,12 @@ class GameHistoryDataViewList extends StatelessWidget {
               ),
               ContBox(
                 width: Sizes.screenWidth / 6,
-                padding: EdgeInsets.symmetric(vertical: 5),
+                padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Row(
                   children: List.generate(playerData['hand'].length, (index) {
                     final playerCard = playerData['hand'][index]['imageUrl'];
                     return ContBox(
-                      margin: EdgeInsets.only(left: 5),
+                      margin: const EdgeInsets.only(left: 5),
                       height: 40,
                       width: 30,
                       radius: 3,
@@ -56,7 +56,7 @@ class GameHistoryDataViewList extends StatelessWidget {
           ),
         );
       },
-      separatorBuilder: (ctx, int index) => Divider(
+      separatorBuilder: (ctx, int index) => const Divider(
         color: Colors.blueGrey,
         thickness: 1.0,
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/components/text_widget.dart';
 
 class TrxWinPopUp extends StatelessWidget {
   final int winNumber;

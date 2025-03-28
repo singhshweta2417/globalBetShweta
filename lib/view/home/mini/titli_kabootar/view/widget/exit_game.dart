@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/orientation.dart';
-import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/font_size.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/sound.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/text_const.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/orientation.dart';
+import 'package:game_on/view/bottom/bottom_nav_bar.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/font_size.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/sound.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/text_const.dart';
 
 class ExitTitliGame extends StatelessWidget {
   const ExitTitliGame({super.key});

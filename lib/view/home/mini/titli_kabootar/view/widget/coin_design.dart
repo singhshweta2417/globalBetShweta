@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/controller/controller.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/text_const.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/controller/controller.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_colors.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/text_const.dart';
 import 'package:provider/provider.dart';
 
 class CoinList extends StatelessWidget {

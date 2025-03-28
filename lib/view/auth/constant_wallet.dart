@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/wallet/deposit_screen.dart';
-import 'package:globalbet/view/wallet/withdraw_screen.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/wallet/deposit_screen.dart';
+import 'package:game_on/view/wallet/withdraw_screen.dart';
 
 import '../../main.dart';
 
@@ -63,8 +63,8 @@ class _ConstantWalletState extends State<ConstantWallet> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Icon(Icons.currency_rupee_outlined,
-                        size: 20, color: Colors.white),
+                    textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                        fontSize: 20),
                     textWidget(
                       text: userData.balance == null
                           ? ""

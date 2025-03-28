@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/view/home/lottery/trx/res/trx_colors.dart';
-import 'package:globalbet/view/home/lottery/trx/res/trx_text_widget.dart';
-import 'package:globalbet/view/home/lottery/trx/view_model/trx_game_his_view_model.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/view/home/lottery/trx/res/trx_colors.dart';
+import 'package:game_on/view/home/lottery/trx/res/trx_text_widget.dart';
+import 'package:game_on/view/home/lottery/trx/view_model/trx_game_his_view_model.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 

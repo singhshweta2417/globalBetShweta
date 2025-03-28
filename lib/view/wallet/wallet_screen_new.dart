@@ -1,24 +1,24 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/circular_percent.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/wallet/deposit_history.dart';
-import 'package:globalbet/view/wallet/deposit_screen.dart';
-import 'package:globalbet/view/wallet/withdraw_screen.dart';
-import 'package:globalbet/view/wallet/withdrawal_history.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/circular_percent.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/wallet/deposit_history.dart';
+import 'package:game_on/view/wallet/deposit_screen.dart';
+import 'package:game_on/view/wallet/withdraw_screen.dart';
+import 'package:game_on/view/wallet/withdrawal_history.dart';
 import 'package:http/http.dart' as http;
 
 class WalletScreenNew extends StatefulWidget {
@@ -59,8 +59,8 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.currency_rupee,
-                      size: 30, color: AppColors.whiteColor),
+                  textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                      fontSize: 20),
                   textWidget(
                     text: userData.balance == 0
                         ? ""
@@ -296,11 +296,8 @@ class _WalletScreenNewState extends State<WalletScreenNew> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.currency_rupee,
-              size: 16,
-              color: AppColors.whiteColor,
-            ),
+            textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                fontSize: 20),
             textWidget(
               text: amount,
               fontWeight: FontWeight.w900,

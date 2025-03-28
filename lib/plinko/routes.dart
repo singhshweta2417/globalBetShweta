@@ -2,7 +2,7 @@
 
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:globalbet/plinko/lesson_menu.dart';
+import 'package:game_on/plinko/lesson_menu.dart';
 
 class Routes {
   static const menu = '/';

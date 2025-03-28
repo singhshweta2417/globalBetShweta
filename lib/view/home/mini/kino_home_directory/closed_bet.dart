@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
 
 
 class ClosedBet extends StatefulWidget {

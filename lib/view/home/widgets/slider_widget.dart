@@ -1,9 +1,9 @@
 
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/slider_provider.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/res/provider/slider_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

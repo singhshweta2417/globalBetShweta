@@ -1,9 +1,9 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_constant.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_constant.dart';
 
 
 class Lucky16Btn extends StatelessWidget {

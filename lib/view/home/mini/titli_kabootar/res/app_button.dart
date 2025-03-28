@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_colors.dart';
 
 class AppBtn extends StatelessWidget {
   final AlignmentGeometry? alignment;

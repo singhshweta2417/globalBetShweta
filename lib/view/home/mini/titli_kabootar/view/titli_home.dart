@@ -1,23 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/orientation.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/controller/controller.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/font_size.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/sound.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/stroke_text.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/text_const.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view/widget/exit_game.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view/widget/timer.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view/widget/titli_history.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view/widget/titli_result.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/bet_view_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/result_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/orientation.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/controller/controller.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_colors.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/font_size.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/sound.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/stroke_text.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/text_const.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view/widget/exit_game.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view/widget/timer.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view/widget/titli_history.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view/widget/titli_result.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view_model/bet_view_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view_model/result_view_model.dart';
 import 'package:provider/provider.dart';
 
 class TitliHomeScreen extends StatefulWidget {
@@ -94,7 +94,7 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                         children: [
                           TextConst(
                             textAlign: TextAlign.center,
-                            title: "BALANCE: ₹${profile.balance}",
+                            title: "BALANCE: 🪙${profile.balance}",
                             fontSize: 9,
                             fontWeight: FontWeight.bold,
                             color: AppColors.white,
@@ -432,7 +432,6 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                                     if (tc.addTitliBets.isNotEmpty) {
                                       tc.placeBet(tc.addTitliBets,
                                           context); // Place the bet
-                                      print("Bet placed");
                                       Audio.playSpinMusic(
                                           Assets.musicPlacechip);
                                     } else {
@@ -470,7 +469,6 @@ class _TitliHomeScreenState extends State<TitliHomeScreen> {
                                     if (tc.addTitliBets.isNotEmpty) {
                                       tc.doubleUpBet(
                                           context); // Double the bet and place it
-                                      print("Double Up triggered");
                                       Audio.playSpinMusic(
                                           Assets.musicPlacechip);
                                     } else {

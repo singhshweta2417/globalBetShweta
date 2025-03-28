@@ -1,4 +1,4 @@
-import 'package:globalbet/model/plinko_result.dart';
+import 'package:game_on/model/plinko_result.dart';
 import 'package:flutter/material.dart';
 
 

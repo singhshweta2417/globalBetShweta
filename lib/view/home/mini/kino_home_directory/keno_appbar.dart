@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bool_provider.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/hello_how_to_play.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/keno_colors.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/keno_menu_bar.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/api/kino_bool_provider.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/hello_how_to_play.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/keno_colors.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/keno_menu_bar.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_colors.dart';
 import 'package:provider/provider.dart';
 
 
@@ -104,8 +104,8 @@ class _KiNoAppbarState extends State<KiNoAppbar> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Icon(Icons.currency_rupee_outlined,
-                      size: 20, color: AppColors.white),
+                  textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                      fontSize: 20),
                   textWidget(
                     text: userProfileViewModel.balance.toString(),
                     fontSize: 20,
@@ -115,9 +115,8 @@ class _KiNoAppbarState extends State<KiNoAppbar> {
                   const SizedBox(width: 10),
                   InkWell(
                     onTap: () {
-                      // userProfileViewModel.userProfileApi(context);
+                      userProfileViewModel.profileApi(context);
                       Utils.flushBarSuccessMessage('Wallet refresh ✔', context,Colors.green);
-
                     },
                     child: Image.asset(Assets.imagesReload, height: 30,),
                   ),

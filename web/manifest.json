@@ -1,6 +1,6 @@
 {
-    "name": "globalbet",
-    "short_name": "globalbet",
+    "name": "game_on",
+    "short_name": "game_on",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

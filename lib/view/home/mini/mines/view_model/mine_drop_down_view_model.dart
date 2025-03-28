@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/view/home/mini/mines/model/mine_drop_down_model.dart';
-import 'package:globalbet/view/home/mini/mines/repo/mine_drop_down_repo.dart';
+import 'package:game_on/view/home/mini/mines/model/mine_drop_down_model.dart';
+import 'package:game_on/view/home/mini/mines/repo/mine_drop_down_repo.dart';
 
 class MineDropDownViewModel with ChangeNotifier {
   final _mineDropDownRepo = MineDropDownRepository();

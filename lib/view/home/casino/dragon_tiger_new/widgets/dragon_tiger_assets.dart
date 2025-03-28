@@ -38,7 +38,7 @@ class AppAssets{
   static const String buttonsRuppePannel = 'assets/dragontiger/rupee_panel.png';
   static const String backgroundTotalBetInput = 'assets/dragontiger/total_bet_input.png';
   static const String buttonsRedButton = 'assets/dragontiger/red_button.png';
-  static const String gif_dragon_animated = 'assets/dragontiger/gif_dragon_animated.gif';
+  static const String gifDragonAnimated = 'assets/dragontiger/gif_dragon_animated.gif';
   static const String gif_tiger_animated = 'assets/dragontiger/gif_tiger_animated.gif';
   static const String watch = 'assets/dragontiger/watch.png';
   static const String dragontigerStartbetting = 'assets/dragontiger/start_betting.png';

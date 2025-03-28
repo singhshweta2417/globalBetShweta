@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/lottery/trx/model/trx_win_amount_model.dart';
-import 'package:globalbet/view/home/lottery/trx/repo/trx_win_amount_repo.dart';
-import 'package:globalbet/view/home/lottery/trx/widgets/trx_loss_pop_up.dart';
-import 'package:globalbet/view/home/lottery/trx/widgets/trx_win_pop_up.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/lottery/trx/model/trx_win_amount_model.dart';
+import 'package:game_on/view/home/lottery/trx/repo/trx_win_amount_repo.dart';
+import 'package:game_on/view/home/lottery/trx/widgets/trx_loss_pop_up.dart';
+import 'package:game_on/view/home/lottery/trx/widgets/trx_win_pop_up.dart';
 import 'package:provider/provider.dart';
 
 class TrxWinAmountViewModel with ChangeNotifier {

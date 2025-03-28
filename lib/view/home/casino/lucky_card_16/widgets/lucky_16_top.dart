@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
-import 'package:globalbet/view/home/casino/lucky_card_16/view_model/lucky_16_result_view_model.dart';
-import 'package:globalbet/view/home/casino/lucky_card_16/widgets/luck_16_exit_pop_up.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_constant.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
+import 'package:game_on/view/home/casino/lucky_card_16/view_model/lucky_16_result_view_model.dart';
+import 'package:game_on/view/home/casino/lucky_card_16/widgets/luck_16_exit_pop_up.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_constant.dart';
 import 'package:provider/provider.dart';
 
 class Lucky16Top extends StatelessWidget {

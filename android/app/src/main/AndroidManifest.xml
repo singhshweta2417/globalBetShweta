@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fc.globalbet">
+    package="com.fc.game_on">
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -34,7 +34,7 @@
         </intent>
     </queries>
    <application
-        android:label="Global Bet"
+        android:label="Game On"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

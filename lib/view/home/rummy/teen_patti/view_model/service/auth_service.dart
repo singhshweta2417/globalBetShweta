@@ -1,6 +1,6 @@
-// import 'package:globalbet/model/user_model.dart';
-// import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
-// import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/firebase_services.dart';
+// import 'package:game_on/model/user_model.dart';
+// import 'package:game_on/view/bottom/bottom_nav_bar.dart';
+// import 'package:game_on/view/home/rummy/teen_patti/view_model/service/firebase_services.dart';
 //
 // import '../../../../../../material_imports.dart';
 // import 'local_data_base_service.dart';

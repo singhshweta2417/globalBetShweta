@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 
 class CustomContainer extends StatelessWidget {
   final AlignmentGeometry? alignment;
@@ -15,7 +15,7 @@ class CustomContainer extends StatelessWidget {
   final double? dx;
   final double? dy;
   final Gradient? gradient;
-  final String? Label;
+  final String? label;
   final TextStyle? style;
   final IconData? icon;
   final FontWeight? fontWeight;
@@ -50,7 +50,7 @@ class CustomContainer extends StatelessWidget {
     this.dx,
     this.dy,
     this.gradient,
-    this.Label,
+    this.label,
     this.style,
     this.icon,
     this.fontWeight,
@@ -98,7 +98,7 @@ class CustomContainer extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  Label == null ? "" : Label!,
+                  label == null ? "" : label!,
                   style: TextStyle(color: textColor, fontSize: fontSize),
                 ),
                 Icon(

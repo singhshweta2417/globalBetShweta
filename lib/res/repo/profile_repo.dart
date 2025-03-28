@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/model/profile_model.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/base_api_services.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/network_api_services.dart';
+import 'package:game_on/model/profile_model.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/base_api_services.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/network_api_services.dart';
 
-import 'package:globalbet/res/api_urls.dart';
+import 'package:game_on/res/api_urls.dart';
 
 class ProfileRepository {
   final BaseApiServices _apiServices = NetworkApiServices();

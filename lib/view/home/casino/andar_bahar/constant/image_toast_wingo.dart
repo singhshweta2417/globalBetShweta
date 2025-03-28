@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
 
 import '../../../../../res/aap_colors.dart';
 
@@ -436,7 +436,7 @@ class ImageToastWingo {
               ),
             ),
             Text(
-              '₹$subtext2',
+              '🪙 $subtext2',
               style: TextStyle(
                 fontSize: 25,
                 color: Colors.indigo.shade900,

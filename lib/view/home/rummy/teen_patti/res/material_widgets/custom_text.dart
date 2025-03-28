@@ -1,5 +1,5 @@
 
-import 'package:globalbet/material_imports.dart';
+import 'package:game_on/material_imports.dart';
 
 class CText extends StatelessWidget {
   final String text;

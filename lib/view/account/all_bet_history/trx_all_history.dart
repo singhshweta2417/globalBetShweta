@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/betting_history_model.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/betting_history_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/helper/api_helper.dart';
 
 class TrxAllHistory extends StatefulWidget {
   const TrxAllHistory({super.key});
@@ -198,8 +198,8 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                               items[index].status == 0
                                   ? '--'
                                   : items[index].status == 2
-                                      ? '- ₹${items[index].amount.toStringAsFixed(2)}'
-                                      : '+ ₹${items[index].winAmount.toStringAsFixed(2)}',
+                                      ? '- 🪙${items[index].amount.toStringAsFixed(2)}'
+                                      : '+ 🪙${items[index].winAmount.toStringAsFixed(2)}',
                               style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
@@ -343,7 +343,7 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
                                     'Win/Loss',
                                     items[index].status == 0
                                         ? '--'
-                                        : '₹${items[index].winAmount.toStringAsFixed(2)}',
+                                        : '🪙${items[index].winAmount.toStringAsFixed(2)}',
                                     items[index].status == 0
                                         ? Colors.white
                                         : items[index].status == 2
@@ -449,8 +449,8 @@ class _TrxAllHistoryState extends State<TrxAllHistory> {
 
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
-      final Map<String, dynamic> Data = json.decode(response.body);
-      final int totalBetsCount = Data['total_bets'];
+      final Map<String, dynamic> data = json.decode(response.body);
+      final int totalBetsCount = data['total_bets'];
 
       setState(() {
         items = responseData

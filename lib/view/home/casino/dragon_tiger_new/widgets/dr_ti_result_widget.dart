@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/result_game_history.dart';
-import 'package:globalbet/res/api_urls.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/result_game_history.dart';
+import 'package:game_on/res/api_urls.dart';
 
 import 'package:http/http.dart' as http;
 

@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/rummy/spin_to_win/repo/spin_result_repo.dart';
-import 'package:globalbet/view/home/rummy/spin_to_win/model/spin_result_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/rummy/spin_to_win/repo/spin_result_repo.dart';
+import 'package:game_on/view/home/rummy/spin_to_win/model/spin_result_model.dart';
 import 'package:provider/provider.dart';
 
 import '../controller/spin_controller.dart';

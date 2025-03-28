@@ -1,16 +1,16 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/card_deck_services.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/card_sorting_service.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/card_throw_animaton.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/firebase_services.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_timer_service.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/loader_overlay_service.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/sound_controller.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/utils/routes/routes_name.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/card_deck_services.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/card_sorting_service.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/card_throw_animaton.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/firebase_services.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/game_timer_service.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/loader_overlay_service.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/sound_controller.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../material_imports.dart';
 import '../../../../../../model/user_model.dart';
@@ -173,7 +173,7 @@ class TeenPattiGameController extends ChangeNotifier {
 
     await _firebaseCon.updateTossResultWithPlayer(
         roomCode: roomId, playerData: players, winnerId: winnerId);
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
     distributeCards(roomId);
     notifyListeners();
   }
@@ -215,9 +215,9 @@ class TeenPattiGameController extends ChangeNotifier {
 
     debugPrint('Cards have been distributed and the game has started.');
     // return;
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     _firebaseCon.updateGameStatus(roomCode, 4, "Game card distribution");
-    await Future.delayed(Duration(seconds: 6));
+    await Future.delayed(const Duration(seconds: 6));
     _firebaseCon.updateGameStatus(roomCode, 5, "Game started");
     notifyListeners();
   }
@@ -378,7 +378,7 @@ class TeenPattiGameController extends ChangeNotifier {
     final winnerData = _cardClassificationCon.compareHands(
         player1Card, player2Card, mePlayer['id'], otherOne['id']);
     debugPrint("comparing cards result $winnerData");
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     await _firebaseCon.updateMultipleField(
       roomCode,
       {
@@ -390,7 +390,7 @@ class TeenPattiGameController extends ChangeNotifier {
         }
       },
     );
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     playerPacked(winnerData['lose_id']);
     await _firebaseCon.updateSpecificField('slide_show.status', 5, roomCode);
   }

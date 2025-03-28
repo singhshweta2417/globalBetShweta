@@ -1,16 +1,16 @@
 // import 'dart:convert';
 //
-// import 'package:globalbet/generated/assets.dart';
-// import 'package:globalbet/main.dart';
-// import 'package:globalbet/res/aap_colors.dart';
-// import 'package:globalbet/res/components/app_bar.dart';
-// import 'package:globalbet/res/components/app_btn.dart';
-// import 'package:globalbet/res/components/text_widget.dart';
-// import 'package:globalbet/res/provider/profile_provider.dart';
+// import 'package:game_on/generated/assets.dart';
+// import 'package:game_on/main.dart';
+// import 'package:game_on/res/aap_colors.dart';
+// import 'package:game_on/res/components/app_bar.dart';
+// import 'package:game_on/res/components/app_btn.dart';
+// import 'package:game_on/res/components/text_widget.dart';
+// import 'package:game_on/res/provider/profile_provider.dart';
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 // import 'package:http/http.dart'as http;
-// import 'package:globalbet/view/home/mini/Aviator/progressbar.dart';
+// import 'package:game_on/view/home/mini/Aviator/progressbar.dart';
 //
 // class VipScreen extends StatefulWidget {
 //   const VipScreen({super.key});

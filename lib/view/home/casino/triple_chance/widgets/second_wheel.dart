@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/triple_chance/controller/triple_chance_controller.dart';
+import 'package:game_on/view/home/casino/triple_chance/controller/triple_chance_controller.dart';
 
 class SecondWheelSpin extends StatefulWidget {
   final TripleChanceController controller;

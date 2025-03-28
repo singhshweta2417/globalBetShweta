@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/view/home/casino/fun_target/Constant/color.dart';
-import 'package:globalbet/view/home/casino/fun_target/constant_widgets/container_widget.dart';
-import 'package:globalbet/view/home/casino/fun_target/constant_widgets/small_text_style.dart';
-import 'package:globalbet/view/home/casino/fun_target/constant_widgets/sub_title_style.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/view/home/casino/fun_target/Constant/color.dart';
+import 'package:game_on/view/home/casino/fun_target/constant_widgets/container_widget.dart';
+import 'package:game_on/view/home/casino/fun_target/constant_widgets/small_text_style.dart';
+import 'package:game_on/view/home/casino/fun_target/constant_widgets/sub_title_style.dart';
 import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {

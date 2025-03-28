@@ -1,21 +1,21 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/country_model.dart';
-import 'package:globalbet/offer/country_repo.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_field.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/provider/auth_provider.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
-import 'package:globalbet/utils/utils.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/country_model.dart';
+import 'package:game_on/offer/country_repo.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_field.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/provider/auth_provider.dart';
+import 'package:game_on/utils/routes/routes_name.dart';
+import 'package:game_on/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
 import 'package:provider/provider.dart';
 import '../../res/components/rich_text.dart';
 import 'package:http/http.dart' as http;
@@ -51,7 +51,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
       appBar: GradientAppBar(
           centerTitle: true,
           title: textWidget(
-              text: 'Global Bet',
+              text: 'Game On',
               fontWeight: FontWeight.w600,
               fontSize: 28,
               color: AppColors.whiteColor),
@@ -431,7 +431,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
     }
   }
 
-  otpMatch(BuildContext context, String myControllers, String phone,
+  otpMatch(context, String myControllers, String phone,
       String selectedCountryCode) async {
     final authProvider = Provider.of<UserAuthProvider>(context);
     if (selectedCountryCode == "+91") {
@@ -453,7 +453,6 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
           show = true;
         });
         Utils.flushBarSuccessMessage(data["msg"], context, Colors.white);
-        // Navigator.pushReplacementNamed(context, RoutesName.bottomNavBar);
       } else {
         setState(() {
           show = false;
@@ -464,7 +463,7 @@ class _RegisterScreenOtpState extends State<RegisterScreenOtp> {
   }
 }
 
-Future<String?> showCountryPicker(BuildContext context) async {
+Future<String?> showCountryPicker( context) async {
   List<Data> countryList = []; // List to hold country data
 
   try {

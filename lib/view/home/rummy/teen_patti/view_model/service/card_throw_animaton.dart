@@ -1,4 +1,4 @@
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/sound_controller.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/sound_controller.dart';
 
 import '../../../../../../material_imports.dart';
 
@@ -71,7 +71,6 @@ class CardThrowAnimation extends ChangeNotifier {
   }
 
   animateCard() async {
-    print("function invoked");
     // Sizes.screenWidth > 1000 || Sizes.screenWidth < 700
     //     ? Sizes.screenWidth / 2.2
     //     : Sizes.screenWidth / 2.2,
@@ -99,7 +98,6 @@ class CardThrowAnimation extends ChangeNotifier {
   }
 
   void resetAnimation() {
-    print("game ress");
     _controller?.stop();
     _controller?.dispose();
     _controller = null;

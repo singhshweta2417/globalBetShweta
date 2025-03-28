@@ -1,4 +1,4 @@
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_services.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/game_services.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../material_imports.dart';
 
@@ -10,12 +10,12 @@ class SlideshowOverlay extends StatelessWidget {
     return  Consumer<TeenPattiGameController>(
       builder: (context, gameCon,_) {
         final status = gameCon.gameData!['slide_show']['status'];
-        final reciever_id = gameCon.gameData!['slide_show']['receiver_player_id'];
+        final recieverId = gameCon.gameData!['slide_show']['receiver_player_id'];
         final requesterId = gameCon.gameData!['slide_show']['req_player_id'];
         final winnerData = gameCon.gameData!['slide_show']['winner_data'];
         bool isWinnerDecided = status == 4 && winnerData != null;
         bool hasSlideShowReq = (status >= 1 && status < 5 && status != 3) &&
-            reciever_id == gameCon.currentUserData!.id;
+            recieverId == gameCon.currentUserData!.id;
         bool hasSlideShow = (status >= 2 && status < 5 && status != 3) &&
             requesterId == gameCon.currentUserData!.id;
         if (hasSlideShowReq || hasSlideShow) {

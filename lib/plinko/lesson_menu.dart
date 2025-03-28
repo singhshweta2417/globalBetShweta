@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/plinko/routes.dart';
+import 'package:game_on/plinko/routes.dart';
 
 class LessonMenu extends StatelessWidget {
   const LessonMenu({super.key});

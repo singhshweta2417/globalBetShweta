@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/seven_up_down_repo/jackpot_bet_repo.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/seven_up_down_repo/jackpot_bet_repo.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../utils/utils.dart';
@@ -31,8 +31,6 @@ class SevenUpDownViewModel with ChangeNotifier {
     ];
     _sevenUpDownBetRepo.jackpotBet(userId, betList, 22).then((value) {
       if (value['status'] == 200) {
-        print(betList);
-        print("betList seven wali");
         setLoading(false);
         Provider.of<ProfileViewModel>(context, listen: false)
             .profileApi(context);

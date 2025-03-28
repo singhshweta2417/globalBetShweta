@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/text_const.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/result_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_colors.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/text_const.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view_model/result_view_model.dart';
 import 'package:provider/provider.dart';
 
 class TitliResultScreen extends StatefulWidget {

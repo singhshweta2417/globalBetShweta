@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/casino/triple_chance/controller/triple_chance_controller.dart';
-import 'package:globalbet/view/home/casino/triple_chance/repo/triple_chance_result_repo.dart';
-import 'package:globalbet/view/home/casino/triple_chance/res/utils.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/casino/triple_chance/controller/triple_chance_controller.dart';
+import 'package:game_on/view/home/casino/triple_chance/repo/triple_chance_result_repo.dart';
+import 'package:game_on/view/home/casino/triple_chance/res/utils.dart';
 import 'package:provider/provider.dart';
 
 import '../model/triple_chance_result_model.dart';

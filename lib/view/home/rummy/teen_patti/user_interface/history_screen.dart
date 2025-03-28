@@ -1,4 +1,4 @@
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/components/game_history_data_view.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/components/game_history_data_view.dart';
 import 'package:provider/provider.dart';
 import '../../../../../material_imports.dart';
 import '../view_model/service/game_services.dart';
@@ -34,7 +34,6 @@ class _HistoryScreenActivityState extends State<HistoryScreenActivity> {
             shrinkWrap: true,
             itemCount: gameCon.gameHistory!.length,
             itemBuilder: (ctx, int index) {
-              print(gameCon.gameHistory![index]);
               final data = gameCon.gameHistory![index];
               return ContBox(
                 margin: const EdgeInsets.only(bottom: 5),

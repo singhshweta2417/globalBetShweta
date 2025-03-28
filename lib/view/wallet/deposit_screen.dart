@@ -1,21 +1,21 @@
 import 'dart:convert';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/add_account_view_model.dart';
-import 'package:globalbet/model/deposit_model_new.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/audio.dart';
-import 'package:globalbet/res/components/text_field.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/wallet/deposit_history.dart';
-import 'package:globalbet/view/wallet/deposit_web.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/add_account_view_model.dart';
+import 'package:game_on/model/deposit_model_new.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/audio.dart';
+import 'package:game_on/res/components/text_field.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/wallet/deposit_history.dart';
+import 'package:game_on/view/wallet/deposit_web.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -159,8 +159,8 @@ class _DepositScreenState extends State<DepositScreen> {
                       Row(
                         children: [
                           const SizedBox(width: 15),
-                          const Icon(Icons.currency_rupee,
-                              color: AppColors.whiteColor),
+                          textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                              fontSize: 20),
                           textWidget(
                             text: userData.balance.toStringAsFixed(2),
                             fontWeight: FontWeight.w900,
@@ -352,8 +352,8 @@ class _DepositScreenState extends State<DepositScreen> {
                             child: Row(
                               children: [
                                 const SizedBox(width: 10),
-                                const Icon(Icons.currency_rupee,
-                                    color: AppColors.whiteColor),
+                                textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                                    fontSize: 20),
                                 const SizedBox(width: 10),
                                 Container(
                                     height: 30, color: Colors.grey, width: 2)
@@ -556,8 +556,8 @@ class _DepositScreenState extends State<DepositScreen> {
                                 child: Row(
                                   children: [
                                     const SizedBox(width: 10),
-                                    const Icon(Icons.currency_rupee,
-                                        color: AppColors.whiteColor),
+                                    textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                                        fontSize: 20),
                                     const SizedBox(width: 10),
                                     Container(
                                         height: 30,
@@ -592,7 +592,7 @@ class _DepositScreenState extends State<DepositScreen> {
                   } else if (selectedIndex == 1) {
                     indianPay(depositCon.text, context);
                   } else if (selectedIndex == 2) {
-                    camelDeposit(camelCon.text, selectedIndex.toString());
+                    camelDeposit(camelCon.text, selectedIndex.toString(),context);
                   }
                 }
               },
@@ -856,17 +856,14 @@ class _DepositScreenState extends State<DepositScreen> {
     }
   }
 
-  Future<void> camelDeposit(String amount, String type) async {
+  Future<void> camelDeposit(String amount, String type,context) async {
     UserModel user = await userProvider.getUser();
     String token = user.id.toString();
 
     final response = await http.get(
       Uri.parse("${ApiUrl.depositCamLenio}$token&amount=$amount&type=$type"),
     );
-    if (kDebugMode) {
-      print("${ApiUrl.depositCamLenio}$token&amount=$amount&type=$type");
-      print('deposit');
-    }
+
     final data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       var qrUrl = data['result']['payment_url'].toString();

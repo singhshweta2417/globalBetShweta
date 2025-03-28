@@ -1,6 +1,6 @@
 
 
-import 'package:globalbet/view/home/lottery/wingo/helper/response/status.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/response/status.dart';
 
 class ApiResponse<T> {
   Status? status;

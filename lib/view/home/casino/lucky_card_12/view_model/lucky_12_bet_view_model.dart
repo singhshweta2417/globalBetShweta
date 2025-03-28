@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/casino/lucky_card_12/repo/lucky_12_bet_repo.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/casino/lucky_card_12/repo/lucky_12_bet_repo.dart';
 
 import '../../../../../utils/utils.dart';
 

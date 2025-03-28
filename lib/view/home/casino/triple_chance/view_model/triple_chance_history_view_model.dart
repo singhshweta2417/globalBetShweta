@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/casino/triple_chance/repo/triple_chance_history_repo.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/casino/triple_chance/repo/triple_chance_history_repo.dart';
 import '../model/triple_chance_history_model.dart';
 
 

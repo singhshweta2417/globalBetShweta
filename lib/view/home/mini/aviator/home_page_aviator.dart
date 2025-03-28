@@ -4,26 +4,26 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/marquee/marquee.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/marquee/marquee.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'dart:math' as math;
 import 'package:http/http.dart' as http;
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/app_constant.dart';
-import 'package:globalbet/res/components/audio.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/mini/Aviator/aviator_constant/aviator_assets.dart';
-import 'package:globalbet/view/home/mini/Aviator/aviator_model/result_history_model.dart';
-import 'package:globalbet/view/home/mini/Aviator/my_bet.dart';
-import 'package:globalbet/view/home/mini/Aviator/widget/small_toggel_switch.dart';
-import 'package:globalbet/view/home/mini/Aviator/widget/switch.dart';
-import 'package:globalbet/view/home/mini/Aviator/widget/toggel_switch.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/app_constant.dart';
+import 'package:game_on/res/components/audio.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/mini/Aviator/aviator_constant/aviator_assets.dart';
+import 'package:game_on/view/home/mini/Aviator/aviator_model/result_history_model.dart';
+import 'package:game_on/view/home/mini/Aviator/my_bet.dart';
+import 'package:game_on/view/home/mini/Aviator/widget/small_toggel_switch.dart';
+import 'package:game_on/view/home/mini/Aviator/widget/switch.dart';
+import 'package:game_on/view/home/mini/Aviator/widget/toggel_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -220,7 +220,7 @@ class _GameAviatorState extends State<GameAviator>
                         width: width * 0.02,
                       ),
                       const Text(
-                        '₹',
+                        '🪙',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
@@ -689,7 +689,7 @@ class _GameAviatorState extends State<GameAviator>
                                               Container(
                                                 alignment: Alignment.center,
                                                 width: width * 0.3,
-                                                child: const Text("Bet,₹ X",
+                                                child: const Text("Bet,🪙 X",
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 12,
@@ -700,7 +700,7 @@ class _GameAviatorState extends State<GameAviator>
                                                 alignment:
                                                     Alignment.centerRight,
                                                 width: width * 0.3,
-                                                child: const Text("Cash out, ₹",
+                                                child: const Text("Cash out, 🪙",
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 12,
@@ -1034,7 +1034,7 @@ class _GameAviatorState extends State<GameAviator>
           cashout = true;
           betplaced = false;
         });
-        cashOut(betData1['bet'].toString(), autoValue.text, '1');
+        cashOut(betData1['bet'].toString(), autoValue.text, '1',context);
       }
     }
   }
@@ -1046,7 +1046,7 @@ class _GameAviatorState extends State<GameAviator>
           cashOutTwo = true;
           betPlacedTwo = false;
         });
-        cashOut(betData2['bet'].toString(), autoValueTwo.text, '2');
+        cashOut(betData2['bet'].toString(), autoValueTwo.text, '2',context);
       }
     }
   }
@@ -1107,11 +1107,11 @@ class _GameAviatorState extends State<GameAviator>
             resultHistory();
             if (autoPlay2 == false) {
               addBet(amountTwo.text, '2', receiveData['period'].toString(),
-                  receiveData['status'].toString());
+                  receiveData['status'].toString(),context);
             }
             if (autoPlay1 == false) {
               addBet(amount.text, '1', receiveData['period'].toString(),
-                  receiveData['status'].toString());
+                  receiveData['status'].toString(),context);
             }
           }
         }
@@ -1520,7 +1520,7 @@ class _GameAviatorState extends State<GameAviator>
                               amount.text,
                               '1',
                               receiveData['period'].toString(),
-                              receiveData['status'].toString());
+                              receiveData['status'].toString(),context);
                         }
                       },
                       child: Container(
@@ -1548,7 +1548,7 @@ class _GameAviatorState extends State<GameAviator>
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
-                            Text("${amount.text}.00₹",
+                            Text("${amount.text}.00🪙",
                                 style: const TextStyle(
                                     fontSize: 22,
                                     fontWeight: FontWeight.w700,
@@ -1564,7 +1564,7 @@ class _GameAviatorState extends State<GameAviator>
                         int.parse(receiveData['period'].toString()) + 1))
                   InkWell(
                       onTap: () {
-                        cancelBet('1');
+                        cancelBet('1',context);
                         bet = false;
                       },
                       child: Container(
@@ -1601,7 +1601,7 @@ class _GameAviatorState extends State<GameAviator>
                   InkWell(
                       onTap: () {
                         cashOut(betData1['bet'].toString(),
-                            receiveData['timer'], '1');
+                            receiveData['timer'], '1',context);
                         setState(() {
                           changeColor = "2";
                           bet = false;
@@ -2008,7 +2008,7 @@ class _GameAviatorState extends State<GameAviator>
                               amountTwo.text,
                               '2',
                               receiveData['period'].toString(),
-                              receiveData['status'].toString());
+                              receiveData['status'].toString(),context);
                         }
                       },
                       child: Container(
@@ -2036,7 +2036,7 @@ class _GameAviatorState extends State<GameAviator>
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
-                            Text("${amountTwo.text}.00₹",
+                            Text("${amountTwo.text}.00🪙",
                                 style: const TextStyle(
                                     fontSize: 22,
                                     fontWeight: FontWeight.w700,
@@ -2052,7 +2052,7 @@ class _GameAviatorState extends State<GameAviator>
                         int.parse(receiveData['period'].toString()) + 1))
                   InkWell(
                       onTap: () {
-                        cancelBet('2');
+                        cancelBet('2',context);
                         betTwo = false;
                       },
                       child: Container(
@@ -2089,7 +2089,7 @@ class _GameAviatorState extends State<GameAviator>
                   InkWell(
                       onTap: () {
                         cashOut(betData2['bet'].toString(),
-                            receiveData['timer'], '2');
+                            receiveData['timer'], '2',context);
                         setState(() {
                           changeColorTwo = "2";
                           betTwo = false;
@@ -2305,7 +2305,7 @@ class _GameAviatorState extends State<GameAviator>
 
   double widths = 0;
 
-  Aviator(double height, double width) {
+  aviatorGame(double height, double width) {
     return SizedBox(
       height: height,
       width: width,
@@ -2343,7 +2343,7 @@ class _GameAviatorState extends State<GameAviator>
 
   List<Demo> dummyBet = [];
 
-  Future cashOut(String amount, String times, String betNo) async {
+  Future cashOut(String amount, String times, String betNo,context) async {
     if ((betNo == '1' && betFind1 == true) ||
         (betNo == '2' && betFind2 == true)) {
       UserModel user = await userProvider.getUser();
@@ -2392,7 +2392,7 @@ class _GameAviatorState extends State<GameAviator>
     }
   }
 
-  Future cancelBet(String betNo) async {
+  Future cancelBet(String betNo,context) async {
     if (betNo == '1') {
       setState(() {
         betFind1 = false;
@@ -2424,7 +2424,7 @@ class _GameAviatorState extends State<GameAviator>
     }
   }
 
-  addBet(String amount, String betNo, String period, String status) async {
+  addBet(String amount, String betNo, String period, String status,context) async {
     UserModel user = await userProvider.getUser();
     String userid = user.id.toString();
     String perios = period;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/lottery/wingo/controller/win_go_controller.dart';
-import 'package:globalbet/view/home/lottery/wingo/widgets/game_history.dart';
-import 'package:globalbet/view/home/lottery/wingo/widgets/my_history.dart';
-import 'package:globalbet/view/home/lottery/wingo/widgets/win_go_chart.dart';
+import 'package:game_on/view/home/lottery/wingo/controller/win_go_controller.dart';
+import 'package:game_on/view/home/lottery/wingo/widgets/game_history.dart';
+import 'package:game_on/view/home/lottery/wingo/widgets/my_history.dart';
+import 'package:game_on/view/home/lottery/wingo/widgets/win_go_chart.dart';
 import 'package:provider/provider.dart';
 
 

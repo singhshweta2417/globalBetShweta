@@ -1,16 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/betting_rebate_model.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/betting_rebate_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 
 import '../../res/api_urls.dart';
 import 'package:http/http.dart' as http;
@@ -159,9 +159,9 @@ class _BettingRebatesState extends State<BettingRebates> {
                                     color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w900),
                                 textWidget(
-                                    text: todayrebet == null
+                                    text: todayRebate == null
                                         ? "0"
-                                        : todayrebet.toString(),
+                                        : todayRebate.toString(),
                                     fontSize: 18,
                                     color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w900),
@@ -188,9 +188,9 @@ class _BettingRebatesState extends State<BettingRebates> {
                                     color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w900),
                                 textWidget(
-                                    text: totalrebet == null
+                                    text: totalRebate == null
                                         ? "0"
-                                        : totalrebet.toString(),
+                                        : totalRebate.toString(),
                                     fontSize: 18,
                                     color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w900),
@@ -252,7 +252,7 @@ class _BettingRebatesState extends State<BettingRebates> {
               child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: RebateList.length,
+                  itemCount: rebateList.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 8.0),
@@ -284,7 +284,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                                         height: 5,
                                       ),
                                       textWidget(
-                                          text: RebateList[index]
+                                          text: rebateList[index]
                                               .datetime
                                               .toString(),
                                           fontSize: 12,
@@ -336,7 +336,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w700),
                                             textWidget(
-                                                text: RebateList[index]
+                                                text: rebateList[index]
                                                     .bettingRebate
                                                     .toString(),
                                                 fontSize: 12,
@@ -363,7 +363,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                                                 fontWeight: FontWeight.w700),
                                             textWidget(
                                                 text:
-                                                    "${RebateList[index].rebateRate}%",
+                                                    "${rebateList[index].rebateRate}%",
                                                 fontSize: 12,
                                                 color: AppColors.whiteColor,
                                                 fontWeight: FontWeight.w700),
@@ -387,7 +387,7 @@ class _BettingRebatesState extends State<BettingRebates> {
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w700),
                                             textWidget(
-                                                text: RebateList[index]
+                                                text: rebateList[index]
                                                     .rebateAmount
                                                     .toStringAsFixed(2),
                                                 fontSize: 12,
@@ -413,15 +413,15 @@ class _BettingRebatesState extends State<BettingRebates> {
     );
   }
 
-  int? responseStatuscode;
+  int? responseStatusCode;
 
   UserViewModel userProvider = UserViewModel();
 
-  List<BettingRebateModel> RebateList = [];
-  String? dataread;
-  dynamic totalrebet;
+  List<BettingRebateModel> rebateList = [];
+  String? dataRead;
+  dynamic totalRebate;
   dynamic totalamount;
-  dynamic todayrebet;
+  dynamic todayRebate;
 
   Future<void> bettingRebateList() async {
     UserModel user = await userProvider.getUser();
@@ -430,22 +430,22 @@ class _BettingRebatesState extends State<BettingRebates> {
       Uri.parse('${ApiUrl.bettingRebateApi}$token&subtypeid=25'),
     );
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data1'];
       setState(() {
-        totalrebet = json
+        totalRebate = json
             .decode(response.body)['data'][0]['total_rebet']
             .toStringAsFixed(2);
         totalamount = json
             .decode(response.body)['data'][0]['total_amount']
             .toStringAsFixed(2);
-        todayrebet = json
+        todayRebate = json
             .decode(response.body)['data'][0]['today_rebet']
             .toStringAsFixed(2);
-        RebateList = responseData
+        rebateList = responseData
             .map((item) => BettingRebateModel.fromJson(item))
             .toList();
       });
@@ -455,7 +455,7 @@ class _BettingRebatesState extends State<BettingRebates> {
       }
     } else {
       setState(() {
-        RebateList = [];
+        rebateList = [];
       });
       throw Exception('Failed to load data');
     }

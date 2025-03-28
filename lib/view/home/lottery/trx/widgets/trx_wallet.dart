@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/lottery/trx/res/trx_colors.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/lottery/trx/res/trx_colors.dart';
 import 'package:provider/provider.dart';
 
 class TrxWallet extends StatefulWidget {

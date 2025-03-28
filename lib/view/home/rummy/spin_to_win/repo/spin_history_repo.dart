@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/base_api_services.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/network_api_services.dart';
-import 'package:globalbet/view/home/rummy/spin_to_win/model/spin_history_model.dart';
-import 'package:globalbet/view/home/rummy/spin_to_win/res/api_url.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/base_api_services.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/network_api_services.dart';
+import 'package:game_on/view/home/rummy/spin_to_win/model/spin_history_model.dart';
+import 'package:game_on/view/home/rummy/spin_to_win/res/api_url.dart';
 
 class SpinHistoryRepository {
   final BaseApiServices _apiServices = NetworkApiServices();

@@ -2,13 +2,13 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/utils/routes/routes_name.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/utils/utils.dart';
+import 'package:game_on/utils/utils.dart';
 
 class UserAuthProvider with ChangeNotifier {
   bool _loading = false;
@@ -60,7 +60,7 @@ class UserAuthProvider with ChangeNotifier {
   userRegister(context, String identity, String password,
       String referralCode, String email, String countryCode) async {
     final response = await http.post(
-      // Uri.parse("https://root.globalbet.com/api/register"),
+      // Uri.parse("https://root.game_on.com/api/register"),
       Uri.parse(ApiUrl.register),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',

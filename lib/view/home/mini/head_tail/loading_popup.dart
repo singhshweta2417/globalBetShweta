@@ -1,19 +1,18 @@
-
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/app_constant.dart';
-import 'package:globalbet/view/home/mini/head_tail/head_tail_assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/app_constant.dart';
+import 'package:game_on/view/home/mini/head_tail/head_tail_assets.dart';
 
 class HeadTailPopUp extends StatefulWidget {
   final int time;
   const HeadTailPopUp({super.key, required this.time});
 
   @override
-  _HeadTailPopUpState createState() => _HeadTailPopUpState();
+  HeadTailPopUpState createState() => HeadTailPopUpState();
 }
 
-class _HeadTailPopUpState extends State<HeadTailPopUp> {
-  int WaitingTimeSeconds = 30;
+class HeadTailPopUpState extends State<HeadTailPopUp> {
+  int waitingTimeSeconds = 30;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -48,7 +47,7 @@ class _HeadTailPopUpState extends State<HeadTailPopUp> {
                         Border.all(color: const Color(0xffea0b3e), width: 1),
                   ),
                   child: LinearProgressIndicator(
-                    value: 1 - (widget.time / WaitingTimeSeconds),
+                    value: 1 - (widget.time / waitingTimeSeconds),
                     backgroundColor: Colors.grey,
                     valueColor:
                         const AlwaysStoppedAnimation<Color>(Color(0xffea0b3e)),
@@ -57,7 +56,7 @@ class _HeadTailPopUpState extends State<HeadTailPopUp> {
                   ),
                 ),
                 Text(
-                  '  ${(100 - ((widget.time / WaitingTimeSeconds) * 100)).toStringAsFixed(0)}%',
+                  '  ${(100 - ((widget.time / waitingTimeSeconds) * 100)).toStringAsFixed(0)}%',
                   style: TextStyle(fontSize: width * 0.02, color: Colors.white),
                 ),
                 // Text(' ${_linearProgressAnimation.value.toStringAsFixed(2)}%',style: TextStyle(color: Colors.white),),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 
 class WinPopUpPage extends StatelessWidget {
   final String winNumber;
@@ -71,7 +71,7 @@ class WinPopUpPage extends StatelessWidget {
               style: TextStyle(color: Colors.white70, fontSize: 16),
             ),
             Text(
-              "₹$winAmount",
+              "🪙 $winAmount",
               style: const TextStyle(
                 color: Colors.greenAccent,
                 fontSize: 24,

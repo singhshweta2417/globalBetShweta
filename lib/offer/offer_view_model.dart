@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/model/offer_model.dart';
-import 'package:globalbet/offer/offer_repo.dart';
+import 'package:game_on/model/offer_model.dart';
+import 'package:game_on/offer/offer_repo.dart';
 
 
 class OfferViewModel with ChangeNotifier {

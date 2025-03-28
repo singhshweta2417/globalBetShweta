@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 
 
 class HiloHowToPlay extends StatefulWidget {

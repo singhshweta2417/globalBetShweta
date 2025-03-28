@@ -1,17 +1,17 @@
 import 'dart:convert';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/extra_deposit_model.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/wallet/deposit_screen.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/extra_deposit_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/wallet/deposit_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/view/wallet/first_deposit_bonus_list.dart';
+import 'package:game_on/view/wallet/first_deposit_bonus_list.dart';
 
 class OffersScreen extends StatefulWidget {
   const OffersScreen({super.key});
@@ -108,7 +108,7 @@ class _OffersScreenState extends State<OffersScreen> {
                                           fontWeight: FontWeight.w600),
                                       const Spacer(),
                                       textWidget(
-                                          text: '+₹${data.bonus}',
+                                          text: '+🪙${data.bonus}',
                                           color: AppColors.whiteColor,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w600),

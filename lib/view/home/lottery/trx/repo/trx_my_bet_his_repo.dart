@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/view/home/lottery/trx/model/trx_my_bet_his_model.dart';
-import 'package:globalbet/view/home/lottery/trx/res/trx_api_url.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/base_api_services.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/network_api_services.dart';
+import 'package:game_on/view/home/lottery/trx/model/trx_my_bet_his_model.dart';
+import 'package:game_on/view/home/lottery/trx/res/trx_api_url.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/base_api_services.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/network_api_services.dart';
 
 class TrxMyBetHisRepository {
   final BaseApiServices _apiServices = NetworkApiServices();

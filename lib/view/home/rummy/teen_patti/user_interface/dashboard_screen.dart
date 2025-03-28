@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_services.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/game_services.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../material_imports.dart';
-import '../view_model/service/auth_service.dart';
 import '../view_model/service/loader_overlay_service.dart';
 
 class DashboardScreenActivity extends StatefulWidget {
@@ -28,9 +26,6 @@ class _DashboardScreenActivityState extends State<DashboardScreenActivity>
   Widget build(BuildContext context) {
     final userData = Provider.of<ProfileViewModel>(context);
     return Consumer<TeenPattiGameController>(builder: (context, gameCon, _) {
-      if (userData == null) {
-        return const Scaffold();
-      }
       return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -89,7 +84,7 @@ class _DashboardScreenActivityState extends State<DashboardScreenActivity>
                     color: Colors.white,
                   ),
                   Sizes.spaceW5,
-                  CText("Balance: ₹${userData.balance}"),
+                  CText("Balance: 🪙${userData.balance}"),
                 ],
               ),
             )

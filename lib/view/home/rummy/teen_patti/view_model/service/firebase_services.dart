@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../../material_imports.dart';
-import '../../../../../../model/user_model.dart';
 import '../../model/card_model.dart';
 
 class FireBaseServices {
@@ -21,8 +20,6 @@ class FireBaseServices {
   //   }
   //   return null;
   // }
-
-
 
   Future<QuerySnapshot> getDesiredRoomData(dynamic gamePlayerType,
       dynamic gameType, dynamic gameId, dynamic tableType) async {

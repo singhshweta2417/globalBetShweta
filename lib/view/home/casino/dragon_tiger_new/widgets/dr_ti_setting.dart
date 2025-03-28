@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'package:globalbet/res/components/text_widget.dart';
+// import 'package:game_on/res/components/text_widget.dart';
 //
 //
 // class DrTiSetting extends StatefulWidget {

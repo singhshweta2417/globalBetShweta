@@ -3,8 +3,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/app_exception.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/base_api_services.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/app_exception.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/base_api_services.dart';
 import 'package:http/http.dart' as http;
 
 

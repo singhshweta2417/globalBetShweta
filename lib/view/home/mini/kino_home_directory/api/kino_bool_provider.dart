@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_result_api.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_url.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/keno_win_popup.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/api/kino_result_api.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/api/kino_url.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/keno_win_popup.dart';
 import 'package:http/http.dart' as http;
 
 class KiNoBoolProvider with ChangeNotifier {
@@ -142,29 +142,8 @@ class KiNoBoolProvider with ChangeNotifier {
       '400x',
       '2000x'
     ], // For 7 selections
-    [
-      '1',
-      '0x',
-      '0x',
-      '1x',
-      '5.38x',
-      '11x',
-      '50x',
-      '5000x',
-      '10000x'
-    ],
-    [
-      '2x',
-      '0x',
-      '0x',
-      '0x',
-      '2x',
-      '10.86x',
-      '50x',
-      '1000x',
-      '5000x',
-      '25000x'
-    ],
+    ['1', '0x', '0x', '1x', '5.38x', '11x', '50x', '5000x', '10000x'],
+    ['2x', '0x', '0x', '0x', '2x', '10.86x', '50x', '1000x', '5000x', '25000x'],
     [
       '2x',
       '0x',
@@ -179,8 +158,6 @@ class KiNoBoolProvider with ChangeNotifier {
       '10000x'
     ],
   ];
-
-
 
   // Getters
   bool get kiNoBetPlaced => _betPlaced;
@@ -221,15 +198,16 @@ class KiNoBoolProvider with ChangeNotifier {
   }
 
   // Start Countdown
-  Future<void> startCountdown(BuildContext context, KinoResultApi resultProvider) async {
+  Future<void> startCountdown(
+      BuildContext context, KinoResultApi resultProvider) async {
     DateTime now = DateTime.now().toUtc();
     int initialSeconds = 30 - now.second;
     _countdownSeconds = initialSeconds;
     notifyListeners();
-
   }
 
-  void updateUI(BuildContext context, Timer timer, KinoResultApi resultProvider) {
+  void updateUI(
+      BuildContext context, Timer timer, KinoResultApi resultProvider) {
     _countdownSeconds = (_countdownSeconds - 1) % 30;
     notifyListeners();
 
@@ -238,18 +216,18 @@ class KiNoBoolProvider with ChangeNotifier {
       resultProvider.response.first.gamesno;
       // final winLossPopup = Provider.of<KinoWinApi>(context,listen: false);
       // winLossPopup.kinoWinLossApi(context: context, gameNo:  resultProvider.response.first.gamesno.toString());
-      kinoWinLossApi(context: context, gameNo: resultProvider.response.first.gamesno.toString());
+      kinoWinLossApi(
+          context: context,
+          gameNo: resultProvider.response.first.gamesno.toString());
     } else if (_countdownSeconds < 10 && _countdownSeconds > 1) {
       setBetStop(true);
     }
 
     if (_countdownSeconds == 5) {
-
     } else if (_countdownSeconds == 1) {
       setBetStop(false);
       setBetPlaced(false);
       selectedNumbers.clear();
-
     }
   }
 
@@ -352,7 +330,6 @@ class KiNoBoolProvider with ChangeNotifier {
       default:
         return [];
     }
-
   }
 
   void setSelectedValue(int value) {
@@ -360,47 +337,38 @@ class KiNoBoolProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  dynamic  result;
-  dynamic  gamesno;
+  dynamic result;
+  dynamic gamesno;
   dynamic numberList;
   dynamic amount;
-  Future<void> kinoWinLossApi({required BuildContext context, required String gameNo}) async {
+  Future<void> kinoWinLossApi(
+      {required context, required String gameNo}) async {
     try {
       final response = await http.post(
         Uri.parse(KinoUrl.kinoWinResult),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode({
-          "userid" : "3",
-          "game_id" : "23",
-          "gamesno": gameNo
-        }),
+        body: jsonEncode({"userid": "3", "game_id": "23", "gamesno": gameNo}),
       );
-      print({
-        "userid" : "3",
-        "game_id" : "23",
-        "gamesno": gameNo
-      });
-      print("response");
+
       final data = jsonDecode(response.body);
       if (response.statusCode == 200) {
         result = data['result'];
         gamesno = data['games_no'];
         numberList = (data['number'] as Map<String, dynamic>).values.toList();
         amount = data['amount'];
-        Utils.flushBarSuccessMessage(data['message'], context,Colors.green);
-        showDialog(context: context, builder: (context)=>WinPopUpPage(
-          winNumber: numberList.join(", "),
-          gameSrNo: gamesno,
-          winAmount: amount,
-        ));
-        print('api chli');
+        Utils.flushBarSuccessMessage(data['message'], context, Colors.green);
+        showDialog(
+            context: context,
+            builder: (context) => WinPopUpPage(
+                  winNumber: numberList.join(", "),
+                  gameSrNo: gamesno,
+                  winAmount: amount,
+                ));
       }
     } catch (e) {
       rethrow;
-    } finally {
-
     }
   }
 }

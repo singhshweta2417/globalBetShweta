@@ -5,25 +5,25 @@ import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flip_card/controllers/flip_card_controllers.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/andar_bahar_model/last_fifteen.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/andar_bahar_assets.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/andar_bahar_history.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/andar_bahar_toast.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/coins_sign_new.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/game_history.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/hide_coins.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/image_toast_wingo.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/coin/set_coin.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/dragon_tiger_assets.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/bottom/bottom_nav_bar.dart';
+import 'package:game_on/view/home/casino/andar_bahar/andar_bahar_model/last_fifteen.dart';
+import 'package:game_on/view/home/casino/andar_bahar/andar_bahar_assets.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/andar_bahar_history.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/andar_bahar_toast.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/coins_sign_new.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/game_history.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/hide_coins.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/image_toast_wingo.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/coin/set_coin.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/dragon_tiger_assets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -60,7 +60,6 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
   Timer? countdownTimer;
   void startTimer() {
     countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      print('Timer tick');
     });
   }
 
@@ -268,8 +267,6 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                           builder: (context) => AndarBaharHistory(
                                 gameid: widget.gameId,
                               )));
-                  print(gameid);
-                  print('gameid');
                 },
                 child: Column(
                   children: [
@@ -611,9 +608,9 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                       final GlobalKey<CartIconKey> itemKey =
                                           GlobalKey<CartIconKey>();
                                       return firstCome == false
-                                          ? hidecoins(list[index])
+                                          ? HideCoins(list[index])
                                           : hideButton == true
-                                              ? hidecoins(list[index])
+                                              ? HideCoins(list[index])
                                               : InkWell(
                                                   onTap: () async {
                                                     wallet == 0
@@ -1149,7 +1146,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
 
   ///betting API
 
-  Future<void> bettingApi(BuildContext context) async {
+  Future<void> bettingApi(context) async {
     try {
       // Fetch userId
       UserViewModel userProvider = UserViewModel();
@@ -1186,7 +1183,6 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
 
       // Parse the response
       var data = jsonDecode(response.body);
-      print(response);
       // Handle the response
       if (response.statusCode == 200) {
         // Success response
@@ -1199,8 +1195,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
       } else {
         // Error response
         String errorMessage = data['message'];
-        print(errorMessage);
-        print("So cuttteeeeee");
+
         Utils.flushBarErrorMessage(errorMessage, context, Colors.red);
       }
     } catch (e) {

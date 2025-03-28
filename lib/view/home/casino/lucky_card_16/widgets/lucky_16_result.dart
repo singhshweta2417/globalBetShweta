@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
-import 'package:globalbet/view/home/casino/lucky_card_16/view_model/lucky_16_result_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
+import 'package:game_on/view/home/casino/lucky_card_16/view_model/lucky_16_result_view_model.dart';
 import 'package:provider/provider.dart';
 
 class Lucky16Result extends StatelessWidget {

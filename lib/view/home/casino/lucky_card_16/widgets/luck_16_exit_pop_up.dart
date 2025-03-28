@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_constant.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_constant.dart';
 
 class Luck16ExitPopUp extends StatelessWidget {
   final VoidCallback yes;

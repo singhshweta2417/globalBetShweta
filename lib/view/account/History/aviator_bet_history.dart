@@ -1,15 +1,15 @@
 import 'dart:convert';
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/view/home/mini/Aviator/aviator_model/my_bet_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/view/home/mini/Aviator/aviator_model/my_bet_model.dart';
 
 
 class AllBets {
@@ -76,55 +76,7 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Container(
-                    //   width: width * 0.23,
-                    //   color: Colors.red,
-                    //   child:Center(
-                    //     child: Text('2024'+bets[index].gamesno.toString(),
-                    //         maxLines: 1,
-                    //         style: const TextStyle(
-                    //             color:  AppColors.whiteColor, fontSize: 14)
-                    //     ),
-                    //   ),),
-                    // Container(
-                    //     color: Colors.yellow,
-                    //     width: width * 0.3,
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.center,
-                    //       children: [
-                    //         Text(bets[index].multiplier=='null'?'${bets[index].amount}':'${bets[index].amount} , ',
-                    //             style: const TextStyle(
-                    //                 color:  AppColors.whiteColor, fontSize: 14)),
-                    //         Container(
-                    //           width: 35,
-                    //           child: Text(bets[index].multiplier=='null'?'':'${bets[index].multiplier}',
-                    //               style: const TextStyle(
-                    //                   color:  AppColors.whiteColor, fontSize: 14)),
-                    //         ),
-                    //       ],
-                    //     )),
-                    // Container(
-                    //     color: Colors.teal,
-                    //     width: width * 0.2,
-                    //     child: Center(
-                    //       child: Text(bets[index].cashoutAmount=="null"?'- ₹ 0.0':
-                    //       '+ ₹ ${bets[index].cashoutAmount}',
-                    //           style:  TextStyle(
-                    //               color:  bets[index].cashoutAmount=="null"?Colors.red:
-                    //               Colors.green,
-                    //               fontSize: 14)),
-                    //     )
-                    // ),
-                    // Container(
-                    //   color: Colors.green,
-                    //   width: width * 0.2,
-                    //   child: textWidget(
-                    //       text: DateFormat("dd-MMM-yyyy, hh:mm a").format(DateTime.parse(bets[index].datetime.toString())),
-                    //       fontSize: 12,
-                    //       fontWeight: FontWeight.w800,
-                    //       color: AppColors.whiteColor
-                    //   ),
-                    // ),
+
                     SizedBox(height: height*0.023),
 
                     Padding(
@@ -189,8 +141,8 @@ class _AvaitorBetHistoryState extends State<AvaitorBetHistory> {
                               color: AppColors.whiteColor
                           ),
                           Center(
-                            child: Text(bets[index].cashoutAmount=="null"?'- ₹ 0.0':
-                            '+ ₹ ${bets[index].cashoutAmount}',
+                            child: Text(bets[index].cashoutAmount=="null"?'- 🪙 0.0':
+                            '+ 🪙 ${bets[index].cashoutAmount}',
                                 style:  TextStyle(
                                     color:  bets[index].cashoutAmount=="null"?Colors.red:
                                     Colors.green,

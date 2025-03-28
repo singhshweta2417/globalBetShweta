@@ -1,10 +1,10 @@
 
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/terms_condition_provider.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/res/provider/terms_condition_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:provider/provider.dart';

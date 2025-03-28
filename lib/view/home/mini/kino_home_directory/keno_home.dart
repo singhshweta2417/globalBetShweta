@@ -1,14 +1,14 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bet_api.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_bool_provider.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/api/kino_result_api.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/closed_bet.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/keno_appbar.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/keno_colors.dart';
-import 'package:globalbet/view/home/mini/kino_home_directory/view_all_result.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/api/kino_bet_api.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/api/kino_bool_provider.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/api/kino_result_api.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/closed_bet.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/keno_appbar.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/keno_colors.dart';
+import 'package:game_on/view/home/mini/kino_home_directory/view_all_result.dart';
 import 'package:provider/provider.dart';
 
 
@@ -45,7 +45,6 @@ class _KenoGameState extends State<KenoGame> {
     final betApi = Provider.of<KinoBetApi>(context);
     final resultApi = Provider.of<KinoResultApi>(context);
     final displayedList = betPlaced.getDisplayedList();
-    print(displayedList);
 
     return Scaffold(
       body: Container(
@@ -505,8 +504,8 @@ class _KenoGameState extends State<KenoGame> {
                           height: height * 0.035,
                           child: InkWell(
                             onTap: () {
-                              print(betPlaced.selectedNumbers.contains(num));
-                              print("betPlaced.selectedNumbers.contains(num)");
+                              // print(betPlaced.selectedNumbers.contains(num));
+                              // print("betPlaced.selectedNumbers.contains(num)");
                             },
                             child: Center(
                               child: Text(

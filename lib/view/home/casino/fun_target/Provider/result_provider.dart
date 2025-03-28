@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/fun_target/Constant/url.dart';
+import 'package:game_on/view/home/casino/fun_target/Constant/url.dart';
 import '../../../../../utils/utils.dart';
 import '../Model/result_model.dart';
 

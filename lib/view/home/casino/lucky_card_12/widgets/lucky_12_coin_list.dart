@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/lucky_card_12/controller/lucky_12_controller.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_constant.dart';
+import 'package:game_on/view/home/casino/lucky_card_12/controller/lucky_12_controller.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_constant.dart';
 import 'package:provider/provider.dart';
 
 class Lucky12CoinList extends StatelessWidget {

@@ -1,23 +1,23 @@
 import 'dart:convert';
-import 'package:globalbet/model/vip_bet_card/vip_his_model.dart';
-import 'package:globalbet/res/provider/vip_card_provider.dart';
+import 'package:game_on/model/vip_bet_card/vip_his_model.dart';
+import 'package:game_on/res/provider/vip_card_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/model/vip_bet_card/model.dart';
-import 'package:globalbet/plinko/utils/plinko_pop_up.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/account/vip_history.dart';
-import 'package:globalbet/view/home/mini/Aviator/progressbar.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/model/vip_bet_card/model.dart';
+import 'package:game_on/plinko/utils/plinko_pop_up.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/account/vip_history.dart';
+import 'package:game_on/view/home/mini/Aviator/progressbar.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
@@ -299,7 +299,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
                         AppColors.whiteColor,
                         FontWeight.w500),
                     topContainer(
-                        PayoutTime == null ? '00' : PayoutTime.toString(),
+                        payoutTime == null ? '00' : payoutTime.toString(),
                         'days',
                         'Payout time',
                         AppColors.whiteColor,
@@ -1360,7 +1360,7 @@ class _VipScreenNewState extends State<VipScreenNew> {
   }
 
   var myExp;
-  var PayoutTime;
+  var payoutTime;
   List<VipBetCardModel> betCardList = [];
   Future<void> vipBetCardsData() async {
     UserModel user = await userProvider.getUser();
@@ -1372,13 +1372,13 @@ class _VipScreenNewState extends State<VipScreenNew> {
         final List<dynamic> jsonResponse = jsonDecode(response.body)['data'];
         final json = jsonDecode(response.body);
         myExp = json['my_exprience'];
-        PayoutTime = json['days_count'];
+        payoutTime = json['days_count'];
         setState(() {
           betCardList = jsonResponse
               .map((item) => VipBetCardModel.fromJson(item))
               .toList();
           myExp;
-          PayoutTime;
+          payoutTime;
         });
       } else {
         throw Exception('Failed to load data from the API');

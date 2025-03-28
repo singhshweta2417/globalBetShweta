@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
+import 'package:game_on/generated/assets.dart';
 
 class InfoDialog extends StatefulWidget {
   final String? title;

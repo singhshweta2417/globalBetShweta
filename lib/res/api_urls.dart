@@ -117,7 +117,7 @@ class ApiUrl {
   static const String verifyOtp =
       "https://otp.fctechteam.org/verifyotp.php?mobile=";
   static const String forgetPasswordUrl =
-      "https://root.globalbet24.live/api/forget_pass";
+      "https://root.game_on24.live/api/forget_pass";
 
   static const String plinkoBet = "${configModel}plinko_bet_new";
   static const String plinkoList = "${configModel}plinko_index_list?type=";

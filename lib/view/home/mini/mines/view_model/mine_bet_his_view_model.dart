@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/mini/mines/model/mine_bet_his_model.dart';
-import 'package:globalbet/view/home/mini/mines/repo/mine_bet_his_repo.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/mini/mines/model/mine_bet_his_model.dart';
+import 'package:game_on/view/home/mini/mines/repo/mine_bet_his_repo.dart';
 
 class MineBetHisViewModel with ChangeNotifier {
   final _mineBetHisRepo = MineBetHisRepository();

@@ -3,18 +3,18 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/subordinate_data_model.dart';
-import 'package:globalbet/model/tier_model.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/clipboard.dart';
-import 'package:globalbet/res/components/text_field.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/subordinate_data_model.dart';
+import 'package:game_on/model/tier_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/clipboard.dart';
+import 'package:game_on/res/components/text_field.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
 
 class SubOrdinateDataScreen extends StatefulWidget {
@@ -183,7 +183,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                                       fontSize: 16,
                                       color: AppColors.whiteColor),
                                   textWidget(
-                                      text: "₹${subDataItem[index].totalCash}",
+                                      text: "🪙${subDataItem[index].totalCash}",
                                       fontSize: 16,
                                       color: AppColors.whiteColor),
                                 ],
@@ -200,7 +200,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                                       fontSize: 18,
                                       color: AppColors.whiteColor),
                                   textWidget(
-                                      text: "₹${subDataItem[index].betAmount}",
+                                      text: "🪙${subDataItem[index].betAmount}",
                                       fontSize: 18,
                                       color: AppColors.whiteColor),
                                 ],
@@ -381,7 +381,7 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
                     itemExtent: 50,
                     onSelectedItemChanged: (tierIndex) {
                       setState(() {
-                        selectedTierIndex = tierIndex; // Update selected index
+                        selectedTierIndex = tierIndex;
                         type = tierIndex == 0 ? 'all' : 'Tier $tierIndex';
                       });
                     },
@@ -399,7 +399,9 @@ class _SubOrdinateDataScreenState extends State<SubOrdinateDataScreen> {
       },
     ).then((value) {
       if (value != null) {
-        print('Selected Tier: $value');
+        if (kDebugMode) {
+          print('Selected Tier: $value');
+        }
       }
     });
   }

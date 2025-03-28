@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/andar_bahar_model/bet_history_con.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/casino/andar_bahar/andar_bahar_model/bet_history_con.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
@@ -119,7 +119,7 @@ class GameHistoryPageState extends State<GameHistoryPage> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '₹${itemsData[index].amount}',
+                                                  '🪙${itemsData[index].amount}',
                                                   style: const TextStyle(
                                                     color: AppColors.textColor2,
                                                     fontSize: 10,

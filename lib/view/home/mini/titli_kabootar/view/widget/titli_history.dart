@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/controller/history_controller.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/text_const.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/history_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/controller/history_controller.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_colors.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/text_const.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view_model/history_view_model.dart';
 import 'package:provider/provider.dart';
 
 class TitliHistoryPage extends StatefulWidget {
@@ -210,7 +210,7 @@ class _TitliHistoryPageState extends State<TitliHistoryPage> {
                          SizedBox(
                            width: width*0.1,
                            child: TextConst(
-                             title: historyData.totalAmount==null ? "0":"₹"+historyData.totalAmount.toString(),
+                             title: historyData.totalAmount==null ? "0":"🪙${historyData.totalAmount}",
                              color: AppColors.black,
                              fontWeight: FontWeight.bold,
                              fontSize: 12,
@@ -228,7 +228,7 @@ class _TitliHistoryPageState extends State<TitliHistoryPage> {
                          SizedBox(
                            width: width*0.1,
                            child: TextConst(
-                             title: historyData.winAmount == null?"0":"₹"+historyData.winAmount.toString(),
+                             title: historyData.winAmount == null?"0":"🪙${historyData.winAmount}",
                              color: AppColors.black,
                              fontWeight: FontWeight.bold,
                              fontSize: 12,

@@ -1,29 +1,29 @@
 import 'dart:convert';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/add_account_view_model.dart';
-import 'package:globalbet/model/deposit_model_new.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/rich_text.dart';
-import 'package:globalbet/res/components/text_field.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/wallet/account_view.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/add_account_view_model.dart';
+import 'package:game_on/model/deposit_model_new.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/rich_text.dart';
+import 'package:game_on/res/components/text_field.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/utils/routes/routes_name.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/wallet/account_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/wallet/add_bank_account.dart';
-import 'package:globalbet/view/wallet/wallet_screen_new.dart';
+import 'package:game_on/view/wallet/add_bank_account.dart';
+import 'package:game_on/view/wallet/wallet_screen_new.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:globalbet/view/wallet/withdrawal_history.dart';
+import 'package:game_on/view/wallet/withdrawal_history.dart';
 
 class WithdrawScreen extends StatefulWidget {
   const WithdrawScreen({super.key});
@@ -148,8 +148,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           Row(
                             children: [
                               const SizedBox(width: 15),
-                              const Icon(Icons.currency_rupee,
-                                  color: AppColors.whiteColor),
+                              textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                                  fontSize: 20),
                               textWidget(
                                 text: userData.balance.toStringAsFixed(2),
                                 fontWeight: FontWeight.w900,
@@ -417,11 +417,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                     child: Row(
                                       children: [
                                         const SizedBox(width: 10),
-                                        const Icon(
-                                          Icons.currency_rupee,
-                                          color: AppColors.whiteColor,
-                                          size: 25,
-                                        ),
+                                        textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                                            fontSize: 20),
                                         const SizedBox(width: 10),
                                         Container(
                                             height: 30,
@@ -441,9 +438,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                         color: AppColors.dividerColor),
                                     Row(
                                       children: [
-                                        const Icon(Icons.currency_rupee,
-                                            size: 16,
-                                            color: AppColors.whiteColor),
+                                        textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                                            fontSize: 20),
                                         textWidget(
                                             text: double.parse(
                                                     userData.mainWallet)
@@ -466,14 +462,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                         color: AppColors.dividerColor),
                                     Row(
                                       children: [
-                                        const Icon(Icons.currency_rupee,
-                                            size: 20,
-                                            color: AppColors.whiteColor),
+                                        textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                                            fontSize: 20),
                                         textWidget(
                                             text: withdrawCon.text == ''
                                                 ? '0.0'
                                                 : withdrawCon.text.toString(),
-                                            // (int.parse(withdrawCon.text)*0.96).toStringAsFixed(2),
                                             fontSize: 18,
                                             color: AppColors.whiteColor),
                                       ],
@@ -547,7 +541,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                     children: [
                                       instruction(
                                           'Need to bet ',
-                                          '₹${double.parse(userData.recharge).toStringAsFixed(2)}',
+                                          '🪙${double.parse(userData.recharge).toStringAsFixed(2)}',
                                           ' to be able to withdraw',
                                           Colors.white,
                                           AppColors.whiteColor,
@@ -684,7 +678,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
   bool isLoading = false; // Track loading state
 
-  Future<void> withdrawalMoney(BuildContext context, String money) async {
+  Future<void> withdrawalMoney(context, String money) async {
     if (withdrawId.isEmpty) {
       Utils.flushBarErrorMessage(
           "Please select a bank account", context, Colors.red);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
 
 class LossPopUpPage extends StatelessWidget {
   final int winNumber;

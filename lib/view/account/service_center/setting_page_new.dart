@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/app_constant.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/clipboard.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/view/account/change_password.dart';
-import 'package:globalbet/view/account/service_center/bind_mail_box.dart';
-import 'package:globalbet/view/account/service_center/change_aviator.dart';
-import 'package:globalbet/view/account/service_center/change_user_name.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/app_constant.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/clipboard.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/view/account/change_password.dart';
+import 'package:game_on/view/account/service_center/bind_mail_box.dart';
+import 'package:game_on/view/account/service_center/change_aviator.dart';
+import 'package:game_on/view/account/service_center/change_user_name.dart';
 
 class SettingPageNew extends StatefulWidget {
   const SettingPageNew({super.key});

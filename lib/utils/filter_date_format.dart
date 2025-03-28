@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:globalbet/res/aap_colors.dart';
+import 'package:game_on/res/aap_colors.dart';
 
 class FilterDateFormat extends StatefulWidget {
   const FilterDateFormat({
@@ -12,10 +12,10 @@ class FilterDateFormat extends StatefulWidget {
   final void Function(DateTime selectedDate) _onDateSelected;
 
   @override
-  _FilterDateFormatState createState() => _FilterDateFormatState();
+  FilterDateFormatState createState() => FilterDateFormatState();
 }
 
-class _FilterDateFormatState extends State<FilterDateFormat> {
+class FilterDateFormatState extends State<FilterDateFormat> {
   late DateTime _selectedDate;
 
   @override

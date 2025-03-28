@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/view/home/mini/head_tail/head_tail_assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/view/home/mini/head_tail/head_tail_assets.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../res/api_urls.dart';

@@ -1,8 +1,8 @@
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/add_account_view_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/add_account_view_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class AccountView extends StatefulWidget {

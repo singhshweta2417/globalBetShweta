@@ -1,8 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/components/text_widget.dart';
 
 
 class HowToPlay extends StatefulWidget {

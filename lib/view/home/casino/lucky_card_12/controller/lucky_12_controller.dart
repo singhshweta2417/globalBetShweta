@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_bet_view_model.dart';
-import 'package:globalbet/view/home/casino/lucky_card_12/view_model/lucky_12_result_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/view/home/casino/lucky_card_12/view_model/lucky_12_bet_view_model.dart';
+import 'package:game_on/view/home/casino/lucky_card_12/view_model/lucky_12_result_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../res/api_url.dart';

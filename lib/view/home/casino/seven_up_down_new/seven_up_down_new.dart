@@ -3,18 +3,18 @@ import 'dart:math';
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/res/widget/seven_up_loading.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/seven_updown_game_history.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/view_model/seven_updown_bet_view_model.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/view_model/seven_updown_result_view_model.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/andar_bahar_assets.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/coins_sign_new.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/hide_coins.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/coin/set_coin.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/dragon_tiger_assets.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/view/home/casino/andar_bahar/andar_bahar_assets.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/coins_sign_new.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/hide_coins.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/coin/set_coin.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/dragon_tiger_assets.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/res/widget/seven_up_loading.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/seven_up_down_game_history.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/view_model/seven_up_down_bet_view_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/view_model/seven_up_down_result_view_model.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui' as ui;
@@ -99,16 +99,12 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
             imagePath: AppAssets.dragontigerStopbetting,
             heights: 100,
             context: context);
-        hidebutton = true;
+        hideButton = true;
       } else if (countdownSeconds == 10) {
         final betProvider =
             Provider.of<SevenUpDownViewModel>(context, listen: false);
         betProvider.sevenUpDownBet(context, redCount.toString(),
             blueCount.toString(), greenCount.toString());
-        print(redCount);
-        print(blueCount);
-        print(greenCount);
-        print("sdf wrdwryd76w");
       } else if (countdownSeconds == 8) {
         // futurePopUp(context);
         dice = true;
@@ -122,8 +118,8 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
       } else if (countdownSeconds == 1) {
         if (fristCome == false) {
         } else {
-          hidebutton = false;
-          countandcoinclear();
+          hideButton = false;
+          countAndCoinClear();
           Future.delayed(Duration.zero, () {
             Navigator.of(context).pop();
             dice = false;
@@ -144,7 +140,7 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
     });
   }
 
-  void countandcoinclear() {
+  void countAndCoinClear() {
     setState(() {
       redCoins.clear();
       blueCoins.clear();
@@ -165,7 +161,7 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
 
   List<int> list = [1, 5, 10, 50, 100, 500, 1000];
 
-  bool hidebutton = false;
+  bool hideButton = false;
   dynamic wallet = 0;
   void deductAmount(int amountToDeduct) {
     if (wallet! >= amountToDeduct) {
@@ -188,7 +184,7 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
   List<Widget> blueCoins = [];
   List<Widget> greenCoins = [];
 
-  Randomno(int min, int max) {
+  randomNo(int min, int max) {
     Random random = Random();
     return double.parse((min + random.nextInt(max - min + 1)).toString());
   }
@@ -668,8 +664,8 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext, int index) {
           final GlobalKey<CartIconKey> itemKey = GlobalKey<CartIconKey>();
-          return hidebutton == true
-              ? hidecoins(list[index])
+          return hideButton == true
+              ? HideCoins(list[index])
               : InkWell(
                   onTap: () async {
                     wallet == null
@@ -682,18 +678,18 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
                                 () {
                                 if (selectedCart == 1) {
                                   redCoins.add(Positioned(
-                                      left: Randomno(1, 70),
-                                      top: Randomno(10, 70),
+                                      left: randomNo(1, 70),
+                                      top: randomNo(10, 70),
                                       child: CoindesignNew(list[index])));
                                 } else if (selectedCart == 2) {
                                   blueCoins.add(Positioned(
-                                      left: Randomno(1, 70),
-                                      top: Randomno(20, 70),
+                                      left: randomNo(1, 70),
+                                      top: randomNo(20, 70),
                                       child: CoindesignNew(list[index])));
                                 } else if (selectedCart == 3) {
                                   greenCoins.add(Positioned(
-                                      left: Randomno(1, 70),
-                                      top: Randomno(10, 70),
+                                      left: randomNo(1, 70),
+                                      top: randomNo(10, 70),
                                       child: CoindesignNew(list[index])));
                                 }
                                 setState(() {
@@ -791,7 +787,7 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
               Navigator.push(
                   context,
                   PageTransition(
-                      child: SevenUpDownGameHistoryScreen(),
+                      child: const SevenUpDownGameHistoryScreen(),
                       type: PageTransitionType.topToBottom,
                       duration: const Duration(milliseconds: 500)));
             },
@@ -876,15 +872,15 @@ class _AnimatedCoinState extends State<_AnimatedCoin>
     _controller.forward();
   }
 
-  doublepj(double start, double end) {
+  doublePj(double start, double end) {
     Random random = Random();
 
     return start + random.nextDouble() * (end - start);
   }
 
   Offset _randomOffset(double start, double end) {
-    double randomPositionX = doublepj(80, 120);
-    double randomPositionY = doublepj(70, 120);
+    double randomPositionX = doublePj(80, 120);
+    double randomPositionY = doublePj(70, 120);
     return Offset(randomPositionX, randomPositionY);
   }
 

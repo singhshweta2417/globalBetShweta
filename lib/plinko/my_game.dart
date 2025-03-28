@@ -8,21 +8,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/plinko_list_model.dart';
-import 'package:globalbet/model/plinko_result.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/plinko/lesson_02/objects/ball_dynamic.dart';
-import 'package:globalbet/plinko/routes.dart';
-import 'package:globalbet/plinko/utils/plinko_pop_up.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/utils/utils.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/plinko_list_model.dart';
+import 'package:game_on/model/plinko_result.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/plinko/lesson_02/objects/ball_dynamic.dart';
+import 'package:game_on/plinko/routes.dart';
+import 'package:game_on/plinko/utils/plinko_pop_up.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/utils/utils.dart';
 import 'lesson_02/objects/balance_hud.dart';
 import 'package:http/http.dart' as http;
 
@@ -162,9 +162,9 @@ class _MyGameWidgetState extends State<MyGameWidget> {
   void initState() {
     amount.text = selectedIndex.toString();
     super.initState();
-    plinkoRedList();
-    plinkoYellowList();
-    plinkoGreenList();
+    plinkoRedList(context);
+    plinkoYellowList(context);
+    plinkoGreenList(context);
     fetchPlinkoBetHistory();
     fetchPlinkoBetHistoryTwo();
   }
@@ -189,7 +189,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
     5000,
   ];
 
-  int _selectedIndexxx = -1;
+  int _selectedIndexes = -1;
 
   @override
   void dispose() {
@@ -204,7 +204,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
   bool loaderTwo = false;
   bool loaderThree = false;
 
-  int? responseStatuscode;
+  int? responseStatusCode;
 
   @override
   Widget build(BuildContext context) {
@@ -231,8 +231,8 @@ class _MyGameWidgetState extends State<MyGameWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Icon(Icons.currency_rupee_outlined,
-                      size: 15, color: Colors.white),
+                  textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                      fontSize: 20),
                   textWidget(
                       text: profileView.balance == null
                           ? ""
@@ -361,7 +361,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                                           width: 1, color: Colors.black),
                                     ),
                                     child: Text(
-                                      '$selectedIndex ₹',
+                                      '$selectedIndex 🪙',
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500,
@@ -474,13 +474,13 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                             onTap: () async {
                               setState(() {
                                 tapValue = !tapValue;
-                                _selectedIndexxx = 1;
+                                _selectedIndexes = 1;
                               });
                               plinkoBet(
-                                  amount.text, _selectedIndexxx.toString());
+                                  amount.text, _selectedIndexes.toString());
                               if (kDebugMode) {
-                                print(_selectedIndexxx);
-                                print("_selectedIndexxx");
+                                print(_selectedIndexes);
+                                print("_selectedIndex");
                               }
                             },
                             child: Container(
@@ -509,7 +509,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                                 color: Colors.green,
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
-                                  color: _selectedIndexxx == 0
+                                  color: _selectedIndexes == 0
                                       ? Colors.teal
                                       : Colors.black,
                                 ),
@@ -534,9 +534,9 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                               // }
                               setState(() {
                                 tapValue = !tapValue;
-                                _selectedIndexxx = 2;
+                                _selectedIndexes = 2;
                                 plinkoBet(
-                                    amount.text, _selectedIndexxx.toString());
+                                    amount.text, _selectedIndexes.toString());
                               });
                             },
                             child: Container(
@@ -565,7 +565,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                                 color: Colors.green,
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
-                                  color: _selectedIndexxx == 1
+                                  color: _selectedIndexes == 1
                                       ? Colors.teal
                                       : Colors.black,
                                 ),
@@ -590,9 +590,9 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                               // }
                               setState(() {
                                 tapValue = !tapValue;
-                                _selectedIndexxx = 3;
+                                _selectedIndexes = 3;
                                 plinkoBet(
-                                    amount.text, _selectedIndexxx.toString());
+                                    amount.text, _selectedIndexes.toString());
                               });
                             },
                             child: Container(
@@ -621,7 +621,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                                 color: Colors.green,
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
-                                  color: _selectedIndexxx == 2
+                                  color: _selectedIndexes == 2
                                       ? Colors.teal
                                       : Colors.black,
                                 ),
@@ -680,7 +680,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
                               width: 2,
-                              color: _selectedIndexxx == 3
+                              color: _selectedIndexes == 3
                                   ? const Color(0xffff1f1f)
                                   : Colors.transparent,
                             ),
@@ -728,7 +728,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
                               width: 2,
-                              color: _selectedIndexxx == 2
+                              color: _selectedIndexes == 2
                                   ? const Color(0xfffff026)
                                   : Colors.transparent,
                             ),
@@ -777,7 +777,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
                               width: 2,
-                              color: _selectedIndexxx == 1
+                              color: _selectedIndexes == 1
                                   ? const Color(0xff80ff00)
                                   : Colors.transparent,
                             ),
@@ -915,13 +915,9 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       const double price = 2; //number[index].price
-                      Color textColor;
                       if (price > 1 && price < 2) {
-                        textColor = Colors.blue;
                       } else if (price >= 2 && price < 10) {
-                        textColor = Colors.purple;
                       } else {
-                        textColor = Colors.pink;
                       }
                       return Container(
                         height: height * 0.02,
@@ -978,13 +974,9 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       const double price = 1; //number[index].price
-                      Color textColor;
                       if (price > 1 && price < 2) {
-                        textColor = Colors.blue;
                       } else if (price >= 2 && price < 10) {
-                        textColor = Colors.purple;
                       } else {
-                        textColor = Colors.pink;
                       }
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(3, 5, 3, 5),
@@ -1094,9 +1086,9 @@ class _MyGameWidgetState extends State<MyGameWidget> {
       }),
     );
     print(gameId);
-    print("gameidddddd");
+    print("gameid");
     print(amount);
-    print("amounttttttttttttt");
+    print("amount plinko");
     print(type);
     print("type");
     if (response.statusCode == 200) {
@@ -1141,17 +1133,17 @@ class _MyGameWidgetState extends State<MyGameWidget> {
   }
 
   List<PlinkoIndexModal> plinkoRedItem = [];
-  Future<void> plinkoRedList() async {
+  Future<void> plinkoRedList(context) async {
     final response = await http.get(
       Uri.parse("${ApiUrl.plinkoList}3"),
     );
     if (kDebugMode) {
       print("${ApiUrl.plinkoList}3");
-      print('CCyou');
+      print('okay in plinko');
     }
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
@@ -1175,7 +1167,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
   }
 
   List<PlinkoIndexModal> plinkoYellowItem = [];
-  Future<void> plinkoYellowList() async {
+  Future<void> plinkoYellowList(context) async {
     final response = await http.get(
       Uri.parse("${ApiUrl.plinkoList}2"),
     );
@@ -1185,7 +1177,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
     }
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
@@ -1209,7 +1201,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
   }
 
   List<PlinkoIndexModal> plinkoGreenItem = [];
-  Future<void> plinkoGreenList() async {
+  Future<void> plinkoGreenList(context) async {
     final response = await http.get(
       Uri.parse("${ApiUrl.plinkoList}1"),
     );
@@ -1219,7 +1211,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
     }
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
@@ -1251,7 +1243,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
     );
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
@@ -1281,7 +1273,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
     );
 
     setState(() {
-      responseStatuscode = response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {

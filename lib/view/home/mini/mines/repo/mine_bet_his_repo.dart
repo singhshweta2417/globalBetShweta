@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/base_api_services.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/network_api_services.dart';
-import 'package:globalbet/view/home/mini/mines/model/mine_bet_his_model.dart';
-import 'package:globalbet/view/home/mini/mines/res/mine_api_url.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/base_api_services.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/network_api_services.dart';
+import 'package:game_on/view/home/mini/mines/model/mine_bet_his_model.dart';
+import 'package:game_on/view/home/mini/mines/res/mine_api_url.dart';
 
 class MineBetHisRepository {
   final BaseApiServices _apiServices = NetworkApiServices();

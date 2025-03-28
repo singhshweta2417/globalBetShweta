@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
 
 class ToastHelper {
   static void showwin({
@@ -56,10 +56,10 @@ class ToastWidget extends StatefulWidget {
   }
 
   @override
-  _ToastWidgetState createState() => _ToastWidgetState();
+  ToastWidgetState createState() => ToastWidgetState();
 }
 
-class _ToastWidgetState extends State<ToastWidget> {
+class ToastWidgetState extends State<ToastWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,7 +88,7 @@ class _ToastWidgetState extends State<ToastWidget> {
           ),
           const SizedBox(height: 32),
           Text(
-            widget.subtext2==""?"":"₹${widget.subtext2}",
+            widget.subtext2==""?"":"🪙 ${widget.subtext2}",
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w900,

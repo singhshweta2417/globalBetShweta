@@ -1,13 +1,13 @@
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/provider/about_us_provider.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/res/provider/about_us_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/view/account/about_us_screen/about_new.dart';
+import 'package:game_on/view/account/about_us_screen/about_new.dart';
 
 class Aboutus extends StatefulWidget {
   const Aboutus({super.key});
@@ -19,7 +19,7 @@ class Aboutus extends StatefulWidget {
 class _AboutusState extends State<Aboutus> {
   @override
   void initState() {
-    fetchDataAboutus();
+    fetchDataAboutus(context);
     // TODO: implement initState
     super.initState();
   }
@@ -170,7 +170,7 @@ class _AboutusState extends State<Aboutus> {
                 ListTile(
                   leading: Image.asset(Assets.iconsRisk,height: height*0.05,),
                   title: textWidget(
-                    text: 'globalbet FAQs',
+                    text: 'game_on FAQs',
                     fontWeight: FontWeight.w900,
                     fontSize: 15,
                     color: AppColors.whiteColor,
@@ -178,7 +178,7 @@ class _AboutusState extends State<Aboutus> {
                   trailing: IconButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>const AboutNewPage(
-                          name:"globalbet FAQs",type:"7"
+                          name:"game_on FAQs",type:"7"
 
                       )));
                     },
@@ -200,7 +200,7 @@ class _AboutusState extends State<Aboutus> {
     ));
   }
 
-  Future<void> fetchDataAboutus() async {
+  Future<void> fetchDataAboutus(context) async {
     try {
       final aboutData = await baseApiHelper.fetchaboutusData();
 
@@ -213,14 +213,4 @@ class _AboutusState extends State<Aboutus> {
     }
   }
 }
-// class ListItem {
-//   String? image;
-//   String? name;
-//   VoidCallback? onTap;
-//
-//   ListItem({
-//     this.image,
-//     this.name,
-//     this.onTap,
-//   });
-// }
+

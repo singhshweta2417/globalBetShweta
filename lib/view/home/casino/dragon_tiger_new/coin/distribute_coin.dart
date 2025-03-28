@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/coin/set_coin.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/coin/set_coin.dart';
 
 class AnimatedCoin extends StatefulWidget {
   final int type;

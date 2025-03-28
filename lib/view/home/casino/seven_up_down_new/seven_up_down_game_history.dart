@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/view_model/seven_updown_game_history_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/view_model/seven_up_down_game_history_view_model.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -179,7 +179,7 @@ class SevenUpDownGameHistoryScreenState
                                           ),
                                         ),
                                         Text(
-                                          '₹${data[index].amount}',
+                                          '🪙${data[index].amount}',
                                           style: const TextStyle(
                                             color: AppColors.textColor2,
                                             fontSize: 12,
@@ -205,7 +205,7 @@ class SevenUpDownGameHistoryScreenState
                                           ),
                                         ),
                                         Text(
-                                          '₹${data[index].winAmount}',
+                                          '🪙${data[index].winAmount}',
                                           style: const TextStyle(
                                             color: AppColors.textColor2,
                                             fontSize: 12,

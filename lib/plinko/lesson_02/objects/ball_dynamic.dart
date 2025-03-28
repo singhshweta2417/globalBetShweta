@@ -4,8 +4,8 @@ import 'package:flame/palette.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/plinko/lesson_02/objects/floor_static.dart';
-import 'package:globalbet/plinko/lesson_02/objects/object_state.dart';
+import 'package:game_on/plinko/lesson_02/objects/floor_static.dart';
+import 'package:game_on/plinko/lesson_02/objects/object_state.dart';
 import 'box_static.dart';
 
 class BallDynamic extends BodyComponent with ContactCallbacks {

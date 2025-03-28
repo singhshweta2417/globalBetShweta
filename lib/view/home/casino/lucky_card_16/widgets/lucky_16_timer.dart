@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/components/circular_percent.dart';
-import 'package:globalbet/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
+import 'package:game_on/res/components/circular_percent.dart';
+import 'package:game_on/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
 import 'package:provider/provider.dart';
 
 class Lucky16Timer extends StatelessWidget {

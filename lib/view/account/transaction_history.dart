@@ -1,20 +1,20 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/account/all_bet_history/aviator_all_bet_history.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/account/all_bet_history/aviator_all_bet_history.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/all_transaction_model.dart';
-import 'package:globalbet/model/transaction_type_model.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/utils/filter_date_format.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/all_transaction_model.dart';
+import 'package:game_on/model/transaction_type_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/utils/filter_date_format.dart';
+import 'package:game_on/utils/routes/routes_name.dart';
 
 class TransactionHistory extends StatefulWidget {
   const TransactionHistory({Key? key}) : super(key: key);
@@ -193,7 +193,7 @@ class _TransactionHistoryState extends State<TransactionHistory> {
                                       ),
                                       historyDetails(
                                         'balance',
-                                        '₹${transaction.amount!.toStringAsFixed(2)}',
+                                        '🪙${transaction.amount!.toStringAsFixed(2)}',
                                         Colors.red,
                                       ),
                                       SizedBox(height: height * 0.015),

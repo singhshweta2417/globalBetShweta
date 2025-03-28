@@ -1,7 +1,3 @@
-
-
-import 'package:flutter/material.dart';
-
 class CardModel {
   final int id;
   final String suit;

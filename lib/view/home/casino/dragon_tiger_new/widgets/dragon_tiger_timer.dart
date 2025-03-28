@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/aap_colors.dart';
+import 'package:game_on/res/aap_colors.dart';
 import 'dart:async';
 
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/res/components/text_widget.dart';
 
 
 class DragonTigerTimer extends StatefulWidget {

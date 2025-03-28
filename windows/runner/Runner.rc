@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.treamz.plinko" "\0"
-            VALUE "FileDescription", "globalbet" "\0"
+            VALUE "FileDescription", "game_on" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "globalbet" "\0"
+            VALUE "InternalName", "game_on" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.treamz.plinko. All rights reserved." "\0"
-            VALUE "OriginalFilename", "globalbet.exe" "\0"
-            VALUE "ProductName", "globalbet" "\0"
+            VALUE "OriginalFilename", "game_on.exe" "\0"
+            VALUE "ProductName", "game_on" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,5 +1,5 @@
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/components/player_profile_with_card.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/components/player_profile_with_card.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../../material_imports.dart';

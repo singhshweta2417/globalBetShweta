@@ -1,4 +1,4 @@
-package com.fc.globalbet
+package com.fc.game_on
 
 import io.flutter.embedding.android.FlutterActivity
 

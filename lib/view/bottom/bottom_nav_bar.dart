@@ -1,15 +1,15 @@
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/account/account_page_new.dart';
-import 'package:globalbet/view/activity/activity_screen.dart';
-import 'package:globalbet/view/home/offer_second.dart';
-import 'package:globalbet/view/home/home_screen.dart';
-import 'package:globalbet/view/promotion/promotion_new.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/utils/routes/routes_name.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/account/account_page_new.dart';
+import 'package:game_on/view/activity/activity_screen.dart';
+import 'package:game_on/view/home/offer_second.dart';
+import 'package:game_on/view/home/home_screen.dart';
+import 'package:game_on/view/promotion/promotion_new.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:globalbet/view/wallet/wallet_screen_new.dart';
+import 'package:game_on/view/wallet/wallet_screen_new.dart';
 import 'widget/bottom_widget.dart';
 
 class BottomNavBar extends StatefulWidget {

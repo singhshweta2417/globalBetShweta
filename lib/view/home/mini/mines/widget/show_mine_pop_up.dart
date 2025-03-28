@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/view/home/mini/mines/controller/mine_controller.dart';
-import 'package:globalbet/view/home/mini/mines/res/mine_color.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/view/home/mini/mines/controller/mine_controller.dart';
+import 'package:game_on/view/home/mini/mines/res/mine_color.dart';
 import 'package:provider/provider.dart';
 
 class ShowMinePopUp extends StatelessWidget {

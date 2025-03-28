@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/view/home/mini/mines/view_model/mine_bet_his_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/view/home/mini/mines/view_model/mine_bet_his_view_model.dart';
 import 'package:provider/provider.dart';
 
 class MineBetHistory extends StatefulWidget {

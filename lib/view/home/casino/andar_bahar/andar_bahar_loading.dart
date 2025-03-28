@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/andar_bahar_assets.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/andar_home_page.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/view/home/casino/andar_bahar/andar_bahar_assets.dart';
+import 'package:game_on/view/home/casino/andar_bahar/andar_home_page.dart';
 
 class AndarBaharLoading extends StatefulWidget {
   const AndarBaharLoading({super.key});

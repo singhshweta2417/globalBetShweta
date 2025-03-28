@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/lottery/trx/controller/trx_controller.dart';
-import 'package:globalbet/view/home/lottery/trx/model/trx_game_his_model.dart';
-import 'package:globalbet/view/home/lottery/trx/repo/trx_game_his_repo.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/lottery/trx/controller/trx_controller.dart';
+import 'package:game_on/view/home/lottery/trx/model/trx_game_his_model.dart';
+import 'package:game_on/view/home/lottery/trx/repo/trx_game_his_repo.dart';
 import 'package:provider/provider.dart';
 
 class TrxGameHisViewModel with ChangeNotifier {

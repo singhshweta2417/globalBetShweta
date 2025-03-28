@@ -1,29 +1,29 @@
-import 'package:globalbet/res/app_constant.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/account/all_bet_history/all_bet_history.dart';
-import 'package:globalbet/view/account/beginner_guide.dart';
+import 'package:game_on/res/app_constant.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/account/all_bet_history/all_bet_history.dart';
+import 'package:game_on/view/account/beginner_guide.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/clipboard.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
-import 'package:globalbet/view/account/aboutus.dart';
-import 'package:globalbet/view/account/logout.dart';
-import 'package:globalbet/view/account/service_center/customer_service.dart';
-import 'package:globalbet/view/account/service_center/setting_page_new.dart';
-import 'package:globalbet/view/account/transaction_history.dart';
-import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
-import 'package:globalbet/view/home/notification.dart';
-import 'package:globalbet/view/wallet/deposit_history.dart';
-import 'package:globalbet/view/wallet/deposit_screen.dart';
-import 'package:globalbet/view/wallet/withdraw_screen.dart';
-import 'package:globalbet/view/wallet/withdrawal_history.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/clipboard.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/utils/routes/routes_name.dart';
+import 'package:game_on/view/account/aboutus.dart';
+import 'package:game_on/view/account/logout.dart';
+import 'package:game_on/view/account/service_center/customer_service.dart';
+import 'package:game_on/view/account/service_center/setting_page_new.dart';
+import 'package:game_on/view/account/transaction_history.dart';
+import 'package:game_on/view/bottom/bottom_nav_bar.dart';
+import 'package:game_on/view/home/notification.dart';
+import 'package:game_on/view/wallet/deposit_history.dart';
+import 'package:game_on/view/wallet/deposit_screen.dart';
+import 'package:game_on/view/wallet/withdraw_screen.dart';
+import 'package:game_on/view/wallet/withdrawal_history.dart';
 
 class AccountPageNew extends StatefulWidget {
   const AccountPageNew({super.key});
@@ -238,9 +238,8 @@ class _AccountPageNewState extends State<AccountPageNew> {
                                 color: AppColors.whiteColor),
                             Row(
                               children: [
-                                const Icon(Icons.currency_rupee,
-                                    size: 25,
-                                    color: AppColors.whiteColor),
+                                textWidget(text: '🪙 ',fontWeight: FontWeight.w900,
+                                  fontSize: 20),
                                 textWidget(
                                     text: userData.balance == null
                                         ? '0'

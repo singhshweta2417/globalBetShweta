@@ -1,10 +1,10 @@
 
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/model/result_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/repo/result_repo.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/model/result_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/repo/result_repo.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view_model/get_amount_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ResultViewModel with ChangeNotifier {

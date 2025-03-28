@@ -1,4 +1,4 @@
-import 'package:globalbet/model/slider_model.dart';
+import 'package:game_on/model/slider_model.dart';
 import 'package:flutter/material.dart';
 
 

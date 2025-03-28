@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/controller/controller.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/app_colors.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/font_size.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/text_const.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view/widget/coin_design.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/controller/controller.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/app_colors.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/font_size.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/text_const.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view/widget/coin_design.dart';
 import 'package:provider/provider.dart';
 
 class TimerScreen extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/7_up_model/jackpot_game_history_model.dart';
-import 'package:globalbet/view/home/casino/7up_down_new/seven_up_down_repo/jackpot_game_history_repo.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/7_up_model/jackpot_game_history_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/seven_up_down_repo/jackpot_game_history_repo.dart';
 
 class SevenUpDownGameHistoryViewModel with ChangeNotifier {
   final _sevenUpDownGameHistory = JackpotGameHistoryRepository();

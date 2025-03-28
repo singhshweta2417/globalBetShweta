@@ -13,7 +13,7 @@ class WaitingScreenActivity extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(
-            title: CText("Waiting for other players to join the game"),
+            title: const CText("Waiting for other players to join the game"),
             backgroundColor: Colors.black,
           ),
           body: ContBox(

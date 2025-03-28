@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/view/home/lottery/wingo/model/win_go_result_model.dart';
-import 'package:globalbet/view/home/lottery/wingo/repo/win_go_result_repo.dart';
-import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_pop_up_view_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/view/home/lottery/wingo/model/win_go_result_model.dart';
+import 'package:game_on/view/home/lottery/wingo/repo/win_go_result_repo.dart';
+import 'package:game_on/view/home/lottery/wingo/view_model/win_go_pop_up_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/utils/utils.dart';
+import 'package:game_on/utils/utils.dart';
 
 class WinGoResultViewModel with ChangeNotifier {
   final _winGoResultRepo = WinGoResultRepository();

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 
 import '../../../../../generated/assets.dart';
 import '../../../mini/titli_kabootar/res/stroke_text.dart';

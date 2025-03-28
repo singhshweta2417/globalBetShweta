@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/view/home/lottery/wingo/controller/win_go_controller.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/gradient_text.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
-import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_game_his_view_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/view/home/lottery/wingo/controller/win_go_controller.dart';
+import 'package:game_on/view/home/lottery/wingo/res/gradient_text.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/view/home/lottery/wingo/view_model/win_go_game_his_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 
 
 class GameHistory extends StatefulWidget {

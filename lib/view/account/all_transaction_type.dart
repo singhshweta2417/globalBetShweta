@@ -1,34 +1,34 @@
-// ignore_for_file: must_be_immutable
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/model/transaction_type_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/utils/routes/routes_name.dart';
+import 'package:game_on/model/transaction_type_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/utils/routes/routes_name.dart';
 
-class TransctionType extends StatefulWidget {
+class TransactionType extends StatefulWidget {
   String selectedId;
 
-  TransctionType({Key? key, required this.selectedId}) : super(key: key);
+  TransactionType({Key? key, required this.selectedId}) : super(key: key);
 
   @override
-  TransctionTypeState createState() => TransctionTypeState();
+  TransactionTypeState createState() => TransactionTypeState();
 }
 
-class TransctionTypeState extends State<TransctionType> {
-  List<TransctionTypeModel> transctionTypes = [];
+class TransactionTypeState extends State<TransactionType> {
+  List<TransctionTypeModel> transactionTypes = [];
   bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    fetchTransactionTypes();
+    fetchTransactionTypes(context);
   }
 
-  Future<void> fetchTransactionTypes() async {
+  Future<void> fetchTransactionTypes(context) async {
     setState(() {
       isLoading = true;
     });
@@ -39,7 +39,7 @@ class TransctionTypeState extends State<TransctionType> {
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body)['data'];
         setState(() {
-          transctionTypes = responseData
+          transactionTypes = responseData
               .map((item) => TransctionTypeModel.fromJson(item))
               .toList();
         });
@@ -49,7 +49,9 @@ class TransctionTypeState extends State<TransctionType> {
         throw Exception('Failed to load transaction types');
       }
     } catch (e) {
-      print('Error fetching transaction types: $e');
+      if (kDebugMode) {
+        print('Error fetching transaction types: $e');
+      }
     } finally {
       setState(() {
         isLoading = false;
@@ -102,9 +104,9 @@ class TransctionTypeState extends State<TransctionType> {
                 ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
                     shrinkWrap: true,
-                    itemCount: transctionTypes.length,
+                    itemCount: transactionTypes.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final transactionType = transctionTypes[index];
+                      final transactionType = transactionTypes[index];
                       return InkWell(
                         onTap: () {
                           setState(() {

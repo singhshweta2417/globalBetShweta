@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/view/home/mini/mines/widget/bet_bet_history.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/view/home/mini/mines/widget/bet_bet_history.dart';
 
 import '../../../../../res/components/custom_switch.dart';
 

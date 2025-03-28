@@ -1,17 +1,16 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/lottery/trx/res/trx_api_url.dart';
-import 'package:globalbet/view/home/lottery/trx/view_model/trx_game_his_view_model.dart';
-import 'package:globalbet/view/home/lottery/trx/view_model/trx_my_bet_his_view_model.dart';
-import 'package:globalbet/view/home/lottery/trx/view_model/trx_result_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/lottery/trx/res/trx_api_url.dart';
+import 'package:game_on/view/home/lottery/trx/view_model/trx_game_his_view_model.dart';
+import 'package:game_on/view/home/lottery/trx/view_model/trx_my_bet_his_view_model.dart';
+import 'package:game_on/view/home/lottery/trx/view_model/trx_result_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class TrxController with ChangeNotifier {
-
   final TextEditingController amount = TextEditingController(text: '1');
 
   int _gameIndex = 0;
@@ -68,6 +67,7 @@ class TrxController with ChangeNotifier {
     calculateAmount();
     notifyListeners();
   }
+
   final TextEditingController finalAmount = TextEditingController(text: "1");
 
   void calculateAmount() {
@@ -85,11 +85,9 @@ class TrxController with ChangeNotifier {
       amount.selection = TextSelection.fromPosition(
         TextPosition(offset: amount.text.length),
       );
-      finalAmount.text=amount.text;
+      finalAmount.text = amount.text;
       notifyListeners(); // Notify UI only when there's a change
     }
-
-    print("Updated amount: ${amount.text}");
   }
 
   void decrement() {
@@ -127,30 +125,92 @@ class TrxController with ChangeNotifier {
     TrxTimerModel(gameId: 9, title: "Trx Win Go", subTitle: "10 Min"),
   ];
 
-
   List<TrxComBetModel> colorBetList = [
-    TrxComBetModel(gameId: 10, title: 'Green', colFir: Colors.green, colSec: Colors.green),
-    TrxComBetModel(gameId: 20, title: 'Violet', colFir: const Color(0xffb658fe), colSec: const Color(0xffb658fe)),
-    TrxComBetModel(gameId: 30, title: 'Red', colFir:  Colors.red, colSec: Colors.red),
+    TrxComBetModel(
+        gameId: 10, title: 'Green', colFir: Colors.green, colSec: Colors.green),
+    TrxComBetModel(
+        gameId: 20,
+        title: 'Violet',
+        colFir: const Color(0xffb658fe),
+        colSec: const Color(0xffb658fe)),
+    TrxComBetModel(
+        gameId: 30, title: 'Red', colFir: Colors.red, colSec: Colors.red),
   ];
 
   List<TrxComBetModel> bigSmallList = [
-    TrxComBetModel(gameId: 40, title: 'Big', colFir: const Color(0xffffa82e), colSec: const Color(0xffffa82e)),
-    TrxComBetModel(gameId: 50, title: 'Small', colFir: const Color(0xff6ab5fe), colSec: const Color(0xff6ab5fe)),
+    TrxComBetModel(
+        gameId: 40,
+        title: 'Big',
+        colFir: const Color(0xffffa82e),
+        colSec: const Color(0xffffa82e)),
+    TrxComBetModel(
+        gameId: 50,
+        title: 'Small',
+        colFir: const Color(0xff6ab5fe),
+        colSec: const Color(0xff6ab5fe)),
   ];
   List<TrxComBetModel> betNumbers = [
-    TrxComBetModel(img:Assets.trx0,gameId: 0, title: '0', colFir: Colors.red, colSec: Colors.purple),
-    TrxComBetModel(img:Assets.trx1,gameId: 1, title: '1', colFir: Colors.green, colSec: Colors.green),
-    TrxComBetModel(img:Assets.trx2,gameId: 2, title: '2', colFir: Colors.red, colSec: Colors.red),
-    TrxComBetModel(img:Assets.trx3,gameId: 3, title: '3', colFir: Colors.green, colSec: Colors.green),
-    TrxComBetModel(img:Assets.trx4,gameId: 4, title: '4', colFir: Colors.red, colSec: Colors.red),
-    TrxComBetModel(img:Assets.trx5,gameId: 5, title: '5', colFir: Colors.green, colSec: Colors.purple),
-    TrxComBetModel(img:Assets.trx6,gameId: 6, title: '6', colFir: Colors.red, colSec: Colors.red),
-    TrxComBetModel(img:Assets.trx7,gameId: 7, title: '7', colFir: Colors.green, colSec: Colors.green),
-    TrxComBetModel(img:Assets.trx8,gameId: 8, title: '8', colFir: Colors.red, colSec: Colors.red),
-    TrxComBetModel(img:Assets.trx9,gameId: 9, title: '9', colFir: Colors.green, colSec: Colors.green),
+    TrxComBetModel(
+        img: Assets.trx0,
+        gameId: 0,
+        title: '0',
+        colFir: Colors.red,
+        colSec: Colors.purple),
+    TrxComBetModel(
+        img: Assets.trx1,
+        gameId: 1,
+        title: '1',
+        colFir: Colors.green,
+        colSec: Colors.green),
+    TrxComBetModel(
+        img: Assets.trx2,
+        gameId: 2,
+        title: '2',
+        colFir: Colors.red,
+        colSec: Colors.red),
+    TrxComBetModel(
+        img: Assets.trx3,
+        gameId: 3,
+        title: '3',
+        colFir: Colors.green,
+        colSec: Colors.green),
+    TrxComBetModel(
+        img: Assets.trx4,
+        gameId: 4,
+        title: '4',
+        colFir: Colors.red,
+        colSec: Colors.red),
+    TrxComBetModel(
+        img: Assets.trx5,
+        gameId: 5,
+        title: '5',
+        colFir: Colors.green,
+        colSec: Colors.purple),
+    TrxComBetModel(
+        img: Assets.trx6,
+        gameId: 6,
+        title: '6',
+        colFir: Colors.red,
+        colSec: Colors.red),
+    TrxComBetModel(
+        img: Assets.trx7,
+        gameId: 7,
+        title: '7',
+        colFir: Colors.green,
+        colSec: Colors.green),
+    TrxComBetModel(
+        img: Assets.trx8,
+        gameId: 8,
+        title: '8',
+        colFir: Colors.red,
+        colSec: Colors.red),
+    TrxComBetModel(
+        img: Assets.trx9,
+        gameId: 9,
+        title: '9',
+        colFir: Colors.green,
+        colSec: Colors.green),
   ];
-
 
   int _oneMinuteTime = 0;
   int get oneMinuteTime => _oneMinuteTime;
@@ -224,9 +284,11 @@ class TrxController with ChangeNotifier {
         if (res['timerBetTime'] == 3 &&
             res['timerStatus'] == 2 &&
             resOne == false) {
-          trc.trxResultApi(context,1);
-          Provider.of<TrxGameHisViewModel>(context, listen: false).trxGameHisApi(context, 0);
-          Provider.of<TrxMyBetHisViewModel>(context, listen: false).trxMyBetHisApi(context, 0);
+          trc.trxResultApi(context, 1);
+          Provider.of<TrxGameHisViewModel>(context, listen: false)
+              .trxGameHisApi(context, 0);
+          Provider.of<TrxMyBetHisViewModel>(context, listen: false)
+              .trxMyBetHisApi(context, 0);
           // last  five result
           resOne = true;
         }
@@ -243,10 +305,12 @@ class TrxController with ChangeNotifier {
         if (res['timerBetTime'] == 3 &&
             res['timerStatus'] == 2 &&
             resOne == false) {
-          trc.trxResultApi(context,1);
+          trc.trxResultApi(context, 1);
           // last  five result
-          Provider.of<TrxGameHisViewModel>(context, listen: false).trxGameHisApi(context, 0);
-          Provider.of<TrxMyBetHisViewModel>(context, listen: false).trxMyBetHisApi(context, 0);
+          Provider.of<TrxGameHisViewModel>(context, listen: false)
+              .trxGameHisApi(context, 0);
+          Provider.of<TrxMyBetHisViewModel>(context, listen: false)
+              .trxMyBetHisApi(context, 0);
           resOne = true;
         }
       }
@@ -262,10 +326,12 @@ class TrxController with ChangeNotifier {
         if (res['timerBetTime'] == 3 &&
             res['timerStatus'] == 2 &&
             resOne == false) {
-          trc.trxResultApi(context,1);
+          trc.trxResultApi(context, 1);
           // last  five result
-          Provider.of<TrxGameHisViewModel>(context, listen: false).trxGameHisApi(context, 0);
-          Provider.of<TrxMyBetHisViewModel>(context, listen: false).trxMyBetHisApi(context, 0);
+          Provider.of<TrxGameHisViewModel>(context, listen: false)
+              .trxGameHisApi(context, 0);
+          Provider.of<TrxMyBetHisViewModel>(context, listen: false)
+              .trxMyBetHisApi(context, 0);
           resOne = true;
         }
       }
@@ -281,10 +347,12 @@ class TrxController with ChangeNotifier {
         if (res['timerBetTime'] == 3 &&
             res['timerStatus'] == 2 &&
             resOne == false) {
-          trc.trxResultApi(context,1);
+          trc.trxResultApi(context, 1);
           // last  five result
-          Provider.of<TrxGameHisViewModel>(context, listen: false).trxGameHisApi(context, 0);
-          Provider.of<TrxMyBetHisViewModel>(context, listen: false).trxMyBetHisApi(context, 0);
+          Provider.of<TrxGameHisViewModel>(context, listen: false)
+              .trxGameHisApi(context, 0);
+          Provider.of<TrxMyBetHisViewModel>(context, listen: false)
+              .trxMyBetHisApi(context, 0);
           resOne = true;
         }
       }
@@ -305,10 +373,7 @@ class TrxController with ChangeNotifier {
   bool isPlayAllowed(int time, int status, context) {
     if ((status == 1 && time <= 5) || status == 2) {
       if (kDebugMode) {
-        Utils.flushBarErrorMessage(
-          "No more bet",
-          context,Colors.red
-        );
+        Utils.flushBarErrorMessage("No more bet", context, Colors.red);
       }
       return false;
     }

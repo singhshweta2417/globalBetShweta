@@ -1,6 +1,6 @@
 import 'package:flame/input.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'package:globalbet/Plinko/my_game.dart';
+import 'package:game_on/Plinko/my_game.dart';
 
 class BoxKinematic extends BodyComponent {
   @override

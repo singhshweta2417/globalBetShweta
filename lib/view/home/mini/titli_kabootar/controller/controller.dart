@@ -2,14 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/api_url.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/res/sound.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/bet_view_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/view_model/result_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/api_url.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/res/sound.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view_model/bet_view_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/view_model/result_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -77,7 +77,7 @@ class TitliController with ChangeNotifier {
       print("print done");
     }
     if (!isPlayAllowed()) {
-      return print("play allowed");
+      return;
     }
     final profileViewModel =
         Provider.of<ProfileViewModel>(context, listen: false);
@@ -219,7 +219,6 @@ class TitliController with ChangeNotifier {
 
     // Ensure that reBets is populated correctly before repeating
     if (reBets.isEmpty) {
-      print('No bets to repeat');
       return;
     }
 
@@ -234,7 +233,6 @@ class TitliController with ChangeNotifier {
       addTitliBets.clear(); // Clear previous bets to avoid duplicate bets
       for (var bet in reBets) {
         addTitliBets.add({'number': bet['number']!, 'amount': bet['amount']!});
-        print("Adding to addTitliBets: $bet");
       }
 
       // Call the API once after all bets are added
@@ -244,7 +242,6 @@ class TitliController with ChangeNotifier {
       profileViewModel.deductBalance(newAmount);//deductBalance
       notifyListeners(); // Notify listeners to update the UI
 
-      print('Rebet placed successfully');
     } else {
       // Show an error message if the user does not have enough balance
       if (kDebugMode) {
@@ -259,7 +256,6 @@ class TitliController with ChangeNotifier {
     final betViewModel = Provider.of<BetViewModel>(context, listen: false);
     betViewModel.titliBetApi(bets, context);
 
-    print("Bet placed: $bets");
   }
 
   void doubleUpBet(context) {
@@ -292,8 +288,6 @@ class TitliController with ChangeNotifier {
     // Place the doubled bet by calling the same function that places the bet
     final betViewModel = Provider.of<BetViewModel>(context, listen: false);
     betViewModel.titliBetApi(addTitliBets, context);
-    print(addTitliBets); // Replaces the bet with doubled amounts
-    print("doubelup wala list "); // Replaces the bet with doubled amounts
 
     // Deduct the balance for the doubled bets
     profileViewModel.deductBalance(totalRequiredBalance);//deductBalance
@@ -301,7 +295,6 @@ class TitliController with ChangeNotifier {
     // Update the UI
     notifyListeners();
 
-    print("Doubled up the bet and placed it successfully!");
   }
 
   bool _resultShowTime = false;
@@ -463,8 +456,7 @@ class TitliController with ChangeNotifier {
       // Stop sparkling animation
       selectWinningItem(id); // Announce the winner
       addTitliBets.clear();
-      print(id);
-      print("Selected winner");
+
     });
   }
 

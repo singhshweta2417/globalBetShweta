@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/model/country_model.dart';
-import 'package:globalbet/offer/country_repo.dart';
+import 'package:game_on/model/country_model.dart';
+import 'package:game_on/offer/country_repo.dart';
 
 
 class CountryViewModel with ChangeNotifier {

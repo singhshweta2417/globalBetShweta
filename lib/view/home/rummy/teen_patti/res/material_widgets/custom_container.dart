@@ -1,4 +1,4 @@
-import 'package:globalbet/material_imports.dart';
+import 'package:game_on/material_imports.dart';
 
 class ContBox extends StatelessWidget {
   final double? height;

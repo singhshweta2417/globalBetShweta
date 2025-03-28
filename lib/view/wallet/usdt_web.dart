@@ -1,23 +1,23 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 
-class Usdtweb extends StatefulWidget {
+class UsdtWeb extends StatefulWidget {
   final String url;
 
-  const Usdtweb({super.key, required this.url});
+  const UsdtWeb({super.key, required this.url});
 
   @override
-  _UsdtwebState createState() =>
-      _UsdtwebState();
+  UsdtWebState createState() =>
+      UsdtWebState();
 }
-class _UsdtwebState extends State<Usdtweb> {
+class UsdtWebState extends State<UsdtWeb> {
   bool _isLoading = true;
 
   @override

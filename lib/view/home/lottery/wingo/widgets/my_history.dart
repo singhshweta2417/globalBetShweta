@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
-import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_my_his_view_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/view/home/lottery/wingo/view_model/win_go_my_his_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/main.dart';
+import 'package:game_on/main.dart';
 
 
 class WingoMyHis extends StatefulWidget {
@@ -144,7 +144,7 @@ class _WingoMyHisState extends State<WingoMyHis> {
                         ),
                         Sizes.spaceHeight5,
                         textWidget(
-                          text: "₹ ${(betHistoryData.status == 1?betHistoryData.winAmount:betHistoryData.amount).toStringAsFixed(2)}",
+                          text: "🪙 ${(betHistoryData.status == 1?betHistoryData.winAmount:betHistoryData.amount).toStringAsFixed(2)}",
                           fontSize: 12,
                           color: betHistoryData.status == 0
                               ? Colors.orange
@@ -183,17 +183,17 @@ class _WingoMyHisState extends State<WingoMyHis> {
                             ),
                             wingoGameHistoryDetail(
                               "Purchase Amount",
-                              "₹${betHistoryData.amount}",
+                              "🪙${betHistoryData.amount}",
                               Colors.white,
                             ),
                             wingoGameHistoryDetail(
                               "Amount after TAX",
-                              "₹ ${betHistoryData.tradeAmount}",
+                              "🪙 ${betHistoryData.tradeAmount}",
                               Colors.green,
                             ),
                             wingoGameHistoryDetail(
                               "TAX",
-                              "₹ ${betHistoryData.commission}",
+                              "🪙 ${betHistoryData.commission}",
                               Colors.green,
                             ),
                             wingoGameHistoryDetail(
@@ -217,7 +217,7 @@ class _WingoMyHisState extends State<WingoMyHis> {
                             ),
                             wingoGameHistoryDetail(
                               "Win/Loss",
-                              "₹ ${betHistoryData.winAmount.toStringAsFixed(2)}",
+                              "🪙 ${betHistoryData.winAmount.toStringAsFixed(2)}",
                               Colors.red,
                             ),
                             wingoGameHistoryDetail(

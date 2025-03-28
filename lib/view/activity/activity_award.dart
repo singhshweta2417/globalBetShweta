@@ -3,18 +3,18 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/activity_record_model.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/activity_record_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/view/activity/activity_record_history.dart';
+import 'package:game_on/view/activity/activity_record_history.dart';
 
 import '../../res/api_urls.dart';
 
@@ -257,7 +257,7 @@ class _ActivityAwardState extends State<ActivityAward> {
                                         width: 7,
                                       ),
                                       textWidget(
-                                        text: '₹${data.amount}',
+                                        text: '🪙${data.amount}',
                                         fontWeight: FontWeight.w700,
                                         fontSize: 15,
                                         color: AppColors.whiteColor,

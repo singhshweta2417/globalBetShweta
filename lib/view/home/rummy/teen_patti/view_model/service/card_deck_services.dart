@@ -42,7 +42,6 @@ class DeckModel {
     int idCounter = 0;
     for (var suit in suits) {
       for (var rank in ranks) {
-        print("assets/cards/${suit.toLowerCase()}/${rank.toLowerCase()}_of_${suit.toLowerCase()}.png");
         cards.add(CardModel(
           id: idCounter++,
           suit: suit,

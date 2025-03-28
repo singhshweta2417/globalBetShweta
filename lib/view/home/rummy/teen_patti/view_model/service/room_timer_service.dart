@@ -14,7 +14,7 @@ class RoomTimerProvider extends ChangeNotifier {
     _timeLeft = 60;
     _progress = 1.0;
 
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_timeLeft > 0) {
         _timeLeft--;
         _progress = _timeLeft / 60;

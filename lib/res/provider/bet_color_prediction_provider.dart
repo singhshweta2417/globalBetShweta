@@ -3,11 +3,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/api_urls.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/api_urls.dart';
 
 class BetColorResultProvider with ChangeNotifier {
   ProfileViewModel profile = ProfileViewModel();

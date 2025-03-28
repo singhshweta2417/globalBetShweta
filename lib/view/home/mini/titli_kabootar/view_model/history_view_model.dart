@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/model/deposit_history_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/model/history_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/model/withdraw_history_model.dart';
-import 'package:globalbet/view/home/mini/titli_kabootar/repo/history_repo.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/model/deposit_history_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/model/history_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/model/withdraw_history_model.dart';
+import 'package:game_on/view/home/mini/titli_kabootar/repo/history_repo.dart';
 
 class HistoryViewModel with ChangeNotifier {
   final _historyRepo = HistoryRepository();

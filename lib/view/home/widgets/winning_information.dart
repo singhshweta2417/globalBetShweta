@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/view/home/widgets/earning_chart.dart';
-import 'package:globalbet/view/home/widgets/home_page_bottom.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/view/home/widgets/earning_chart.dart';
+import 'package:game_on/view/home/widgets/home_page_bottom.dart';
 
 // Define your assets here (example)
 
@@ -15,39 +15,39 @@ class WinningInformation extends StatefulWidget {
   const WinningInformation({super.key});
 
   @override
-  _WinningInformationState createState() => _WinningInformationState();
+  WinningInformationState createState() => WinningInformationState();
 }
 
-class _WinningInformationState extends State<WinningInformation> {
+class WinningInformationState extends State<WinningInformation> {
   late List<Map<String, dynamic>> dragonTigerList = [
     {
       "user": "mdw**e764",
       "image": Assets.person1,
-      "border": '₹ 200.00',
+      "border": '🪙 200.00',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "wde**fr44",
       "image": Assets.person2,
-      "border": '₹ 243.12',
+      "border": '🪙 243.12',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "cfs*23ww",
       "image": Assets.person3,
-      "border": '₹ 126.00',
+      "border": '🪙 126.00',
       'centering': Assets.categoryTrxCoin1
     },
     {
       "user": "hde**fr465",
       "image": Assets.person4,
-      "border": '₹ 400.00',
+      "border": '🪙 400.00',
       'centering': Assets.categoryTrxCoin1
     },
     {
       "user": "wee**fr4",
       "image": Assets.person5,
-      "border": '₹ 180.00',
+      "border": '🪙 180.00',
       'centering': Assets.categoryWingoCoin1
     },
   ];
@@ -55,121 +55,121 @@ class _WinningInformationState extends State<WinningInformation> {
     {
       "user": "mdw**e764",
       "image": Assets.person1,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryTrxCoin1
     },
     {
       "user": "wde**fr44",
       "image": Assets.person2,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "cfs*23ww",
       "image": Assets.person3,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "hde**fr465",
       "image": Assets.person4,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFivesCoin
     },
     {
       "user": "wee**fr4",
       "image": Assets.person5,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFivesCoin
     },
     {
       "user": "aas**rr12",
       "image": Assets.personPerson6,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "bss**rr13",
       "image": Assets.personPerson7,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "css**rr14",
       "image": Assets.personPerson8,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "dss**rr15",
       "image": Assets.personPerson9,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "ess**rr16",
       "image": Assets.personPerson10,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "fss**rr17",
       "image": Assets.personPerson11,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFivesCoin
     },
     {
       "user": "gss**rr18",
       "image": Assets.personPerson12,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryWingoCoin1
     },
     {
       "user": "hss**rr19",
       "image": Assets.personPerson13,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFlashIcon
     },
     {
       "user": "iss**rr20",
       "image": Assets.personPerson14,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFivesCoin
     },
     {
       "user": "jss**rr21",
       "image": Assets.personPerson15,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFlashIcon
     },
     {
       "user": "kss**rr22",
       "image": Assets.personPerson16,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFivesCoin
     },
     {
       "user": "lss**rr23",
       "image": Assets.personPerson17,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFlashIcon
     },
     {
       "user": "mss**rr24",
       "image": Assets.personPerson18,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFivesCoin
     },
     {
       "user": "nss**rr25",
       "image": Assets.personPerson19,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFlashIcon
     },
     {
       "user": "oss**rr26",
       "image": Assets.personPerson20,
-      "border": '₹ ${Random().nextInt(491) * 10}.00',
+      "border": '🪙 ${Random().nextInt(491) * 10}.00',
       'centering': Assets.categoryFlashIcon
     },
   ];
@@ -288,7 +288,7 @@ class _WinningInformationState extends State<WinningInformation> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       textWidget(
-                          text: "Receive  " + item['border'],
+                          text: 'Receive  ' + item['border'],
                           fontSize: 14,
                           color: AppColors.primaryContColor,
                           fontWeight: FontWeight.w900),

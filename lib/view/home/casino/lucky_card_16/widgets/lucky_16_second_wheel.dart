@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
+import 'package:game_on/view/home/casino/lucky_card_16/controller/lucky_16_controller.dart';
 
 class Lucky16SecondWheel extends StatefulWidget {
   final Lucky16Controller controller;

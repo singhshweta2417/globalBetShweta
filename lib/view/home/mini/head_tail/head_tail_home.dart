@@ -4,19 +4,19 @@ import 'dart:math';
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/andar_bahar_model/last_fifteen.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/andar_bahar_assets.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/coins_sign_new.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/game_history.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/hide_coins.dart';
-import 'package:globalbet/view/home/casino/andar_bahar/constant/image_toast_wingo.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/coin/set_coin.dart';
-import 'package:globalbet/view/home/mini/head_tail/head_tail_assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/casino/andar_bahar/andar_bahar_model/last_fifteen.dart';
+import 'package:game_on/view/home/casino/andar_bahar/andar_bahar_assets.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/coins_sign_new.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/game_history.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/hide_coins.dart';
+import 'package:game_on/view/home/casino/andar_bahar/constant/image_toast_wingo.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/coin/set_coin.dart';
+import 'package:game_on/view/home/mini/head_tail/head_tail_assets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -147,7 +147,7 @@ class HeadTailHomeState extends State<HeadTailHome>
         } else {
           if (headCount == 0 && tailCount == 0) {
           } else {
-            bettingApi();
+            bettingApi(context);
           }
         }
       } else if (countdownSeconds == 8) {
@@ -166,7 +166,7 @@ class HeadTailHomeState extends State<HeadTailHome>
         }
       } else if (countdownSeconds == 1) {
         fetchData();
-        gameWinPopup();
+        gameWinPopup(context);
 
         if (fristCome == false) {
         } else {
@@ -720,7 +720,7 @@ class HeadTailHomeState extends State<HeadTailHome>
                                     final GlobalKey<CartIconKey> itemKey =
                                         GlobalKey<CartIconKey>();
                                     return hideButton == true
-                                        ? hidecoins(list[index])
+                                        ? HideCoins(list[index])
                                         : InkWell(
                                             onTap: () async {
                                               wallet == 0
@@ -867,7 +867,7 @@ class HeadTailHomeState extends State<HeadTailHome>
 
   UserViewModel userProvider = UserViewModel();
   // *betting API*  //
-  bettingApi() async {
+  bettingApi(context) async {
     UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
@@ -888,15 +888,14 @@ class HeadTailHomeState extends State<HeadTailHome>
         "json": betList,
       }),
     );
-    print(betList);
-    print('betList');
     var data = jsonDecode(response.body);
     if (data["status"] == 200) {
       ImageToast.show(
           imagePath: AppAssets.bettingplaceds, heights: 100, context: context);
       countAndCoinClear();
     } else {
-      Utils.flushBarErrorMessage(data['message'].toString(), context, Colors.black);
+      Utils.flushBarErrorMessage(
+          data['message'].toString(), context, Colors.black);
     }
   }
 
@@ -927,16 +926,13 @@ class HeadTailHomeState extends State<HeadTailHome>
     }
   }
 
-  gameWinPopup() async {
+  gameWinPopup(context) async {
     UserViewModel userProvider = UserViewModel();
     UserModel user = await userProvider.getUser();
     String userId = user.id.toString();
     final response = await http.get(
       Uri.parse('${ApiUrl.winAmount}$userId&game_id=$gameid&games_no=$gamesNo'),
     );
-    print(
-        'API URL: ${ApiUrl.winAmount}$userId&game_id=$gameid&games_no=$gamesNo');
-    print('Ho gyaaaaaaa');
 
     var data = jsonDecode(response.body);
     if (kDebugMode) {

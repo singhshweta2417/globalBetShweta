@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/res/orientation.dart';
-import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
-import 'package:globalbet/view/home/casino/triple_chance/widgets/exit_pop_up.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/res/card_distribution.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/game_screens/game_screen.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/game_screens/summary_screen.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/game_screens/waiting_screen.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_services.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/room_timer_service.dart';
+import 'package:game_on/res/orientation.dart';
+import 'package:game_on/view/home/rummy/teen_patti/res/card_distribution.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/game_screens/game_screen.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/game_screens/summary_screen.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/game_screens/waiting_screen.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/game_services.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/room_timer_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../../material_imports.dart';

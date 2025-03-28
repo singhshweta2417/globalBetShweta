@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:http/http.dart'as http;
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/view/account/all_bet_history/aviator_all_bet_history_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/view/account/all_bet_history/aviator_all_bet_history_model.dart';
 
 class AvaitorAllHistory extends StatefulWidget {
   final String gameid;
@@ -119,7 +119,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
                   ),
                   Text(
                     items[index].status==0?'--':
-                    items[index].status==2?'- ₹${items[index].amount.toStringAsFixed(2)}':'+ ₹${items[index].win.toStringAsFixed(2)}',
+                    items[index].status==2?'- 🪙${items[index].amount.toStringAsFixed(2)}':'+ 🪙${items[index].win.toStringAsFixed(2)}',
                     style: TextStyle(
                         fontSize: 12,
                         fontWeight:
@@ -188,7 +188,7 @@ class _AvaitorAllHistoryState extends State<AvaitorAllHistory> {
                           items[index].status==2?
                           'Failed':'Succeed', items[index].status==0?Colors.white:items[index].status==2?Colors.red:Colors.green),
                       historyDetails('Win/Loss',
-                          items[index].status==0?'--': '₹${items[index].win.toStringAsFixed(2)}', items[index].status==0?Colors.white:items[index].status==2? Colors.red:Colors.green),
+                          items[index].status==0?'--': '🪙${items[index].win.toStringAsFixed(2)}', items[index].status==0?Colors.white:items[index].status==2? Colors.red:Colors.green),
                       historyDetails(
                           'Order time',
                           items[index].createdAt.toString(),

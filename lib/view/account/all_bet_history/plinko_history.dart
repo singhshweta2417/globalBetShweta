@@ -2,15 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/plinko_result.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/plinko_result.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/text_widget.dart';
 
 class PlinkobetHistoryPage extends StatefulWidget {
   final String gameid;
@@ -129,8 +129,8 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                               fetchPlinkoBetTwo[index].status == 0
                                   ? '--'
                                   : fetchPlinkoBetTwo[index].status == 2
-                                      ? '- ₹${fetchPlinkoBetTwo[index].amount.toStringAsFixed(2)}'
-                                      : '+ ₹${fetchPlinkoBetTwo[index].winAmount.toStringAsFixed(2)}',
+                                      ? '- 🪙${fetchPlinkoBetTwo[index].amount.toStringAsFixed(2)}'
+                                      : '+ 🪙${fetchPlinkoBetTwo[index].winAmount.toStringAsFixed(2)}',
                               style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
@@ -210,7 +210,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                                 ),
                                 historyDetails(
                                     'Purchase amount',
-                                    '₹${fetchPlinkoBetTwo[index].amount}.00',
+                                    '🪙${fetchPlinkoBetTwo[index].amount}.00',
                                     Colors.white),
                                 historyDetails(
                                     'Tax',
@@ -244,7 +244,7 @@ class _PlinkobetHistoryPageState extends State<PlinkobetHistoryPage> {
                                     'CashOut',
                                     fetchPlinkoBetTwo[index].status == 0
                                         ? '--'
-                                        : '₹${fetchPlinkoBetTwo[index].winAmount.toStringAsFixed(2)}',
+                                        : '🪙${fetchPlinkoBetTwo[index].winAmount.toStringAsFixed(2)}',
                                    int.parse(fetchPlinkoBetTwo[index].winAmount.toString()) >int.parse(fetchPlinkoBetTwo[index].amount.toString())
                                       ? Colors.green
                                       : Colors.white,),

@@ -2,20 +2,20 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/invitation_bonus_model.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/activity/invitation_bonus_history.dart';
-import 'package:globalbet/view/activity/invitation_reward_rules.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/invitation_bonus_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/activity/invitation_bonus_history.dart';
+import 'package:game_on/view/activity/invitation_reward_rules.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
 import 'package:http/http.dart' as http;
 
 class InvitationBonus extends StatefulWidget {
@@ -263,7 +263,7 @@ class _InvitationBonusState extends State<InvitationBonus> {
                                       ),
                                     ),
                                   ),
-                                  Text('₹${data.claimAmount}',
+                                  Text('🪙${data.claimAmount}',
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w900,
                                           fontSize: 14,
@@ -361,12 +361,6 @@ class _InvitationBonusState extends State<InvitationBonus> {
                                         : "Claim Now",
                                 fontSize: 20,
                                 onTap: () {
-                                  print(data.noOfInvitees);
-                                  print('noofincvgh');
-                                  print(data.noOfUser);
-                                  print('useertghnjm');
-                                  print(data.status);
-                                  print("stasrtdfghgbjn");
                                   data.status == "0"
                                       ? Utils.flushBarErrorMessage(
                                           "Already Claimed",
@@ -423,7 +417,6 @@ class _InvitationBonusState extends State<InvitationBonus> {
         Uri.parse(ApiUrl.bonusClaim),
       );
     }
-    print({"userid": token, "amount": amount});
     var data = jsonDecode(response.body);
     if (data["status"] == 200) {
       invationbonusList();

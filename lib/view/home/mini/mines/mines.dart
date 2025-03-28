@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/bottom/bottom_nav_bar.dart';
-import 'package:globalbet/view/home/casino/triple_chance/widgets/exit_pop_up.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
-import 'package:globalbet/view/home/mini/mines/controller/mine_controller.dart';
-import 'package:globalbet/view/home/mini/mines/res/mine_color.dart';
-import 'package:globalbet/view/home/mini/mines/view_model/mine_bet_view_model.dart';
-import 'package:globalbet/view/home/mini/mines/view_model/mine_cash_out_view_model.dart';
-import 'package:globalbet/view/home/mini/mines/view_model/mine_drop_down_view_model.dart';
-import 'package:globalbet/view/home/mini/mines/widget/mines_drawer.dart';
-import 'package:globalbet/view/home/mini/mines/widget/select_bet_amount.dart';
-import 'package:globalbet/view/home/mini/mines/widget/show_mine_pop_up.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/bottom/bottom_nav_bar.dart';
+import 'package:game_on/view/home/casino/triple_chance/widgets/exit_pop_up.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/view/home/mini/mines/controller/mine_controller.dart';
+import 'package:game_on/view/home/mini/mines/res/mine_color.dart';
+import 'package:game_on/view/home/mini/mines/view_model/mine_bet_view_model.dart';
+import 'package:game_on/view/home/mini/mines/view_model/mine_cash_out_view_model.dart';
+import 'package:game_on/view/home/mini/mines/view_model/mine_drop_down_view_model.dart';
+import 'package:game_on/view/home/mini/mines/widget/mines_drawer.dart';
+import 'package:game_on/view/home/mini/mines/widget/select_bet_amount.dart';
+import 'package:game_on/view/home/mini/mines/widget/show_mine_pop_up.dart';
 
 import 'package:provider/provider.dart';
 

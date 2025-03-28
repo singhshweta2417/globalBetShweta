@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globalbet/view/home/mini/mines/controller/mine_controller.dart';
+import 'package:game_on/view/home/mini/mines/controller/mine_controller.dart';
 import 'package:provider/provider.dart';
 
 class SelectBetAmount extends StatelessWidget {

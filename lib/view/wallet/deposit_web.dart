@@ -1,36 +1,35 @@
-
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 
 class PaymentWeb extends StatefulWidget {
   final String url;
   final int type;
 
-  const PaymentWeb({super.key, required this.url, required this.type, });
+  const PaymentWeb({
+    super.key,
+    required this.url,
+    required this.type,
+  });
 
   @override
-  _PaymentWebState createState() => _PaymentWebState();
+  PaymentWebState createState() => PaymentWebState();
 }
-class _PaymentWebState extends State<PaymentWeb> {
+
+class PaymentWebState extends State<PaymentWeb> {
   bool _isLoading = true;
 
   @override
   Widget build(BuildContext context) {
-    print(widget.url);
-    print('wwwwww');
-
     return SafeArea(
       child: Scaffold(
         appBar: GradientAppBar(
             leading: const AppBackBtn(),
-            title: textWidget(
-                text: 'Pay', fontSize: 25,color: Colors.white),
+            title: textWidget(text: 'Pay', fontSize: 25, color: Colors.white),
             gradient: AppColors.primaryGradient),
         body: Column(
           children: <Widget>[

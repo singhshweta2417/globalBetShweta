@@ -4,28 +4,28 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/result_game_history.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/audio.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/utils/utils.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/Image_toast.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/dragon_toast.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/dragon_tiger_assets.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/fade_animation.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/glory_border.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/coin/single_coin.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/dragon_game_history.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/random_person.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/stroke_test.dart';
-import 'package:globalbet/view/home/casino/dragon_tiger_new/widgets/updown_border.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/result_game_history.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/audio.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/utils/utils.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/Image_toast.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/dragon_toast.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/dragon_tiger_assets.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/fade_animation.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/glory_border.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/coin/single_coin.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/dragon_game_history.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/random_person.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/stroke_test.dart';
+import 'package:game_on/view/home/casino/dragon_tiger_new/widgets/updown_border.dart';
 import 'coin/distribute_coin.dart';
 import 'widgets/dragon_tiger_timer.dart';
 import 'package:http/http.dart' as http;
@@ -361,7 +361,7 @@ class _DragonTigerState extends State<DragonTiger> {
                             //80 tie
                             if (userData.balance >= coinVal) {
                               if (setTimeValue > 10) {
-                                bettingApi('3', coinVal.toString());
+                                bettingApi('3', coinVal.toString(),context);
                                 setState(() {
                                   tieUserSum += coinVal;
                                   firstCome = true;
@@ -426,7 +426,7 @@ class _DragonTigerState extends State<DragonTiger> {
                                 // 60 dragon
                                 if (userData.balance >= coinVal) {
                                   if (setTimeValue > 10) {
-                                    bettingApi('1', coinVal.toString());
+                                    bettingApi('1', coinVal.toString(),context);
                                     setState(() {
                                       dragonUserSum += coinVal;
                                       firstCome = true;
@@ -493,7 +493,7 @@ class _DragonTigerState extends State<DragonTiger> {
                                 //70 tiger
                                 if (userData.balance >= coinVal) {
                                   if (setTimeValue > 10) {
-                                    bettingApi('2', coinVal.toString());
+                                    bettingApi('2', coinVal.toString(),context);
                                     setState(() {
                                       tigerUserSum += coinVal;
                                       firstCome = true;
@@ -616,7 +616,7 @@ class _DragonTigerState extends State<DragonTiger> {
                           child: Center(
                             child: textWidget(
                                 text:
-                                    '₹${userData.balance == null ? "" : userData.balance.toStringAsFixed(2)}',
+                                    '🪙${userData.balance == null ? "" : userData.balance.toStringAsFixed(2)}',
                                 color: AppColors.goldColor,
                                 fontWeight: FontWeight.w600),
                           )),
@@ -728,7 +728,7 @@ class _DragonTigerState extends State<DragonTiger> {
           coins1.clear();
           coins3.clear();
           _showFrontWidgets();
-          lastResultView();
+          lastResultView(context);
           _isActionExecuted = true;
         } else if (value >= 5 && _isActionExecuted) {
           _showBackWidget();
@@ -789,12 +789,15 @@ class _DragonTigerState extends State<DragonTiger> {
     }
   }
 
-  var winResult;
-  var cardImage1;
-  var cardImage2;
-  var gamesNo;
-
-  Future<void> lastResultView() async {
+  // var winResult;
+  // var cardImage1;
+  // var cardImage2;
+  // var gamesNo;
+  String? winResult;
+  String? cardImage1;
+  String? cardImage2;
+  int? gamesNo;
+  Future<void> lastResultView(context) async {
     var gameIds = widget.gameId;
 
     try {
@@ -814,7 +817,7 @@ class _DragonTigerState extends State<DragonTiger> {
             .profileApi(context);
         winResult == 1
             ? ImageToast.show(
-                imagePath: AppAssets.gif_dragon_animated,
+                imagePath: AppAssets.gifDragonAnimated,
                 height: 300,
                 context: context)
             : winResult == 2
@@ -890,6 +893,7 @@ class _DragonTigerState extends State<DragonTiger> {
   Future<void> bettingApi(
     String number,
     String amount,
+      context
   ) async {
     try {
       if (kDebugMode) {

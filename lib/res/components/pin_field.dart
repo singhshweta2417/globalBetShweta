@@ -13,10 +13,10 @@ class PinFieldWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _PinFieldWidgetState createState() => _PinFieldWidgetState();
+  PinFieldWidgetState createState() => PinFieldWidgetState();
 }
 
-class _PinFieldWidgetState extends State<PinFieldWidget> {
+class PinFieldWidgetState extends State<PinFieldWidget> {
   late List<FocusNode> _focusNodes;
   late List<String> _pinValues;
 

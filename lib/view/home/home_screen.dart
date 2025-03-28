@@ -1,23 +1,23 @@
 import 'dart:convert';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/app_constant.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/helper/api_helper.dart';
-import 'package:globalbet/res/view_model/profile_view_model.dart';
-import 'package:globalbet/view/account/service_center/customer_service.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/size_const.dart';
-import 'package:globalbet/view/home/notification.dart';
-import 'package:globalbet/view/home/widgets/category_elements.dart';
-import 'package:globalbet/view/home/widgets/category_widgets.dart';
-import 'package:globalbet/view/home/widgets/slider_widget.dart';
-import 'package:globalbet/view/home/widgets/winning_information.dart';
-import 'package:globalbet/view/wallet/deposit_screen.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/app_constant.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/helper/api_helper.dart';
+import 'package:game_on/res/view_model/profile_view_model.dart';
+import 'package:game_on/view/account/service_center/customer_service.dart';
+import 'package:game_on/view/home/lottery/wingo/res/size_const.dart';
+import 'package:game_on/view/home/notification.dart';
+import 'package:game_on/view/home/widgets/category_elements.dart';
+import 'package:game_on/view/home/widgets/category_widgets.dart';
+import 'package:game_on/view/home/widgets/slider_widget.dart';
+import 'package:game_on/view/home/widgets/winning_information.dart';
+import 'package:game_on/view/wallet/deposit_screen.dart';
 import 'package:draggable_fab/draggable_fab.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               textWidget(
-                  text: 'Global Bet',
+                  text: 'Game On',
                   fontWeight: FontWeight.w600,
                   fontSize: 28,
                   color: AppColors.whiteColor),

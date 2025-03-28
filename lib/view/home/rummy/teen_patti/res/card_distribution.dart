@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/components/person_profile.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/user_interface/components/players_positioning.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/card_throw_animaton.dart';
-import 'package:globalbet/view/home/rummy/teen_patti/view_model/service/game_services.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/components/person_profile.dart';
+import 'package:game_on/view/home/rummy/teen_patti/user_interface/components/players_positioning.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/card_throw_animaton.dart';
+import 'package:game_on/view/home/rummy/teen_patti/view_model/service/game_services.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../material_imports.dart';
@@ -29,8 +29,6 @@ class _CardDistributionScreenActivityState
   @override
   void initState() {
     super.initState();
-    print(
-        "allowed or not: ${widget.isAnimationAllowed} ${widget.cardPerPlayer}");
     if (widget.isAnimationAllowed) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Provider.of<CardThrowAnimation>(context, listen: false)
@@ -157,8 +155,6 @@ class _ThreeCardDistributionScreenActivityState
   @override
   void initState() {
     super.initState();
-    print(
-        "allowed or not: ${widget.isAnimationAllowed} ${widget.cardPerPlayer}");
     if (widget.isAnimationAllowed) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Provider.of<CardThrowAnimation>(context, listen: false)

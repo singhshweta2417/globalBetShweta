@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/res/components/audio.dart';
-import 'package:globalbet/view/home/lottery/wingo/res/win_go_api_url.dart';
-import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_game_his_view_model.dart';
-import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_my_his_view_model.dart';
-import 'package:globalbet/view/home/lottery/wingo/view_model/win_go_result_view_model.dart';
+import 'package:game_on/res/components/audio.dart';
+import 'package:game_on/view/home/lottery/wingo/res/win_go_api_url.dart';
+import 'package:game_on/view/home/lottery/wingo/view_model/win_go_game_his_view_model.dart';
+import 'package:game_on/view/home/lottery/wingo/view_model/win_go_my_his_view_model.dart';
+import 'package:game_on/view/home/lottery/wingo/view_model/win_go_result_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/utils/utils.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/utils/utils.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 

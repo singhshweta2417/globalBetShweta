@@ -1,16 +1,16 @@
 import 'dart:convert';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/clipboard.dart';
-import 'package:globalbet/res/components/image_picker.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
-import 'package:globalbet/utils/utils.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/clipboard.dart';
+import 'package:game_on/res/components/image_picker.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
+import 'package:game_on/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -256,10 +256,10 @@ class _UploadScreenshotsState extends State<UploadScreenshots> {
 
   getImage() async {
     var res = await http.get(Uri.parse(
-        "https://globalbetr.live/admin/index.php/Mahajongapi/usdt_slider"));
+        "https://game_onr.live/admin/index.php/Mahajongapi/usdt_slider"));
     var data = jsonDecode(res.body)["data"][0];
     setState(() {
-      imagePath = "https://admin.globalbetr.live/${data["image"]}";
+      imagePath = "https://admin.game_onr.live/${data["image"]}";
       usdtcode = "${data["usdtcode"]}";
     });
   }

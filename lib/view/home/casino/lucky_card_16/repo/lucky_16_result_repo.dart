@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:globalbet/view/home/casino/lucky_card_16/model/lucky_16_result_model.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/base_api_services.dart';
-import 'package:globalbet/view/home/lottery/wingo/helper/network/network_api_services.dart';
+import 'package:game_on/view/home/casino/lucky_card_16/model/lucky_16_result_model.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/base_api_services.dart';
+import 'package:game_on/view/home/lottery/wingo/helper/network/network_api_services.dart';
 
 import '../res/api_url.dart';
 

@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
 
 class HowToPlay extends StatefulWidget {
   final String type;
@@ -49,26 +50,29 @@ class _HowToPlayState extends State<HowToPlay> {
                       color: AppColors.whiteColor)),
             ),
             Container(
-              height:responseStatuscode == 400? height * 0.1:height * 0.4,
+              height: responseStatusCode == 400 ? height * 0.1 : height * 0.4,
               width: width,
               color: AppColors.darkColor,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
-                  child:  responseStatuscode == 400
+                  child: responseStatusCode == 400
                       ? const HtmlWidget(
-                    '''
+                          '''
                   <div style="color: white; text-align: center;">
                     <p>No data found.</p>
                   </div>
                   ''',
-                  )
+                        )
                       : description == null
-                      ? const Center(child: CircularProgressIndicator())
-                      : HtmlWidget(description.toString(),textStyle: const TextStyle(color: Colors.white),),
-                ),),
+                          ? const Center(child: CircularProgressIndicator())
+                          : HtmlWidget(
+                              description.toString(),
+                              textStyle: const TextStyle(color: Colors.white),
+                            ),
+                ),
+              ),
             ),
-
             Container(
               height: height * 0.085,
               decoration: const BoxDecoration(
@@ -95,19 +99,16 @@ class _HowToPlayState extends State<HowToPlay> {
     );
   }
 
-  int? responseStatuscode;
+  int? responseStatusCode;
 
   var description;
   invitationRuleApi() async {
-    print("fdfuya");
-    print("chla");
     final type = widget.type.toString();
     final response = await http.get(
       Uri.parse("${ApiUrl.aboutus}type=$type"),
-
     );
     setState(() {
-      responseStatuscode=response.statusCode;
+      responseStatusCode = response.statusCode;
     });
 
     if (response.statusCode == 200) {
@@ -115,9 +116,10 @@ class _HowToPlayState extends State<HowToPlay> {
       setState(() {
         description = responseData["description"].toString();
       });
-    }
-    else {
-      print("Failed to load data. Status code: ${response.statusCode}");
+    } else {
+      if (kDebugMode) {
+        print("Failed to load data. Status code: ${response.statusCode}");
+      }
     }
   }
 }

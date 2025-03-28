@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:globalbet/generated/assets.dart';
-import 'package:globalbet/main.dart';
-import 'package:globalbet/model/extra_deposit_model.dart';
-import 'package:globalbet/model/user_model.dart';
-import 'package:globalbet/res/aap_colors.dart';
-import 'package:globalbet/res/api_urls.dart';
-import 'package:globalbet/res/components/app_bar.dart';
-import 'package:globalbet/res/components/app_btn.dart';
-import 'package:globalbet/res/components/text_widget.dart';
-import 'package:globalbet/res/components/theme_color.dart';
-import 'package:globalbet/res/view_model/user_view_model.dart';
+import 'package:game_on/generated/assets.dart';
+import 'package:game_on/main.dart';
+import 'package:game_on/model/extra_deposit_model.dart';
+import 'package:game_on/model/user_model.dart';
+import 'package:game_on/res/aap_colors.dart';
+import 'package:game_on/res/api_urls.dart';
+import 'package:game_on/res/components/app_bar.dart';
+import 'package:game_on/res/components/app_btn.dart';
+import 'package:game_on/res/components/text_widget.dart';
+import 'package:game_on/res/components/theme_color.dart';
+import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:globalbet/view/wallet/deposit_screen.dart';
+import 'package:game_on/view/wallet/deposit_screen.dart';
 
 class FirstDepositBonusList extends StatefulWidget {
   const FirstDepositBonusList({super.key});
@@ -88,7 +88,7 @@ class _FirstDepositBonusListState extends State<FirstDepositBonusList> {
                               fontWeight: FontWeight.w600),
                           const Spacer(),
                           textWidget(
-                              text: '+₹${data.bonus}',
+                              text: '+🪙${data.bonus}',
                               color: AppColors.whiteColor,
                               fontSize: 12,
                               fontWeight: FontWeight.w600),
@@ -190,7 +190,7 @@ class _FirstDepositBonusListState extends State<FirstDepositBonusList> {
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.only(top: 8.0),
-                              child:instruction('Exclusive for the first recharge of the account. There is only one chance. The more you recharge, the more rewards you will receive. The highest reward is ₹10,000.00;'),
+                              child:instruction('Exclusive for the first recharge of the account. There is only one chance. The more you recharge, the more rewards you will receive. The highest reward is  🪙10,000.00;'),
 
                             );
                           }),
