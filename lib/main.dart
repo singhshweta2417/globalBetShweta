@@ -35,6 +35,14 @@ import 'package:game_on/view/home/casino/lucky_card_16/controller/lucky_16_contr
 import 'package:game_on/view/home/casino/lucky_card_16/view_model/lucky_16_bet_view_model.dart';
 import 'package:game_on/view/home/casino/lucky_card_16/view_model/lucky_16_history_view_model.dart';
 import 'package:game_on/view/home/casino/lucky_card_16/view_model/lucky_16_result_view_model.dart';
+import 'package:game_on/view/home/casino/red_black_game/red_black_viewmodel/rb_bet_view_model.dart';
+import 'package:game_on/view/home/casino/red_black_game/red_black_viewmodel/rb_game_history_view_model.dart';
+import 'package:game_on/view/home/casino/red_black_game/red_black_viewmodel/rb_result_view_model.dart';
+import 'package:game_on/view/home/casino/red_black_game/red_black_viewmodel/rb_win_popup_view_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/view_model/seven_up_down_bet_view_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/view_model/seven_up_down_game_history_view_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/view_model/seven_up_down_result_view_model.dart';
+import 'package:game_on/view/home/casino/seven_up_down_new/view_model/seven_up_down_win_popup.dart';
 import 'package:game_on/view/home/casino/triple_chance/controller/triple_chance_controller.dart';
 import 'package:game_on/view/home/casino/triple_chance/view_model/triple_chance_bet_view_model.dart';
 import 'package:game_on/view/home/casino/triple_chance/view_model/triple_chance_history_view_model.dart';
@@ -203,6 +211,18 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => TeenPattiGameController()),
         ChangeNotifierProvider(create: (context) => CardThrowAnimation()),
         ChangeNotifierProvider(create: (context) => RoomTimerProvider()),
+
+        ///RedBlack
+        ChangeNotifierProvider(create: (context) => RedBlackBetViewModel()),
+        ChangeNotifierProvider(create: (context) => RedBlackGameHistoryViewModel()),
+        ChangeNotifierProvider(create: (context) => RedBlackPopUpViewModel()),
+        ChangeNotifierProvider(create: (context) => RedBlackResultViewModel()),
+
+        ///7UpDown
+        ChangeNotifierProvider(create: (context) => SevenUpDownViewModel()),
+        ChangeNotifierProvider(create: (context) => SevenUpDownGameHistoryViewModel()),
+        ChangeNotifierProvider(create: (context) => SevenUpDownResultViewModel()),
+        ChangeNotifierProvider(create: (context) => SevenUpDownPopUpViewModel()),
       ],
       child: Builder(
         builder: (context) {

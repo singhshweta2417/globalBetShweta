@@ -5,7 +5,6 @@ import 'package:game_on/model/user_model.dart';
 import 'package:game_on/res/view_model/user_view_model.dart';
 import 'package:game_on/view/home/casino/fun_target/Constant/url.dart';
 import 'package:http/http.dart' as http;
-
 import '../../../../../utils/utils.dart';
 
 class WinningAmountService with ChangeNotifier {

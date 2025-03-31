@@ -992,185 +992,164 @@ class _HomePageScreenState extends State<HomePageScreen> {
   
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvoked: (didPop) {
-        showDialog(
-          context: context,
-          barrierColor: Colors.transparent,
-          builder: (BuildContext context) {
-            return ExitPopUp(
-              title: 'Are you sure You want to\ngoto Lobby?',
-              yes: () {
-                OrientationPortraitUtil.setPortraitOrientation();
-                FeedbackProvider.navigateToHome(context);
-              },
-              image: const DecorationImage(
-                  image: AssetImage(Assets.tripleChanceCloseBg),
-                  fit: BoxFit.fill),
-            );
-          },
-        );
-      },
-      child: Scaffold(
-        backgroundColor: ColorConstant.darkBlackColor,
-        body: Center(
-          child: CustomContainer(
-            widths: widthFun/ 1.2,
-            padding:
-                const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 3),
-            alignment: Alignment.center,
-            image: const DecorationImage(
-                image: AssetImage(Assets.funTargetHomeBgFun),
-                fit: BoxFit.cover),
-            height: height,
-            child: Stack(
-              alignment: Alignment.topCenter,
-              children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Scaffold(
+      backgroundColor: ColorConstant.darkBlackColor,
+      body: Center(
+        child: CustomContainer(
+          widths: widthFun/ 1.2,
+          padding:
+              const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 3),
+          alignment: Alignment.center,
+          image: const DecorationImage(
+              image: AssetImage(Assets.funTargetHomeBgFun),
+              fit: BoxFit.cover),
+          height: height,
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  sectionOne(),
+                  const Spacer(),
+                  sectionThree(),
+                  sectionFour(),
+                ],
+              ),
+              CustomContainer(
+                padding: const EdgeInsets.only(top: 0),
+                height: widthFun/ 3.2,
+                child: Stack(
+                  alignment: Alignment.center,
                   children: [
-                    sectionOne(),
-                    const Spacer(),
-                    sectionThree(),
-                    sectionFour(),
+                    WheelSpin(
+                      controller: wheelSpinController,
+                      pathImage: Assets.funTargetBadaChakra,
+                      withWheel: widthFun/ 1.5,
+                      pieces: 20,
+                      speed: 600,
+                      isShowTextTest: false,
+                    ),
+                    CustomContainer(
+                        alignment: Alignment.center,
+                        widths: widthFun/ 11,
+                        child: isTimerDone == false
+                            ? Image.asset(Assets.funTargetMain)
+                            : Image.asset(Assets.funTargetStaticCoin))
                   ],
                 ),
-                CustomContainer(
-                  padding: const EdgeInsets.only(top: 0),
-                  height: widthFun/ 3.2,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      WheelSpin(
-                        controller: wheelSpinController,
-                        pathImage: Assets.funTargetBadaChakra,
-                        withWheel: widthFun/ 1.5,
-                        pieces: 20,
-                        speed: 600,
-                        isShowTextTest: false,
+              ),
+              Positioned(
+                top: -9,
+                child: CustomContainer(
+                  widths: widthFun/ 16,
+                  height: widthFun/ 21,
+                  clipBehavior: Clip.none,
+                  image: const DecorationImage(
+                      image: AssetImage(
+                        Assets.funTargetScorpio,
                       ),
-                      CustomContainer(
-                          alignment: Alignment.center,
-                          widths: widthFun/ 11,
-                          child: isTimerDone == false
-                              ? Image.asset(Assets.funTargetMain)
-                              : Image.asset(Assets.funTargetStaticCoin))
-                    ],
-                  ),
+                      fit: BoxFit.fill),
                 ),
-                Positioned(
-                  top: -9,
-                  child: CustomContainer(
-                    widths: widthFun/ 16,
-                    height: widthFun/ 21,
-                    clipBehavior: Clip.none,
-                    image: const DecorationImage(
-                        image: AssetImage(
-                          Assets.funTargetScorpio,
-                        ),
-                        fit: BoxFit.fill),
-                  ),
-                ),
-                Positioned(top: heightFun/ 2.9, child: sectionTwo()),
-                Positioned(
-                    top: heightFun/ 2.15,
-                    left: widthFun/ 2.4,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 2.2,
-                    left: widthFun/ 2.8,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 2,
-                    left: widthFun/ 4.5,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 2.3,
-                    left: widthFun/ 4,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 3.03,
-                    left: widthFun/ 3.6,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 2,
-                    right: widthFun/ 4.5,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 2.3,
-                    right: widthFun/ 4,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 3.03,
-                    right: widthFun/ 3.6,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 2.6,
-                    right: widthFun/ 3,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 2.6,
-                    left: widthFun/ 3,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 2.15,
-                    right: widthFun/ 3.3,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 2.15,
-                    left: widthFun/ 3.3,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.83,
-                    left: widthFun/ 24,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.75,
-                    left: widthFun/ 9,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.7,
-                    left: widthFun/ 5.5,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.65,
-                    left: widthFun/ 4,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.83,
-                    right: widthFun/ 24,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.75,
-                    right: widthFun/ 9,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.7,
-                    right: widthFun/ 5.5,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.65,
-                    right: widthFun/ 3.8,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.68,
-                    right: widthFun/ 2.105,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.68,
-                    left: widthFun/ 2.105,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.46,
-                    right: widthFun/ 2.05,
-                    child: const BlinkingStar()),
-                Positioned(
-                    top: heightFun/ 1.46,
-                    left: widthFun/ 2.05,
-                    child: const BlinkingStar()),
-              ],
-            ),
+              ),
+              Positioned(top: heightFun/ 2.9, child: sectionTwo()),
+              Positioned(
+                  top: heightFun/ 2.15,
+                  left: widthFun/ 2.4,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 2.2,
+                  left: widthFun/ 2.8,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 2,
+                  left: widthFun/ 4.5,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 2.3,
+                  left: widthFun/ 4,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 3.03,
+                  left: widthFun/ 3.6,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 2,
+                  right: widthFun/ 4.5,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 2.3,
+                  right: widthFun/ 4,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 3.03,
+                  right: widthFun/ 3.6,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 2.6,
+                  right: widthFun/ 3,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 2.6,
+                  left: widthFun/ 3,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 2.15,
+                  right: widthFun/ 3.3,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 2.15,
+                  left: widthFun/ 3.3,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.83,
+                  left: widthFun/ 24,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.75,
+                  left: widthFun/ 9,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.7,
+                  left: widthFun/ 5.5,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.65,
+                  left: widthFun/ 4,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.83,
+                  right: widthFun/ 24,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.75,
+                  right: widthFun/ 9,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.7,
+                  right: widthFun/ 5.5,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.65,
+                  right: widthFun/ 3.8,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.68,
+                  right: widthFun/ 2.105,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.68,
+                  left: widthFun/ 2.105,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.46,
+                  right: widthFun/ 2.05,
+                  child: const BlinkingStar()),
+              Positioned(
+                  top: heightFun/ 1.46,
+                  left: widthFun/ 2.05,
+                  child: const BlinkingStar()),
+            ],
           ),
         ),
       ),

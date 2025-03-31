@@ -290,7 +290,7 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
                                 height: height / 20,
                                 width: width * 0.4,
                                 child: ListView.builder(
-                                  itemCount: srv.sevenResultModel!.data!.length,
+                                  itemCount: srv.sevenResultModel?.data!.length,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder:
@@ -346,8 +346,9 @@ class _SevenUpDownScreenState extends State<SevenUpDownScreen>
                                             }
                                           },
                                           child: Text(
-                                            srv.sevenResultModel!.data![index]
-                                                .randomCard,
+                                            srv.sevenResultModel?.data![index]
+                                                    .randomCard ??
+                                                '',
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w900,

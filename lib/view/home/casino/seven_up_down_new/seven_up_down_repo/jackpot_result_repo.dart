@@ -8,14 +8,13 @@ class JackpotResultRepository {
   final BaseApiServices _apiServices = NetworkApiServices();
   Future<JackpotResultModel> jackpotResultApi(
       context, dynamic limit, dynamic gameid) async {
-    final data = {"game_id": gameid, "limit": limit};
     try {
-      dynamic response = await _apiServices.getPostApiResponse(
-          ApiUrl7Up.lastResultJackpot, data);
+      dynamic response = await _apiServices.getGetApiResponse(
+          '${ApiUrl7Up.lastResultJackpot}$gameid&limit=$limit');
       return JackpotResultModel.fromJson(response);
     } catch (e) {
       if (kDebugMode) {
-        print('Error occurred during jackpot result api: $e');
+        print('Error occurred during ho gy result api: $e');
       }
       rethrow;
     }

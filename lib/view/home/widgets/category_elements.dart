@@ -10,6 +10,7 @@ import 'package:game_on/view/home/casino/dragon_tiger_new/dragon_tiger.dart';
 import 'package:game_on/view/home/casino/fun_target/game_home/home_screen.dart';
 import 'package:game_on/view/home/casino/lucky_card_12/lucky_card_12.dart';
 import 'package:game_on/view/home/casino/lucky_card_16/lucky_card_16.dart';
+import 'package:game_on/view/home/casino/red_black_game/red_black_home_new.dart';
 import 'package:game_on/view/home/casino/seven_up_down_new/seven_up_down_new.dart';
 import 'package:game_on/view/home/casino/triple_chance/triple_chance.dart';
 import 'package:game_on/view/home/lottery/trx/trx.dart';
@@ -31,7 +32,8 @@ class CategoryElement extends StatefulWidget {
   State<CategoryElement> createState() => _CategoryElementState();
 }
 
-class _CategoryElementState extends State<CategoryElement> with SingleTickerProviderStateMixin{
+class _CategoryElementState extends State<CategoryElement>
+    with SingleTickerProviderStateMixin {
   @override
   void initState() {
     startCountdown();
@@ -65,7 +67,7 @@ class _CategoryElementState extends State<CategoryElement> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    final gameCon=Provider.of<TeenPattiGameController>(context);
+    final gameCon = Provider.of<TeenPattiGameController>(context);
     List<MiniGameModel> originalGameList = [
       MiniGameModel(
           image: Assets.categoryPlinko,
@@ -188,6 +190,15 @@ class _CategoryElementState extends State<CategoryElement> with SingleTickerProv
               context,
               MaterialPageRoute(builder: (context) => const HomePageScreen()),
             );
+          }),
+      MiniGameModel(
+          image: Assets.categoryRedblackGamelogo,
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const RedBlackHomeScreen(gameId: '16')));
           }),
       MiniGameModel(
           image: Assets.categoryUpdownGamelogo,
@@ -327,7 +338,6 @@ class _CategoryElementState extends State<CategoryElement> with SingleTickerProv
                                       originalGameList[index].image,
                                     ),
                                   )),
-                              //  color: Colors.deepPurpleAccent,
                             ),
                           ),
                         );

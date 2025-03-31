@@ -15,6 +15,8 @@ class JackpotPopUpRepository {
     };
     try {
       dynamic response = await _apiServices.getPostApiResponse(ApiUrl7Up.winPopupJackpot,data);
+      print('Dekho ky huaaa ${ApiUrl7Up.winPopupJackpot}');
+      print('Dekho mgr pyaar se ${data}');
       return JackpotWinPopupModel.fromJson(response);
     } catch (e) {
       if (kDebugMode) {

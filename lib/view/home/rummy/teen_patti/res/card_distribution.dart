@@ -125,8 +125,6 @@ class _CardDistributionScreenActivityState
   Widget cardImage(String cardImg, bool isWinner) {
     return ContBox(
       border: isWinner ? Border.all(color: Colors.green, width: 3) : null,
-      // height: Sizes.screenWidth / 14,
-      // width: Sizes.screenWidth / 21,
       height: Sizes.screenWidth / 20,
       width: Sizes.screenWidth / 30,
       borderRadius: BorderRadius.circular(5),

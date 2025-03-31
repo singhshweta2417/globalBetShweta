@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 
-const String appName = 'Food App';
+const String appName = 'Game On';
 
 //FontSize
 const double textFontSize7 = 7;

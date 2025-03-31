@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:game_on/res/orientation.dart';
+import 'package:game_on/view/bottom/bottom_nav_bar.dart';
 import 'package:game_on/view/home/rummy/teen_patti/res/card_distribution.dart';
 import 'package:game_on/view/home/rummy/teen_patti/user_interface/game_screens/game_screen.dart';
 import 'package:game_on/view/home/rummy/teen_patti/user_interface/game_screens/summary_screen.dart';
@@ -83,7 +84,12 @@ class _GameUIControlScreenActivityState
                 return CupertinoDialogAction(
                   isDestructiveAction: true,
                   child: const Text("Exit"),
-                  onPressed: () async => await gameCon.leaveTable(context),
+                  onPressed: (){
+                    OrientationPortraitUtil.setPortraitOrientation();
+                    gameCon.leaveTable(context);
+                    FeedbackProvider.navigateToHome(context);
+                  }
+                  // await ,
                 );
               }),
             ],
